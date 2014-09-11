@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 14.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 43363)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="800px" height="800px" viewBox="0 0 800 800" enable-background="new 0 0 800 800" xml:space="preserve">
+<g id="innerBG" display="none">
+	<circle display="inline" fill="#68C1DD" cx="400" cy="400" r="390"/>
+	<circle display="inline" fill="#3C3C3C" cx="400" cy="400" r="375"/>
+</g>
+<g id="circle">
+	<path fill="#EBEBEB" d="M400,10C184.61,10,10,184.609,10,400c0,215.391,174.61,390,390,390c215.393,0,390-174.609,390-390
+		C790,184.609,615.393,10,400,10z M400,775C192.894,775,25,607.104,25,400C25,192.892,192.894,25,400,25
+		c207.105,0,375,167.892,375,375C775,607.104,607.105,775,400,775z"/>
+</g>
+<g id="Layer_5">
+	<polygon fill="#FFC200" points="675,360 440,360 440,125 360,125 360,360 125,360 125,440 360,440 360,675 440,675 440,440 
+		675,440 	"/>
+</g>
+</svg>

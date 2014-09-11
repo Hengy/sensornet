@@ -1,0 +1,109 @@
+.viewBar {
+	overflow-x: hidden;
+	position: relative;
+	width: 200%;
+	left: -50%;
+	
+	background-color: #2c2c2c;
+	border-top: 1px solid #000000;
+	border-bottom: 1px solid #000000;
+}
+
+.viewContainer {
+	position: relative;
+	max-width: 1000px;
+	min-width: 600px;
+	height: 44px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 100px;
+}
+
+.viewText {
+	position: relative;
+	float: left;
+	top: 8px;
+	color: #999999;
+	font-weight: 300;
+	font-size: 22px;
+	padding-right: 25px;
+	padding-left: 35px;
+}
+
+.displayQntyBttns {
+	position: relative;
+	float: left;
+	width: 180px;
+	height: 30px;
+	margin-top: 6px;
+	
+	background-color: #3C3C3C;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+	border: 1px solid #555555;
+}
+
+.qntyBttn {
+	position: relative;
+	width: 59px;
+	height: 24px;
+	float: left;
+	padding-top: 6px;
+	
+	cursor: pointer;
+	
+	color: #999999;
+	text-align: center;
+}
+
+.qntyBttn:hover {
+	color: #EBEBEB;
+}
+
+.qntyBttnMid {
+	border-left: 1px solid #555555;
+	border-right: 1px solid #555555;
+}
+
+.qntyBttnSelLeft {
+	color: #EBEBEB;
+	background-color: #222222;
+	-webkit-border-top-left-radius: 8px;
+	-webkit-border-bottom-left-radius: 8px;
+	border-top-left-radius: 8px;
+	border-bottom-left-radius: 8px;
+}
+
+.qntyBttnSelMid {
+	color: #EBEBEB;
+	background-color: #222222;
+}
+
+.qntyBttnSelRight {
+	color: #EBEBEB;
+	background-color: #222222;
+	-webkit-border-top-left-radius: 8px;
+	-webkit-border-bottom-left-radius: 8px;
+	border-top-right-radius: 8px;
+	border-bottom-right-radius: 8px;
+}
+
+.sortSel select {
+	position: relative;
+	height: 32px;
+	margin-top: 6px;
+	padding: 0px 12px;
+	
+	font-family: 'Ubuntu', sans-serif;
+	font-weight: 500;
+	font-size: 20px;
+	color: #EBEBEB;
+	
+	background-color: #222222;
+	
+	border: 1px solid #555555;
+	-webkit-border-top-left-radius: 8px;
+	-webkit-border-bottom-left-radius: 8px;
+	border-top-right-radius: 8px;
+	border-bottom-right-radius: 8px;
+}
