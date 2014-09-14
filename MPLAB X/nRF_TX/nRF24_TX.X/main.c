@@ -69,7 +69,8 @@
 
 // nRF24L01+ pins
 #define nRF_CE      LATAbits.LATA1      // nRF24L01+ chip enable
-#define nRF_IRQ     LATAbits.LATA2      // nRF24L01+ IRQ
+#define nRF_CSN     LATAbits.LATA2      // nRF24L01+ chip select negative
+#define nRF_IRQ     LATAbits.LATA3      // nRF24L01+ IRQ
 
 /*------------------------------------------------
  * nRF24L01+ command and register definitions
@@ -159,14 +160,14 @@ void main(void) {
 }
 
 /*------------------------------------------------
- * PORT setup function (
+ * PORT setup function; 1=IN; 0=OUT
 ------------------------------------------------*/
 void portConfig(void) {
     LATA = 0x00;                        // Set all pins to low
     LATB = 0x00;
     LATC = 0x00;
 
-    TRISA = 0b00000100;                 // Configure PORTA I/O
+    TRISA = 0b00001000;                 // Configure PORTA I/O
     TRISB = 0b00000000;                 // Configure PORTB I/O
     TRISC = 0b00010000;                 // Configure PORTC I/O
 }
@@ -192,7 +193,7 @@ void nrfConfig(void) {
     spiWrite(W_REGISTER|CONFIG);        // Write to CONFIG register
     spiWrite(0b00001010);               // Show all interrupts; Enable CRC - 1 byte; Power up; TX
     spiWrite(W_REGISTER|SETUP_AW);      // Write to SETUP_AW register
-    spiWrite(0b00000001);               // 3 byte address
+    spiWrite(0b00000010);               // 4 byte address
     spiWrite(W_REGISTER|RF_CH);         // Write to RF channel register
     spiWrite(0b01101001);               // Channel 105 (2.400GHz + 0.105GHz = 2.505GHz)
     spiWrite(W_REGISTER|RF_SETUP);      // Write to RF setup register
