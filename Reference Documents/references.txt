@@ -1,1 +1,2 @@
 http://gizmosnack.blogspot.se/2013/05/raspberry-pi-nrf24l01-and-tcp.html
+https://devzone.nordicsemi.com/question/4850/nrf24l01-pipe-settings/
