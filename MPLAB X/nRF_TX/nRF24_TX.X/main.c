@@ -133,6 +133,22 @@ SCK     -[14/RC3       RC4/15]-       SDI
 #define DYNPD           0x1C            // Enable dynamic payload length
 #define FEATURE         0x1D            // Feature register
 
+/*------------------------------------------------
+ * Misc. Definitions
+------------------------------------------------*/
+#define DUMMY_DATA      0xCC            // Dummy data for SPI
+
+/*------------------------------------------------
+ * Initial config settings
+------------------------------------------------*/
+char CONFIG_INIT = 0b00001010;              // Show all interrupts; Enable CRC - 1 byte; Power up; TX
+char EN_RXADDR_INIT = 0b00000010;           // Enable data pipe 1
+char SETUP_AW_INIT = 0b00000010;            // set for 4 byte address
+char RF_CH_INIT = 0b01101001;               // Channel 105 (2.400GHz + 0.105GHz = 2.505GHz)
+char RF_SETUP_INIT = 0b00000110;            // RF data rate to 1Mbps; 0dBm output power (highest)
+char RX_ADDRESS[4] = {0xE7,0xE7,0xE7,0xE7}; // 4 byte initial RX address
+char TX_ADDRESS[4] = {0xE7,0xE7,0xE7,0xE7}; // 4 byte initial TX address
+
 
 /*------------------------------------------------
  * Function Definitions
@@ -140,9 +156,11 @@ SCK     -[14/RC3       RC4/15]-       SDI
 void portConfig(void);
 void spiConfig_1(void);
 void nrfConfig(void);
-void spiWrite(int);
-void nrfTX(int);
+void spiWrite(char);
+void nrfTX(char);
 void delay10ms(int);
+void nrfSetRXAddr(char, char[]);
+void nrfSetTXAddr(char[]);
 
 /*------------------------------------------------
  * Global Variables
@@ -208,28 +226,97 @@ void spiConfig_1(void) {
 ------------------------------------------------*/
 void nrfConfig(void) {
     spiWrite(W_REGISTER|CONFIG);        // Write to CONFIG register
-    spiWrite(0b00001010);               // Show all interrupts; Enable CRC - 1 byte; Power up; TX
+    spiWrite(CONFIG_INIT);              // Show all interrupts; Enable CRC - 1 byte; Power up; TX
+    spiWrite(W_REGISTER|EN_RXADDR);     // Write to EN_RXADDR register
+    spiWrite(EN_RXADDR_INIT);           // Enable data pipe 1
     spiWrite(W_REGISTER|SETUP_AW);      // Write to SETUP_AW register
-    spiWrite(0b00000010);               // 4 byte address
+    spiWrite(SETUP_AW_INIT);            // set up for 4 byte address
+    nrfSetTXAddr(TX_ADDRESS);           // set TX address
+    nrfSetRXAddr(RX_ADDR_P0,RX_ADDRESS);// set RX address
     spiWrite(W_REGISTER|RF_CH);         // Write to RF channel register
-    spiWrite(0b01101001);               // Channel 105 (2.400GHz + 0.105GHz = 2.505GHz)
+    spiWrite(RF_CH_INIT);               // Channel 105 (2.400GHz + 0.105GHz = 2.505GHz)
     spiWrite(W_REGISTER|RF_SETUP);      // Write to RF setup register
-    spiWrite(0b00000110);               // RF data rate to 1Mbps; 0dBm output power (highest)
+    spiWrite(RF_SETUP_INIT);            // RF data rate to 1Mbps; 0dBm output power (highest)
     spiWrite(FLUSH_TX);                 // Flush TX FIFO
+}
+
+/*------------------------------------------------
+ * nRF24L01+ set TX address
+ * char addr - 4 byte address
+------------------------------------------------*/
+void nrfSetTXAddr(char addr[]) {
+    spiWrite(W_REGISTER|TX_ADDR);       // Set new transmit address
+
+    int i;                              // Send all 4 bytes
+    for (i=0;i<4;i++) {
+        spiWrite(addr[i]);
+    }
+}
+
+/*------------------------------------------------
+ * nRF24L01+ set RX for pipe address
+ * char addrXX - which pipe to set address for
+ * char addr - 4 byte address
+------------------------------------------------*/
+void nrfSetRXAddr(char addrXX, char addr[]) {
+    spiWrite(W_REGISTER|addrXX);        // Set new receive address
+    
+    int i;                              // Send all 4 bytes
+    for (i=0;i<4;i++) {
+        spiWrite(addr[i]);
+    }
+}
+
+/*------------------------------------------------
+ * Get STATUS register from nRF24L01+
+ * Sends NOP commmand and gets STATUS reg
+ * returns char STATUS register
+------------------------------------------------*/
+char getSTATUS(void) {
+    int *dataPtr;                       // Pointer to received data
+    spiWrite(NRF_NOP);                  // Send NOP command
+    dataPtr = spiRead(4);
+
+    return dataPtr;
 }
 
 /*------------------------------------------------
  * nRF24L01+ setup function
 ------------------------------------------------*/
-void spiWrite(int data) {
+void spiWrite(char data) {
+    // toggle CSN pin
+    nRF_CSN = 1;
     SSP1BUF = data;
+    nRF_CSN = 0;
     __delay_us(500);
+}
+
+/*------------------------------------------------
+ * SPI read data function
+ * Sends len number of dummy chars
+ * int len - number of bytes to read
+ * returns pointer to array of data
+------------------------------------------------*/
+int* spiRead(int len) {
+    char data[len];
+    int i;
+    for (i=0;i<len;i++) {
+        // toggle CSN pin
+        nRF_CSN = 1;
+        SSP1BUF = DUMMY_DATA;
+        nRF_CSN = 0;
+        data[i] = SSP1BUF;
+    }
+
+    __delay_us(500);
+
+    return data[];
 }
 
 /*------------------------------------------------
  * nRF24L01+ send function
 ------------------------------------------------*/
-void nrfTX(int data) {
+void nrfTX(char data) {
     spiWrite(W_TX_PAYLOAD);             // Write to TX payload register
     spiWrite(data);                     // Write data
 
