@@ -5,7 +5,7 @@ Linker command line:
 --edf=C:\Program Files (x86)\Microchip\xc8\v1.33\dat\en_msgs.txt -cs \
   -h+dist/default/production\nRF24_TX.X.production.sym \
   --cmf=dist/default/production\nRF24_TX.X.production.cmf -z -Q18F24K22 \
-  -oC:\Users\STUDEN~1.N20\AppData\Local\Temp\s5q8.6 \
+  -oC:\Users\STUDEN~1.N20\AppData\Local\Temp\s1do.6 \
   -Mdist/default/production/nRF24_TX.X.production.map -E1 -ver=XC8 \
   -ASTACK=060h-02ffh -pstack=STACK -ACODE=00h-03FFFh -ACONST=00h-03FFFh \
   -ASMALLCONST=0300h-03FFhx61 -AMEDIUMCONST=0300h-03FFFh -ACOMRAM=01h-05Fh \
@@ -21,7 +21,7 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE \
-  C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5q8.obj \
+  C:\Users\STUDEN~1.N20\AppData\Local\Temp\s1do.obj \
   dist/default/production\nRF24_TX.X.production.obj 
 
 Object code version is 3.11
@@ -34,7 +34,7 @@ Call graph: (short form)
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5q8.obj
+C:\Users\STUDEN~1.N20\AppData\Local\Temp\s1do.obj
                 end_init                              0        0        4        0       0
                 idloc                            200000   200000        8   200000       0
                 config                           300000   300000        E   300000       0
@@ -396,7 +396,7 @@ FUNCTION INFORMATION:
 
  *************** function _main *****************
  Defined at:
-		line 168 in file "main.c"
+		line 173 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -429,7 +429,7 @@ Total ram usage:        2 bytes
 
  *************** function _spiConfig_1 *****************
  Defined at:
-		line 209 in file "main.c"
+		line 214 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -458,7 +458,7 @@ Total ram usage:        0 bytes
 
  *************** function _portConfig *****************
  Defined at:
-		line 195 in file "main.c"
+		line 200 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -487,7 +487,7 @@ Total ram usage:        0 bytes
 
  *************** function _nrfTX *****************
  Defined at:
-		line 279 in file "main.c"
+		line 319 in file "main.c"
  Parameters:    Size  Location     Type
   data            1    wreg     unsigned char 
  Auto vars:     Size  Location     Type
@@ -517,7 +517,7 @@ Total ram usage:        1 bytes
 
  *************** function _nrfConfig *****************
  Defined at:
-		line 222 in file "main.c"
+		line 227 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -549,7 +549,7 @@ Total ram usage:        0 bytes
 
  *************** function _nrfSetTXAddr *****************
  Defined at:
-		line 242 in file "main.c"
+		line 247 in file "main.c"
  Parameters:    Size  Location     Type
   addr            2    2[COMRAM] PTR unsigned char 
 		 -> TX_ADDRESS(4), 
@@ -580,7 +580,7 @@ Total ram usage:        4 bytes
 
  *************** function _nrfSetRXAddr *****************
  Defined at:
-		line 256 in file "main.c"
+		line 261 in file "main.c"
  Parameters:    Size  Location     Type
   addrXX          1    wreg     unsigned char 
   addr            2    2[COMRAM] PTR unsigned char 
@@ -613,7 +613,7 @@ Total ram usage:        5 bytes
 
  *************** function _spiWrite *****************
  Defined at:
-		line 268 in file "main.c"
+		line 286 in file "main.c"
  Parameters:    Size  Location     Type
   data            1    wreg     unsigned char 
  Auto vars:     Size  Location     Type
@@ -640,12 +640,13 @@ Total ram usage:        2 bytes
 		_nrfSetTXAddr
 		_nrfSetRXAddr
 		_nrfTX
+		_getSTATUS
  This function uses a non-reentrant model
 
 
  *************** function _delay10ms *****************
  Defined at:
-		line 292 in file "main.c"
+		line 332 in file "main.c"
  Parameters:    Size  Location     Type
   ms_multi        2    0[COMRAM] int 
  Auto vars:     Size  Location     Type

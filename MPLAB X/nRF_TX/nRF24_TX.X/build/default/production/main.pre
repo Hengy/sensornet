@@ -10127,16 +10127,16 @@ spiWrite(addr[i]);
 }
 }
 
-# 273
+# 275
 char getSTATUS(void) {
-int *dataPtr;
+char statusByte;
 spiWrite(0xFF);
-dataPtr = spiRead(4);
+statusByte = SSP1BUF;
 
-return dataPtr;
+return statusByte;
 }
 
-# 284
+# 286
 void spiWrite(char data) {
 
 LATAbits.LATA2 = 1;
@@ -10145,9 +10145,9 @@ LATAbits.LATA2 = 0;
 _delay((unsigned long)((500)*(64000000/4000000.0)));
 }
 
-# 295
+# 300
 int* spiRead(int len) {
-char data[len];
+char data[32];
 int i;
 for (i=0;i<len;i++) {
 
@@ -10159,10 +10159,10 @@ data[i] = SSP1BUF;
 
 _delay((unsigned long)((500)*(64000000/4000000.0)));
 
-return data[];
+return &data[0];
 }
 
-# 314
+# 319
 void nrfTX(char data) {
 spiWrite(0xA0);
 spiWrite(data);
@@ -10173,7 +10173,7 @@ _delay((unsigned long)((20)*(64000000/4000000.0)));
 LATAbits.LATA1 = 0;
 }
 
-# 327
+# 332
 void delay10ms(int ms_multi) {
 int i = 0;
 for (i=0;i<ms_multi;i++) {

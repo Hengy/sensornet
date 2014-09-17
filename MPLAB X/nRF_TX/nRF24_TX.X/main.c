@@ -273,11 +273,11 @@ void nrfSetRXAddr(char addrXX, char addr[]) {
  * returns char STATUS register
 ------------------------------------------------*/
 char getSTATUS(void) {
-    int *dataPtr;                       // Pointer to received data
+    char statusByte;
     spiWrite(NRF_NOP);                  // Send NOP command
-    dataPtr = spiRead(4);
+    statusByte = SSP1BUF;
 
-    return dataPtr;
+    return statusByte;
 }
 
 /*------------------------------------------------
@@ -298,7 +298,7 @@ void spiWrite(char data) {
  * returns pointer to array of data
 ------------------------------------------------*/
 int* spiRead(int len) {
-    char data[len];
+    char data[32];
     int i;
     for (i=0;i<len;i++) {
         // toggle CSN pin
@@ -310,7 +310,7 @@ int* spiRead(int len) {
 
     __delay_us(500);
 
-    return data[];
+    return &data[0];
 }
 
 /*------------------------------------------------
