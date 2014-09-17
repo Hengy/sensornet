@@ -165,6 +165,8 @@ void nrfSetTXAddr(char[]);
 /*------------------------------------------------
  * Global Variables
 ------------------------------------------------*/
+char dataBufIn[32];                           // 32 byte buffer for all incoming SPI data
+char dataBufOut[32];                          // 32 byte buffer for all outgoing SPI data
 int count = 0;
 
 /*------------------------------------------------
@@ -297,20 +299,17 @@ void spiWrite(char data) {
  * int len - number of bytes to read
  * returns pointer to array of data
 ------------------------------------------------*/
-int* spiRead(int len) {
-    char data[32];
+void spiRead(int len) {
     int i;
     for (i=0;i<len;i++) {
         // toggle CSN pin
         nRF_CSN = 1;
         SSP1BUF = DUMMY_DATA;
         nRF_CSN = 0;
-        data[i] = SSP1BUF;
+        dataBufIn[i] = SSP1BUF;
     }
 
     __delay_us(500);
-
-    return &data[0];
 }
 
 /*------------------------------------------------
