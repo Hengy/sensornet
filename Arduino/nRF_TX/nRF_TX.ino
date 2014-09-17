@@ -35,10 +35,11 @@
  * Pin Definitions
 ------------------------------------------------*/
 // LEDs
-const byte actLed     = 4;    // Activity LED
+const byte actLed     = 5;    // Activity LED
 
 // nRF24L01+ pins
-const byte nRF_CE     = 3;    // nRF24L01+ chip enable
+const byte nRF_CE     = 4;    // nRF24L01+ chip enable
+const byte nRF_CSN    = 3;    // nRF24L01+ chip select not
 const byte nRF_IRQ    = 2;    // nRF24L01+ interrupt
 
 /*------------------------------------------------
@@ -87,6 +88,23 @@ const byte FEATURE         = 0x1D;        // Feature register
 
 
 /*------------------------------------------------
+ * Misc definitions
+------------------------------------------------*/
+const byte DUMMY_DATA      = 0xCC;        // Dummy data for SPI (0b11001100)
+
+
+/*------------------------------------------------
+ * nRF24L01+ initial config settings
+------------------------------------------------*/
+byte CONFIG_INIT           = B00001010;
+byte EN_ARXADDR_INIT       = B00000010;
+byte SETUP_AW_INIT         = B00000010;
+byte RF_CH_INIT            = B01101001;
+byte RF_SETUP_INIT         = B00000110;
+byte RX_ADDRESS[4]         = {0xE7,0xE7,0xE7,0xE7};
+byte TX_ADDRESS[4]         = {0xE7,0xE7,0xE7,0xE7};
+
+/*------------------------------------------------
  * Setup
 ------------------------------------------------*/
 void setup() {
@@ -95,6 +113,7 @@ void setup() {
   digitalWrite(actLed, LOW);
   
   pinMode(nRF_IRQ, INPUT);                // Set IRQ pin to input
+  pinMode(nRF_CSN, OUTPUT);               // Set CSN pin to output
   pinMode(nRF_CE, OUTPUT);                // Set chip enable pin to output and initialize to 0
   digitalWrite(nRF_CE, LOW);
   

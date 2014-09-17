@@ -136,16 +136,16 @@ SCK     -[14/RC3       RC4/15]-       SDI
 /*------------------------------------------------
  * Misc. Definitions
 ------------------------------------------------*/
-#define DUMMY_DATA      0xCC            // Dummy data for SPI
+#define DUMMY_DATA      0xCC            // Dummy data for SPI (0b11001100)
 
 /*------------------------------------------------
  * Initial config settings
 ------------------------------------------------*/
-char CONFIG_INIT = 0b00001010;              // Show all interrupts; Enable CRC - 1 byte; Power up; TX
-char EN_RXADDR_INIT = 0b00000010;           // Enable data pipe 1
-char SETUP_AW_INIT = 0b00000010;            // set for 4 byte address
-char RF_CH_INIT = 0b01101001;               // Channel 105 (2.400GHz + 0.105GHz = 2.505GHz)
-char RF_SETUP_INIT = 0b00000110;            // RF data rate to 1Mbps; 0dBm output power (highest)
+char CONFIG_INIT        = 0b00001010;   // Show all interrupts; Enable CRC - 1 byte; Power up; TX
+char EN_RXADDR_INIT     = 0b00000010;   // Enable data pipe 1
+char SETUP_AW_INIT      = 0b00000010;   // set for 4 byte address
+char RF_CH_INIT         = 0b01101001;   // Channel 105 (2.400GHz + 0.105GHz = 2.505GHz)
+char RF_SETUP_INIT      = 0b00000110;   // RF data rate to 1Mbps; 0dBm output power (highest)
 char RX_ADDRESS[4] = {0xE7,0xE7,0xE7,0xE7}; // 4 byte initial RX address
 char TX_ADDRESS[4] = {0xE7,0xE7,0xE7,0xE7}; // 4 byte initial TX address
 
