@@ -236,7 +236,7 @@ void nrfConfig(void) {
     spiWrite(W_REGISTER|SETUP_AW);      // Write to SETUP_AW register
     spiWrite(SETUP_AW_CURR);
     nrfSetTXAddr(TX_ADDRESS);           // set TX address
-    nrfSetRXAddr(RX_ADDR_P0,RX_ADDRESS);// set RX address
+    nrfSetRXAddr(RX_ADDR_P1,RX_ADDRESS);// set RX address
     spiWrite(W_REGISTER|RF_CH);         // Write to RF channel register
     spiWrite(RF_CH_CURR);
     spiWrite(W_REGISTER|RF_SETUP);      // Write to RF setup register
