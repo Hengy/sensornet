@@ -5,7 +5,7 @@ Linker command line:
 --edf=C:\Program Files (x86)\Microchip\xc8\v1.33\dat\en_msgs.txt -cs \
   -h+dist/default/production\nRF24_TX.X.production.sym \
   --cmf=dist/default/production\nRF24_TX.X.production.cmf -z -Q18F24K22 \
-  -oC:\Users\STUDEN~1.N20\AppData\Local\Temp\s2mg.6 \
+  -oC:\Users\STUDEN~1.N20\AppData\Local\Temp\s4v8.6 \
   -Mdist/default/production/nRF24_TX.X.production.map -E1 -ver=XC8 \
   -ASTACK=060h-02ffh -pstack=STACK -ACODE=00h-03FFFh -ACONST=00h-03FFFh \
   -ASMALLCONST=0300h-03FFhx61 -AMEDIUMCONST=0300h-03FFFh -ACOMRAM=01h-05Fh \
@@ -21,7 +21,7 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE \
-  C:\Users\STUDEN~1.N20\AppData\Local\Temp\s2mg.obj \
+  C:\Users\STUDEN~1.N20\AppData\Local\Temp\s4v8.obj \
   dist/default/production\nRF24_TX.X.production.obj 
 
 Object code version is 3.11
@@ -34,7 +34,7 @@ Call graph: (short form)
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\STUDEN~1.N20\AppData\Local\Temp\s2mg.obj
+C:\Users\STUDEN~1.N20\AppData\Local\Temp\s4v8.obj
                 end_init                              0        0        4        0       0
                 idloc                            200000   200000        8   200000       0
                 config                           300000   300000        E   300000       0
@@ -146,16 +146,16 @@ UNUSED ADDRESS RANGES
 
                                   Symbol Table
 
-_CONFIG_INIT             dataCOMRAM   000043
-_EN_RXADDR_INIT          dataCOMRAM   000044
+_CONFIG_CURR             dataCOMRAM   000043
+_EN_RXADDR_CURR          dataCOMRAM   000044
 _LATA                    (abs)        000F89
 _LATAbits                (abs)        000F89
 _LATB                    (abs)        000F8A
 _LATC                    (abs)        000F8B
-_RF_CH_INIT              dataCOMRAM   000045
-_RF_SETUP_INIT           dataCOMRAM   000046
+_RF_CH_CURR              dataCOMRAM   000045
+_RF_SETUP_CURR           dataCOMRAM   000046
 _RX_ADDRESS              dataCOMRAM   000048
-_SETUP_AW_INIT           dataCOMRAM   000047
+_SETUP_AW_CURR           dataCOMRAM   000047
 _SSP1ADD                 (abs)        000FC8
 _SSP1BUF                 (abs)        000FC9
 _SSP1CON1bits            (abs)        000FC6
@@ -398,7 +398,7 @@ FUNCTION INFORMATION:
 
  *************** function _main *****************
  Defined at:
-		line 175 in file "main.c"
+		line 177 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -431,7 +431,7 @@ Total ram usage:        2 bytes
 
  *************** function _spiConfig_1 *****************
  Defined at:
-		line 216 in file "main.c"
+		line 218 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -460,7 +460,7 @@ Total ram usage:        0 bytes
 
  *************** function _portConfig *****************
  Defined at:
-		line 202 in file "main.c"
+		line 204 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -489,7 +489,7 @@ Total ram usage:        0 bytes
 
  *************** function _nrfTX *****************
  Defined at:
-		line 318 in file "main.c"
+		line 320 in file "main.c"
  Parameters:    Size  Location     Type
   data            1    wreg     unsigned char 
  Auto vars:     Size  Location     Type
@@ -519,7 +519,7 @@ Total ram usage:        1 bytes
 
  *************** function _nrfConfig *****************
  Defined at:
-		line 229 in file "main.c"
+		line 231 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -551,7 +551,7 @@ Total ram usage:        0 bytes
 
  *************** function _nrfSetTXAddr *****************
  Defined at:
-		line 249 in file "main.c"
+		line 251 in file "main.c"
  Parameters:    Size  Location     Type
   addr            2    2[COMRAM] PTR unsigned char 
 		 -> TX_ADDRESS(4), 
@@ -582,7 +582,7 @@ Total ram usage:        4 bytes
 
  *************** function _nrfSetRXAddr *****************
  Defined at:
-		line 263 in file "main.c"
+		line 265 in file "main.c"
  Parameters:    Size  Location     Type
   addrXX          1    wreg     unsigned char 
   addr            2    2[COMRAM] PTR unsigned char 
@@ -615,7 +615,7 @@ Total ram usage:        5 bytes
 
  *************** function _spiWrite *****************
  Defined at:
-		line 288 in file "main.c"
+		line 290 in file "main.c"
  Parameters:    Size  Location     Type
   data            1    wreg     unsigned char 
  Auto vars:     Size  Location     Type
@@ -648,7 +648,7 @@ Total ram usage:        2 bytes
 
  *************** function _delay10ms *****************
  Defined at:
-		line 331 in file "main.c"
+		line 333 in file "main.c"
  Parameters:    Size  Location     Type
   ms_multi        2    0[COMRAM] int 
  Auto vars:     Size  Location     Type

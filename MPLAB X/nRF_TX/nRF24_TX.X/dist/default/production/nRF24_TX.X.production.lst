@@ -1,7 +1,7 @@
 
 
 Microchip Technology PIC18 LITE Macro Assembler V1.33 build 59893 
-                                                                                               Wed Sep 17 11:33:51 2014
+                                                                                               Thu Sep 18 10:34:19 2014
 
 Microchip Technology Omniscient Code Generator (Lite mode) build 59893
      1                           	processor	18F24K22
@@ -29,19 +29,19 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
     23  003E05                     __pidataCOMRAM:
     24                           	opt stack 0
     25                           
-    26                           ;initializer for _CONFIG_INIT
+    26                           ;initializer for _CONFIG_CURR
     27  003E05  0A                 	db	10
     28                           
-    29                           ;initializer for _EN_RXADDR_INIT
+    29                           ;initializer for _EN_RXADDR_CURR
     30  003E06  02                 	db	2
     31                           
-    32                           ;initializer for _RF_CH_INIT
+    32                           ;initializer for _RF_CH_CURR
     33  003E07  69                 	db	105
     34                           
-    35                           ;initializer for _RF_SETUP_INIT
+    35                           ;initializer for _RF_SETUP_CURR
     36  003E08  06                 	db	6
     37                           
-    38                           ;initializer for _SETUP_AW_INIT
+    38                           ;initializer for _SETUP_AW_CURR
     39  003E09  02                 	db	2
     40                           
     41                           ;initializer for _RX_ADDRESS
@@ -140,19 +140,19 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    134                           	psect	dataCOMRAM
    135  000043                     __pdataCOMRAM:
    136                           	opt stack 0
-   137  000043                     _CONFIG_INIT:
+   137  000043                     _CONFIG_CURR:
    138                           	opt stack 0
    139  000043                     	ds	1
-   140  000044                     _EN_RXADDR_INIT:
+   140  000044                     _EN_RXADDR_CURR:
    141                           	opt stack 0
    142  000044                     	ds	1
-   143  000045                     _RF_CH_INIT:
+   143  000045                     _RF_CH_CURR:
    144                           	opt stack 0
    145  000045                     	ds	1
-   146  000046                     _RF_SETUP_INIT:
+   146  000046                     _RF_SETUP_CURR:
    147                           	opt stack 0
    148  000046                     	ds	1
-   149  000047                     _SETUP_AW_INIT:
+   149  000047                     _SETUP_AW_CURR:
    150                           	opt stack 0
    151  000047                     	ds	1
    152  000048                     _RX_ADDRESS:
@@ -230,7 +230,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    224 ;;
    225 ;; *************** function _main *****************
    226 ;; Defined at:
-   227 ;;		line 175 in file "main.c"
+   227 ;;		line 177 in file "main.c"
    228 ;; Parameters:    Size  Location     Type
    229 ;;		None
    230 ;; Auto vars:     Size  Location     Type
@@ -267,39 +267,39 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    261  003F56                     _main:
    262                           	opt stack 28
    263                           
-   264                           ;main.c: 177: portConfig();
+   264                           ;main.c: 179: portConfig();
    265                           
    266                           ;incstack = 0
    267  003F56  EC14  F01F         	call	_portConfig	;wreg free
    268                           
-   269                           ;main.c: 179: spiConfig_1();
+   269                           ;main.c: 181: spiConfig_1();
    270  003F5A  EC09  F01F         	call	_spiConfig_1	;wreg free
    271                           
-   272                           ;main.c: 181: nrfConfig();
+   272                           ;main.c: 183: nrfConfig();
    273  003F5E  ECD1  F01F         	call	_nrfConfig	;wreg free
    274  003F62                     l759:
    275                           
-   276                           ;main.c: 184: LATAbits.LATA0 = 1;
+   276                           ;main.c: 186: LATAbits.LATA0 = 1;
    277  003F62  8089               	bsf	3977,0,c	;volatile
    278                           
-   279                           ;main.c: 186: nrfTX(count);
+   279                           ;main.c: 188: nrfTX(count);
    280  003F64  5041               	movf	_count,w,c
    281  003F66  EC2F  F01F         	call	_nrfTX
    282                           
-   283                           ;main.c: 187: count++;
+   283                           ;main.c: 189: count++;
    284  003F6A  4A41               	infsnz	_count,f,c
    285  003F6C  2A42               	incf	_count+1,f,c
    286                           
-   287                           ;main.c: 189: LATAbits.LATA0 = 0;
+   287                           ;main.c: 191: LATAbits.LATA0 = 0;
    288  003F6E  9089               	bcf	3977,0,c	;volatile
    289                           
-   290                           ;main.c: 192: int i = 0;
+   290                           ;main.c: 194: int i = 0;
    291  003F70  0E00               	movlw	0
    292  003F72  6E58               	movwf	main@i+1,c
    293  003F74  0E00               	movlw	0
    294  003F76  6E57               	movwf	main@i,c
    295                           
-   296                           ;main.c: 193: for (i=0;i<5;i++) {
+   296                           ;main.c: 195: for (i=0;i<5;i++) {
    297  003F78  0E00               	movlw	0
    298  003F7A  6E58               	movwf	main@i+1,c
    299  003F7C  0E00               	movlw	0
@@ -313,7 +313,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    307  003F8C  B0D8               	btfsc	status,0,c
    308  003F8E  D7E9               	goto	l759
    309                           
-   310                           ;main.c: 194: delay10ms(5);
+   310                           ;main.c: 196: delay10ms(5);
    311  003F90  0E00               	movlw	0
    312  003F92  6E51               	movwf	delay10ms@ms_multi+1,c
    313  003F94  0E05               	movlw	5
@@ -336,7 +336,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    330                           
    331 ;; *************** function _spiConfig_1 *****************
    332 ;; Defined at:
-   333 ;;		line 216 in file "main.c"
+   333 ;;		line 218 in file "main.c"
    334 ;; Parameters:    Size  Location     Type
    335 ;;		None
    336 ;; Auto vars:     Size  Location     Type
@@ -369,28 +369,28 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    363  003E12                     _spiConfig_1:
    364                           	opt stack 30
    365                           
-   366                           ;main.c: 217: SSP1CON1bits.CKP = 0;
+   366                           ;main.c: 219: SSP1CON1bits.CKP = 0;
    367                           
    368                           ;incstack = 0
    369  003E12  98C6               	bcf	4038,4,c	;volatile
    370                           
-   371                           ;main.c: 218: SSP1STATbits.CKE = 1;
+   371                           ;main.c: 220: SSP1STATbits.CKE = 1;
    372  003E14  8CC7               	bsf	4039,6,c	;volatile
    373                           
-   374                           ;main.c: 219: SSP1STATbits.SMP = 1;
+   374                           ;main.c: 221: SSP1STATbits.SMP = 1;
    375  003E16  8EC7               	bsf	4039,7,c	;volatile
    376                           
-   377                           ;main.c: 220: SSP1ADD = 0b00011111;
+   377                           ;main.c: 222: SSP1ADD = 0b00011111;
    378  003E18  0E1F               	movlw	31
    379  003E1A  6EC8               	movwf	4040,c	;volatile
    380                           
-   381                           ;main.c: 221: SSP1CON1bits.SSPM = 0b1010;
+   381                           ;main.c: 223: SSP1CON1bits.SSPM = 0b1010;
    382  003E1C  50C6               	movf	4038,w,c	;volatile
    383  003E1E  0BF0               	andlw	-16
    384  003E20  090A               	iorlw	10
    385  003E22  6EC6               	movwf	4038,c	;volatile
    386                           
-   387                           ;main.c: 223: SSP1CON1bits.SSPEN = 1;
+   387                           ;main.c: 225: SSP1CON1bits.SSPEN = 1;
    388  003E24  8AC6               	bsf	4038,5,c	;volatile
    389  003E26  0012               	return	
    390  003E28                     __end_of_spiConfig_1:
@@ -407,7 +407,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    401                           
    402 ;; *************** function _portConfig *****************
    403 ;; Defined at:
-   404 ;;		line 202 in file "main.c"
+   404 ;;		line 204 in file "main.c"
    405 ;; Parameters:    Size  Location     Type
    406 ;;		None
    407 ;; Auto vars:     Size  Location     Type
@@ -440,29 +440,29 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    434  003E28                     _portConfig:
    435                           	opt stack 30
    436                           
-   437                           ;main.c: 203: LATA = 0x00;
+   437                           ;main.c: 205: LATA = 0x00;
    438                           
    439                           ;incstack = 0
    440  003E28  0E00               	movlw	0
    441  003E2A  6E89               	movwf	3977,c	;volatile
    442                           
-   443                           ;main.c: 204: LATB = 0x00;
+   443                           ;main.c: 206: LATB = 0x00;
    444  003E2C  0E00               	movlw	0
    445  003E2E  6E8A               	movwf	3978,c	;volatile
    446                           
-   447                           ;main.c: 205: LATC = 0x00;
+   447                           ;main.c: 207: LATC = 0x00;
    448  003E30  0E00               	movlw	0
    449  003E32  6E8B               	movwf	3979,c	;volatile
    450                           
-   451                           ;main.c: 207: TRISA = 0b00001000;
+   451                           ;main.c: 209: TRISA = 0b00001000;
    452  003E34  0E08               	movlw	8
    453  003E36  6E92               	movwf	3986,c	;volatile
    454                           
-   455                           ;main.c: 208: TRISB = 0b00000000;
+   455                           ;main.c: 210: TRISB = 0b00000000;
    456  003E38  0E00               	movlw	0
    457  003E3A  6E93               	movwf	3987,c	;volatile
    458                           
-   459                           ;main.c: 209: TRISC = 0b00010000;
+   459                           ;main.c: 211: TRISC = 0b00010000;
    460  003E3C  0E10               	movlw	16
    461  003E3E  6E94               	movwf	3988,c	;volatile
    462  003E40  0012               	return	
@@ -480,7 +480,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    474                           
    475 ;; *************** function _nrfTX *****************
    476 ;; Defined at:
-   477 ;;		line 318 in file "main.c"
+   477 ;;		line 320 in file "main.c"
    478 ;; Parameters:    Size  Location     Type
    479 ;;  data            1    wreg     unsigned char 
    480 ;; Auto vars:     Size  Location     Type
@@ -518,25 +518,25 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    512                           ;nrfTX@data stored from wreg
    513  003E5E  6E52               	movwf	nrfTX@data,c
    514                           
-   515                           ;main.c: 319: spiWrite(0xA0);
+   515                           ;main.c: 321: spiWrite(0xA0);
    516  003E60  0EA0               	movlw	160
    517  003E62  EC21  F01F         	call	_spiWrite
    518                           
-   519                           ;main.c: 320: spiWrite(data);
+   519                           ;main.c: 322: spiWrite(data);
    520  003E66  5052               	movf	nrfTX@data,w,c
    521  003E68  EC21  F01F         	call	_spiWrite
    522                           
-   523                           ;main.c: 323: LATAbits.LATA1 = 1;
+   523                           ;main.c: 325: LATAbits.LATA1 = 1;
    524  003E6C  8289               	bsf	3977,1,c	;volatile
    525                           
-   526                           ;main.c: 324: _delay((unsigned long)((20)*(64000000/4000000.0)));
+   526                           ;main.c: 326: _delay((unsigned long)((20)*(64000000/4000000.0)));
    527  003E6E  0E6A               	movlw	106
    528  003E70                     u97:
    529  003E70  2EE8               	decfsz	wreg,f,c
    530  003E72  D7FE               	goto	u97
    531  003E74  D000               	nop2		;nop
    532                           
-   533                           ;main.c: 325: LATAbits.LATA1 = 0;
+   533                           ;main.c: 327: LATAbits.LATA1 = 0;
    534  003E76  9289               	bcf	3977,1,c	;volatile
    535  003E78  0012               	return	
    536  003E7A                     __end_of_nrfTX:
@@ -553,7 +553,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    547                           
    548 ;; *************** function _nrfConfig *****************
    549 ;; Defined at:
-   550 ;;		line 229 in file "main.c"
+   550 ;;		line 231 in file "main.c"
    551 ;; Parameters:    Size  Location     Type
    552 ;;		None
    553 ;; Auto vars:     Size  Location     Type
@@ -589,40 +589,40 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    583  003FA2                     _nrfConfig:
    584                           	opt stack 28
    585                           
-   586                           ;main.c: 230: spiWrite(0x20|0x00);
+   586                           ;main.c: 232: spiWrite(0x20|0x00);
    587                           
    588                           ;incstack = 0
    589  003FA2  0E20               	movlw	32
    590  003FA4  EC21  F01F         	call	_spiWrite
    591                           
-   592                           ;main.c: 231: spiWrite(CONFIG_INIT);
-   593  003FA8  5043               	movf	_CONFIG_INIT,w,c
+   592                           ;main.c: 233: spiWrite(CONFIG_CURR);
+   593  003FA8  5043               	movf	_CONFIG_CURR,w,c
    594  003FAA  EC21  F01F         	call	_spiWrite
    595                           
-   596                           ;main.c: 232: spiWrite(0x20|0x02);
+   596                           ;main.c: 234: spiWrite(0x20|0x02);
    597  003FAE  0E22               	movlw	34
    598  003FB0  EC21  F01F         	call	_spiWrite
    599                           
-   600                           ;main.c: 233: spiWrite(EN_RXADDR_INIT);
-   601  003FB4  5044               	movf	_EN_RXADDR_INIT,w,c
+   600                           ;main.c: 235: spiWrite(EN_RXADDR_CURR);
+   601  003FB4  5044               	movf	_EN_RXADDR_CURR,w,c
    602  003FB6  EC21  F01F         	call	_spiWrite
    603                           
-   604                           ;main.c: 234: spiWrite(0x20|0x03);
+   604                           ;main.c: 236: spiWrite(0x20|0x03);
    605  003FBA  0E23               	movlw	35
    606  003FBC  EC21  F01F         	call	_spiWrite
    607                           
-   608                           ;main.c: 235: spiWrite(SETUP_AW_INIT);
-   609  003FC0  5047               	movf	_SETUP_AW_INIT,w,c
+   608                           ;main.c: 237: spiWrite(SETUP_AW_CURR);
+   609  003FC0  5047               	movf	_SETUP_AW_CURR,w,c
    610  003FC2  EC21  F01F         	call	_spiWrite
    611                           
-   612                           ;main.c: 236: nrfSetTXAddr(TX_ADDRESS);
+   612                           ;main.c: 238: nrfSetTXAddr(TX_ADDRESS);
    613  003FC6  0E00               	movlw	high _TX_ADDRESS
    614  003FC8  6E53               	movwf	nrfSetTXAddr@addr+1,c
    615  003FCA  0E4C               	movlw	low _TX_ADDRESS
    616  003FCC  6E52               	movwf	nrfSetTXAddr@addr,c
    617  003FCE  EC56  F01F         	call	_nrfSetTXAddr	;wreg free
    618                           
-   619                           ;main.c: 237: nrfSetRXAddr(0x0A,RX_ADDRESS);
+   619                           ;main.c: 239: nrfSetRXAddr(0x0A,RX_ADDRESS);
    620  003FD2  0E00               	movlw	high _RX_ADDRESS
    621  003FD4  6E53               	movwf	nrfSetRXAddr@addr+1,c
    622  003FD6  0E48               	movlw	low _RX_ADDRESS
@@ -630,23 +630,23 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    624  003FDA  0E0A               	movlw	10
    625  003FDC  EC8E  F01F         	call	_nrfSetRXAddr
    626                           
-   627                           ;main.c: 238: spiWrite(0x20|0x05);
+   627                           ;main.c: 240: spiWrite(0x20|0x05);
    628  003FE0  0E25               	movlw	37
    629  003FE2  EC21  F01F         	call	_spiWrite
    630                           
-   631                           ;main.c: 239: spiWrite(RF_CH_INIT);
-   632  003FE6  5045               	movf	_RF_CH_INIT,w,c
+   631                           ;main.c: 241: spiWrite(RF_CH_CURR);
+   632  003FE6  5045               	movf	_RF_CH_CURR,w,c
    633  003FE8  EC21  F01F         	call	_spiWrite
    634                           
-   635                           ;main.c: 240: spiWrite(0x20|0x06);
+   635                           ;main.c: 242: spiWrite(0x20|0x06);
    636  003FEC  0E26               	movlw	38
    637  003FEE  EC21  F01F         	call	_spiWrite
    638                           
-   639                           ;main.c: 241: spiWrite(RF_SETUP_INIT);
-   640  003FF2  5046               	movf	_RF_SETUP_INIT,w,c
+   639                           ;main.c: 243: spiWrite(RF_SETUP_CURR);
+   640  003FF2  5046               	movf	_RF_SETUP_CURR,w,c
    641  003FF4  EC21  F01F         	call	_spiWrite
    642                           
-   643                           ;main.c: 242: spiWrite(0xE1);
+   643                           ;main.c: 244: spiWrite(0xE1);
    644  003FF8  0EE1               	movlw	225
    645  003FFA  EC21  F01F         	call	_spiWrite
    646  003FFE  0012               	return	
@@ -664,7 +664,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    658                           
    659 ;; *************** function _nrfSetTXAddr *****************
    660 ;; Defined at:
-   661 ;;		line 249 in file "main.c"
+   661 ;;		line 251 in file "main.c"
    662 ;; Parameters:    Size  Location     Type
    663 ;;  addr            2    2[COMRAM] PTR unsigned char 
    664 ;;		 -> TX_ADDRESS(4), 
@@ -699,14 +699,14 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    693  003EAC                     _nrfSetTXAddr:
    694                           	opt stack 28
    695                           
-   696                           ;main.c: 250: spiWrite(0x20|0x10);
+   696                           ;main.c: 252: spiWrite(0x20|0x10);
    697                           
    698                           ;incstack = 0
    699  003EAC  0E30               	movlw	48
    700  003EAE  EC21  F01F         	call	_spiWrite
    701                           
-   702                           ;main.c: 252: int i;
-   703                           ;main.c: 253: for (i=0;i<4;i++) {
+   702                           ;main.c: 254: int i;
+   703                           ;main.c: 255: for (i=0;i<4;i++) {
    704  003EB2  0E00               	movlw	0
    705  003EB4  6E55               	movwf	nrfSetTXAddr@i+1,c
    706  003EB6  0E00               	movlw	0
@@ -720,7 +720,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    714  003EC6  B0D8               	btfsc	status,0,c
    715  003EC8  0012               	return	
    716                           
-   717                           ;main.c: 254: spiWrite(addr[i]);
+   717                           ;main.c: 256: spiWrite(addr[i]);
    718  003ECA  5054               	movf	nrfSetTXAddr@i,w,c
    719  003ECC  2452               	addwf	nrfSetTXAddr@addr,w,c
    720  003ECE  6ED9               	movwf	fsr2l,c
@@ -749,7 +749,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    743                           
    744 ;; *************** function _nrfSetRXAddr *****************
    745 ;; Defined at:
-   746 ;;		line 263 in file "main.c"
+   746 ;;		line 265 in file "main.c"
    747 ;; Parameters:    Size  Location     Type
    748 ;;  addrXX          1    wreg     unsigned char 
    749 ;;  addr            2    2[COMRAM] PTR unsigned char 
@@ -790,13 +790,13 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    784                           ;nrfSetRXAddr@addrXX stored from wreg
    785  003F1C  6E54               	movwf	nrfSetRXAddr@addrXX,c
    786                           
-   787                           ;main.c: 264: spiWrite(0x20|addrXX);
+   787                           ;main.c: 266: spiWrite(0x20|addrXX);
    788  003F1E  5054               	movf	nrfSetRXAddr@addrXX,w,c
    789  003F20  0920               	iorlw	32
    790  003F22  EC21  F01F         	call	_spiWrite
    791                           
-   792                           ;main.c: 266: int i;
-   793                           ;main.c: 267: for (i=0;i<4;i++) {
+   792                           ;main.c: 268: int i;
+   793                           ;main.c: 269: for (i=0;i<4;i++) {
    794  003F26  0E00               	movlw	0
    795  003F28  6E56               	movwf	nrfSetRXAddr@i+1,c
    796  003F2A  0E00               	movlw	0
@@ -810,7 +810,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    804  003F3A  B0D8               	btfsc	status,0,c
    805  003F3C  0012               	return	
    806                           
-   807                           ;main.c: 268: spiWrite(addr[i]);
+   807                           ;main.c: 270: spiWrite(addr[i]);
    808  003F3E  5055               	movf	nrfSetRXAddr@i,w,c
    809  003F40  2452               	addwf	nrfSetRXAddr@addr,w,c
    810  003F42  6ED9               	movwf	fsr2l,c
@@ -839,7 +839,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    833                           
    834 ;; *************** function _spiWrite *****************
    835 ;; Defined at:
-   836 ;;		line 288 in file "main.c"
+   836 ;;		line 290 in file "main.c"
    837 ;; Parameters:    Size  Location     Type
    838 ;;  data            1    wreg     unsigned char 
    839 ;; Auto vars:     Size  Location     Type
@@ -880,16 +880,16 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    874                           ;spiWrite@data stored from wreg
    875  003E42  6E51               	movwf	spiWrite@data,c
    876                           
-   877                           ;main.c: 290: LATAbits.LATA2 = 1;
+   877                           ;main.c: 292: LATAbits.LATA2 = 1;
    878  003E44  8489               	bsf	3977,2,c	;volatile
    879                           
-   880                           ;main.c: 291: SSP1BUF = data;
+   880                           ;main.c: 293: SSP1BUF = data;
    881  003E46  C051  FFC9         	movff	spiWrite@data,4041	;volatile
    882                           
-   883                           ;main.c: 292: LATAbits.LATA2 = 0;
+   883                           ;main.c: 294: LATAbits.LATA2 = 0;
    884  003E4A  9489               	bcf	3977,2,c	;volatile
    885                           
-   886                           ;main.c: 293: _delay((unsigned long)((500)*(64000000/4000000.0)));
+   886                           ;main.c: 295: _delay((unsigned long)((500)*(64000000/4000000.0)));
    887  003E4C  0E0B               	movlw	11
    888  003E4E  6E50               	movwf	??_spiWrite& (0+255),c
    889  003E50  0E62               	movlw	98
@@ -917,7 +917,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    911                           
    912 ;; *************** function _delay10ms *****************
    913 ;; Defined at:
-   914 ;;		line 331 in file "main.c"
+   914 ;;		line 333 in file "main.c"
    915 ;; Parameters:    Size  Location     Type
    916 ;;  ms_multi        2    0[COMRAM] int 
    917 ;; Auto vars:     Size  Location     Type
@@ -950,7 +950,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    944  003EE2                     _delay10ms:
    945                           	opt stack 30
    946                           
-   947                           ;main.c: 332: int i = 0;
+   947                           ;main.c: 334: int i = 0;
    948                           
    949                           ;incstack = 0
    950  003EE2  0E00               	movlw	0
@@ -958,7 +958,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    952  003EE6  0E00               	movlw	0
    953  003EE8  6E53               	movwf	delay10ms@i,c
    954                           
-   955                           ;main.c: 333: for (i=0;i<ms_multi;i++) {
+   955                           ;main.c: 335: for (i=0;i<ms_multi;i++) {
    956  003EEA  0E00               	movlw	0
    957  003EEC  6E54               	movwf	delay10ms@i+1,c
    958  003EEE  0E00               	movlw	0
@@ -966,7 +966,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    960  003EF2  D009               	goto	l104
    961  003EF4                     l751:
    962                           
-   963                           ;main.c: 334: _delay((unsigned long)((10)*(64000000/4000.0)));
+   963                           ;main.c: 336: _delay((unsigned long)((10)*(64000000/4000.0)));
    964  003EF4  0ED0               	movlw	208
    965  003EF6  6E52               	movwf	??_delay10ms& (0+255),c
    966  003EF8  0ECA               	movlw	202
@@ -1156,7 +1156,7 @@ CODE                 0      0       0       0        0.0%
 
 
 Microchip Technology PIC18 Macro Assembler V1.33 build 59893 
-Symbol Table                                                                                   Wed Sep 17 11:33:51 2014
+Symbol Table                                                                                   Thu Sep 18 10:34:19 2014
 
                      u97 3E70             spiWrite@data 0051               _RX_ADDRESS 0048  
             __CFG_LVP$ON 000000                      l104 3F06                      l751 3EF4  
@@ -1178,7 +1178,7 @@ Symbol Table                                                                    
                  tblptrl 000FF6                   tblptru 000FF8               __accesstop 0060  
 __end_of__initialization 3EA6          __CFG_PBADEN$OFF 000000            ?_nrfSetRXAddr 0052  
           ?_nrfSetTXAddr 0052           __pcstackCOMRAM 0050       __size_of_delay10ms 003A  
-          __end_of_nrfTX 3E7A           _EN_RXADDR_INIT 0044               _dataBufOut 0021  
+          __end_of_nrfTX 3E7A           _EN_RXADDR_CURR 0044               _dataBufOut 0021  
                 ??_nrfTX 0052           ??_nrfSetRXAddr 0054           ??_nrfSetTXAddr 0054  
      __size_of_nrfConfig 005E       __CFG_CCP2MX$PORTC1 000000       __CFG_CCP3MX$PORTB5 000000  
                 _SSP1ADD 000FC8                  _SSP1BUF 000FC9        __end_of_delay10ms 3F1C  
@@ -1193,15 +1193,15 @@ __end_of__initialization 3EA6          __CFG_PBADEN$OFF 000000            ?_nrfS
    __end_of_nrfSetRXAddr 3F56     __end_of_nrfSetTXAddr 3EE2       nrfSetRXAddr@addrXX 0054  
           __pidataCOMRAM 3E05      start_initialization 3E7A              ?_portConfig 0050  
             __pbssCOMRAM 0001                _dataBufIn 0001                _delay10ms 3EE2  
-            _CONFIG_INIT 0043            _SETUP_AW_INIT 0047    __size_of_nrfSetRXAddr 003A  
+            _CONFIG_CURR 0043            _SETUP_AW_CURR 0047    __size_of_nrfSetRXAddr 003A  
   __size_of_nrfSetTXAddr 0036        __size_of_spiWrite 001C         __CFG_PRICLKEN$ON 000000  
          __size_of_nrfTX 001C                _nrfConfig 3FA2      __size_of_portConfig 001A  
                _LATAbits 000F89               ?_delay10ms 0050            ??_spiConfig_1 0050  
            _nrfSetRXAddr 3F1C             _nrfSetTXAddr 3EAC         __CFG_WDTPS$32768 000000  
-          _RF_SETUP_INIT 0046        delay10ms@ms_multi 0050                copy_data0 3E9A  
+          _RF_SETUP_CURR 0046        delay10ms@ms_multi 0050                copy_data0 3E9A  
              ?_nrfConfig 0050                 __Hrparam 0000                 __Lrparam 0000  
      __CFG_BOREN$SBORDIS 000000        __CFG_P2BMX$PORTB5 000000      __end_of_spiConfig_1 3E28  
               nrfTX@data 0052             _SSP1CON1bits 000FC6            __size_of_main 004C  
             ??_delay10ms 0052                 _spiWrite 3E42             _SSP1STATbits 000FC7  
            ??_portConfig 0050              ??_nrfConfig 0057       __end_of_portConfig 3E42  
-            _spiConfig_1 3E12               _RF_CH_INIT 0045        __CFG_T3CMX$PORTC0 000000  
+            _spiConfig_1 3E12               _RF_CH_CURR 0045        __CFG_T3CMX$PORTC0 000000  

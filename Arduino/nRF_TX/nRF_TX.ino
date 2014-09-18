@@ -94,13 +94,13 @@ const byte DUMMY_DATA      = 0xCC;        // Dummy data for SPI (0b11001100)
 
 
 /*------------------------------------------------
- * nRF24L01+ initial config settings
+ * nRF24L01+ current config settings
 ------------------------------------------------*/
-byte CONFIG_INIT           = B00001010;
-byte EN_ARXADDR_INIT       = B00000010;
-byte SETUP_AW_INIT         = B00000010;
-byte RF_CH_INIT            = B01101001;
-byte RF_SETUP_INIT         = B00000110;
+byte CONFIG_CURR           = B00001010;   // Show all interrupts; Enable CRC - 1 byte; Power up; TX
+byte EN_ARXADDR_CURR       = B00000010;   // Enable data pipe 1
+byte SETUP_AW_CURR         = B00000010;   // set up for 4 byte address
+byte RF_CH_CURR            = B01101001;   // Channel 105 (2.400GHz + 0.105GHz = 2.505GHz)
+byte RF_SETUP_CURR         = B00000110;   // RF data rate to 1Mbps; 0dBm output power (highest)
 byte RX_ADDRESS[4]         = {0xE7,0xE7,0xE7,0xE7};
 byte TX_ADDRESS[4]         = {0xE7,0xE7,0xE7,0xE7};
 
@@ -116,6 +116,7 @@ void setup() {
   pinMode(nRF_CSN, OUTPUT);               // Set CSN pin to output
   pinMode(nRF_CE, OUTPUT);                // Set chip enable pin to output and initialize to 0
   digitalWrite(nRF_CE, LOW);
+  digitalWrite(nRF_CSN, HIGH);
   
   // SPI setup
   SPI.begin();                            // Start SPI
@@ -124,15 +125,15 @@ void setup() {
   SPI.setDataMode(SPI_MODE1);             // Clock polarity 0; clock phase 1
   
   // nRF24L01+ setup
-  SPI.transfer(W_REGISTER|CONFIG);        // Write to CONFIG register
-  SPI.transfer(B00001010);                // Show all interrupts; Enable CRC - 1 byte; Power up; TX
-  SPI.transfer(W_REGISTER|SETUP_AW);      // Write to SETUP_AW register
-  SPI.transfer(B00000001);                // 3 byte address
-  SPI.transfer(W_REGISTER|RF_CH);         // Write to RF channel register
-  SPI.transfer(B01101001);                // Channel 105 (2.400GHz + 0.105GHz = 2.505GHz)
-  SPI.transfer(W_REGISTER|RF_SETUP);      // Write to RF setup register
-  SPI.transfer(B00000110);                // RF data rate to 1Mbps; 0dBm output power (highest)
-  SPI.transfer(FLUSH_TX);                 // Flush TX FIFO
+  spiWrite(W_REGISTER|CONFIG);        // Write to CONFIG register
+  spiWrite(CONFIG_CURR);
+  spiWrite(W_REGISTER|SETUP_AW);      // Write to SETUP_AW register
+  spiWrite(SETUP_AW_CURR);
+  spiWrite(W_REGISTER|RF_CH);         // Write to RF channel register
+  spiWrite(RF_CH_CURR);
+  spiWrite(W_REGISTER|RF_SETUP);      // Write to RF setup register
+  spiWrite(RF_SETUP_CURR);
+  spiWrite(FLUSH_TX);                 // Flush TX FIFO
 }
 
 /*------------------------------------------------
@@ -142,15 +143,28 @@ void loop() {
   
 }
 
+
+/*------------------------------------------------
+ * SPI write function; toggles CSN pin for nRF24L01+
+------------------------------------------------*/
+void spiWrite(byte data) {
+  // toggle CSN pin
+  digitalWrite(nRF_CSN, HIGH);
+  SPI.transfer(data);
+  digitalWrite(nRF_CSN, LOW);
+  delayMicroseconds(500);
+}
+
+
 /*------------------------------------------------
  * nnRF24L01+ send function
 ------------------------------------------------*/
-void nrfTX(int data) {
-  SPI.transfer(W_TX_PAYLOAD);             // Write to TX payload register
-  SPI.transfer(data);                     // Write data
+void nrfTX(byte data) {
+  spiWrite(W_TX_PAYLOAD);             // Write to TX payload register
+  spiWrite(data);                     // Write data
   
   // Toggle CE pin
   digitalWrite(nRF_CE, HIGH);
-  delayMicroseconds(20);
+  delayMicroseconds(10);
   digitalWrite(nRF_CE, LOW);
 }
