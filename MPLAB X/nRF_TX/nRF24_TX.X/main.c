@@ -144,6 +144,7 @@ SCK     -[14/RC3       RC4/15]-       SDI
 char CONFIG_CURR        = 0b00001010;   // Show all interrupts; Enable CRC - 1 byte; Power up; TX
 char EN_RXADDR_CURR     = 0b00000010;   // Enable data pipe 1
 char SETUP_AW_CURR      = 0b00000010;   // set for 4 byte address
+char RX_PW_P1_CURR      = 0b00000001;   // Set pipe 1 payload width to 1
 char RF_CH_CURR         = 0b01101001;   // Channel 105 (2.400GHz + 0.105GHz = 2.505GHz)
 char RF_SETUP_CURR      = 0b00000110;   // RF data rate to 1Mbps; 0dBm output power (highest)
 char RX_ADDRESS[4] = {0xE7,0xE7,0xE7,0xE7}; // 4 byte initial RX address
@@ -193,7 +194,7 @@ void main(void) {
         // Show that code is running with act_LED
         int i = 0;
         for (i=0;i<5;i++) {
-            delay10ms(5);
+            delay10ms(50);
         }
     }
 }
@@ -219,7 +220,7 @@ void spiConfig_1(void) {
     SSP1CON1bits.CKP = 0;               // Clock polarity
     SSP1STATbits.CKE = 1;               // Clock edge detect
     SSP1STATbits.SMP = 1;               // Sample bit
-    SSP1ADD = 0b00011111;               // Set to 31
+    SSP1ADD = 0b00111111;               // Set to 31
     SSP1CON1bits.SSPM = 0b1010;         // Clock = Fosc/(SSP1ADD + 1)(4) = 500KHz
     //SSP1CON1bits.SSPM = 0b0010;         // Clock = Fosc/64 = 1MHz
     SSP1CON1bits.SSPEN = 1;             // Enable SPI
@@ -233,8 +234,12 @@ void nrfConfig(void) {
     spiWrite(CONFIG_CURR);
     spiWrite(W_REGISTER|EN_RXADDR);     // Write to EN_RXADDR register
     spiWrite(EN_RXADDR_CURR);
+    spiWrite(W_REGISTER|EN_AA);
+    spiWrite(0b00000000);
     spiWrite(W_REGISTER|SETUP_AW);      // Write to SETUP_AW register
     spiWrite(SETUP_AW_CURR);
+    spiWrite(W_REGISTER|RX_PW_P1);      // Set pipe 1 payload width
+    spiWrite(RX_PW_P1_CURR);
     nrfSetTXAddr(TX_ADDRESS);           // set TX address
     nrfSetRXAddr(RX_ADDR_P1,RX_ADDRESS);// set RX address
     spiWrite(W_REGISTER|RF_CH);         // Write to RF channel register
@@ -291,8 +296,9 @@ void spiWrite(char data) {
     // toggle CSN pin
     nRF_CSN = 0;
     SSP1BUF = data;
+    __delay_us(32);
     nRF_CSN = 1;
-    __delay_us(500);
+    __delay_us(10);
 }
 
 /*------------------------------------------------
@@ -307,11 +313,12 @@ void spiRead(int len) {
         // toggle CSN pin
         nRF_CSN = 1;
         SSP1BUF = DUMMY_DATA;
+        __delay_us(32);
         nRF_CSN = 0;
         dataBufIn[i] = SSP1BUF;
     }
 
-    __delay_us(500);
+    __delay_us(10);
 }
 
 /*------------------------------------------------
@@ -323,7 +330,7 @@ void nrfTX(char data) {
 
     // Toggle CE pin
     nRF_CE = 1;
-    __delay_us(10);
+    __delay_us(12);
     nRF_CE = 0;
 }
 
@@ -333,6 +340,6 @@ void nrfTX(char data) {
 void delay10ms(int ms_multi) {
     int i = 0;
     for (i=0;i<ms_multi;i++) {
-        __delay_ms(10);
+        __delay_ms(11);
     }
 }

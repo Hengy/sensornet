@@ -125,27 +125,27 @@
 [v ___asftsub __asftsub `(f  1 e 3 0 ]
 "6 C:\Program Files (x86)\Microchip\xc8\v1.33\sources\pic18\aslmul.c
 [v ___aslmul __aslmul `(ul  1 e 4 0 ]
-"177 E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c
+"178 E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c
 [v _main main `(v  1 e 0 0 ]
-"204
+"205
 [v _portConfig portConfig `(v  1 e 0 0 ]
-"218
+"219
 [v _spiConfig_1 spiConfig_1 `(v  1 e 0 0 ]
-"231
+"232
 [v _nrfConfig nrfConfig `(v  1 e 0 0 ]
-"251
+"256
 [v _nrfSetTXAddr nrfSetTXAddr `(v  1 e 0 0 ]
-"265
+"270
 [v _nrfSetRXAddr nrfSetRXAddr `(v  1 e 0 0 ]
-"279
+"284
 [v _getSTATUS getSTATUS `(uc  1 e 1 0 ]
-"290
+"295
 [v _spiWrite spiWrite `(v  1 e 0 0 ]
-"304
+"310
 [v _spiRead spiRead `(v  1 e 0 0 ]
-"320
+"327
 [v _nrfTX nrfTX `(v  1 e 0 0 ]
-"333
+"340
 [v _delay10ms delay10ms `(v  1 e 0 0 ]
 "7524 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic18f24k22.h
 [v _LATA LATA `VEuc  1 e 1 @3977 ]
@@ -350,85 +350,87 @@
 "146
 [v _SETUP_AW_CURR SETUP_AW_CURR `uc  1 e 1 0 ]
 "147
-[v _RF_CH_CURR RF_CH_CURR `uc  1 e 1 0 ]
+[v _RX_PW_P1_CURR RX_PW_P1_CURR `uc  1 e 1 0 ]
 "148
-[v _RF_SETUP_CURR RF_SETUP_CURR `uc  1 e 1 0 ]
+[v _RF_CH_CURR RF_CH_CURR `uc  1 e 1 0 ]
 "149
-[v _RX_ADDRESS RX_ADDRESS `[4]uc  1 e 4 0 ]
+[v _RF_SETUP_CURR RF_SETUP_CURR `uc  1 e 1 0 ]
 "150
+[v _RX_ADDRESS RX_ADDRESS `[4]uc  1 e 4 0 ]
+"151
 [v _TX_ADDRESS TX_ADDRESS `[4]uc  1 e 4 0 ]
-"170
-[v _dataBufIn dataBufIn `[32]uc  1 e 32 0 ]
 "171
-[v _dataBufOut dataBufOut `[32]uc  1 e 32 0 ]
+[v _dataBufIn dataBufIn `[32]uc  1 e 32 0 ]
 "172
+[v _dataBufOut dataBufOut `[32]uc  1 e 32 0 ]
+"173
 [v _count count `i  1 e 2 0 ]
-"177
+"178
 [v _main main `(v  1 e 0 0 ]
 {
-"194
-[v main@i i `i  1 a 2 7 ]
-"199
+"195
+[v main@i i `i  1 a 2 6 ]
+"200
 } 0
-"218
+"219
 [v _spiConfig_1 spiConfig_1 `(v  1 e 0 0 ]
 {
-"226
+"227
 } 0
-"204
+"205
 [v _portConfig portConfig `(v  1 e 0 0 ]
 {
-"212
+"213
 } 0
-"320
+"327
 [v _nrfTX nrfTX `(v  1 e 0 0 ]
 {
 [v nrfTX@data data `uc  1 a 1 wreg ]
 [v nrfTX@data data `uc  1 a 1 wreg ]
-[v nrfTX@data data `uc  1 a 1 2 ]
-"328
+[v nrfTX@data data `uc  1 a 1 1 ]
+"335
 } 0
-"231
+"232
 [v _nrfConfig nrfConfig `(v  1 e 0 0 ]
 {
-"245
+"250
 } 0
-"251
+"256
 [v _nrfSetTXAddr nrfSetTXAddr `(v  1 e 0 0 ]
 {
-"254
-[v nrfSetTXAddr@i i `i  1 a 2 4 ]
-"251
-[v nrfSetTXAddr@addr addr `*.39uc  1 p 2 2 ]
-"258
+"259
+[v nrfSetTXAddr@i i `i  1 a 2 3 ]
+"256
+[v nrfSetTXAddr@addr addr `*.39uc  1 p 2 1 ]
+"263
 } 0
-"265
+"270
 [v _nrfSetRXAddr nrfSetRXAddr `(v  1 e 0 0 ]
 {
 [v nrfSetRXAddr@addrXX addrXX `uc  1 a 1 wreg ]
-"268
-[v nrfSetRXAddr@i i `i  1 a 2 5 ]
-"265
+"273
+[v nrfSetRXAddr@i i `i  1 a 2 4 ]
+"270
 [v nrfSetRXAddr@addrXX addrXX `uc  1 a 1 wreg ]
-[v nrfSetRXAddr@addr addr `*.39uc  1 p 2 2 ]
-[v nrfSetRXAddr@addrXX addrXX `uc  1 a 1 4 ]
-"272
+[v nrfSetRXAddr@addr addr `*.39uc  1 p 2 1 ]
+[v nrfSetRXAddr@addrXX addrXX `uc  1 a 1 3 ]
+"277
 } 0
-"290
+"295
 [v _spiWrite spiWrite `(v  1 e 0 0 ]
 {
 [v spiWrite@data data `uc  1 a 1 wreg ]
 [v spiWrite@data data `uc  1 a 1 wreg ]
-"292
-[v spiWrite@data data `uc  1 a 1 1 ]
-"296
+"297
+[v spiWrite@data data `uc  1 a 1 0 ]
+"302
 } 0
-"333
+"340
 [v _delay10ms delay10ms `(v  1 e 0 0 ]
 {
-"334
+"341
 [v delay10ms@i i `i  1 a 2 3 ]
-"333
+"340
 [v delay10ms@ms_multi ms_multi `i  1 p 2 0 ]
-"338
+"345
 } 0
