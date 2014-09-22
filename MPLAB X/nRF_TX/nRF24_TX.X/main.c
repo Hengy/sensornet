@@ -188,6 +188,10 @@ void main(void) {
         nrfTX(count);
         count++;
 
+        // Reset interrupt flags
+        spiWrite(W_REGISTER|STATUS);
+        spiWrite(0b01110000);
+
         // Show that code is running with act_LED
         int i = 0;
         for (i=0;i<5;i++) {
@@ -198,7 +202,6 @@ void main(void) {
             }
             delay10ms(20);
         }
-
         
     }
 }
@@ -340,6 +343,7 @@ void nrfTX(char data) {
     nRF_CE = 1;
     __delay_us(12);
     nRF_CE = 0;
+    __delay_us(10);
 }
 
 /*------------------------------------------------

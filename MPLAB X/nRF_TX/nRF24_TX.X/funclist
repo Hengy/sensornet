@@ -1,11 +1,11 @@
-_spiConfig_1: CODE, 15912 0 38
-_spiWrite: CODE, 15878 0 34
-_main: CODE, 16172 0 94
-_nrfSetTXAddr: CODE, 16000 0 54
-_nrfTX: CODE, 15826 0 26
-__initialization: CODE, 15950 0 44
-_portConfig: CODE, 15852 0 26
+_spiConfig_1: CODE, 15900 0 38
+_spiWrite: CODE, 15832 0 34
+_main: CODE, 16160 0 106
+_nrfSetTXAddr: CODE, 15988 0 54
+_nrfTX: CODE, 15866 0 34
+__initialization: CODE, 15938 0 44
+_portConfig: CODE, 15806 0 26
 _nrfConfig: CODE, 16266 0 118
-_nrfSetRXAddr: CODE, 16054 0 58
-_delay10ms: CODE, 16112 0 60
-Total: 552
+_nrfSetRXAddr: CODE, 16042 0 58
+_delay10ms: CODE, 16100 0 60
+Total: 572
