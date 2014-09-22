@@ -125,31 +125,31 @@
 [v ___asftsub __asftsub `(f  1 e 3 0 ]
 "6 C:\Program Files (x86)\Microchip\xc8\v1.33\sources\pic18\aslmul.c
 [v ___aslmul __aslmul `(ul  1 e 4 0 ]
-"178 E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c
+"179 E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c
 [v _main main `(v  1 e 0 0 ]
-"212
+"214
 [v _portConfig portConfig `(v  1 e 0 0 ]
-"226
+"228
 [v _spiConfig_1 spiConfig_1 `(v  1 e 0 0 ]
-"241
+"243
 [v _nrfConfig nrfConfig `(v  1 e 0 0 ]
-"265
+"272
 [v _nrfSetTXAddr nrfSetTXAddr `(v  1 e 0 0 ]
-"279
+"286
 [v _nrfSetRXAddr nrfSetRXAddr `(v  1 e 0 0 ]
-"293
+"300
 [v _getSTATUS getSTATUS `(uc  1 e 1 0 ]
-"304
+"311
 [v _spiWrite spiWrite `(v  1 e 0 0 ]
-"320
+"327
 [v _spiRead spiRead `(v  1 e 0 0 ]
-"338
+"345
 [v _nrfTX nrfTX `(v  1 e 0 0 ]
-"352
+"359
 [v _delay10ms delay10ms `(v  1 e 0 0 ]
 "7524 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic18f24k22.h
 [v _LATA LATA `VEuc  1 e 1 @3977 ]
-[s S43 . 1 `uc 1 LATA0 1 0 :1:0 
+[s S38 . 1 `uc 1 LATA0 1 0 :1:0 
 `uc 1 LATA1 1 0 :1:1 
 `uc 1 LATA2 1 0 :1:2 
 `uc 1 LATA3 1 0 :1:3 
@@ -159,31 +159,31 @@
 `uc 1 LATA7 1 0 :1:7 
 ]
 "7572
-[s S52 . 1 `uc 1 LA0 1 0 :1:0 
+[s S47 . 1 `uc 1 LA0 1 0 :1:0 
 ]
-[s S54 . 1 `uc 1 . 1 0 :1:0 
+[s S49 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 LA1 1 0 :1:1 
 ]
-[s S57 . 1 `uc 1 . 1 0 :2:0 
+[s S52 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 LA2 1 0 :1:2 
 ]
-[s S60 . 1 `uc 1 . 1 0 :3:0 
+[s S55 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 LA3 1 0 :1:3 
 ]
-[s S63 . 1 `uc 1 . 1 0 :4:0 
+[s S58 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 LA4 1 0 :1:4 
 ]
-[s S66 . 1 `uc 1 . 1 0 :5:0 
+[s S61 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 LA5 1 0 :1:5 
 ]
-[s S69 . 1 `uc 1 . 1 0 :6:0 
+[s S64 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 LA6 1 0 :1:6 
 ]
-[s S72 . 1 `uc 1 . 1 0 :7:0 
+[s S67 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 LA7 1 0 :1:7 
 ]
-[u S75 . 1 `S43 1 . 1 0 `S52 1 . 1 0 `S54 1 . 1 0 `S57 1 . 1 0 `S60 1 . 1 0 `S63 1 . 1 0 `S66 1 . 1 0 `S69 1 . 1 0 `S72 1 . 1 0 ]
-[v _LATAbits LATAbits `VES75  1 e 1 @3977 ]
+[u S70 . 1 `S38 1 . 1 0 `S47 1 . 1 0 `S49 1 . 1 0 `S52 1 . 1 0 `S55 1 . 1 0 `S58 1 . 1 0 `S61 1 . 1 0 `S64 1 . 1 0 `S67 1 . 1 0 ]
+[v _LATAbits LATAbits `VES70  1 e 1 @3977 ]
 "7656
 [v _LATB LATB `VEuc  1 e 1 @3978 ]
 "7788
@@ -350,87 +350,89 @@
 "146
 [v _SETUP_AW_CURR SETUP_AW_CURR `uc  1 e 1 0 ]
 "147
-[v _RX_PW_P1_CURR RX_PW_P1_CURR `uc  1 e 1 0 ]
+[v _RX_PW_P0_CURR RX_PW_P0_CURR `uc  1 e 1 0 ]
 "148
-[v _RF_CH_CURR RF_CH_CURR `uc  1 e 1 0 ]
+[v _SETUP_RETR_CURR SETUP_RETR_CURR `uc  1 e 1 0 ]
 "149
-[v _RF_SETUP_CURR RF_SETUP_CURR `uc  1 e 1 0 ]
+[v _RF_CH_CURR RF_CH_CURR `uc  1 e 1 0 ]
 "150
-[v _RX_ADDRESS RX_ADDRESS `[4]uc  1 e 4 0 ]
+[v _RF_SETUP_CURR RF_SETUP_CURR `uc  1 e 1 0 ]
 "151
+[v _RX_ADDRESS RX_ADDRESS `[4]uc  1 e 4 0 ]
+"152
 [v _TX_ADDRESS TX_ADDRESS `[4]uc  1 e 4 0 ]
-"171
-[v _dataBufIn dataBufIn `[32]uc  1 e 32 0 ]
 "172
-[v _dataBufOut dataBufOut `[32]uc  1 e 32 0 ]
+[v _dataBufIn dataBufIn `[32]uc  1 e 32 0 ]
 "173
+[v _dataBufOut dataBufOut `[32]uc  1 e 32 0 ]
+"174
 [v _count count `i  1 e 2 0 ]
-"178
+"179
 [v _main main `(v  1 e 0 0 ]
 {
-"196
+"193
 [v main@i i `i  1 a 2 6 ]
-"207
+"209
 } 0
-"226
+"228
 [v _spiConfig_1 spiConfig_1 `(v  1 e 0 0 ]
 {
-"236
+"238
 } 0
-"212
+"214
 [v _portConfig portConfig `(v  1 e 0 0 ]
 {
-"220
+"222
 } 0
-"338
+"345
 [v _nrfTX nrfTX `(v  1 e 0 0 ]
 {
 [v nrfTX@data data `uc  1 a 1 wreg ]
 [v nrfTX@data data `uc  1 a 1 wreg ]
 [v nrfTX@data data `uc  1 a 1 1 ]
-"347
+"354
 } 0
-"241
+"243
 [v _nrfConfig nrfConfig `(v  1 e 0 0 ]
 {
-"259
+"266
 } 0
-"265
+"272
 [v _nrfSetTXAddr nrfSetTXAddr `(v  1 e 0 0 ]
 {
-"268
+"275
 [v nrfSetTXAddr@i i `i  1 a 2 3 ]
-"265
-[v nrfSetTXAddr@addr addr `*.39uc  1 p 2 1 ]
 "272
-} 0
+[v nrfSetTXAddr@addr addr `*.39uc  1 p 2 1 ]
 "279
+} 0
+"286
 [v _nrfSetRXAddr nrfSetRXAddr `(v  1 e 0 0 ]
 {
 [v nrfSetRXAddr@addrXX addrXX `uc  1 a 1 wreg ]
-"282
+"289
 [v nrfSetRXAddr@i i `i  1 a 2 4 ]
-"279
+"286
 [v nrfSetRXAddr@addrXX addrXX `uc  1 a 1 wreg ]
 [v nrfSetRXAddr@addr addr `*.39uc  1 p 2 1 ]
 [v nrfSetRXAddr@addrXX addrXX `uc  1 a 1 3 ]
-"286
+"293
 } 0
-"304
+"311
 [v _spiWrite spiWrite `(v  1 e 0 0 ]
 {
 [v spiWrite@data data `uc  1 a 1 wreg ]
 [v spiWrite@data data `uc  1 a 1 wreg ]
-"306
+"313
 [v spiWrite@data data `uc  1 a 1 0 ]
-"312
+"319
 } 0
-"352
+"359
 [v _delay10ms delay10ms `(v  1 e 0 0 ]
 {
-"353
+"360
 [v delay10ms@i i `i  1 a 2 3 ]
-"352
+"359
 [v delay10ms@ms_multi ms_multi `i  1 p 2 0 ]
-"357
+"364
 } 0

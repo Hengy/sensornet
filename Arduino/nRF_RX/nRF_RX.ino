@@ -97,8 +97,8 @@ const byte DUMMY_DATA      = 0xCC;        // Dummy data for SPI (0b11001100)
  * nRF24L01+ current config settings
 ------------------------------------------------*/
 byte CONFIG_CURR           = B00001011;   // Show all interrupts; Enable CRC - 1 byte; Power up; RX
-byte EN_RXADDR_CURR        = B00000010;   // Enable data pipe 1
-byte RX_PW_P1_CURR         = B00000001;   // 1 byte payload
+byte EN_RXADDR_CURR        = B00000011;   // Enable data pipe 0 and 1
+byte RX_PW_P0_CURR         = B00000001;   // 1 byte payload
 byte SETUP_AW_CURR         = B00000010;   // Set up for 4 byte address
 byte RF_CH_CURR            = B01101001;   // Channel 105 (2.400GHz + 0.105GHz = 2.505GHz)
 byte RF_SETUP_CURR         = B00000110;   // RF data rate to 1Mbps; 0dBm output power (highest)
@@ -148,9 +148,12 @@ void setup() {
   spiTransfer(B00000000);
   spiTransfer(W_REGISTER|SETUP_AW);          // Write to SETUP_AW register
   spiTransfer(SETUP_AW_CURR);
-  spiTransfer(W_REGISTER|RX_PW_P1);          // Write pipe 1 payload width
-  spiTransfer(RX_PW_P1_CURR);
+  spiTransfer(W_REGISTER|RX_PW_P0);          // Write pipe 0 payload width
+  spiTransfer(RX_PW_P0_CURR);
+  spiTransfer(W_REGISTER|RX_PW_P1);          // Write pipe 0 payload width
+  spiTransfer(RX_PW_P0_CURR);
   nrfSetTXAddr(TX_ADDRESS);
+  nrfSetRXAddr(RX_ADDR_P0,RX_ADDRESS);
   nrfSetRXAddr(RX_ADDR_P1,RX_ADDRESS);
   spiTransfer(W_REGISTER|RF_CH);             // Write to RF channel register
   spiTransfer(RF_CH_CURR);
@@ -173,7 +176,7 @@ void loop() {
 
   byte nRFStatus = getSTATUS();
   
-  if (bitRead(nRFStatus,7)) {
+  if (nRFStatus != 0x0E) {
     digitalWrite(nRF_CE, LOW);           // Keep CE high when receiving
     
     delayMicroseconds(50);
@@ -225,9 +228,13 @@ byte getSTATUS(void) {
   // toggle CSN pin
   digitalWrite(nRF_CSN, LOW);
   
+  delayMicroseconds(20);
+  
   SPDR = NRF_NOP;                         // Send NOP command
   while (!(SPSR & (1<<SPIF))) {           // Wait until the end of transmission
   };
+  
+  delayMicroseconds(20);
   
   digitalWrite(nRF_CSN, HIGH);
   
@@ -260,18 +267,4 @@ void nrfSetRXAddr(byte addrXX, byte addr[]) {
     for (i=0;i<4;i++) {
         spiTransfer(addr[i]);
     }
-}
-
-
-/*------------------------------------------------
- * nnRF24L01+ send function
-------------------------------------------------*/
-void nrfTX(byte data) {
-  spiTransfer(W_TX_PAYLOAD);                 // Write to TX payload register
-  spiTransfer(data);                         // Write data
-  
-  // Toggle CE pin
-  digitalWrite(nRF_CE, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(nRF_CE, LOW);
 }
