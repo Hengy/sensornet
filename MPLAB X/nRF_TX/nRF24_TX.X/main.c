@@ -184,18 +184,22 @@ void main(void) {
     nrfConfig();
 
     for (;;) {
-        ACT_LED = 1;
 
         nrfTX(count);
         count++;
 
-        ACT_LED = 0;
-
         // Show that code is running with act_LED
         int i = 0;
         for (i=0;i<5;i++) {
-            delay10ms(50);
+            if (i>2) {
+                ACT_LED = 1;
+            } else {
+                ACT_LED = 0;
+            }
+            delay10ms(20);
         }
+
+        
     }
 }
 
@@ -224,6 +228,8 @@ void spiConfig_1(void) {
     SSP1CON1bits.SSPM = 0b1010;         // Clock = Fosc/(SSP1ADD + 1)(4) = 500KHz
     //SSP1CON1bits.SSPM = 0b0010;         // Clock = Fosc/64 = 1MHz
     SSP1CON1bits.SSPEN = 1;             // Enable SPI
+    nRF_CSN = 1;
+    __delay_us(100);
 }
 
 /*------------------------------------------------
@@ -295,10 +301,11 @@ char getSTATUS(void) {
 void spiWrite(char data) {
     // toggle CSN pin
     nRF_CSN = 0;
+    __delay_us(1);
     SSP1BUF = data;
-    __delay_us(32);
+    __delay_us(33);
     nRF_CSN = 1;
-    __delay_us(10);
+    __delay_us(5);
 }
 
 /*------------------------------------------------
@@ -311,14 +318,15 @@ void spiRead(int len) {
     int i;
     for (i=0;i<len;i++) {
         // toggle CSN pin
-        nRF_CSN = 1;
-        SSP1BUF = DUMMY_DATA;
-        __delay_us(32);
         nRF_CSN = 0;
+        __delay_us(1);
+        SSP1BUF = DUMMY_DATA;
+        __delay_us(33);
+        nRF_CSN = 1;
         dataBufIn[i] = SSP1BUF;
     }
 
-    __delay_us(10);
+    __delay_us(5);
 }
 
 /*------------------------------------------------

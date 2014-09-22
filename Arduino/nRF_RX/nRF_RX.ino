@@ -134,8 +134,10 @@ void setup() {
   // SPI setup
   SPI.begin();                            // Start SPI
   SPI.setBitOrder(MSBFIRST);              // Set most significant bit first
-  SPI.setClockDivider(SPI_CLOCK_DIV16);   // Clock to Fosc/16 = 1MHz
+  SPI.setClockDivider(SPI_CLOCK_DIV32);   // Clock to Fosc/16 = 1MHz
   SPI.setDataMode(SPI_MODE1);             // Clock polarity 0; clock phase 1
+  
+  delay(2);
   
   // nRF24L01+ setup
   spiTransfer(W_REGISTER|CONFIG);            // Write to CONFIG register
@@ -154,6 +156,7 @@ void setup() {
   spiTransfer(RF_CH_CURR);
   spiTransfer(W_REGISTER|RF_SETUP);          // Write to RF setup register
   spiTransfer(RF_SETUP_CURR);
+  spiTransfer(FLUSH_RX);                     // Flush RX FIFO
   spiTransfer(FLUSH_TX);                     // Flush TX FIFO
 }
 
@@ -165,11 +168,15 @@ void setup() {
 void loop() {
   
   digitalWrite(nRF_CE, HIGH);            // Keep CE high when receiving
+  
+  delayMicroseconds(100);
 
   byte nRFStatus = getSTATUS();
   
   if (bitRead(nRFStatus,7)) {
     digitalWrite(nRF_CE, LOW);           // Keep CE high when receiving
+    
+    delayMicroseconds(50);
     
     spiTransfer(R_RX_PAYLOAD);           // Read payload command
     
@@ -194,9 +201,13 @@ byte spiTransfer(byte data) {
   // toggle CSN pin
   digitalWrite(nRF_CSN, LOW);
   
+  delayMicroseconds(20);
+  
   SPDR = data;                            // Send NOP command
   while (!(SPSR & (1<<SPIF))) {           // Wait until the end of transmission
   };
+  
+  delayMicroseconds(20);
   
   digitalWrite(nRF_CSN, HIGH);
   
