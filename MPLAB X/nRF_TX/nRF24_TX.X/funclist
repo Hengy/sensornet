@@ -1,12 +1,13 @@
-_getSTATUS: CODE, 15728 0 14
-_spiConfig_1: CODE, 15758 0 24
-_spiWrite: CODE, 15808 0 36
-_main: CODE, 16110 0 118
-_nrfSetTXAddr: CODE, 15938 0 54
-_nrfTX: CODE, 15844 0 44
-__initialization: CODE, 15888 0 44
-_portConfig: CODE, 15782 0 26
-_nrfConfig: CODE, 16228 0 156
-_nrfSetRXAddr: CODE, 15992 0 58
-_delay10ms: CODE, 16050 0 60
-Total: 634
+_getSTATUS: CODE, 15572 0 14
+_spiConfig_1: CODE, 15602 0 24
+_spiWrite: CODE, 15652 0 40
+_main: CODE, 16190 0 194
+_nrfSetTXAddr: CODE, 15786 0 54
+_nrfTX: CODE, 15692 0 44
+__initialization: CODE, 15736 0 44
+_spiRead: CODE, 15958 0 102
+_portConfig: CODE, 15626 0 26
+_nrfConfig: CODE, 16060 0 130
+_nrfSetRXAddr: CODE, 15840 0 58
+_delay10ms: CODE, 15898 0 60
+Total: 790

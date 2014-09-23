@@ -10022,8 +10022,8 @@ extern __nonreentrant void _delay3(unsigned char);
 #pragma config XINST = OFF
 
 # 144
-char CONFIG_CURR = 0b00001010;
-char ENAA_CURR = 0b00000000;
+char CONFIG_CURR = 0b01011010;
+char EN_AA_CURR = 0b00000000;
 char EN_RXADDR_CURR = 0b00000001;
 char SETUP_AW_CURR = 0b00000010;
 char SETUP_RETR_CURR = 0b00100000;
@@ -10053,11 +10053,13 @@ int count = 0;
 # 180
 void main(void) {
 
-portConfig();
+spiConfig_1();
 
 delay10ms(1);
 
-spiConfig_1();
+portConfig();
+
+delay10ms(1);
 
 nrfConfig();
 
@@ -10068,10 +10070,12 @@ for (;;) {
 nrfTX(count);
 count++;
 
-_delay((unsigned long)((500)*(64000000/4000000.0)));
+_delay((unsigned long)((1000)*(64000000/4000000.0)));
 
-# 210
+# 212
 char statusByte = getSTATUS();
+_delay((unsigned long)((200)*(64000000/4000000.0)));
+
 if (statusByte != 0x0E) {
 
 LATAbits.LATA0 = 1;
@@ -10084,10 +10088,19 @@ spiWrite(0b01110000);
 delay10ms(5);
 LATAbits.LATA0 = 0;
 }
+
+spiWrite(0xE1);
+
+_delay((unsigned long)((80)*(64000000/4000000.0)));
+
+spiWrite(0x00|0x00);
+spiRead(1);
+
+_delay((unsigned long)((80)*(64000000/4000000.0)));
 }
 }
 
-# 229
+# 242
 void portConfig(void) {
 LATA = 0b00000100;
 LATB = 0x00;
@@ -10098,45 +10111,52 @@ TRISB = 0b00000000;
 TRISC = 0b00010000;
 }
 
-# 243
+# 256
 void spiConfig_1(void) {
 SSP1CON1bits.CKP = 0;
-SSP1STATbits.CKE = 1;
+SSP1STATbits.CKE = 0;
 SSP1STATbits.SMP = 1;
-SSP1ADD = 0b00111111;
+SSP1ADD = 0b01111111;
 SSP1CON1bits.SSPM = 0b1010;
 
 SSP1CON1bits.SSPEN = 1;
 LATAbits.LATA2 = 1;
 }
 
-# 257
+# 270
 void nrfConfig(void) {
 spiWrite(0x20|0x00);
 spiWrite(CONFIG_CURR);
+
+spiWrite(0x20|0x01);
+spiWrite(EN_AA_CURR);
+
 spiWrite(0x20|0x02);
 spiWrite(EN_RXADDR_CURR);
-spiWrite(0x20|0x01);
-spiWrite(0b00000000);
+
 spiWrite(0x20|0x03);
 spiWrite(SETUP_AW_CURR);
+
 spiWrite(0x20|0x04);
 spiWrite(SETUP_RETR_CURR);
-spiWrite(0x20|0x11);
-spiWrite(RX_PW_P0_CURR);
-spiWrite(0x20|0x12);
-spiWrite(RX_PW_P0_CURR);
-nrfSetTXAddr(TX_ADDRESS);
-nrfSetRXAddr(0x0A,RX_ADDRESS);
-nrfSetRXAddr(0x0B,RX_ADDRESS);
+
 spiWrite(0x20|0x05);
 spiWrite(RF_CH_CURR);
+
 spiWrite(0x20|0x06);
 spiWrite(RF_SETUP_CURR);
+
+nrfSetRXAddr(0x0A,RX_ADDRESS);
+
+nrfSetTXAddr(TX_ADDRESS);
+
+spiWrite(0x20|0x11);
+spiWrite(RX_PW_P0_CURR);
+
 spiWrite(0xE1);
 }
 
-# 286
+# 306
 void nrfSetTXAddr(char addr[]) {
 spiWrite(0x20|0x10);
 
@@ -10146,7 +10166,7 @@ spiWrite(addr[i]);
 }
 }
 
-# 300
+# 320
 void nrfSetRXAddr(char addrXX, char addr[]) {
 spiWrite(0x20|addrXX);
 
@@ -10156,7 +10176,7 @@ spiWrite(addr[i]);
 }
 }
 
-# 314
+# 334
 char getSTATUS(void) {
 char statusByte;
 spiWrite(0xFF);
@@ -10165,46 +10185,47 @@ statusByte = SSP1BUF;
 return statusByte;
 }
 
-# 325
+# 345
 void spiWrite(char data) {
 
 LATAbits.LATA2 = 0;
-_delay((unsigned long)((20)*(64000000/4000000.0)));
-SSP1BUF = data;
 _delay((unsigned long)((40)*(64000000/4000000.0)));
+SSP1BUF = data;
+_delay((unsigned long)((80)*(64000000/4000000.0)));
 LATAbits.LATA2 = 1;
-_delay((unsigned long)((20)*(64000000/4000000.0)));
+_delay((unsigned long)((40)*(64000000/4000000.0)));
 }
 
-# 341
+# 361
 void spiRead(int len) {
 int i;
-for (i=0;i<len;i++) {
+for (i=1;i<=len;i++) {
+_delay((unsigned long)((40)*(64000000/4000000.0)));
 
 LATAbits.LATA2 = 0;
-_delay((unsigned long)((20)*(64000000/4000000.0)));
+_delay((unsigned long)((40)*(64000000/4000000.0)));
 SSP1BUF = 0xCC;
-_delay((unsigned long)((33)*(64000000/4000000.0)));
+_delay((unsigned long)((80)*(64000000/4000000.0)));
 LATAbits.LATA2 = 1;
 dataBufIn[i] = SSP1BUF;
 }
 
-_delay((unsigned long)((5)*(64000000/4000000.0)));
+_delay((unsigned long)((100)*(64000000/4000000.0)));
 }
 
-# 359
+# 380
 void nrfTX(char data) {
 spiWrite(0xA0);
 spiWrite(data);
 
 
 LATAbits.LATA1 = 1;
-_delay((unsigned long)((20)*(64000000/4000000.0)));
+_delay((unsigned long)((40)*(64000000/4000000.0)));
 LATAbits.LATA1 = 0;
-_delay((unsigned long)((200)*(64000000/4000000.0)));
+_delay((unsigned long)((400)*(64000000/4000000.0)));
 }
 
-# 373
+# 394
 void delay10ms(int ms_multi) {
 int i = 0;
 for (i=0;i<ms_multi;i++) {

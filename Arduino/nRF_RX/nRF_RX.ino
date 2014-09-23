@@ -187,6 +187,8 @@ void loop() {
 
     Serial.println(payload);            // Print to serial monitor
     
+    delayMicroseconds(100);
+    
     spiTransfer(W_REGISTER|STATUS);
     spiTransfer(B01110000);
     

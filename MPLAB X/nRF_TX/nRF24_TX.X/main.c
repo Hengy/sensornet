@@ -141,7 +141,7 @@ SCK     -[14/RC3       RC4/15]-       SDI
 /*------------------------------------------------
  * Current config settings - TX
 ------------------------------------------------*/
-char CONFIG_CURR        = 0b00001010;   // Show all interrupts; Enable CRC - 1 byte; Power Up; PTX
+char CONFIG_CURR        = 0b01011010;   // Show all interrupts; Enable CRC - 1 byte; Power Up; PTX
 char EN_AA_CURR         = 0b00000000;   // Disable all Auto Ack
 char EN_RXADDR_CURR     = 0b00000001;   // Enable data pipe 0
 char SETUP_AW_CURR      = 0b00000010;   // set for 4 byte address
@@ -179,11 +179,13 @@ int count = 0;
 ------------------------------------------------*/
 void main(void) {
 
+    spiConfig_1();
+
+    delay10ms(1);
+
     portConfig();
 
     delay10ms(1);                       // Wait for pins to set
-
-    spiConfig_1();
 
     nrfConfig();
 
@@ -194,7 +196,7 @@ void main(void) {
         nrfTX(count);
         count++;
 
-        __delay_us(500);
+        __delay_us(1000);
 
         // Show that code is running with act_LED
 //        int i = 0;
@@ -208,6 +210,8 @@ void main(void) {
 //        }
 
         char statusByte = getSTATUS();
+        __delay_us(200);
+
         if (statusByte != 0x0E) {
 
             ACT_LED = 1;
@@ -220,6 +224,15 @@ void main(void) {
             delay10ms(5);
             ACT_LED = 0;
         }
+
+        spiWrite(FLUSH_TX);
+
+        __delay_us(80);
+
+        spiWrite(R_REGISTER|CONFIG);
+        spiRead(1);
+
+        __delay_us(80);
     }
 }
 
@@ -244,7 +257,7 @@ void spiConfig_1(void) {
     SSP1CON1bits.CKP = 0;               // Clock polarity
     SSP1STATbits.CKE = 1;               // Clock edge detect
     SSP1STATbits.SMP = 1;               // Sample bit
-    SSP1ADD = 0b00111111;               // Set to 63
+    SSP1ADD = 0b01111111;               // Set to 63
     SSP1CON1bits.SSPM = 0b1010;         // Clock = Fosc/(SSP1ADD + 1)(4) = 500KHz
     //SSP1CON1bits.SSPM = 0b0010;         // Clock = Fosc/64 = 1MHz
     SSP1CON1bits.SSPEN = 1;             // Enable SPI
@@ -332,11 +345,11 @@ char getSTATUS(void) {
 void spiWrite(char data) {
     // toggle CSN pin
     nRF_CSN = 0;
-    __delay_us(20);
-    SSP1BUF = data;
     __delay_us(40);
+    SSP1BUF = data;
+    __delay_us(80);
     nRF_CSN = 1;
-    __delay_us(20);
+    __delay_us(40);
 }
 
 /*------------------------------------------------
@@ -347,17 +360,18 @@ void spiWrite(char data) {
 ------------------------------------------------*/
 void spiRead(int len) {
     int i;
-    for (i=0;i<len;i++) {
+    for (i=1;i<=len;i++) {
+        __delay_us(40);
         // toggle CSN pin
         nRF_CSN = 0;
-        __delay_us(20);
+        __delay_us(40);
         SSP1BUF = DUMMY_DATA;
-        __delay_us(33);
+        __delay_us(80);
         nRF_CSN = 1;
         dataBufIn[i] = SSP1BUF;
     }
 
-    __delay_us(5);
+    __delay_us(100);
 }
 
 /*------------------------------------------------
@@ -369,9 +383,9 @@ void nrfTX(char data) {
 
     // Toggle CE pin
     nRF_CE = 1;
-    __delay_us(20);
+    __delay_us(40);
     nRF_CE = 0;
-    __delay_us(200);                    // Wait for transmission to complete
+    __delay_us(400);                    // Wait for transmission to complete
 }
 
 /*------------------------------------------------
