@@ -141,13 +141,14 @@ SCK     -[14/RC3       RC4/15]-       SDI
 /*------------------------------------------------
  * Current config settings - TX
 ------------------------------------------------*/
-char CONFIG_CURR        = 0b00001010;   // Show all interrupts; Enable CRC - 1 byte; Power up; TX
-char EN_RXADDR_CURR     = 0b00000011;   // Enable data pipe 0 and 1
+char CONFIG_CURR        = 0b00001010;   // Show all interrupts; Enable CRC - 1 byte; Power Up; PTX
+char EN_AA_CURR         = 0b00000000;   // Disable all Auto Ack
+char EN_RXADDR_CURR     = 0b00000001;   // Enable data pipe 0
 char SETUP_AW_CURR      = 0b00000010;   // set for 4 byte address
-char RX_PW_P0_CURR      = 0b00000001;   // Set pipe 0 payload width to 1
-char SETUP_RETR_CURR    = 0b00000000;   // Disable auto retransmit
+char SETUP_RETR_CURR    = 0b00100000;   // 750us retransmit delay; Disable auto retransmit
 char RF_CH_CURR         = 0b01101001;   // Channel 105 (2.400GHz + 0.105GHz = 2.505GHz)
 char RF_SETUP_CURR      = 0b00000110;   // RF data rate to 1Mbps; 0dBm output power (highest)
+char RX_PW_P0_CURR      = 0b00000001;   // Set pipe 0 payload width to 1
 char RX_ADDRESS[4] = {0xE7,0xE7,0xE7,0xE7}; // 4 byte initial RX address
 char TX_ADDRESS[4] = {0xE7,0xE7,0xE7,0xE7}; // 4 byte initial TX address
 
@@ -180,31 +181,45 @@ void main(void) {
 
     portConfig();
 
+    delay10ms(1);                       // Wait for pins to set
+
     spiConfig_1();
 
     nrfConfig();
+
+    delay10ms(1);                       // Wait for power up
 
     for (;;) {
 
         nrfTX(count);
         count++;
 
+        __delay_us(500);
+
         // Show that code is running with act_LED
-        int i = 0;
-        for (i=0;i<5;i++) {
-            if (i>2) {
-                ACT_LED = 1;
-            } else {
-                ACT_LED = 0;
-            }
-            delay10ms(20);
+//        int i = 0;
+//        for (i=0;i<4;i++) {
+//            if (i>2) {
+//                ACT_LED = 1;
+//            } else {
+//                ACT_LED = 0;
+//            }
+//            delay10ms(20);
+//        }
+
+        char statusByte = getSTATUS();
+        if (statusByte != 0x0E) {
+
+            ACT_LED = 1;
+            delay10ms(5);
+
+            // Reset interrupt flags
+            spiWrite(W_REGISTER|STATUS);
+            spiWrite(0b01110000);
+
+            delay10ms(5);
+            ACT_LED = 0;
         }
-
-        // Reset interrupt flags
-        spiWrite(W_REGISTER|STATUS);
-        spiWrite(0b01110000);
-
-        delay10ms(20);
     }
 }
 
@@ -212,8 +227,8 @@ void main(void) {
  * PORT setup function; 1=IN; 0=OUT
 ------------------------------------------------*/
 void portConfig(void) {
-    LATA = 0x00;                        // Set all pins to low
-    LATB = 0x00;
+    LATA = 0b00000100;                  // Set all pins to low except CSN
+    LATB = 0x00;                        // Set all pins to low
     LATC = 0x00;
 
     TRISA = 0b00001000;                 // Configure PORTA I/O
@@ -229,12 +244,11 @@ void spiConfig_1(void) {
     SSP1CON1bits.CKP = 0;               // Clock polarity
     SSP1STATbits.CKE = 1;               // Clock edge detect
     SSP1STATbits.SMP = 1;               // Sample bit
-    SSP1ADD = 0b00111111;               // Set to 31
+    SSP1ADD = 0b00111111;               // Set to 63
     SSP1CON1bits.SSPM = 0b1010;         // Clock = Fosc/(SSP1ADD + 1)(4) = 500KHz
     //SSP1CON1bits.SSPM = 0b0010;         // Clock = Fosc/64 = 1MHz
     SSP1CON1bits.SSPEN = 1;             // Enable SPI
     nRF_CSN = 1;
-    __delay_us(100);
 }
 
 /*------------------------------------------------
@@ -243,25 +257,32 @@ void spiConfig_1(void) {
 void nrfConfig(void) {
     spiWrite(W_REGISTER|CONFIG);        // Write to CONFIG register
     spiWrite(CONFIG_CURR);
+
+    spiWrite(W_REGISTER|EN_AA);         // Write to EN_AA register
+    spiWrite(EN_AA_CURR);
+
     spiWrite(W_REGISTER|EN_RXADDR);     // Write to EN_RXADDR register
     spiWrite(EN_RXADDR_CURR);
-    spiWrite(W_REGISTER|EN_AA);
-    spiWrite(0b00000000);
+
     spiWrite(W_REGISTER|SETUP_AW);      // Write to SETUP_AW register
     spiWrite(SETUP_AW_CURR);
-    spiWrite(W_REGISTER|SETUP_RETR);
+
+    spiWrite(W_REGISTER|SETUP_RETR);    // Write to SETUP_RETR register
     spiWrite(SETUP_RETR_CURR);
-    spiWrite(W_REGISTER|RX_PW_P0);      // Set pipe 0 payload width
-    spiWrite(RX_PW_P0_CURR);
-    spiWrite(W_REGISTER|RX_PW_P1);      // Set pipe 0 payload width
-    spiWrite(RX_PW_P0_CURR);
-    nrfSetTXAddr(TX_ADDRESS);           // set TX address
-    nrfSetRXAddr(RX_ADDR_P0,RX_ADDRESS);// set RX address
-    nrfSetRXAddr(RX_ADDR_P1,RX_ADDRESS);// set RX address
+
     spiWrite(W_REGISTER|RF_CH);         // Write to RF channel register
     spiWrite(RF_CH_CURR);
+
     spiWrite(W_REGISTER|RF_SETUP);      // Write to RF setup register
     spiWrite(RF_SETUP_CURR);
+
+    nrfSetRXAddr(RX_ADDR_P0,RX_ADDRESS);// set RX address
+
+    nrfSetTXAddr(TX_ADDRESS);           // set TX address
+
+    spiWrite(W_REGISTER|RX_PW_P0);      // Set pipe 0 payload width
+    spiWrite(RX_PW_P0_CURR);
+    
     spiWrite(FLUSH_TX);                 // Flush TX FIFO
 }
 
@@ -345,12 +366,12 @@ void spiRead(int len) {
 void nrfTX(char data) {
     spiWrite(W_TX_PAYLOAD);             // Write to TX payload register
     spiWrite(data);                     // Write data
-    __delay_us(20);
+
     // Toggle CE pin
     nRF_CE = 1;
-    __delay_us(15);
-    nRF_CE = 0;
     __delay_us(20);
+    nRF_CE = 0;
+    __delay_us(200);                    // Wait for transmission to complete
 }
 
 /*------------------------------------------------

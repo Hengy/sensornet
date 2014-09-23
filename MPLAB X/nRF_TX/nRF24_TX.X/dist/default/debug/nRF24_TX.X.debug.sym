@@ -13,7 +13,7 @@ _LATC F8B 0 ABS 0
 _main 3EEE 0 CODE 0
 ___sp 0 0 STACK 2
 __end_of_getSTATUS 3D7E 0 CODE 0
-start 0 0 CODE 0
+start 2 0 CODE 0
 _TRISA F92 0 ABS 0
 _TRISB F93 0 ABS 0
 _TRISC F94 0 ABS 0
@@ -71,8 +71,8 @@ __Hmediumconst 0 0 MEDIUMCONST 0
 __Lmediumconst 0 0 MEDIUMCONST 0
 __Hfarbss 0 0 FARRAM 0
 __Lfarbss 0 0 FARRAM 0
-__Hintcode 0 0 CODE 0
-__Lintcode 0 0 CODE 0
+__Hintcode 2 0 CODE 0
+__Lintcode 2 0 CODE 0
 __Hfardata 0 0 FARRAM 0
 __Lfardata 0 0 FARRAM 0
 __Habs1 0 0 ABS 0
@@ -92,10 +92,10 @@ __Ltemp 0 0 COMRAM 1
 stacklo 60 0 ABS 0
 __Hrbit 0 0 COMRAM 1
 __Lrbit 0 0 COMRAM 1
-__Hinit 0 0 CODE 0
-__Linit 0 0 CODE 0
-__Hintcodelo 0 0 CODE 0
-__Lintcodelo 0 0 CODE 0
+__Hinit 2 0 CODE 0
+__Linit 2 0 CODE 0
+__Hintcodelo 2 0 CODE 0
+__Lintcodelo 2 0 CODE 0
 __Hrbss 0 0 COMRAM 1
 __end_of_main 3F64 0 CODE 0
 __Lrbss 0 0 COMRAM 1
@@ -121,8 +121,8 @@ __Hbank1 0 0 ABS 0
 __Lbank1 0 0 ABS 0
 __Hbank2 0 0 ABS 0
 __Lbank2 0 0 ABS 0
-__Hpowerup 0 0 CODE 0
-__Lpowerup 0 0 CODE 0
+__Hpowerup 2 0 CODE 0
+__Lpowerup 2 0 CODE 0
 __Htext0 0 0 ABS 0
 __Ltext0 0 0 ABS 0
 __Htext1 0 0 ABS 0
@@ -216,14 +216,14 @@ getSTATUS@statusByte 54 0 COMRAM 1
 __CFG_WDTEN$OFF 0 0 ABS 0
 ___intlo_sp 0 0 STACK 2
 _ENAA_CURR 43 0 COMRAM 1
-__Hend_init 4 0 CODE 0
-__Lend_init 0 0 CODE 0
+__Hend_init 6 0 CODE 0
+__Lend_init 2 0 CODE 0
 __HidataCOMRAM 0 0 ABS 0
 __LidataCOMRAM 0 0 ABS 0
 __pidataCOMRAM 3D7F 0 CODE 0
 _getSTATUS 3D70 0 CODE 0
 __smallconst 0 0 SMALLCONST 0
-__Hreset_vec 0 0 CODE 0
+__Hreset_vec 2 0 CODE 0
 __Lreset_vec 0 0 CODE 0
 __CFG_BORV$190 0 0 ABS 0
 __accesstop 60 0 ABS 0
@@ -255,7 +255,7 @@ __end_of_nrfSetRXAddr 3EB2 0 CODE 0
 _RX_PW_P0_CURR 48 0 COMRAM 1
 __end_of_delay10ms 3EEE 0 CODE 0
 %segments
-reset_vec 0 3 CODE 0 0
+reset_vec 0 5 CODE 0 0
 config 300000 30000D CONFIG 300000 0
 idloc 200000 200007 IDLOC 200000 0
 bssCOMRAM 1 5A COMRAM 1 1
@@ -272,9 +272,9 @@ text1 3D8E 3DA5 CODE 3D8E 0
 idataCOMRAM 3D7F 3D8D CODE 3D7F 0
 text7 3D70 3D7D CODE 3D70 0
 %locals
-dist/default/production\nRF24_TX.X.production.obj
+dist/default/debug\nRF24_TX.X.debug.obj
 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic18f24k22.h
-C:\Users\STUDEN~1.N20\AppData\Local\Temp\s3j0.
+C:\Users\STUDEN~1.N20\AppData\Local\Temp\s4os.
 776 3E10 0 CODE 0
 778 3E10 0 CODE 0
 781 3E10 0 CODE 0

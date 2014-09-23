@@ -1,7 +1,7 @@
 
 
 Microchip Technology PIC18 LITE Macro Assembler V1.33 build 59893 
-                                                                                               Tue Sep 23 09:18:20 2014
+                                                                                               Tue Sep 23 09:19:55 2014
 
 Microchip Technology Omniscient Code Generator (Lite mode) build 59893
      1                           	processor	18F24K22
@@ -286,7 +286,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    280  003EEE                     __ptext0:
    281                           	opt stack 0
    282  003EEE                     _main:
-   283                           	opt stack 28
+   283                           	opt stack 27
    284                           
    285                           ;main.c: 182: portConfig();
    286                           
@@ -416,7 +416,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    410  003D8E                     __ptext1:
    411                           	opt stack 0
    412  003D8E                     _spiConfig_1:
-   413                           	opt stack 30
+   413                           	opt stack 29
    414                           
    415                           ;main.c: 244: SSP1CON1bits.CKP = 0;
    416                           
@@ -490,7 +490,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    484  003DA6                     __ptext2:
    485                           	opt stack 0
    486  003DA6                     _portConfig:
-   487                           	opt stack 30
+   487                           	opt stack 29
    488                           
    489                           ;main.c: 230: LATA = 0b00000100;
    490                           
@@ -564,7 +564,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    558  003DE4                     __ptext3:
    559                           	opt stack 0
    560  003DE4                     _nrfTX:
-   561                           	opt stack 29
+   561                           	opt stack 28
    562                           
    563                           ;incstack = 0
    564                           ;nrfTX@data stored from wreg
@@ -650,7 +650,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    644  003F64                     __ptext4:
    645                           	opt stack 0
    646  003F64                     _nrfConfig:
-   647                           	opt stack 28
+   647                           	opt stack 27
    648                           
    649                           ;main.c: 258: spiWrite(0x20|0x00);
    650                           
@@ -800,7 +800,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    794  003E42                     __ptext5:
    795                           	opt stack 0
    796  003E42                     _nrfSetTXAddr:
-   797                           	opt stack 28
+   797                           	opt stack 27
    798                           
    799                           ;main.c: 287: spiWrite(0x20|0x10);
    800                           
@@ -887,7 +887,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    881  003E78                     __ptext6:
    882                           	opt stack 0
    883  003E78                     _nrfSetRXAddr:
-   884                           	opt stack 28
+   884                           	opt stack 27
    885                           
    886                           ;incstack = 0
    887                           ;nrfSetRXAddr@addrXX stored from wreg
@@ -974,7 +974,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    968  003D70                     __ptext7:
    969                           	opt stack 0
    970  003D70                     _getSTATUS:
-   971                           	opt stack 29
+   971                           	opt stack 28
    972                           
    973                           ;main.c: 315: char statusByte;
    974                           ;main.c: 316: spiWrite(0xFF);
@@ -1042,7 +1042,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
   1036  003DC0                     __ptext8:
   1037                           	opt stack 0
   1038  003DC0                     _spiWrite:
-  1039                           	opt stack 30
+  1039                           	opt stack 29
   1040                           
   1041                           ;incstack = 0
   1042                           ;spiWrite@data stored from wreg
@@ -1126,7 +1126,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
   1120  003EB2                     __ptext9:
   1121                           	opt stack 0
   1122  003EB2                     _delay10ms:
-  1123                           	opt stack 30
+  1123                           	opt stack 29
   1124                           
   1125                           ;main.c: 374: int i = 0;
   1126                           
@@ -1325,10 +1325,10 @@ Call Graph Tables:
 Name               Size   Autos  Total    Cost      Usage
 BIGRAM             2FF      0       0      10        0.0%
 EEDATA             100      0       0       0        0.0%
-BITBANK2           100      0       0       6        0.0%
-BANK2              100      0       0       7        0.0%
-BITBANK1           100      0       0       9        0.0%
-BANK1              100      0       0       5        0.0%
+BITBANK2           100      0       0       7        0.0%
+BANK2              100      0       0       8        0.0%
+BITBANK1           100      0       0       5        0.0%
+BANK1              100      0       0       6        0.0%
 BITBANK0            A0      0       0       3        0.0%
 BANK0               A0      0       0       4        0.0%
 BITCOMRAM           5F      0       0       0        0.0%
@@ -1339,13 +1339,13 @@ BITSFR               0      0       0      40        0.0%
 SFR                  0      0       0      40        0.0%
 STACK                0      0       0       2        0.0%
 NULL                 0      0       0       0        0.0%
-ABS                  0      0      5A       8        0.0%
+ABS                  0      0      5A       9        0.0%
 DATA                 0      0      5A      11        0.0%
 CODE                 0      0       0       0        0.0%
 
 
 Microchip Technology PIC18 Macro Assembler V1.33 build 59893 
-Symbol Table                                                                                   Tue Sep 23 09:18:20 2014
+Symbol Table                                                                                   Tue Sep 23 09:19:55 2014
 
                      u87 3F22                       u97 3DF6             spiWrite@data 0053  
              _RX_ADDRESS 004B              __CFG_LVP$ON 000000                      l111 3ED8  
@@ -1354,7 +1354,7 @@ Symbol Table                                                                    
                     u147 3ECA                      wreg 000FE8               _TX_ADDRESS 004F  
                    _LATA 000F89                     _LATB 000F8A                     _LATC 000F8B  
                    _main 3EEE                     fsr1l 000FE1                     indf2 000FDF  
-                   fsr2l 000FD9            __CFG_BORV$190 000000                     start 0000  
+                   fsr2l 000FD9            __CFG_BORV$190 000000                     start 0002  
           __CFG_IESO$OFF 000000                    ?_main 0053                    _TRISA 000F92  
                   _TRISB 000F93                    _TRISC 000F94           __CFG_FCMEN$OFF 000000  
                   _count 0041                    _nrfTX 3DE4       __CFG_MCLRE$EXTMCLR 000000  
