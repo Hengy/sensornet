@@ -42,8 +42,6 @@ const int nRF_CE     = 4;    // nRF24L01+ chip enable
 const int nRF_CSN    = 3;    // nRF24L01+ chip select not
 const int nRF_IRQ    = 2;    // nRF24L01+ interrupt
 
-const int configEnd  = 7;
-
 /*------------------------------------------------
  * nRF24L01+ command and register definitions
 ------------------------------------------------*/
@@ -92,19 +90,18 @@ const byte FEATURE         = 0x1D;        // Feature register
 /*------------------------------------------------
  * Misc definitions
 ------------------------------------------------*/
+const byte DUMMY_DATA      = 0xCC;        // Dummy data for SPI (0b11001100)
 
 
 /*------------------------------------------------
  * nRF24L01+ current config settings
 ------------------------------------------------*/
 byte CONFIG_CURR           = B00001011;   // Show all interrupts; Enable CRC - 1 byte; Power up; RX
-byte EN_AA_CURR            = B00000000;   // Disable all Auto Ack
-byte EN_RXADDR_CURR        = B00000001;   // Enable data pipe 0 and 1
+byte EN_RXADDR_CURR        = B00000011;   // Enable data pipe 0 and 1
+byte RX_PW_P0_CURR         = B00000001;   // 1 byte payload
 byte SETUP_AW_CURR         = B00000010;   // Set up for 4 byte address
-byte SETUP_RETR_CURR       = B00100000;   // 750us retransmit delay; Disable auto retransmit
 byte RF_CH_CURR            = B01101001;   // Channel 105 (2.400GHz + 0.105GHz = 2.505GHz)
 byte RF_SETUP_CURR         = B00000110;   // RF data rate to 1Mbps; 0dBm output power (highest)
-byte RX_PW_P0_CURR         = B00000001;   // 1 byte payload
 byte RX_ADDRESS[4]         = {0xE7,0xE7,0xE7,0xE7};
 byte TX_ADDRESS[4]         = {0xE7,0xE7,0xE7,0xE7};
 
@@ -115,7 +112,6 @@ byte TX_ADDRESS[4]         = {0xE7,0xE7,0xE7,0xE7};
 byte dataBufIn[32];                           // 32 byte buffer for all incoming SPI data
 byte dataBufOut[32];                          // 32 byte buffer for all outgoing SPI data
 
-byte nrfSTATUS;
 
 /*------------------------------------------------
  * Setup
@@ -131,50 +127,40 @@ void setup() {
   digitalWrite(nRF_CE, HIGH);             // CE must be high when receiving
   digitalWrite(nRF_CSN, HIGH);
   
-  pinMode(configEnd, INPUT);
-  digitalWrite(configEnd, LOW);
-  
   // Serial setup - TESTING
   Serial.begin(57600);
   Serial.println("Receiving...");
   
   // SPI setup
+  SPI.begin();                            // Start SPI
   SPI.setBitOrder(MSBFIRST);              // Set most significant bit first
   SPI.setClockDivider(SPI_CLOCK_DIV32);   // Clock to Fosc/16 = 1MHz
-  //SPI.setDataMode(SPI_MODE1);             // Clock polarity 0; clock phase 1
-  SPI.begin();                            // Start SPI
+  SPI.setDataMode(SPI_MODE1);             // Clock polarity 0; clock phase 1
   
-  delay(1);
+  delay(2);
   
   // nRF24L01+ setup
-  // Write to CONFIG register
-  nrfConfigReg('w',CONFIG,CONFIG_CURR);
-  // Write to EN_RXADDR register  
-  nrfConfigReg('w',EN_RXADDR,EN_RXADDR_CURR);
-  // Write to EN_AA register
-  nrfConfigReg('w',EN_AA,EN_AA_CURR);
-  // Write to SETUP_AW register
-  nrfConfigReg('w',SETUP_AW,SETUP_AW_CURR);
-  // Write to SETUP_RETR register
-  nrfConfigReg('w',SETUP_RETR,SETUP_RETR_CURR);
-  // Write to RF channel register
-  nrfConfigReg('w',RF_CH,RF_CH_CURR);
-  // Write to RF setup register  
-  nrfConfigReg('w',RF_SETUP,RF_SETUP_CURR);
-  // set TX address
-  nrfSetTXAddr(TX_ADDRESS,4);
-  // set RX address
-  nrfSetRXAddr(RX_ADDR_P0,RX_ADDRESS,4);
-  // Write pipe 0 payload width
-  nrfConfigReg('w',RX_PW_P0,RX_PW_P0_CURR);
-  // Flush RX FIFO
-  spiTransfer('n',FLUSH_RX,0);
-  // Flush TX FIFO
-  spiTransfer('n',FLUSH_TX,0);
-  
-  digitalWrite(configEnd, HIGH);
-  
-  delay(1);
+  spiTransfer(W_REGISTER|CONFIG);            // Write to CONFIG register
+  spiTransfer(CONFIG_CURR);
+  spiTransfer(W_REGISTER|EN_RXADDR);         // Write to EN_RXADDR register
+  spiTransfer(EN_RXADDR_CURR);  
+  spiTransfer(W_REGISTER|EN_AA);
+  spiTransfer(B00000000);
+  spiTransfer(W_REGISTER|SETUP_AW);          // Write to SETUP_AW register
+  spiTransfer(SETUP_AW_CURR);
+  spiTransfer(W_REGISTER|RX_PW_P0);          // Write pipe 0 payload width
+  spiTransfer(RX_PW_P0_CURR);
+  spiTransfer(W_REGISTER|RX_PW_P1);          // Write pipe 0 payload width
+  spiTransfer(RX_PW_P0_CURR);
+  nrfSetTXAddr(TX_ADDRESS);
+  nrfSetRXAddr(RX_ADDR_P0,RX_ADDRESS);
+  nrfSetRXAddr(RX_ADDR_P1,RX_ADDRESS);
+  spiTransfer(W_REGISTER|RF_CH);             // Write to RF channel register
+  spiTransfer(RF_CH_CURR);
+  spiTransfer(W_REGISTER|RF_SETUP);          // Write to RF setup register
+  spiTransfer(RF_SETUP_CURR);
+  spiTransfer(FLUSH_RX);                     // Flush RX FIFO
+  spiTransfer(FLUSH_TX);                     // Flush TX FIFO
 }
 
 /*------------------------------------------------
@@ -186,164 +172,101 @@ void loop() {
   
   digitalWrite(nRF_CE, HIGH);            // Keep CE high when receiving
   
-  delayMicroseconds(20);
+  delayMicroseconds(100);
 
-  nrfGetStatus();
+  byte nRFStatus = getSTATUS();
   
-  if (nrfSTATUS != 0x0E) {
+  if (nRFStatus != 0x0E) {
     digitalWrite(nRF_CE, LOW);           // Keep CE high when receiving
     
-    delayMicroseconds(40);
+    delayMicroseconds(50);
     
-    spiTransfer('r',R_RX_PAYLOAD,1);          // Read payload command
+    spiTransfer(R_RX_PAYLOAD);           // Read payload command
+    
+    int payload = spiTransfer(NRF_NOP); // Get received byte
 
-    Serial.println(dataBufIn[0]);            // Print to serial monitor
+    Serial.println(payload);            // Print to serial monitor
     
-    delayMicroseconds(40);
+    delayMicroseconds(100);
     
-    dataBufOut[0] = B01110000;
-    spiTransfer('w',STATUS,1);
+    spiTransfer(W_REGISTER|STATUS);
+    spiTransfer(B01110000);
     
-    spiTransfer('n',FLUSH_TX,0);
+    spiTransfer(FLUSH_RX);
   }
   
 }
 
 
 /*------------------------------------------------
- * Sets CSN pin HIGH or LOW w/ delay
+ * SPI write function; toggles CSN pin for nRF24L01+
 ------------------------------------------------*/
-void setCSN(boolean level) {
-  if (level) {
-    digitalWrite(nRF_CSN, HIGH);  // Set HIGH
-  } else {
-    digitalWrite(nRF_CSN, LOW);   // Set LOW
-  }
-}
-
-/*------------------------------------------------
- * Gets STATUS reg from nRF
-------------------------------------------------*/
-void nrfGetStatus() {
+byte spiTransfer(byte data) {
   
-  setCSN(LOW);
+  // toggle CSN pin
+  digitalWrite(nRF_CSN, LOW);
   
-  nrfSTATUS = spiTransferByte(NRF_NOP);
+  delayMicroseconds(20);
   
-  setCSN(HIGH);
-}
-
-/*------------------------------------------------
- * Writes or eads nRF reg
-------------------------------------------------*/
-byte nrfConfigReg(char wr, byte command, byte data) {
-
-    setCSN(LOW);                                // Set CSN low
-
-    if (wr == 'w') {                            // Write
-        spiTransferByte(W_REGISTER|command);    // Send command
-        delayMicroseconds(3);
-        spiTransferByte(data);
-    } else if (wr == 'r') {                     // Read
-        spiTransferByte(R_REGISTER|command);    // Send command
-        delayMicroseconds(3);
-        data = spiTransferByte(NRF_NOP);
-    }
-
-    setCSN(HIGH);                               // Set CSN high
-
-    return data;
-}
-
-/*------------------------------------------------
- * Writes new transmit address to nRF
- * addr[] - array of bytes containing address
- * len - length of address (in bytes)
-------------------------------------------------*/
-void nrfSetTXAddr(byte addr[], int len) {
-
-    setCSN(LOW);                            // Set CSN low
-
-    spiTransferByte(W_REGISTER|TX_ADDR);    // Send command
-
-    delayMicroseconds(3);
-
-    if (len != 0) {
-        // Send address bytes
-        for (int i=1;i<=len;i++) {
-            spiTransferByte(addr[i-1]);
-            delayMicroseconds(3);
-        }
-    }
-
-    setCSN(HIGH);                           // Set CSN high
-}
-
-/*------------------------------------------------
- * Writes new receive address to nRF
- * pipe - which pipe to write address to
- * addr[] - array of bytes containing address
- * len - length of address (in bytes)
-------------------------------------------------*/
-void nrfSetRXAddr(byte pipe, byte addr[], int len) {
-
-    setCSN(LOW);                        // Set CSN low
-
-    spiTransferByte(W_REGISTER|pipe);   // Send command
-
-    delayMicroseconds(3);
-
-    if (len != 0) {
-        // Send address bytes
-        for (int i=1;i<=len;i++) {
-            spiTransferByte(addr[i-1]);
-            delayMicroseconds(3);
-        }
-    }
-
-    setCSN(HIGH);                       // Set CSN high
-}
-
-/*------------------------------------------------
- * SPI transfer function: send and receive multiple bytes w/ command
- * wrn - 'read', 'write' or 'neither'
- * command - unsigned char
- * len - size of data
- * send data - stored in dataBufOut[]
- * receive data - stored in dataBufIn[]
-------------------------------------------------*/
-void spiTransfer(char wrn, byte command,int len) {
-    
-    setCSN(LOW);                                // Set CSN low
-
-    if (wrn == 'w') {                           // Write
-        spiTransferByte(W_REGISTER|command);    // Send command
-    } else if (wrn == 'r') {                    // Read
-        spiTransferByte(R_REGISTER|command);    // Send command
-    } else if(wrn == 'n') {
-        spiTransferByte(command);               // Send command
-    }
-    //delayMicroseconds(3);
-
-    if (len != 0) {
-        for (int i=1;i<=len;i++) {
-            dataBufIn[i-1] = spiTransferByte(dataBufOut[i-1]);
-            //delayMicroseconds(3);
-        }
-    }
-
-    setCSN(HIGH);                               // Set CSN high
-}
-
-/*------------------------------------------------
- * SPI transfer function: send and receive 1 byte
-------------------------------------------------*/
-byte spiTransferByte(byte data) {
-
-  SPDR = data;                            // Send data
+  SPDR = data;                            // Send NOP command
   while (!(SPSR & (1<<SPIF))) {           // Wait until the end of transmission
   };
-
-  return SPDR;                            // return recieved data
+  
+  delayMicroseconds(20);
+  
+  digitalWrite(nRF_CSN, HIGH);
+  
+  return SPDR;
 }
 
+
+/*------------------------------------------------
+ * Get STATUS register from nRF24L01+
+ * Sends NOP commmand and gets STATUS reg
+ * returns char STATUS register
+------------------------------------------------*/
+byte getSTATUS(void) {
+  
+  // toggle CSN pin
+  digitalWrite(nRF_CSN, LOW);
+  
+  delayMicroseconds(20);
+  
+  SPDR = NRF_NOP;                         // Send NOP command
+  while (!(SPSR & (1<<SPIF))) {           // Wait until the end of transmission
+  };
+  
+  delayMicroseconds(20);
+  
+  digitalWrite(nRF_CSN, HIGH);
+  
+  return SPDR;                            // return the received byte
+}
+
+
+/*------------------------------------------------
+ * nRF24L01+ set TX address
+ * char addr - 4 byte address
+------------------------------------------------*/
+void nrfSetTXAddr(byte addr[]) {
+    spiTransfer(W_REGISTER|TX_ADDR);       // Set new transmit address
+
+    int i;                                 // Send all 4 bytes
+    for (i=0;i<4;i++) {
+        spiTransfer(addr[i]);
+    }
+}
+
+/*------------------------------------------------
+ * nRF24L01+ set RX for pipe address
+ * char addrXX - which pipe to set address for
+ * char addr - 4 byte address
+------------------------------------------------*/
+void nrfSetRXAddr(byte addrXX, byte addr[]) {
+    spiTransfer(W_REGISTER|addrXX);        // Set new receive address
+    
+    int i;                                 // Send all 4 bytes
+    for (i=0;i<4;i++) {
+        spiTransfer(addr[i]);
+    }
+}
