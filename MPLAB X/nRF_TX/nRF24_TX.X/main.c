@@ -133,7 +133,6 @@ SCK     -[14/RC3       RC4/15]-       SDI
 #define nRF_CE      LATAbits.LATA1      // nRF24L01+ chip enable
 #define nRF_CSN     LATAbits.LATA2      // nRF24L01+ chip select negative
 #define nRF_IRQ     LATAbits.LATA3      // nRF24L01+ IRQ
-#define CONFIG_PIN  LATAbits.LATA4
 
 /*------------------------------------------------
  * Misc. Definitions
@@ -187,12 +186,12 @@ unsigned char nrfSTATUS;
 ------------------------------------------------*/
 void main(void) {
 
+    // Configure system
     portConfig();                           // Config I/O and initial levels
     spiConfig_1();                          // Config MSSP 1 for SPI Master mode 0
-
     nrfConfig();                            // Config nRF24L01+
-    CONFIG_PIN = 1;
-    delay10ms(1);                           // Wait for power up
+
+    delay10ms(1);                           // Wait for nRF power up
 
     // Transmit count; read nRF STATUS reg; read nRF CONFIG reg; forever
     int count = 1;
@@ -204,8 +203,6 @@ void main(void) {
 
         nrfGetStatus();
 
-        delay10ms(1);;
-
         if (nrfSTATUS != 0x0E) {
 
             ACT_LED = 1;
@@ -214,18 +211,12 @@ void main(void) {
             dataBufOut[0] = 0b01110000;
             spiTransfer('w',STATUS,1);
 
-            delay10ms(1);
+            delay10ms(20);
 
             ACT_LED = 0;
         }
 
-        //spiTransfer('n',FLUSH_TX,0);
-
-        //__delay_us(20);
-
-        //spiTransfer('r',CONFIG,1);
-
-        delay10ms(1);
+        delay10ms(80);
     }
 }
 
@@ -321,15 +312,14 @@ unsigned char nrfConfigReg(char wr, unsigned char command, unsigned char data) {
 
     if (wr == 'w') {                            // Write
         spiTransferByte(W_REGISTER|command);    // Send command
-        __delay_us(20);
+        __delay_us(3);
         spiTransferByte(data);
     } else if (wr == 'r') {                     // Read
         spiTransferByte(R_REGISTER|command);    // Send command
-        __delay_us(20);
+        __delay_us(3);
         data = spiTransferByte(NRF_NOP);
     }
 
-    __delay_us(20);
     setCSN(HIGH);                               // Set CSN high
 
     return data;
@@ -346,13 +336,13 @@ void nrfSetTXAddr(unsigned char addr[], int len) {
 
     spiTransferByte(W_REGISTER|TX_ADDR);    // Send command
 
-    __delay_us(5);
+    __delay_us(3);
 
     if (len != 0) {
         // Send address bytes
         for (int i=1;i<=len;i++) {
             spiTransferByte(addr[i-1]);
-            __delay_us(10);
+            __delay_us(3);
         }
     }
 
@@ -371,13 +361,13 @@ void nrfSetRXAddr(unsigned char pipe, unsigned char addr[], int len) {
 
     spiTransferByte(W_REGISTER|pipe);   // Send command
 
-    __delay_us(5);
+    __delay_us(3);
 
     if (len != 0) {
         // Send address bytes
         for (int i=1;i<=len;i++) {
             spiTransferByte(addr[i-1]);
-            __delay_us(10);
+            __delay_us(3);
         }
     }
 
@@ -403,10 +393,12 @@ void spiTransfer(char wrn, unsigned char command,int len) {
     } else if(wrn == 'n') {
         spiTransferByte(command);               // Send command
     }
+    __delay_us(3);
 
     if (len != 0) {
         for (int i=1;i<=len;i++) {
             dataBufIn[i-1] = spiTransferByte(dataBufOut[i-1]);
+            __delay_us(3);
         }
     }
 
@@ -434,12 +426,12 @@ void nrfTXData(int len) {
     setCSN(LOW);                        // Set CSN low
 
     spiTransferByte(W_TX_PAYLOAD);
-    __delay_us(40);
+    __delay_us(3);
 
     if (len != 0) {
         for (int i=1;i<=len;i++) {
             spiTransferByte(dataBufOut[i-1]);
-            __delay_us(40);
+            __delay_us(3);
         }
     }
 
@@ -447,9 +439,12 @@ void nrfTXData(int len) {
 
     // pulse CE pin to transmit
     nRF_CE = 1;
-    __delay_us(12);                     // Wait min 10us
+    __delay_us(11);                     // Wait min 10us
     nRF_CE = 0;
-    __delay_us(180);                    // Wait for transmit to complete
+    __delay_us(170);                    // Wait for transmit to complete w/
+    for (int i=0;i<len;i++) {           // additional time for each additional byte
+        __delay_us(10);
+    }
 }
 
 /*------------------------------------------------

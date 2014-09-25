@@ -125,35 +125,35 @@
 [v ___asftsub __asftsub `(f  1 e 3 0 ]
 "6 C:\Program Files (x86)\Microchip\xc8\v1.33\sources\pic18\aslmul.c
 [v ___aslmul __aslmul `(ul  1 e 4 0 ]
-"188 E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c
+"187 E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c
 [v _main main `(v  1 e 0 0 ]
-"235
+"226
 [v _portConfig portConfig `(v  1 e 0 0 ]
-"249
+"240
 [v _spiConfig_1 spiConfig_1 `(v  1 e 0 0 ]
-"263
+"254
 [v _nrfConfig nrfConfig `(v  1 e 0 0 ]
-"292
+"283
 [v _setCSN setCSN `(v  1 e 0 0 ]
-"306
+"297
 [v _nrfGetStatus nrfGetStatus `(v  1 e 0 0 ]
-"318
+"309
 [v _nrfConfigReg nrfConfigReg `(uc  1 e 1 0 ]
-"343
+"333
 [v _nrfSetTXAddr nrfSetTXAddr `(v  1 e 0 0 ]
-"368
+"358
 [v _nrfSetRXAddr nrfSetRXAddr `(v  1 e 0 0 ]
-"395
+"385
 [v _spiTransfer spiTransfer `(v  1 e 0 0 ]
-"419
+"411
 [v _spiTransferByte spiTransferByte `(uc  1 e 1 0 ]
-"432
+"424
 [v _nrfTXData nrfTXData `(v  1 e 0 0 ]
-"458
+"453
 [v _delay10ms delay10ms `(v  1 e 0 0 ]
 "7524 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic18f24k22.h
 [v _LATA LATA `VEuc  1 e 1 @3977 ]
-[s S33 . 1 `uc 1 LATA0 1 0 :1:0 
+[s S47 . 1 `uc 1 LATA0 1 0 :1:0 
 `uc 1 LATA1 1 0 :1:1 
 `uc 1 LATA2 1 0 :1:2 
 `uc 1 LATA3 1 0 :1:3 
@@ -163,31 +163,31 @@
 `uc 1 LATA7 1 0 :1:7 
 ]
 "7572
-[s S42 . 1 `uc 1 LA0 1 0 :1:0 
+[s S56 . 1 `uc 1 LA0 1 0 :1:0 
 ]
-[s S44 . 1 `uc 1 . 1 0 :1:0 
+[s S58 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 LA1 1 0 :1:1 
 ]
-[s S47 . 1 `uc 1 . 1 0 :2:0 
+[s S61 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 LA2 1 0 :1:2 
 ]
-[s S50 . 1 `uc 1 . 1 0 :3:0 
+[s S64 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 LA3 1 0 :1:3 
 ]
-[s S53 . 1 `uc 1 . 1 0 :4:0 
+[s S67 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 LA4 1 0 :1:4 
 ]
-[s S56 . 1 `uc 1 . 1 0 :5:0 
+[s S70 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 LA5 1 0 :1:5 
 ]
-[s S59 . 1 `uc 1 . 1 0 :6:0 
+[s S73 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 LA6 1 0 :1:6 
 ]
-[s S62 . 1 `uc 1 . 1 0 :7:0 
+[s S76 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 LA7 1 0 :1:7 
 ]
-[u S65 . 1 `S33 1 . 1 0 `S42 1 . 1 0 `S44 1 . 1 0 `S47 1 . 1 0 `S50 1 . 1 0 `S53 1 . 1 0 `S56 1 . 1 0 `S59 1 . 1 0 `S62 1 . 1 0 ]
-[v _LATAbits LATAbits `VES65  1 e 1 @3977 ]
+[u S79 . 1 `S47 1 . 1 0 `S56 1 . 1 0 `S58 1 . 1 0 `S61 1 . 1 0 `S64 1 . 1 0 `S67 1 . 1 0 `S70 1 . 1 0 `S73 1 . 1 0 `S76 1 . 1 0 ]
+[v _LATAbits LATAbits `VES79  1 e 1 @3977 ]
 "7656
 [v _LATB LATB `VEuc  1 e 1 @3978 ]
 "7788
@@ -347,138 +347,140 @@
 [v _SSP1ADD SSP1ADD `VEuc  1 e 1 @4040 ]
 "15187
 [v _SSP1BUF SSP1BUF `VEuc  1 e 1 @4041 ]
-"148 E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c
+"147 E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c
 [v _CONFIG_CURR CONFIG_CURR `uc  1 e 1 0 ]
-"149
+"148
 [v _EN_AA_CURR EN_AA_CURR `uc  1 e 1 0 ]
-"150
+"149
 [v _EN_RXADDR_CURR EN_RXADDR_CURR `uc  1 e 1 0 ]
-"151
+"150
 [v _SETUP_AW_CURR SETUP_AW_CURR `uc  1 e 1 0 ]
-"152
+"151
 [v _SETUP_RETR_CURR SETUP_RETR_CURR `uc  1 e 1 0 ]
-"153
+"152
 [v _RF_CH_CURR RF_CH_CURR `uc  1 e 1 0 ]
-"154
+"153
 [v _RF_SETUP_CURR RF_SETUP_CURR `uc  1 e 1 0 ]
-"155
+"154
 [v _RX_PW_P0_CURR RX_PW_P0_CURR `uc  1 e 1 0 ]
-"156
+"155
 [v _RX_ADDRESS RX_ADDRESS `[4]uc  1 e 4 0 ]
-"157
+"156
 [v _TX_ADDRESS TX_ADDRESS `[4]uc  1 e 4 0 ]
-"180
+"179
 [v _dataBufIn dataBufIn `[32]uc  1 e 32 0 ]
-"181
+"180
 [v _dataBufOut dataBufOut `[32]uc  1 e 32 0 ]
-"183
+"182
 [v _nrfSTATUS nrfSTATUS `uc  1 e 1 0 ]
-"188
+"187
 [v _main main `(v  1 e 0 0 ]
 {
-"198
+"197
 [v main@count count `i  1 a 2 16 ]
-"230
+"221
 } 0
-"249
+"240
 [v _spiConfig_1 spiConfig_1 `(v  1 e 0 0 ]
 {
-"258
+"249
 } 0
-"235
+"226
 [v _portConfig portConfig `(v  1 e 0 0 ]
 {
-"243
+"234
 } 0
-"432
+"424
 [v _nrfTXData nrfTXData `(v  1 e 0 0 ]
 {
-"440
-[v nrfTXData@i i `i  1 a 2 8 ]
 "432
+[v nrfTXData@i i `i  1 a 2 10 ]
+"445
+[v nrfTXData@i_556 i `i  1 a 2 8 ]
+"424
 [v nrfTXData@len len `i  1 p 2 2 ]
-"453
+"448
 } 0
-"306
+"297
 [v _nrfGetStatus nrfGetStatus `(v  1 e 0 0 ]
 {
-"313
+"304
 } 0
-"263
+"254
 [v _nrfConfig nrfConfig `(v  1 e 0 0 ]
 {
-"287
+"278
 } 0
-"395
+"385
 [v _spiTransfer spiTransfer `(v  1 e 0 0 ]
 {
 [v spiTransfer@wrn wrn `uc  1 a 1 wreg ]
-"408
+"399
 [v spiTransfer@i i `i  1 a 2 14 ]
-"395
+"385
 [v spiTransfer@wrn wrn `uc  1 a 1 wreg ]
 [v spiTransfer@command command `uc  1 p 1 2 ]
 [v spiTransfer@len len `i  1 p 2 3 ]
-"397
+"387
 [v spiTransfer@wrn wrn `uc  1 a 1 13 ]
-"414
+"406
 } 0
-"343
+"333
 [v _nrfSetTXAddr nrfSetTXAddr `(v  1 e 0 0 ]
 {
-"353
-[v nrfSetTXAddr@i i `i  1 a 2 10 ]
 "343
+[v nrfSetTXAddr@i i `i  1 a 2 10 ]
+"333
 [v nrfSetTXAddr@addr addr `*.39uc  1 p 2 2 ]
 [v nrfSetTXAddr@len len `i  1 p 2 4 ]
-"360
+"350
 } 0
-"368
+"358
 [v _nrfSetRXAddr nrfSetRXAddr `(v  1 e 0 0 ]
 {
 [v nrfSetRXAddr@pipe pipe `uc  1 a 1 wreg ]
-"378
-[v nrfSetRXAddr@i i `i  1 a 2 11 ]
 "368
+[v nrfSetRXAddr@i i `i  1 a 2 11 ]
+"358
 [v nrfSetRXAddr@pipe pipe `uc  1 a 1 wreg ]
 [v nrfSetRXAddr@addr addr `*.39uc  1 p 2 2 ]
 [v nrfSetRXAddr@len len `i  1 p 2 4 ]
-"370
+"360
 [v nrfSetRXAddr@pipe pipe `uc  1 a 1 10 ]
-"385
+"375
 } 0
-"318
+"309
 [v _nrfConfigReg nrfConfigReg `(uc  1 e 1 0 ]
 {
 [v nrfConfigReg@wr wr `uc  1 a 1 wreg ]
 [v nrfConfigReg@wr wr `uc  1 a 1 wreg ]
 [v nrfConfigReg@command command `uc  1 p 1 2 ]
 [v nrfConfigReg@data data `uc  1 p 1 3 ]
-"320
+"311
 [v nrfConfigReg@wr wr `uc  1 a 1 4 ]
-"336
+"326
 } 0
-"419
+"411
 [v _spiTransferByte spiTransferByte `(uc  1 e 1 0 ]
 {
 [v spiTransferByte@data data `uc  1 a 1 wreg ]
 [v spiTransferByte@data data `uc  1 a 1 wreg ]
-"421
+"413
 [v spiTransferByte@data data `uc  1 a 1 0 ]
-"426
+"418
 } 0
-"292
+"283
 [v _setCSN setCSN `(v  1 e 0 0 ]
 {
 [v setCSN@level level `i  1 p 2 0 ]
-"300
+"291
 } 0
-"458
+"453
 [v _delay10ms delay10ms `(v  1 e 0 0 ]
 {
-"459
+"454
 [v delay10ms@i i `i  1 a 2 3 ]
-"458
+"453
 [v delay10ms@ms_multi ms_multi `i  1 p 2 0 ]
-"463
+"458
 } 0
