@@ -1,10 +1,10 @@
 
 /*------------------------------------------------
- * File:        nRF_RX
+ * File:        nRF_TX
  * Version:     0.1.0
  * --------------------------------------------
  * Author:      Matthew Hengeveld
- * Date:        September 9, 2014
+ * Date:        September 25, 2014
  * --------------------------------------------
  * uProc:       Arduino (ATmega328P)
  *   Fosc:        16MHz
@@ -95,7 +95,7 @@ const byte FEATURE         = 0x1D;        // Feature register
 /*------------------------------------------------
  * nRF24L01+ current config settings
 ------------------------------------------------*/
-byte CONFIG_CURR           = B00101011;   // Show all interrupts; Enable CRC - 1 byte; Power up; RX
+byte CONFIG_CURR           = B01011010;   // Show all TX interrupts; Enable CRC - 1 byte; Power up; TX
 byte EN_AA_CURR            = B00000000;   // Disable all Auto Ack
 byte EN_RXADDR_CURR        = B00000001;   // Enable data pipe 0 and 1
 byte SETUP_AW_CURR         = B00000010;   // Set up for 4 byte address
@@ -114,6 +114,8 @@ byte dataBufIn[32];                           // 32 byte buffer for all incoming
 byte dataBufOut[32];                          // 32 byte buffer for all outgoing SPI data
 
 byte nrfSTATUS;
+
+int count = 1;
 
 /*------------------------------------------------
  * Setup
@@ -177,28 +179,26 @@ void setup() {
 ------------------------------------------------*/
 void loop() {
   
-  digitalWrite(nRF_CE, HIGH);            // Keep CE high when receiving
+  dataBufOut[0] = count;
+  nrfTXData(1);
+  count++;
   
-  delayMicroseconds(20);
-
   nrfGetStatus();
   
   if (nrfSTATUS != 0x0E) {
-    digitalWrite(nRF_CE, LOW);           // Keep CE high when receiving
     
-    delayMicroseconds(40);
+    digitalWrite(actLED, HIGH);
     
-    spiTransfer('r',R_RX_PAYLOAD,1);          // Read payload command
-
-    Serial.println(dataBufIn[0]);            // Print to serial monitor
-    
-    delayMicroseconds(40);
-    
-    dataBufOut[0] = B01110000;
+    // Reset interrupt flags
+    dataBufOut[0] = 0b01110000;
     spiTransfer('w',STATUS,1);
     
-    spiTransfer('n',FLUSH_RX,0);
+    delay(20);
+    
+    digitalWrite(actLED, LOW);
   }
+  
+  delay(80);
   
 }
 
@@ -340,3 +340,32 @@ byte spiTransferByte(byte data) {
   return SPDR;                            // return recieved data
 }
 
+/*------------------------------------------------
+ * nRF transmit function - loads bytes into nRF
+ * using write payload command
+------------------------------------------------*/
+void nrfTXData(int len) {
+
+    setCSN(LOW);                        // Set CSN low
+
+    spiTransferByte(W_TX_PAYLOAD);
+    delayMicroseconds(3);
+
+    if (len != 0) {
+        for (int i=1;i<=len;i++) {
+            spiTransferByte(dataBufOut[i-1]);
+            delayMicroseconds(3);
+        }
+    }
+
+    setCSN(HIGH);                       // Set CSN high
+
+    // pulse CE pin to transmit
+    digitalWrite(nRF_CE, HIGH);
+    delayMicroseconds(11);                     // Wait min 10us
+    digitalWrite(nRF_CE, LOW);
+    delayMicroseconds(170);                    // Wait for transmit to complete w/
+    for (int i=0;i<len;i++) {           // additional time for each additional byte
+        delayMicroseconds(10);
+    }
+}

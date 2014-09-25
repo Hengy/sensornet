@@ -1,16 +1,16 @@
 /*------------------------------------------------
  * File:        main.c
- * Version:     0.1.0
+ * Version:     0.0.1
  * --------------------------------------------
  * Author:      Matthew Hengeveld
- * Date:        September 8, 2014
+ * Date:        September 25, 2014
  * --------------------------------------------
  * uProc:       PIC18F24K22
  *  Fosc:           64MHz
  * Compiler:    MPLAB XC8 (Free)
  * --------------------------------------------
  * Description:
- *      Tests nRF24L01+ transmitting using PIC18F
+ *      Tests nRF24L01+ receiving using PIC18F
 ------------------------------------------------*/
 
 /*------------------------------------------------
@@ -23,16 +23,16 @@
 /*------------------------------------------------
 MCLR    -[1 /RE3       RB7/28]-       PGD
 LED     -[2 /RA0       RB6/27]-       PGC
-CE      -[3 /RA1       RB5/26]-       
-CSN     -[4 /RA2       RB4/25]-       
-IRQ     -[5 /RA3       RB3/24]-       
-        -[6 /RA4       RB2/23]-       
-        -[7 /RA5       RB1/22]-       
-Vss     -[8 /          RB0/21]-       
+CE      -[3 /RA1       RB5/26]-
+CSN     -[4 /RA2       RB4/25]-
+IRQ     -[5 /RA3       RB3/24]-
+        -[6 /RA4       RB2/23]-
+        -[7 /RA5       RB1/22]-
+Vss     -[8 /          RB0/21]-
 OSC1    -[9 /RA7          /20]-       Vdd
 OSC2    -[10/RA6          /19]-       Vss
-        -[11/RC0       RC7/18]-       
-        -[12/RC1       RC6/17]-       
+        -[11/RC0       RC7/18]-
+        -[12/RC1       RC6/17]-
         -[13/RC2       RC5/16]-       SDO
 SCK     -[14/RC3       RC4/15]-       SDI
 ------------------------------------------------*/
@@ -144,7 +144,7 @@ SCK     -[14/RC3       RC4/15]-       SDI
 /*------------------------------------------------
  * Current config settings - TX
 ------------------------------------------------*/
-unsigned char CONFIG_CURR        = 0b01011010;   // Show all TX interrupts; Enable CRC - 1 byte; Power Up; PTX
+unsigned char CONFIG_CURR        = 0b00101011;   // Show all RX interrupts; Enable CRC - 1 byte; Power Up; PRX
 unsigned char EN_AA_CURR         = 0b00000000;   // Disable all Auto Ack
 unsigned char EN_RXADDR_CURR     = 0b00000001;   // Enable data pipe 0
 unsigned char SETUP_AW_CURR      = 0b00000010;   // set for 4 byte address
@@ -169,7 +169,6 @@ void nrfSetRXAddr(unsigned char, unsigned char *, int);
 void nrfSetTXAddr(unsigned char *, int);
 void spiTransfer(char, unsigned char,int);
 unsigned char spiTransferByte(unsigned char);
-void nrfTXData(int);
 void delay10ms(int);
 
 
@@ -191,32 +190,37 @@ void main(void) {
     spiConfig_1();                          // Config MSSP 1 for SPI Master mode 0
     nrfConfig();                            // Config nRF24L01+
 
+    nRF_CE = 1;                             // Receive mode
+
     delay10ms(1);                           // Wait for nRF power up
 
-    // Transmit count; read nRF STATUS reg; read nRF CONFIG reg; forever
-    int count = 1;
     for (;;) {
 
-        dataBufOut[0] = count;
-        nrfTXData(1);
-        count++;
+        nRF_CE = 1;                         // Receive mode
+
+        __delay_us(20);
 
         nrfGetStatus();
 
         if (nrfSTATUS != 0x0E) {
+            nRF_CE = 0;
 
             ACT_LED = 1;
+
+            spiTransfer('r',R_RX_PAYLOAD,1);// Read payload
 
             // Reset interrupt flags
             dataBufOut[0] = 0b01110000;
             spiTransfer('w',STATUS,1);
 
-            delay10ms(20);
+            delay10ms(80);
+
+            spiTransfer('n',FLUSH_RX,0);
 
             ACT_LED = 0;
         }
 
-        delay10ms(80);
+        delay10ms(20);
     }
 }
 
@@ -228,7 +232,7 @@ void portConfig(void) {
     TRISB = 0b00000000;                 // Configure PORTB I/O
     TRISC = 0b00010000;                 // Configure PORTC I/O
 
-    LATA = 0b00000100;                  // Set all pins to low except CSN
+    LATA = 0b00000110;                  // Set all pins to low except CSN, CE
     LATB = 0x00;                        // Set all pins to low
     LATC = 0x00;
 }
@@ -383,7 +387,7 @@ void nrfSetRXAddr(unsigned char pipe, unsigned char addr[], int len) {
  * receive data - stored in dataBufIn[]
 ------------------------------------------------*/
 void spiTransfer(char wrn, unsigned char command,int len) {
-    
+
     setCSN(LOW);                                // Set CSN low
 
     if (wrn == 'w') {                           // Write
@@ -411,40 +415,10 @@ void spiTransfer(char wrn, unsigned char command,int len) {
 unsigned char spiTransferByte(unsigned char data) {
 
     SSP1BUF = data;                     // Write data to MSSP
-    
+
     __delay_us(30);                     // Wait for transfer to complete
 
     return SSP1BUF;                     // return recieved data
-}
-
-/*------------------------------------------------
- * nRF transmit function - loads bytes into nRF
- * using write payload command
-------------------------------------------------*/
-void nrfTXData(int len) {
-
-    setCSN(LOW);                        // Set CSN low
-
-    spiTransferByte(W_TX_PAYLOAD);
-    __delay_us(3);
-
-    if (len != 0) {
-        for (int i=1;i<=len;i++) {
-            spiTransferByte(dataBufOut[i-1]);
-            __delay_us(3);
-        }
-    }
-
-    setCSN(HIGH);                       // Set CSN high
-
-    // pulse CE pin to transmit
-    nRF_CE = 1;
-    __delay_us(11);                     // Wait min 10us
-    nRF_CE = 0;
-    __delay_us(170);                    // Wait for transmit to complete w/
-    for (int i=0;i<len;i++) {           // additional time for each additional byte
-        __delay_us(10);
-    }
 }
 
 /*------------------------------------------------
