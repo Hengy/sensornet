@@ -40,11 +40,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _LATAbits `VS463 ~T0 @X0 0 e@3977 ]
 "174 main.c
 [v _delay10ms `(v ~T0 @X0 0 ef1`i ]
-[v F8467 `(v ~T0 @X0 1 tf1`ul ]
-"147 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic18.h
-[v __delay `JF8467 ~T0 @X0 0 e ]
-[p i __delay ]
-"173 main.c
+"173
 [v _nrfTXData `(v ~T0 @X0 0 ef1`i ]
 "167
 [v _nrfGetStatus `(v ~T0 @X0 0 ef ]
@@ -200,7 +196,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _nrfSetRXAddr `(v ~T0 @X0 0 ef3`uc`*uc`i ]
 "170
 [v _nrfSetTXAddr `(v ~T0 @X0 0 ef2`*uc`i ]
-"172
+[v F8467 `(v ~T0 @X0 1 tf1`ul ]
+"147 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic18.h
+[v __delay `JF8467 ~T0 @X0 0 e ]
+[p i __delay ]
+"172 main.c
 [v _spiTransferByte `(uc ~T0 @X0 0 ef1`uc ]
 "15187 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic18f24k22.h
 [v _SSP1BUF `Vuc ~T0 @X0 0 e@4041 ]
@@ -8249,318 +8249,317 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 201: dataBufOut[0] = count;
 "201
 [e = *U + &U _dataBufOut * -> -> -> 0 `i `ui `ux -> -> # *U &U _dataBufOut `ui `ux -> _count `uc ]
-[; ;main.c: 203: _delay((unsigned long)((20)*(64000000/4000000.0)));
-"203
-[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 205: nrfTXData(1);
-"205
+[; ;main.c: 202: nrfTXData(1);
+"202
 [e ( _nrfTXData (1 -> 1 `i ]
-[; ;main.c: 206: count++;
-"206
+[; ;main.c: 203: count++;
+"203
 [e ++ _count -> 1 `i ]
-[; ;main.c: 208: nrfGetStatus();
-"208
+[; ;main.c: 205: nrfGetStatus();
+"205
 [e ( _nrfGetStatus ..  ]
-[; ;main.c: 210: delay10ms(5);
-"210
-[e ( _delay10ms (1 -> 5 `i ]
-[; ;main.c: 212: if (nrfSTATUS != 0x0E) {
-"212
+[; ;main.c: 207: delay10ms(1);;
+"207
+[e ( _delay10ms (1 -> 1 `i ]
+[; ;main.c: 209: if (nrfSTATUS != 0x0E) {
+"209
 [e $ ! != -> _nrfSTATUS `i -> 14 `i 1147  ]
 {
-[; ;main.c: 214: LATAbits.LATA0 = 1;
-"214
+[; ;main.c: 211: LATAbits.LATA0 = 1;
+"211
 [e = . . _LATAbits 0 0 -> -> 1 `i `uc ]
-[; ;main.c: 217: spiTransfer('w',0x07,0b01110000);
+[; ;main.c: 214: dataBufOut[0] = 0b01110000;
+"214
+[e = *U + &U _dataBufOut * -> -> -> 0 `i `ui `ux -> -> # *U &U _dataBufOut `ui `ux -> -> 112 `i `uc ]
+[; ;main.c: 215: spiTransfer('w',0x07,1);
+"215
+[e ( _spiTransfer (3 , , -> -> 119 `ui `uc -> -> 7 `i `uc -> 1 `i ]
+[; ;main.c: 217: delay10ms(1);
 "217
-[e ( _spiTransfer (3 , , -> -> 119 `ui `uc -> -> 7 `i `uc -> 112 `i ]
-[; ;main.c: 219: delay10ms(1);
-"219
 [e ( _delay10ms (1 -> 1 `i ]
-[; ;main.c: 221: LATAbits.LATA0 = 0;
-"221
+[; ;main.c: 219: LATAbits.LATA0 = 0;
+"219
 [e = . . _LATAbits 0 0 -> -> 0 `i `uc ]
-"222
+"220
 }
 [e :U 1147 ]
-[; ;main.c: 222: }
-[; ;main.c: 224: spiTransfer('n',0xE1,0);
-"224
-[e ( _spiTransfer (3 , , -> -> 110 `ui `uc -> -> 225 `i `uc -> 0 `i ]
-[; ;main.c: 226: _delay((unsigned long)((80)*(64000000/4000000.0)));
-"226
-[e ( __delay (1 -> * -> -> 80 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 228: spiTransfer('r',0x00,1);
+[; ;main.c: 220: }
+[; ;main.c: 228: delay10ms(1);
 "228
-[e ( _spiTransfer (3 , , -> -> 114 `ui `uc -> -> 0 `i `uc -> 1 `i ]
-[; ;main.c: 230: delay10ms(5);
-"230
-[e ( _delay10ms (1 -> 5 `i ]
-"231
+[e ( _delay10ms (1 -> 1 `i ]
+"229
 }
-[; ;main.c: 231: }
+[; ;main.c: 229: }
 [e $U 1144  ]
 [e :U 1145 ]
 }
-[; ;main.c: 232: }
-"232
+[; ;main.c: 230: }
+"230
 [e :UE 1143 ]
 }
-"237
+"235
 [v _portConfig `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 237: void portConfig(void) {
+[; ;main.c: 235: void portConfig(void) {
 [e :U _portConfig ]
 [f ]
-[; ;main.c: 238: TRISA = 0b00001000;
-"238
+[; ;main.c: 236: TRISA = 0b00001000;
+"236
 [e = _TRISA -> -> 8 `i `uc ]
-[; ;main.c: 239: TRISB = 0b00000000;
-"239
+[; ;main.c: 237: TRISB = 0b00000000;
+"237
 [e = _TRISB -> -> 0 `i `uc ]
-[; ;main.c: 240: TRISC = 0b00010000;
-"240
+[; ;main.c: 238: TRISC = 0b00010000;
+"238
 [e = _TRISC -> -> 16 `i `uc ]
-[; ;main.c: 242: LATA = 0b00000100;
-"242
+[; ;main.c: 240: LATA = 0b00000100;
+"240
 [e = _LATA -> -> 4 `i `uc ]
-[; ;main.c: 243: LATB = 0x00;
-"243
+[; ;main.c: 241: LATB = 0x00;
+"241
 [e = _LATB -> -> 0 `i `uc ]
-[; ;main.c: 244: LATC = 0x00;
-"244
+[; ;main.c: 242: LATC = 0x00;
+"242
 [e = _LATC -> -> 0 `i `uc ]
-[; ;main.c: 245: }
-"245
+[; ;main.c: 243: }
+"243
 [e :UE 1148 ]
 }
-"251
+"249
 [v _spiConfig_1 `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 251: void spiConfig_1(void) {
+[; ;main.c: 249: void spiConfig_1(void) {
 [e :U _spiConfig_1 ]
 [f ]
-[; ;main.c: 252: SSP1CON1bits.CKP = 0;
-"252
+[; ;main.c: 250: SSP1CON1bits.CKP = 0;
+"250
 [e = . . _SSP1CON1bits 0 1 -> -> 0 `i `uc ]
-[; ;main.c: 253: SSP1STATbits.CKE = 1;
-"253
+[; ;main.c: 251: SSP1STATbits.CKE = 1;
+"251
 [e = . . _SSP1STATbits 2 6 -> -> 1 `i `uc ]
-[; ;main.c: 254: SSP1STATbits.SMP = 1;
-"254
+[; ;main.c: 252: SSP1STATbits.SMP = 1;
+"252
 [e = . . _SSP1STATbits 2 7 -> -> 1 `i `uc ]
-[; ;main.c: 255: SSP1ADD = 0b00111111;
-"255
+[; ;main.c: 253: SSP1ADD = 0b00111111;
+"253
 [e = _SSP1ADD -> -> 63 `i `uc ]
-[; ;main.c: 256: SSP1CON1bits.SSPM = 0b1010;
-"256
+[; ;main.c: 254: SSP1CON1bits.SSPM = 0b1010;
+"254
 [e = . . _SSP1CON1bits 0 0 -> -> 10 `i `uc ]
-[; ;main.c: 258: SSP1CON1bits.SSPEN = 1;
-"258
+[; ;main.c: 256: SSP1CON1bits.SSPEN = 1;
+"256
 [e = . . _SSP1CON1bits 0 2 -> -> 1 `i `uc ]
-[; ;main.c: 259: LATAbits.LATA2 = 1;
-"259
+[; ;main.c: 257: LATAbits.LATA2 = 1;
+"257
 [e = . . _LATAbits 0 2 -> -> 1 `i `uc ]
-[; ;main.c: 260: }
-"260
+[; ;main.c: 258: }
+"258
 [e :UE 1149 ]
 }
-"265
+"263
 [v _nrfConfig `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 265: void nrfConfig(void) {
+[; ;main.c: 263: void nrfConfig(void) {
 [e :U _nrfConfig ]
 [f ]
-[; ;main.c: 268: nrfConfigReg('w',0x00,CONFIG_CURR);
-"268
+[; ;main.c: 266: nrfConfigReg('w',0x00,CONFIG_CURR);
+"266
 [e ( _nrfConfigReg (3 , , -> -> 119 `ui `uc -> -> 0 `i `uc _CONFIG_CURR ]
-[; ;main.c: 270: nrfConfigReg('w',0x01,EN_AA_CURR);
-"270
+[; ;main.c: 268: nrfConfigReg('w',0x01,EN_AA_CURR);
+"268
 [e ( _nrfConfigReg (3 , , -> -> 119 `ui `uc -> -> 1 `i `uc _EN_AA_CURR ]
-[; ;main.c: 272: nrfConfigReg('w',0x02,EN_RXADDR_CURR);
-"272
+[; ;main.c: 270: nrfConfigReg('w',0x02,EN_RXADDR_CURR);
+"270
 [e ( _nrfConfigReg (3 , , -> -> 119 `ui `uc -> -> 2 `i `uc _EN_RXADDR_CURR ]
-[; ;main.c: 274: nrfConfigReg('w',0x03,SETUP_AW_CURR);
-"274
+[; ;main.c: 272: nrfConfigReg('w',0x03,SETUP_AW_CURR);
+"272
 [e ( _nrfConfigReg (3 , , -> -> 119 `ui `uc -> -> 3 `i `uc _SETUP_AW_CURR ]
-[; ;main.c: 276: nrfConfigReg('w',0x04,SETUP_RETR_CURR);
-"276
+[; ;main.c: 274: nrfConfigReg('w',0x04,SETUP_RETR_CURR);
+"274
 [e ( _nrfConfigReg (3 , , -> -> 119 `ui `uc -> -> 4 `i `uc _SETUP_RETR_CURR ]
-[; ;main.c: 278: nrfConfigReg('w',0x05,RF_CH_CURR);
-"278
+[; ;main.c: 276: nrfConfigReg('w',0x05,RF_CH_CURR);
+"276
 [e ( _nrfConfigReg (3 , , -> -> 119 `ui `uc -> -> 5 `i `uc _RF_CH_CURR ]
-[; ;main.c: 280: nrfConfigReg('w',0x06,RF_SETUP_CURR);
-"280
+[; ;main.c: 278: nrfConfigReg('w',0x06,RF_SETUP_CURR);
+"278
 [e ( _nrfConfigReg (3 , , -> -> 119 `ui `uc -> -> 6 `i `uc _RF_SETUP_CURR ]
-[; ;main.c: 282: nrfSetRXAddr(0x0A,RX_ADDRESS,4);
-"282
+[; ;main.c: 280: nrfSetRXAddr(0x0A,RX_ADDRESS,4);
+"280
 [e ( _nrfSetRXAddr (3 , , -> -> 10 `i `uc &U _RX_ADDRESS -> 4 `i ]
-[; ;main.c: 284: nrfSetTXAddr(TX_ADDRESS,4);
-"284
+[; ;main.c: 282: nrfSetTXAddr(TX_ADDRESS,4);
+"282
 [e ( _nrfSetTXAddr (2 , &U _TX_ADDRESS -> 4 `i ]
-[; ;main.c: 286: nrfConfigReg('w',0x11,RX_PW_P0_CURR);
-"286
+[; ;main.c: 284: nrfConfigReg('w',0x11,RX_PW_P0_CURR);
+"284
 [e ( _nrfConfigReg (3 , , -> -> 119 `ui `uc -> -> 17 `i `uc _RX_PW_P0_CURR ]
-[; ;main.c: 288: spiTransfer('n',0xE1,0);
-"288
+[; ;main.c: 286: spiTransfer('n',0xE1,0);
+"286
 [e ( _spiTransfer (3 , , -> -> 110 `ui `uc -> -> 225 `i `uc -> 0 `i ]
-[; ;main.c: 289: }
-"289
+[; ;main.c: 287: }
+"287
 [e :UE 1150 ]
 }
-"294
+"292
 [v _setCSN `(v ~T0 @X0 1 ef1`i ]
 {
-[; ;main.c: 294: void setCSN(int level) {
+[; ;main.c: 292: void setCSN(int level) {
 [e :U _setCSN ]
 [v _level `i ~T0 @X0 1 r1 ]
 [f ]
-[; ;main.c: 296: if (level == 1) {
-"296
+[; ;main.c: 294: if (level == 1) {
+"294
 [e $ ! == _level -> 1 `i 1152  ]
 {
-[; ;main.c: 297: _delay((unsigned long)((40)*(64000000/4000000.0)));
-"297
-[e ( __delay (1 -> * -> -> 40 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 298: LATAbits.LATA2 = 1;
-"298
+[; ;main.c: 295: _delay((unsigned long)((2)*(64000000/4000000.0)));
+"295
+[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
+[; ;main.c: 296: LATAbits.LATA2 = 1;
+"296
 [e = . . _LATAbits 0 2 -> -> 1 `i `uc ]
-"299
+"297
 }
-[; ;main.c: 299: } else {
+[; ;main.c: 297: } else {
 [e $U 1153  ]
 [e :U 1152 ]
 {
-[; ;main.c: 300: LATAbits.LATA2 = 0;
-"300
+[; ;main.c: 298: LATAbits.LATA2 = 0;
+"298
 [e = . . _LATAbits 0 2 -> -> 0 `i `uc ]
-"301
+"299
 }
 [e :U 1153 ]
-[; ;main.c: 301: }
-[; ;main.c: 302: }
-"302
+[; ;main.c: 299: }
+[; ;main.c: 300: }
+"300
 [e :UE 1151 ]
 }
-"308
+"306
 [v _nrfGetStatus `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 308: void nrfGetStatus(void) {
+[; ;main.c: 306: void nrfGetStatus(void) {
 [e :U _nrfGetStatus ]
 [f ]
-[; ;main.c: 310: setCSN(0);
-"310
+[; ;main.c: 308: setCSN(0);
+"308
 [e ( _setCSN (1 -> 0 `i ]
-[; ;main.c: 312: nrfSTATUS = spiTransferByte(0xFF);
-"312
+[; ;main.c: 310: nrfSTATUS = spiTransferByte(0xFF);
+"310
 [e = _nrfSTATUS ( _spiTransferByte (1 -> -> 255 `i `uc ]
-[; ;main.c: 314: setCSN(1);
-"314
+[; ;main.c: 312: setCSN(1);
+"312
 [e ( _setCSN (1 -> 1 `i ]
-[; ;main.c: 315: }
-"315
+[; ;main.c: 313: }
+"313
 [e :UE 1154 ]
 }
-"320
+"318
 [v _nrfConfigReg `(uc ~T0 @X0 1 ef3`uc`uc`uc ]
 {
-[; ;main.c: 320: unsigned char nrfConfigReg(char wr, unsigned char command, unsigned char data) {
+[; ;main.c: 318: unsigned char nrfConfigReg(char wr, unsigned char command, unsigned char data) {
 [e :U _nrfConfigReg ]
 [v _wr `uc ~T0 @X0 1 r1 ]
 [v _command `uc ~T0 @X0 1 r2 ]
 [v _data `uc ~T0 @X0 1 r3 ]
 [f ]
-[; ;main.c: 322: setCSN(0);
-"322
+[; ;main.c: 320: setCSN(0);
+"320
 [e ( _setCSN (1 -> 0 `i ]
-[; ;main.c: 324: if (wr == 'w') {
-"324
+[; ;main.c: 322: if (wr == 'w') {
+"322
 [e $ ! == -> _wr `ui -> 119 `ui 1156  ]
 {
-[; ;main.c: 325: spiTransferByte(0x20|command);
-"325
+[; ;main.c: 323: spiTransferByte(0x20|command);
+"323
 [e ( _spiTransferByte (1 -> | -> 32 `i -> _command `i `uc ]
-[; ;main.c: 326: _delay((unsigned long)((20)*(64000000/4000000.0)));
-"326
+[; ;main.c: 324: _delay((unsigned long)((20)*(64000000/4000000.0)));
+"324
 [e ( __delay (1 -> * -> -> 20 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 327: spiTransferByte(data);
-"327
+[; ;main.c: 325: spiTransferByte(data);
+"325
 [e ( _spiTransferByte (1 _data ]
-"328
+"326
 }
-[; ;main.c: 328: } else if (wr == 'r') {
+[; ;main.c: 326: } else if (wr == 'r') {
 [e $U 1157  ]
 [e :U 1156 ]
 [e $ ! == -> _wr `ui -> 114 `ui 1158  ]
 {
-[; ;main.c: 329: spiTransferByte(0x00|command);
-"329
+[; ;main.c: 327: spiTransferByte(0x00|command);
+"327
 [e ( _spiTransferByte (1 -> | -> 0 `i -> _command `i `uc ]
-[; ;main.c: 330: _delay((unsigned long)((20)*(64000000/4000000.0)));
-"330
+[; ;main.c: 328: _delay((unsigned long)((20)*(64000000/4000000.0)));
+"328
 [e ( __delay (1 -> * -> -> 20 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 331: data = spiTransferByte(0xFF);
-"331
+[; ;main.c: 329: data = spiTransferByte(0xFF);
+"329
 [e = _data ( _spiTransferByte (1 -> -> 255 `i `uc ]
-"332
+"330
 }
 [e :U 1158 ]
-"334
+"332
 [e :U 1157 ]
-[; ;main.c: 332: }
-[; ;main.c: 334: _delay((unsigned long)((20)*(64000000/4000000.0)));
+[; ;main.c: 330: }
+[; ;main.c: 332: _delay((unsigned long)((20)*(64000000/4000000.0)));
 [e ( __delay (1 -> * -> -> 20 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 335: setCSN(1);
-"335
+[; ;main.c: 333: setCSN(1);
+"333
 [e ( _setCSN (1 -> 1 `i ]
-[; ;main.c: 337: return data;
-"337
+[; ;main.c: 335: return data;
+"335
 [e ) _data ]
 [e $UE 1155  ]
-[; ;main.c: 338: }
-"338
+[; ;main.c: 336: }
+"336
 [e :UE 1155 ]
 }
-"345
+"343
 [v _nrfSetTXAddr `(v ~T0 @X0 1 ef2`*uc`i ]
 {
-[; ;main.c: 345: void nrfSetTXAddr(unsigned char addr[], int len) {
+[; ;main.c: 343: void nrfSetTXAddr(unsigned char addr[], int len) {
 [e :U _nrfSetTXAddr ]
 [v _addr `*uc ~T0 @X0 1 r1 ]
 [v _len `i ~T0 @X0 1 r2 ]
 [f ]
-[; ;main.c: 347: setCSN(0);
-"347
+[; ;main.c: 345: setCSN(0);
+"345
 [e ( _setCSN (1 -> 0 `i ]
-[; ;main.c: 349: spiTransferByte(0x20|0x10);
-"349
+[; ;main.c: 347: spiTransferByte(0x20|0x10);
+"347
 [e ( _spiTransferByte (1 -> | -> 32 `i -> 16 `i `uc ]
-[; ;main.c: 351: _delay((unsigned long)((5)*(64000000/4000000.0)));
-"351
+[; ;main.c: 349: _delay((unsigned long)((5)*(64000000/4000000.0)));
+"349
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 354: for (int i=1;i<=len;i++) {
-"354
+[; ;main.c: 351: if (len != 0) {
+"351
+[e $ ! != _len -> 0 `i 1160  ]
+{
+[; ;main.c: 353: for (int i=1;i<=len;i++) {
+"353
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 1 `i ]
-[e $U 1163  ]
-[e :U 1160 ]
-{
-[; ;main.c: 355: spiTransferByte(addr[i-1]);
-"355
-[e ( _spiTransferByte (1 *U + _addr * -> - _i -> 1 `i `x -> -> # *U _addr `i `x ]
-[; ;main.c: 356: _delay((unsigned long)((10)*(64000000/4000000.0)));
-"356
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-"357
-}
-"354
-[e ++ _i -> 1 `i ]
-[e :U 1163 ]
-[e $ <= _i _len 1160  ]
+[e $U 1164  ]
 [e :U 1161 ]
+{
+[; ;main.c: 354: spiTransferByte(addr[i-1]);
+"354
+[e ( _spiTransferByte (1 *U + _addr * -> - _i -> 1 `i `x -> -> # *U _addr `i `x ]
+[; ;main.c: 355: _delay((unsigned long)((10)*(64000000/4000000.0)));
+"355
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
+"356
+}
+"353
+[e ++ _i -> 1 `i ]
+[e :U 1164 ]
+[e $ <= _i _len 1161  ]
+[e :U 1162 ]
+"356
+}
 "357
 }
+[e :U 1160 ]
+[; ;main.c: 356: }
 [; ;main.c: 357: }
 [; ;main.c: 359: setCSN(1);
 "359
@@ -8587,228 +8586,246 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 374: _delay((unsigned long)((5)*(64000000/4000000.0)));
 "374
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 377: for (int i=1;i<=len;i++) {
-"377
+[; ;main.c: 376: if (len != 0) {
+"376
+[e $ ! != _len -> 0 `i 1166  ]
+{
+[; ;main.c: 378: for (int i=1;i<=len;i++) {
+"378
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 1 `i ]
-[e $U 1168  ]
-[e :U 1165 ]
+[e $U 1170  ]
+[e :U 1167 ]
 {
-[; ;main.c: 378: spiTransferByte(addr[i-1]);
-"378
-[e ( _spiTransferByte (1 *U + _addr * -> - _i -> 1 `i `x -> -> # *U _addr `i `x ]
-[; ;main.c: 379: _delay((unsigned long)((10)*(64000000/4000000.0)));
+[; ;main.c: 379: spiTransferByte(addr[i-1]);
 "379
+[e ( _spiTransferByte (1 *U + _addr * -> - _i -> 1 `i `x -> -> # *U _addr `i `x ]
+[; ;main.c: 380: _delay((unsigned long)((10)*(64000000/4000000.0)));
+"380
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-"380
+"381
 }
-"377
+"378
 [e ++ _i -> 1 `i ]
+[e :U 1170 ]
+[e $ <= _i _len 1167  ]
 [e :U 1168 ]
-[e $ <= _i _len 1165  ]
-[e :U 1166 ]
-"380
+"381
 }
-[; ;main.c: 380: }
-[; ;main.c: 382: setCSN(1);
 "382
-[e ( _setCSN (1 -> 1 `i ]
-[; ;main.c: 383: }
-"383
-[e :UE 1164 ]
 }
-"393
+[e :U 1166 ]
+[; ;main.c: 381: }
+[; ;main.c: 382: }
+[; ;main.c: 384: setCSN(1);
+"384
+[e ( _setCSN (1 -> 1 `i ]
+[; ;main.c: 385: }
+"385
+[e :UE 1165 ]
+}
+"395
 [v _spiTransfer `(v ~T0 @X0 1 ef3`uc`uc`i ]
 {
-[; ;main.c: 393: void spiTransfer(char wrn, unsigned char command,int len) {
+[; ;main.c: 395: void spiTransfer(char wrn, unsigned char command,int len) {
 [e :U _spiTransfer ]
 [v _wrn `uc ~T0 @X0 1 r1 ]
 [v _command `uc ~T0 @X0 1 r2 ]
 [v _len `i ~T0 @X0 1 r3 ]
 [f ]
-[; ;main.c: 395: setCSN(0);
-"395
-[e ( _setCSN (1 -> 0 `i ]
-[; ;main.c: 397: if (wrn == 'w') {
+[; ;main.c: 397: setCSN(0);
 "397
-[e $ ! == -> _wrn `ui -> 119 `ui 1170  ]
-{
-[; ;main.c: 398: spiTransferByte(0x20|command);
-"398
-[e ( _spiTransferByte (1 -> | -> 32 `i -> _command `i `uc ]
+[e ( _setCSN (1 -> 0 `i ]
+[; ;main.c: 399: if (wrn == 'w') {
 "399
-}
-[; ;main.c: 399: } else if (wrn == 'r') {
-[e $U 1171  ]
-[e :U 1170 ]
-[e $ ! == -> _wrn `ui -> 114 `ui 1172  ]
+[e $ ! == -> _wrn `ui -> 119 `ui 1172  ]
 {
-[; ;main.c: 400: spiTransferByte(0x00|command);
+[; ;main.c: 400: spiTransferByte(0x20|command);
 "400
-[e ( _spiTransferByte (1 -> | -> 0 `i -> _command `i `uc ]
+[e ( _spiTransferByte (1 -> | -> 32 `i -> _command `i `uc ]
 "401
 }
-[; ;main.c: 401: } else if(wrn == 'n') {
+[; ;main.c: 401: } else if (wrn == 'r') {
 [e $U 1173  ]
 [e :U 1172 ]
-[e $ ! == -> _wrn `ui -> 110 `ui 1174  ]
+[e $ ! == -> _wrn `ui -> 114 `ui 1174  ]
 {
-[; ;main.c: 402: spiTransferByte(command);
+[; ;main.c: 402: spiTransferByte(0x00|command);
 "402
-[e ( _spiTransferByte (1 _command ]
+[e ( _spiTransferByte (1 -> | -> 0 `i -> _command `i `uc ]
 "403
 }
+[; ;main.c: 403: } else if(wrn == 'n') {
+[e $U 1175  ]
 [e :U 1174 ]
+[e $ ! == -> _wrn `ui -> 110 `ui 1176  ]
+{
+[; ;main.c: 404: spiTransferByte(command);
+"404
+[e ( _spiTransferByte (1 _command ]
 "405
-[e :U 1173 ]
-[e :U 1171 ]
-[; ;main.c: 403: }
-[; ;main.c: 405: _delay((unsigned long)((10)*(64000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 407: for (int i=1;i<=len;i++) {
+}
+[e :U 1176 ]
 "407
+[e :U 1175 ]
+[e :U 1173 ]
+[; ;main.c: 405: }
+[; ;main.c: 407: if (len != 0) {
+[e $ ! != _len -> 0 `i 1177  ]
+{
+[; ;main.c: 408: for (int i=1;i<=len;i++) {
+"408
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 1 `i ]
-[e $U 1178  ]
-[e :U 1175 ]
-{
-[; ;main.c: 408: dataBufIn[i-1] = spiTransferByte(dataBufOut[i-1]);
-"408
-[e = *U + &U _dataBufIn * -> -> - _i -> 1 `i `ui `ux -> -> # *U &U _dataBufIn `ui `ux ( _spiTransferByte (1 *U + &U _dataBufOut * -> -> - _i -> 1 `i `ui `ux -> -> # *U &U _dataBufOut `ui `ux ]
-[; ;main.c: 409: _delay((unsigned long)((10)*(64000000/4000000.0)));
-"409
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-"410
-}
-"407
-[e ++ _i -> 1 `i ]
+[e $U 1181  ]
 [e :U 1178 ]
-[e $ <= _i _len 1175  ]
-[e :U 1176 ]
+{
+[; ;main.c: 409: dataBufIn[i-1] = spiTransferByte(dataBufOut[i-1]);
+"409
+[e = *U + &U _dataBufIn * -> -> - _i -> 1 `i `ui `ux -> -> # *U &U _dataBufIn `ui `ux ( _spiTransferByte (1 *U + &U _dataBufOut * -> -> - _i -> 1 `i `ui `ux -> -> # *U &U _dataBufOut `ui `ux ]
 "410
 }
-[; ;main.c: 410: }
-[; ;main.c: 412: setCSN(1);
-"412
-[e ( _setCSN (1 -> 1 `i ]
-[; ;main.c: 413: }
-"413
-[e :UE 1169 ]
+"408
+[e ++ _i -> 1 `i ]
+[e :U 1181 ]
+[e $ <= _i _len 1178  ]
+[e :U 1179 ]
+"410
 }
-"418
+"411
+}
+[e :U 1177 ]
+[; ;main.c: 410: }
+[; ;main.c: 411: }
+[; ;main.c: 413: setCSN(1);
+"413
+[e ( _setCSN (1 -> 1 `i ]
+[; ;main.c: 414: }
+"414
+[e :UE 1171 ]
+}
+"419
 [v _spiTransferByte `(uc ~T0 @X0 1 ef1`uc ]
 {
-[; ;main.c: 418: unsigned char spiTransferByte(unsigned char data) {
+[; ;main.c: 419: unsigned char spiTransferByte(unsigned char data) {
 [e :U _spiTransferByte ]
 [v _data `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;main.c: 420: SSP1BUF = data;
-"420
+[; ;main.c: 421: SSP1BUF = data;
+"421
 [e = _SSP1BUF _data ]
-[; ;main.c: 422: _delay((unsigned long)((40)*(64000000/4000000.0)));
-"422
-[e ( __delay (1 -> * -> -> 40 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 424: return SSP1BUF;
-"424
-[e ) _SSP1BUF ]
-[e $UE 1179  ]
-[; ;main.c: 425: }
+[; ;main.c: 423: _delay((unsigned long)((30)*(64000000/4000000.0)));
+"423
+[e ( __delay (1 -> * -> -> 30 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
+[; ;main.c: 425: return SSP1BUF;
 "425
-[e :UE 1179 ]
+[e ) _SSP1BUF ]
+[e $UE 1182  ]
+[; ;main.c: 426: }
+"426
+[e :UE 1182 ]
 }
-"431
+"432
 [v _nrfTXData `(v ~T0 @X0 1 ef1`i ]
 {
-[; ;main.c: 431: void nrfTXData(int len) {
+[; ;main.c: 432: void nrfTXData(int len) {
 [e :U _nrfTXData ]
 [v _len `i ~T0 @X0 1 r1 ]
 [f ]
-[; ;main.c: 433: setCSN(0);
-"433
+[; ;main.c: 434: setCSN(0);
+"434
 [e ( _setCSN (1 -> 0 `i ]
-[; ;main.c: 435: spiTransferByte(0xA0);
-"435
-[e ( _spiTransferByte (1 -> -> 160 `i `uc ]
-[; ;main.c: 436: _delay((unsigned long)((40)*(64000000/4000000.0)));
+[; ;main.c: 436: spiTransferByte(0xA0);
 "436
+[e ( _spiTransferByte (1 -> -> 160 `i `uc ]
+[; ;main.c: 437: _delay((unsigned long)((40)*(64000000/4000000.0)));
+"437
 [e ( __delay (1 -> * -> -> 40 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 438: for (int i=1;i<=len;i++) {
-"438
+[; ;main.c: 439: if (len != 0) {
+"439
+[e $ ! != _len -> 0 `i 1184  ]
+{
+[; ;main.c: 440: for (int i=1;i<=len;i++) {
+"440
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 1 `i ]
-[e $U 1184  ]
-[e :U 1181 ]
+[e $U 1188  ]
+[e :U 1185 ]
 {
-[; ;main.c: 439: spiTransferByte(dataBufOut[i-1]);
-"439
+[; ;main.c: 441: spiTransferByte(dataBufOut[i-1]);
+"441
 [e ( _spiTransferByte (1 *U + &U _dataBufOut * -> -> - _i -> 1 `i `ui `ux -> -> # *U &U _dataBufOut `ui `ux ]
-[; ;main.c: 440: _delay((unsigned long)((40)*(64000000/4000000.0)));
-"440
+[; ;main.c: 442: _delay((unsigned long)((40)*(64000000/4000000.0)));
+"442
 [e ( __delay (1 -> * -> -> 40 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-"441
-}
-"438
-[e ++ _i -> 1 `i ]
-[e :U 1184 ]
-[e $ <= _i _len 1181  ]
-[e :U 1182 ]
-"441
-}
-[; ;main.c: 441: }
-[; ;main.c: 443: setCSN(1);
 "443
-[e ( _setCSN (1 -> 1 `i ]
-[; ;main.c: 446: LATAbits.LATA1 = 1;
-"446
-[e = . . _LATAbits 0 1 -> -> 1 `i `uc ]
-[; ;main.c: 447: _delay((unsigned long)((12)*(64000000/4000000.0)));
-"447
-[e ( __delay (1 -> * -> -> 12 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 448: LATAbits.LATA1 = 0;
-"448
-[e = . . _LATAbits 0 1 -> -> 0 `i `uc ]
-[; ;main.c: 449: _delay((unsigned long)((20)*(64000000/4000000.0)));
-"449
-[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 450: }
-"450
-[e :UE 1180 ]
 }
-"455
+"440
+[e ++ _i -> 1 `i ]
+[e :U 1188 ]
+[e $ <= _i _len 1185  ]
+[e :U 1186 ]
+"443
+}
+"444
+}
+[e :U 1184 ]
+[; ;main.c: 443: }
+[; ;main.c: 444: }
+[; ;main.c: 446: setCSN(1);
+"446
+[e ( _setCSN (1 -> 1 `i ]
+[; ;main.c: 449: LATAbits.LATA1 = 1;
+"449
+[e = . . _LATAbits 0 1 -> -> 1 `i `uc ]
+[; ;main.c: 450: _delay((unsigned long)((12)*(64000000/4000000.0)));
+"450
+[e ( __delay (1 -> * -> -> 12 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
+[; ;main.c: 451: LATAbits.LATA1 = 0;
+"451
+[e = . . _LATAbits 0 1 -> -> 0 `i `uc ]
+[; ;main.c: 452: _delay((unsigned long)((180)*(64000000/4000000.0)));
+"452
+[e ( __delay (1 -> * -> -> 180 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
+[; ;main.c: 453: }
+"453
+[e :UE 1183 ]
+}
+"458
 [v _delay10ms `(v ~T0 @X0 1 ef1`i ]
 {
-[; ;main.c: 455: void delay10ms(int ms_multi) {
+[; ;main.c: 458: void delay10ms(int ms_multi) {
 [e :U _delay10ms ]
 [v _ms_multi `i ~T0 @X0 1 r1 ]
 [f ]
-"456
+"459
 [v _i `i ~T0 @X0 1 a ]
-[; ;main.c: 456: int i = 0;
+[; ;main.c: 459: int i = 0;
 [e = _i -> 0 `i ]
-[; ;main.c: 457: for (i=0;i<ms_multi;i++) {
-"457
-{
-[e = _i -> 0 `i ]
-[e $U 1189  ]
-[e :U 1186 ]
-{
-[; ;main.c: 458: _delay((unsigned long)((11)*(64000000/4000.0)));
-"458
-[e ( __delay (1 -> * -> -> 11 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"459
-}
-"457
-[e ++ _i -> 1 `i ]
-[e :U 1189 ]
-[e $ < _i _ms_multi 1186  ]
-[e :U 1187 ]
-"459
-}
-[; ;main.c: 459: }
-[; ;main.c: 460: }
+[; ;main.c: 460: for (i=0;i<ms_multi;i++) {
 "460
-[e :UE 1185 ]
+{
+[e = _i -> 0 `i ]
+[e $U 1193  ]
+[e :U 1190 ]
+{
+[; ;main.c: 461: _delay((unsigned long)((11)*(64000000/4000.0)));
+"461
+[e ( __delay (1 -> * -> -> 11 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"462
+}
+"460
+[e ++ _i -> 1 `i ]
+[e :U 1193 ]
+[e $ < _i _ms_multi 1190  ]
+[e :U 1191 ]
+"462
+}
+[; ;main.c: 462: }
+[; ;main.c: 463: }
+"463
+[e :UE 1189 ]
 }
