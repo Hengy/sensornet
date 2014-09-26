@@ -101,8 +101,7 @@ byte EN_RXADDR_CURR        = B00000001;   // Enable data pipe 0 and 1
 byte SETUP_AW_CURR         = B00000010;   // Set up for 4 byte address
 byte SETUP_RETR_CURR       = B00100000;   // 750us retransmit delay; Disable auto retransmit
 byte RF_CH_CURR            = B01101001;   // Channel 105 (2.400GHz + 0.105GHz = 2.505GHz)
-//byte RF_SETUP_CURR         = B00000110;   // RF data rate to 1Mbps; 0dBm output power (highest)
-byte RF_SETUP_CURR         = B00001110;   // RF data rate to 2Mbps; 0dBm output power (highest)
+byte RF_SETUP_CURR         = B00000110;   // RF data rate to 1Mbps; 0dBm output power (highest)
 byte RX_PW_P0_CURR         = B00000001;   // 1 byte payload
 byte RX_ADDRESS[4]         = {0xE7,0xE7,0xE7,0xE7};
 byte TX_ADDRESS[4]         = {0xE7,0xE7,0xE7,0xE7};
@@ -111,10 +110,12 @@ byte TX_ADDRESS[4]         = {0xE7,0xE7,0xE7,0xE7};
 /*------------------------------------------------
  * Global variables
 ------------------------------------------------*/
-byte dataBufIn[32];                           // 32 byte buffer for all incoming SPI data
-byte dataBufOut[32];                          // 32 byte buffer for all outgoing SPI data
+byte dataBufIn[32];              // 32 byte buffer for all incoming SPI data
+byte dataBufOut[32];             // 32 byte buffer for all outgoing SPI data
 
-byte nrfSTATUS;
+byte nrfSTATUS;                  // Latest STATUS of nRF
+
+volatile boolean intRXData;      // nRF received packet flag; set by ISR
 
 /*------------------------------------------------
  * Setup
@@ -169,6 +170,9 @@ void setup() {
   spiTransfer('n',FLUSH_TX,0);
   
   delay(1);
+  
+  intRXData = false;
+  attachInterrupt(0,ISR_RXData,FALLING);
 }
 
 /*------------------------------------------------
@@ -180,29 +184,31 @@ void loop() {
   
   digitalWrite(nRF_CE, HIGH);            // Keep CE high when receiving
   
-  delayMicroseconds(20);
-
   nrfGetStatus();
   
-  if (nrfSTATUS != 0x0E) {
+  if (intRXData) {
+    intRXData = false;
+    
     digitalWrite(nRF_CE, LOW);           // Keep CE high when receiving
     
-    delayMicroseconds(20);
-    
     spiTransfer('r',R_RX_PAYLOAD,1);          // Read payload command
-
-    Serial.println(dataBufIn[0]);            // Print to serial monitor
-    
-    delayMicroseconds(20);
     
     dataBufOut[0] = B01110000;
     spiTransfer('w',STATUS,1);
     
     spiTransfer('n',FLUSH_RX,0);
+
+    Serial.println(dataBufIn[0]);            // Print to serial monitor
   }
   
 }
 
+/*------------------------------------------------
+ * ISR
+------------------------------------------------*/
+void ISR_RXData() {
+  intRXData = true;
+}
 
 /*------------------------------------------------
  * Sets CSN pin HIGH or LOW w/ delay

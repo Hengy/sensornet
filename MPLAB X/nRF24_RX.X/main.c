@@ -142,7 +142,7 @@ SCK     -[14/RC3       RC4/15]-       SDI
 #define LOW             0
 
 /*------------------------------------------------
- * Current config settings - TX
+ * Current config settings - RX
 ------------------------------------------------*/
 unsigned char CONFIG_CURR        = 0b00101011;   // Show all RX interrupts; Enable CRC - 1 byte; Power Up; PRX
 unsigned char EN_AA_CURR         = 0b00000000;   // Disable all Auto Ack
