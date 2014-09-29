@@ -1,7 +1,7 @@
 
 
 Microchip Technology PIC18 LITE Macro Assembler V1.33 build 59893 
-                                                                                               Fri Sep 26 11:07:03 2014
+                                                                                               Mon Sep 29 12:11:47 2014
 
 Microchip Technology Omniscient Code Generator (Lite mode) build 59893
      1                           	processor	18F24K22
@@ -31,122 +31,122 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
     25                           	psect	rparam,global,class=COMRAM,space=1,delta=1
     26  0000                     
     27                           	psect	idataCOMRAM
-    28  003B1F                     __pidataCOMRAM:
+    28  003AF8                     __pidataCOMRAM:
     29                           	opt stack 0
     30                           
     31                           ;initializer for _CONFIG_CURR
-    32  003B1F  5A                 	db	90
+    32  003AF8  4A                 	db	74
     33                           
-    34                           ;initializer for _EN_RXADDR_CURR
-    35  003B20  01                 	db	1
+    34                           ;initializer for _EN_AA_CURR
+    35  003AF9  01                 	db	1
     36                           
-    37                           ;initializer for _RF_CH_CURR
-    38  003B21  69                 	db	105
+    37                           ;initializer for _EN_RXADDR_CURR
+    38  003AFA  03                 	db	3
     39                           
-    40                           ;initializer for _RF_SETUP_CURR
-    41  003B22  06                 	db	6
+    40                           ;initializer for _RF_CH_CURR
+    41  003AFB  69                 	db	105
     42                           
-    43                           ;initializer for _RX_PW_P0_CURR
-    44  003B23  01                 	db	1
+    43                           ;initializer for _RF_SETUP_CURR
+    44  003AFC  06                 	db	6
     45                           
-    46                           ;initializer for _SETUP_AW_CURR
-    47  003B24  02                 	db	2
+    46                           ;initializer for _RX_PW_P0_CURR
+    47  003AFD  01                 	db	1
     48                           
-    49                           ;initializer for _SETUP_RETR_CURR
-    50  003B25  20                 	db	32
+    49                           ;initializer for _SETUP_AW_CURR
+    50  003AFE  02                 	db	2
     51                           
-    52                           ;initializer for _RX_ADDRESS
-    53  003B26  E7                 	db	231
-    54  003B27  E7                 	db	231
-    55  003B28  E7                 	db	231
-    56  003B29  E7                 	db	231
-    57                           
-    58                           ;initializer for _TX_ADDRESS
-    59  003B2A  E7                 	db	231
-    60  003B2B  E7                 	db	231
-    61  003B2C  E7                 	db	231
-    62  003B2D  E7                 	db	231
-    63  0000                     _LATA	set	3977
-    64  0000                     _LATAbits	set	3977
-    65  0000                     _LATB	set	3978
-    66  0000                     _LATC	set	3979
-    67  0000                     _SSP1ADD	set	4040
-    68  0000                     _SSP1BUF	set	4041
-    69  0000                     _SSP1CON1bits	set	4038
-    70  0000                     _SSP1STATbits	set	4039
-    71  0000                     _TRISA	set	3986
-    72  0000                     _TRISB	set	3987
-    73  0000                     _TRISC	set	3988
-    74                           
-    75                           ; #config settings
-    76  0000                     
-    77                           	psect	cinit
-    78  003BE8                     __pcinit:
-    79                           	opt stack 0
-    80  003BE8                     start_initialization:
-    81                           	opt stack 0
-    82  003BE8                     __initialization:
-    83                           	opt stack 0
-    84                           
-    85                           ; Clear objects allocated to BANK0 (32 bytes)
-    86  003BE8  EE00  F060         	lfsr	0,__pbssBANK0
-    87  003BEC  0E20               	movlw	32
-    88  003BEE                     clear_0:
-    89  003BEE  6AEE               	clrf	postinc0,c
-    90  003BF0  06E8               	decf	wreg,f,c
-    91  003BF2  E1FD               	bnz	clear_0
-    92                           
-    93                           ; Clear objects allocated to COMRAM (34 bytes)
-    94  003BF4  EE00  F001         	lfsr	0,__pbssCOMRAM
-    95  003BF8  0E22               	movlw	34
-    96  003BFA                     clear_1:
-    97  003BFA  6AEE               	clrf	postinc0,c
-    98  003BFC  06E8               	decf	wreg,f,c
-    99  003BFE  E1FD               	bnz	clear_1
-   100                           
-   101                           ; Initialize objects allocated to COMRAM (15 bytes)
-   102                           ; load TBLPTR registers with __pidataCOMRAM
-   103  003C00  0E1F               	movlw	low __pidataCOMRAM
-   104  003C02  6EF6               	movwf	tblptrl,c
-   105  003C04  0E3B               	movlw	high __pidataCOMRAM
-   106  003C06  6EF7               	movwf	tblptrh,c
-   107  003C08  0E00               	movlw	low (__pidataCOMRAM shr (0+16))
-   108  003C0A  6EF8               	movwf	tblptru,c
-   109  003C0C  EE00  F035         	lfsr	0,__pdataCOMRAM
-   110  003C10  EE10 F00F          	lfsr	1,15
-   111  003C14                     copy_data0:
-   112  003C14  0009               	tblrd		*+
-   113  003C16  CFF5 FFEE          	movff	tablat,postinc0
-   114  003C1A  50E5               	movf	postdec1,w,c
-   115  003C1C  50E1               	movf	fsr1l,w,c
-   116  003C1E  E1FA               	bnz	copy_data0
-   117  003C20                     end_of_initialization:
-   118                           	opt stack 0
-   119  003C20                     __end_of__initialization:
-   120                           	opt stack 0
-   121  003C20  0100               	movlb	0
-   122  003C22  EF72  F01E         	goto	_main	;jump to C main() function
-   123                           tblptru	equ	0xFF8
-   124                           tblptrh	equ	0xFF7
-   125                           tblptrl	equ	0xFF6
-   126                           tablat	equ	0xFF5
-   127                           postinc0	equ	0xFEE
-   128                           wreg	equ	0xFE8
-   129                           postdec1	equ	0xFE5
-   130                           fsr1l	equ	0xFE1
-   131                           
-   132                           	psect	bssCOMRAM
-   133  000001                     __pbssCOMRAM:
-   134                           	opt stack 0
-   135  000001                     _dataBufOut:
-   136                           	opt stack 0
-   137  000001                     	ds	32
-   138  000021                     _EN_AA_CURR:
+    52                           ;initializer for _SETUP_RETR_CURR
+    53  003AFF  25                 	db	37
+    54                           
+    55                           ;initializer for _RX_ADDRESS
+    56  003B00  E7                 	db	231
+    57  003B01  E7                 	db	231
+    58  003B02  E7                 	db	231
+    59  003B03  E7                 	db	231
+    60                           
+    61                           ;initializer for _TX_ADDRESS
+    62  003B04  C7                 	db	199
+    63  003B05  C7                 	db	199
+    64  003B06  C7                 	db	199
+    65  003B07  C7                 	db	199
+    66  0000                     _LATA	set	3977
+    67  0000                     _LATAbits	set	3977
+    68  0000                     _LATB	set	3978
+    69  0000                     _LATC	set	3979
+    70  0000                     _SSP1ADD	set	4040
+    71  0000                     _SSP1BUF	set	4041
+    72  0000                     _SSP1CON1bits	set	4038
+    73  0000                     _SSP1STATbits	set	4039
+    74  0000                     _TRISA	set	3986
+    75  0000                     _TRISB	set	3987
+    76  0000                     _TRISC	set	3988
+    77                           
+    78                           ; #config settings
+    79  0000                     
+    80                           	psect	cinit
+    81  003BC2                     __pcinit:
+    82                           	opt stack 0
+    83  003BC2                     start_initialization:
+    84                           	opt stack 0
+    85  003BC2                     __initialization:
+    86                           	opt stack 0
+    87                           
+    88                           ; Clear objects allocated to BANK0 (32 bytes)
+    89  003BC2  EE00  F060         	lfsr	0,__pbssBANK0
+    90  003BC6  0E20               	movlw	32
+    91  003BC8                     clear_0:
+    92  003BC8  6AEE               	clrf	postinc0,c
+    93  003BCA  06E8               	decf	wreg,f,c
+    94  003BCC  E1FD               	bnz	clear_0
+    95                           
+    96                           ; Clear objects allocated to COMRAM (33 bytes)
+    97  003BCE  EE00  F001         	lfsr	0,__pbssCOMRAM
+    98  003BD2  0E21               	movlw	33
+    99  003BD4                     clear_1:
+   100  003BD4  6AEE               	clrf	postinc0,c
+   101  003BD6  06E8               	decf	wreg,f,c
+   102  003BD8  E1FD               	bnz	clear_1
+   103                           
+   104                           ; Initialize objects allocated to COMRAM (16 bytes)
+   105                           ; load TBLPTR registers with __pidataCOMRAM
+   106  003BDA  0EF8               	movlw	low __pidataCOMRAM
+   107  003BDC  6EF6               	movwf	tblptrl,c
+   108  003BDE  0E3A               	movlw	high __pidataCOMRAM
+   109  003BE0  6EF7               	movwf	tblptrh,c
+   110  003BE2  0E00               	movlw	low (__pidataCOMRAM shr (0+16))
+   111  003BE4  6EF8               	movwf	tblptru,c
+   112  003BE6  EE00  F035         	lfsr	0,__pdataCOMRAM
+   113  003BEA  EE10 F010          	lfsr	1,16
+   114  003BEE                     copy_data0:
+   115  003BEE  0009               	tblrd		*+
+   116  003BF0  CFF5 FFEE          	movff	tablat,postinc0
+   117  003BF4  50E5               	movf	postdec1,w,c
+   118  003BF6  50E1               	movf	fsr1l,w,c
+   119  003BF8  E1FA               	bnz	copy_data0
+   120  003BFA                     end_of_initialization:
+   121                           	opt stack 0
+   122  003BFA                     __end_of__initialization:
+   123                           	opt stack 0
+   124  003BFA  0100               	movlb	0
+   125  003BFC  EFDD  F01E         	goto	_main	;jump to C main() function
+   126                           tblptru	equ	0xFF8
+   127                           tblptrh	equ	0xFF7
+   128                           tblptrl	equ	0xFF6
+   129                           tablat	equ	0xFF5
+   130                           postinc0	equ	0xFEE
+   131                           wreg	equ	0xFE8
+   132                           postdec1	equ	0xFE5
+   133                           fsr1l	equ	0xFE1
+   134                           
+   135                           	psect	bssCOMRAM
+   136  000001                     __pbssCOMRAM:
+   137                           	opt stack 0
+   138  000001                     _dataBufIn:
    139                           	opt stack 0
-   140  000021                     	ds	1
-   141  000022                     _nrfSTATUS:
+   140  000001                     	ds	32
+   141  000021                     _nrfSTATUS:
    142                           	opt stack 0
-   143  000022                     	ds	1
+   143  000021                     	ds	1
    144                           tblptru	equ	0xFF8
    145                           tblptrh	equ	0xFF7
    146                           tblptrl	equ	0xFF6
@@ -162,1669 +162,1692 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    156  000035                     _CONFIG_CURR:
    157                           	opt stack 0
    158  000035                     	ds	1
-   159  000036                     _EN_RXADDR_CURR:
+   159  000036                     _EN_AA_CURR:
    160                           	opt stack 0
    161  000036                     	ds	1
-   162  000037                     _RF_CH_CURR:
+   162  000037                     _EN_RXADDR_CURR:
    163                           	opt stack 0
    164  000037                     	ds	1
-   165  000038                     _RF_SETUP_CURR:
+   165  000038                     _RF_CH_CURR:
    166                           	opt stack 0
    167  000038                     	ds	1
-   168  000039                     _RX_PW_P0_CURR:
+   168  000039                     _RF_SETUP_CURR:
    169                           	opt stack 0
    170  000039                     	ds	1
-   171  00003A                     _SETUP_AW_CURR:
+   171  00003A                     _RX_PW_P0_CURR:
    172                           	opt stack 0
    173  00003A                     	ds	1
-   174  00003B                     _SETUP_RETR_CURR:
+   174  00003B                     _SETUP_AW_CURR:
    175                           	opt stack 0
    176  00003B                     	ds	1
-   177  00003C                     _RX_ADDRESS:
+   177  00003C                     _SETUP_RETR_CURR:
    178                           	opt stack 0
-   179  00003C                     	ds	4
-   180  000040                     _TX_ADDRESS:
+   179  00003C                     	ds	1
+   180  00003D                     _RX_ADDRESS:
    181                           	opt stack 0
-   182  000040                     	ds	4
-   183                           tblptru	equ	0xFF8
-   184                           tblptrh	equ	0xFF7
-   185                           tblptrl	equ	0xFF6
-   186                           tablat	equ	0xFF5
-   187                           postinc0	equ	0xFEE
-   188                           wreg	equ	0xFE8
-   189                           postdec1	equ	0xFE5
-   190                           fsr1l	equ	0xFE1
-   191                           
-   192                           	psect	bssBANK0
-   193  000060                     __pbssBANK0:
-   194                           	opt stack 0
-   195  000060                     _dataBufIn:
-   196                           	opt stack 0
-   197  000060                     	ds	32
-   198                           tblptru	equ	0xFF8
-   199                           tblptrh	equ	0xFF7
-   200                           tblptrl	equ	0xFF6
-   201                           tablat	equ	0xFF5
-   202                           postinc0	equ	0xFEE
-   203                           wreg	equ	0xFE8
-   204                           postdec1	equ	0xFE5
-   205                           fsr1l	equ	0xFE1
-   206                           
-   207                           	psect	cstackCOMRAM
-   208  000023                     __pcstackCOMRAM:
-   209                           	opt stack 0
-   210  000023                     spiTransferByte@data:
-   211                           	opt stack 0
-   212  000023                     setCSN@level:
-   213                           	opt stack 0
-   214  000023                     delay10ms@ms_multi:
-   215                           	opt stack 0
-   216                           
-   217                           ; 2 bytes @ 0x0
-   218  000023                     	ds	2
-   219  000025                     ??_delay10ms:
-   220  000025                     nrfConfigReg@command:
-   221                           	opt stack 0
-   222  000025                     spiTransfer@command:
-   223                           	opt stack 0
-   224  000025                     nrfSetTXAddr@addr:
-   225                           	opt stack 0
-   226  000025                     nrfSetRXAddr@addr:
-   227                           	opt stack 0
-   228  000025                     nrfTXData@len:
-   229                           	opt stack 0
-   230                           
-   231                           ; 2 bytes @ 0x2
-   232  000025                     	ds	1
-   233  000026                     nrfConfigReg@data:
-   234                           	opt stack 0
-   235  000026                     spiTransfer@len:
-   236                           	opt stack 0
-   237  000026                     delay10ms@i:
-   238                           	opt stack 0
-   239                           
-   240                           ; 2 bytes @ 0x3
-   241  000026                     	ds	1
-   242  000027                     ??_nrfTXData:
-   243  000027                     nrfConfigReg@wr:
-   244                           	opt stack 0
-   245  000027                     nrfSetTXAddr@len:
-   246                           	opt stack 0
-   247  000027                     nrfSetRXAddr@len:
-   248                           	opt stack 0
-   249                           
-   250                           ; 2 bytes @ 0x4
-   251  000027                     	ds	1
-   252  000028                     ??_spiTransfer:
-   253                           
-   254                           ; 0 bytes @ 0x5
-   255  000028                     	ds	1
-   256  000029                     ??_nrfSetRXAddr:
-   257  000029                     ??_nrfSetTXAddr:
-   258                           
-   259                           ; 0 bytes @ 0x6
-   260  000029                     	ds	2
-   261  00002B                     nrfTXData@i_556:
-   262                           	opt stack 0
-   263                           
-   264                           ; 2 bytes @ 0x8
-   265  00002B                     	ds	2
-   266  00002D                     nrfSetRXAddr@pipe:
-   267                           	opt stack 0
-   268  00002D                     nrfSetTXAddr@i:
-   269                           	opt stack 0
-   270  00002D                     nrfTXData@i:
-   271                           	opt stack 0
-   272                           
-   273                           ; 2 bytes @ 0xA
-   274  00002D                     	ds	1
-   275  00002E                     nrfSetRXAddr@i:
-   276                           	opt stack 0
-   277                           
-   278                           ; 2 bytes @ 0xB
-   279  00002E                     	ds	2
-   280  000030                     spiTransfer@wrn:
-   281                           	opt stack 0
-   282                           
-   283                           ; 1 bytes @ 0xD
-   284  000030                     	ds	1
-   285  000031                     spiTransfer@i:
-   286                           	opt stack 0
-   287                           
-   288                           ; 2 bytes @ 0xE
-   289  000031                     	ds	2
-   290  000033                     main@count:
-   291                           	opt stack 0
+   182  00003D                     	ds	4
+   183  000041                     _TX_ADDRESS:
+   184                           	opt stack 0
+   185  000041                     	ds	4
+   186                           tblptru	equ	0xFF8
+   187                           tblptrh	equ	0xFF7
+   188                           tblptrl	equ	0xFF6
+   189                           tablat	equ	0xFF5
+   190                           postinc0	equ	0xFEE
+   191                           wreg	equ	0xFE8
+   192                           postdec1	equ	0xFE5
+   193                           fsr1l	equ	0xFE1
+   194                           
+   195                           	psect	bssBANK0
+   196  000060                     __pbssBANK0:
+   197                           	opt stack 0
+   198  000060                     _dataBufOut:
+   199                           	opt stack 0
+   200  000060                     	ds	32
+   201                           tblptru	equ	0xFF8
+   202                           tblptrh	equ	0xFF7
+   203                           tblptrl	equ	0xFF6
+   204                           tablat	equ	0xFF5
+   205                           postinc0	equ	0xFEE
+   206                           wreg	equ	0xFE8
+   207                           postdec1	equ	0xFE5
+   208                           fsr1l	equ	0xFE1
+   209                           
+   210                           	psect	cstackCOMRAM
+   211  000022                     __pcstackCOMRAM:
+   212                           	opt stack 0
+   213  000022                     spiTransferByte@data:
+   214                           	opt stack 0
+   215  000022                     setCSN@level:
+   216                           	opt stack 0
+   217  000022                     delay10ms@ms_multi:
+   218                           	opt stack 0
+   219                           
+   220                           ; 2 bytes @ 0x0
+   221  000022                     	ds	2
+   222  000024                     ??_delay10ms:
+   223  000024                     nrfConfigReg@command:
+   224                           	opt stack 0
+   225  000024                     spiTransfer@command:
+   226                           	opt stack 0
+   227  000024                     nrfSetTXAddr@addr:
+   228                           	opt stack 0
+   229  000024                     nrfSetRXAddr@addr:
+   230                           	opt stack 0
+   231  000024                     nrfTXData@len:
+   232                           	opt stack 0
+   233                           
+   234                           ; 2 bytes @ 0x2
+   235  000024                     	ds	1
+   236  000025                     nrfConfigReg@data:
+   237                           	opt stack 0
+   238  000025                     spiTransfer@len:
+   239                           	opt stack 0
+   240  000025                     delay10ms@i:
+   241                           	opt stack 0
+   242                           
+   243                           ; 2 bytes @ 0x3
+   244  000025                     	ds	1
+   245  000026                     ??_nrfTXData:
+   246  000026                     nrfConfigReg@wr:
+   247                           	opt stack 0
+   248  000026                     nrfSetTXAddr@len:
+   249                           	opt stack 0
+   250  000026                     nrfSetRXAddr@len:
+   251                           	opt stack 0
+   252                           
+   253                           ; 2 bytes @ 0x4
+   254  000026                     	ds	1
+   255  000027                     ??_spiTransfer:
+   256                           
+   257                           ; 0 bytes @ 0x5
+   258  000027                     	ds	1
+   259  000028                     ??_nrfSetRXAddr:
+   260  000028                     ??_nrfSetTXAddr:
+   261                           
+   262                           ; 0 bytes @ 0x6
+   263  000028                     	ds	2
+   264  00002A                     nrfTXData@i:
+   265                           	opt stack 0
+   266                           
+   267                           ; 2 bytes @ 0x8
+   268  00002A                     	ds	2
+   269  00002C                     nrfSetRXAddr@pipe:
+   270                           	opt stack 0
+   271  00002C                     nrfSetTXAddr@i:
+   272                           	opt stack 0
+   273                           
+   274                           ; 2 bytes @ 0xA
+   275  00002C                     	ds	1
+   276  00002D                     nrfSetRXAddr@i:
+   277                           	opt stack 0
+   278                           
+   279                           ; 2 bytes @ 0xB
+   280  00002D                     	ds	2
+   281  00002F                     spiTransfer@wrn:
+   282                           	opt stack 0
+   283                           
+   284                           ; 1 bytes @ 0xD
+   285  00002F                     	ds	1
+   286  000030                     spiTransfer@i:
+   287                           	opt stack 0
+   288                           
+   289                           ; 2 bytes @ 0xE
+   290  000030                     	ds	2
+   291  000032                     ??_main:
    292                           
-   293                           ; 2 bytes @ 0x10
-   294  000033                     	ds	2
-   295                           tblptru	equ	0xFF8
-   296                           tblptrh	equ	0xFF7
-   297                           tblptrl	equ	0xFF6
-   298                           tablat	equ	0xFF5
-   299                           postinc0	equ	0xFEE
-   300                           wreg	equ	0xFE8
-   301                           postdec1	equ	0xFE5
-   302                           fsr1l	equ	0xFE1
-   303                           
-   304 ;;
-   305 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
-   306 ;;
-   307 ;; *************** function _main *****************
-   308 ;; Defined at:
-   309 ;;		line 187 in file "main.c"
-   310 ;; Parameters:    Size  Location     Type
-   311 ;;		None
-   312 ;; Auto vars:     Size  Location     Type
-   313 ;;  count           2   16[COMRAM] int 
-   314 ;; Return value:  Size  Location     Type
-   315 ;;		None               void
-   316 ;; Registers used:
-   317 ;;		wreg, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, cstack
-   318 ;; Tracked objects:
-   319 ;;		On entry : 0/0
-   320 ;;		On exit  : 0/0
-   321 ;;		Unchanged: 0/0
-   322 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2
-   323 ;;      Params:         0       0       0       0
-   324 ;;      Locals:         2       0       0       0
-   325 ;;      Temps:          0       0       0       0
-   326 ;;      Totals:         2       0       0       0
-   327 ;;Total ram usage:        2 bytes
-   328 ;; Hardware stack levels required when called:    3
-   329 ;; This function calls:
-   330 ;;		_delay10ms
-   331 ;;		_nrfConfig
-   332 ;;		_nrfGetStatus
-   333 ;;		_nrfTXData
-   334 ;;		_portConfig
-   335 ;;		_spiConfig_1
-   336 ;;		_spiTransfer
-   337 ;; This function is called by:
-   338 ;;		Startup code after reset
-   339 ;; This function uses a non-reentrant model
-   340 ;;
-   341                           
-   342                           	psect	text0
-   343  003CE4                     __ptext0:
-   344                           	opt stack 0
-   345  003CE4                     _main:
-   346                           	opt stack 28
-   347                           
-   348                           ;main.c: 190: portConfig();
-   349                           
-   350                           ;incstack = 0
-   351  003CE4  ECB8  F01D         	call	_portConfig	;wreg free
+   293                           ; 0 bytes @ 0x10
+   294  000032                     	ds	1
+   295  000033                     main@count:
+   296                           	opt stack 0
+   297                           
+   298                           ; 2 bytes @ 0x11
+   299  000033                     	ds	2
+   300                           tblptru	equ	0xFF8
+   301                           tblptrh	equ	0xFF7
+   302                           tblptrl	equ	0xFF6
+   303                           tablat	equ	0xFF5
+   304                           postinc0	equ	0xFEE
+   305                           wreg	equ	0xFE8
+   306                           postdec1	equ	0xFE5
+   307                           fsr1l	equ	0xFE1
+   308                           
+   309 ;;
+   310 ;;Main: autosize = 0, tempsize = 1, incstack = 0, save=0
+   311 ;;
+   312 ;; *************** function _main *****************
+   313 ;; Defined at:
+   314 ;;		line 189 in file "main.c"
+   315 ;; Parameters:    Size  Location     Type
+   316 ;;		None
+   317 ;; Auto vars:     Size  Location     Type
+   318 ;;  count           2   17[COMRAM] int 
+   319 ;; Return value:  Size  Location     Type
+   320 ;;		None               void
+   321 ;; Registers used:
+   322 ;;		wreg, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, cstack
+   323 ;; Tracked objects:
+   324 ;;		On entry : 0/0
+   325 ;;		On exit  : 0/0
+   326 ;;		Unchanged: 0/0
+   327 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2
+   328 ;;      Params:         0       0       0       0
+   329 ;;      Locals:         2       0       0       0
+   330 ;;      Temps:          1       0       0       0
+   331 ;;      Totals:         3       0       0       0
+   332 ;;Total ram usage:        3 bytes
+   333 ;; Hardware stack levels required when called:    3
+   334 ;; This function calls:
+   335 ;;		_delay10ms
+   336 ;;		_nrfConfig
+   337 ;;		_nrfGetStatus
+   338 ;;		_nrfTXData
+   339 ;;		_portConfig
+   340 ;;		_spiConfig_1
+   341 ;;		_spiTransfer
+   342 ;; This function is called by:
+   343 ;;		Startup code after reset
+   344 ;; This function uses a non-reentrant model
+   345 ;;
+   346                           
+   347                           	psect	text0
+   348  003DBA                     __ptext0:
+   349                           	opt stack 0
+   350  003DBA                     _main:
+   351                           	opt stack 28
    352                           
-   353                           ;main.c: 191: spiConfig_1();
-   354  003CE8  ECAC  F01D         	call	_spiConfig_1	;wreg free
-   355                           
-   356                           ;main.c: 192: nrfConfig();
-   357  003CEC  ECE8  F01E         	call	_nrfConfig	;wreg free
-   358                           
-   359                           ;main.c: 194: delay10ms(1);
-   360  003CF0  0E00               	movlw	0
-   361  003CF2  6E24               	movwf	delay10ms@ms_multi+1,c
-   362  003CF4  0E01               	movlw	1
-   363  003CF6  6E23               	movwf	delay10ms@ms_multi,c
-   364  003CF8  ECD6  F01D         	call	_delay10ms	;wreg free
-   365                           
-   366                           ;main.c: 197: int count = 1;
-   367  003CFC  0E00               	movlw	0
-   368  003CFE  6E34               	movwf	main@count+1,c
-   369  003D00  0E01               	movlw	1
-   370  003D02  6E33               	movwf	main@count,c
-   371  003D04                     l1044:
-   372                           
-   373                           ;main.c: 200: dataBufOut[0] = count;
-   374  003D04  C033  F001         	movff	main@count,_dataBufOut
-   375                           
-   376                           ;main.c: 201: nrfTXData(1);
-   377  003D08  0E00               	movlw	0
-   378  003D0A  6E26               	movwf	nrfTXData@len+1,c
-   379  003D0C  0E01               	movlw	1
-   380  003D0E  6E25               	movwf	nrfTXData@len,c
-   381  003D10  EC3F  F01F         	call	_nrfTXData	;wreg free
-   382                           
-   383                           ;main.c: 202: count++;
-   384  003D14  4A33               	infsnz	main@count,f,c
-   385  003D16  2A34               	incf	main@count+1,f,c
-   386                           
-   387                           ;main.c: 204: nrfGetStatus();
-   388  003D18  ECC5  F01D         	call	_nrfGetStatus	;wreg free
-   389                           
-   390                           ;main.c: 206: if (nrfSTATUS != 0x0E) {
-   391  003D1C  5022               	movf	_nrfSTATUS,w,c
-   392  003D1E  0A0E               	xorlw	14
-   393  003D20  B4D8               	btfsc	status,2,c
-   394  003D22  D013               	goto	l1064
-   395                           
-   396                           ;main.c: 208: LATAbits.LATA0 = 1;
-   397  003D24  8089               	bsf	3977,0,c	;volatile
+   353                           ;main.c: 192: portConfig();
+   354                           
+   355                           ;incstack = 0
+   356  003DBA  ECA5  F01D         	call	_portConfig	;wreg free
+   357                           
+   358                           ;main.c: 193: spiConfig_1();
+   359  003DBE  EC99  F01D         	call	_spiConfig_1	;wreg free
+   360                           
+   361                           ;main.c: 194: nrfConfig();
+   362  003DC2  EC97  F01F         	call	_nrfConfig	;wreg free
+   363                           
+   364                           ;main.c: 196: delay10ms(1);
+   365  003DC6  0E00               	movlw	0
+   366  003DC8  6E23               	movwf	delay10ms@ms_multi+1,c
+   367  003DCA  0E01               	movlw	1
+   368  003DCC  6E22               	movwf	delay10ms@ms_multi,c
+   369  003DCE  ECC3  F01D         	call	_delay10ms	;wreg free
+   370                           
+   371                           ;main.c: 199: int count = 1;
+   372  003DD2  0E00               	movlw	0
+   373  003DD4  6E34               	movwf	main@count+1,c
+   374  003DD6  0E01               	movlw	1
+   375  003DD8  6E33               	movwf	main@count,c
+   376  003DDA                     l1064:
+   377                           
+   378                           ;main.c: 202: dataBufOut[0] = count;
+   379  003DDA  C033  F060         	movff	main@count,_dataBufOut
+   380                           
+   381                           ;main.c: 203: nrfTXData(1);
+   382  003DDE  0E00               	movlw	0
+   383  003DE0  6E25               	movwf	nrfTXData@len+1,c
+   384  003DE2  0E01               	movlw	1
+   385  003DE4  6E24               	movwf	nrfTXData@len,c
+   386  003DE6  EC9B  F01E         	call	_nrfTXData	;wreg free
+   387                           
+   388                           ;main.c: 204: count++;
+   389  003DEA  4A33               	infsnz	main@count,f,c
+   390  003DEC  2A34               	incf	main@count+1,f,c
+   391                           
+   392                           ;main.c: 206: delay10ms(1);
+   393  003DEE  0E00               	movlw	0
+   394  003DF0  6E23               	movwf	delay10ms@ms_multi+1,c
+   395  003DF2  0E01               	movlw	1
+   396  003DF4  6E22               	movwf	delay10ms@ms_multi,c
+   397  003DF6  ECC3  F01D         	call	_delay10ms	;wreg free
    398                           
-   399                           ;main.c: 211: dataBufOut[0] = 0b01110000;
-   400  003D26  0E70               	movlw	112
-   401  003D28  6E01               	movwf	_dataBufOut,c
-   402                           
-   403                           ;main.c: 212: spiTransfer('w',0x07,1);
-   404  003D2A  0E07               	movlw	7
-   405  003D2C  6E25               	movwf	spiTransfer@command,c
-   406  003D2E  0E00               	movlw	0
-   407  003D30  6E27               	movwf	spiTransfer@len+1,c
-   408  003D32  0E01               	movlw	1
-   409  003D34  6E26               	movwf	spiTransfer@len,c
-   410  003D36  0E77               	movlw	119
-   411  003D38  EC9B  F01F         	call	_spiTransfer
-   412                           
-   413                           ;main.c: 214: delay10ms(20);
-   414  003D3C  0E00               	movlw	0
-   415  003D3E  6E24               	movwf	delay10ms@ms_multi+1,c
-   416  003D40  0E14               	movlw	20
-   417  003D42  6E23               	movwf	delay10ms@ms_multi,c
-   418  003D44  ECD6  F01D         	call	_delay10ms	;wreg free
-   419                           
-   420                           ;main.c: 216: LATAbits.LATA0 = 0;
-   421  003D48  9089               	bcf	3977,0,c	;volatile
-   422  003D4A                     l1064:
-   423                           
-   424                           ;main.c: 217: }
-   425                           ;main.c: 219: delay10ms(80);
-   426  003D4A  0E00               	movlw	0
-   427  003D4C  6E24               	movwf	delay10ms@ms_multi+1,c
-   428  003D4E  0E50               	movlw	80
-   429  003D50  6E23               	movwf	delay10ms@ms_multi,c
-   430  003D52  ECD6  F01D         	call	_delay10ms	;wreg free
+   399                           ;main.c: 208: nrfGetStatus();
+   400  003DFA  ECB2  F01D         	call	_nrfGetStatus	;wreg free
+   401                           
+   402                           ;main.c: 210: while (nrfSTATUS == 0x0E) {
+   403  003DFE  D002               	goto	l1076
+   404  003E00                     l1074:
+   405                           
+   406                           ;main.c: 211: nrfGetStatus();
+   407  003E00  ECB2  F01D         	call	_nrfGetStatus	;wreg free
+   408  003E04                     l1076:
+   409  003E04  5021               	movf	_nrfSTATUS,w,c
+   410  003E06  0A0E               	xorlw	14
+   411  003E08  B4D8               	btfsc	status,2,c
+   412  003E0A  D7FA               	goto	l1074
+   413                           
+   414                           ;main.c: 212: }
+   415                           ;main.c: 215: spiTransfer('r',0x08,1);
+   416  003E0C  0E08               	movlw	8
+   417  003E0E  6E24               	movwf	spiTransfer@command,c
+   418  003E10  0E00               	movlw	0
+   419  003E12  6E26               	movwf	spiTransfer@len+1,c
+   420  003E14  0E01               	movlw	1
+   421  003E16  6E25               	movwf	spiTransfer@len,c
+   422  003E18  0E72               	movlw	114
+   423  003E1A  EC32  F01F         	call	_spiTransfer
+   424                           
+   425                           ;main.c: 216: if ((dataBufIn[0]&0b11110000)!=0) {
+   426  003E1E  C001  F032         	movff	_dataBufIn,??_main
+   427  003E22  0EF0               	movlw	240
+   428  003E24  1632               	andwf	??_main,f,c
+   429  003E26  B4D8               	btfsc	status,2,c
+   430  003E28  D00A               	goto	l1088
    431                           
-   432                           ;main.c: 220: }
-   433  003D56  D7D6               	goto	l1044
-   434  003D58                     __end_of_main:
-   435                           	opt stack 0
-   436                           tblptru	equ	0xFF8
-   437                           tblptrh	equ	0xFF7
-   438                           tblptrl	equ	0xFF6
-   439                           tablat	equ	0xFF5
-   440                           postinc0	equ	0xFEE
-   441                           wreg	equ	0xFE8
-   442                           postdec1	equ	0xFE5
-   443                           fsr1l	equ	0xFE1
-   444                           status	equ	0xFD8
-   445                           
-   446 ;; *************** function _spiConfig_1 *****************
-   447 ;; Defined at:
-   448 ;;		line 240 in file "main.c"
-   449 ;; Parameters:    Size  Location     Type
-   450 ;;		None
-   451 ;; Auto vars:     Size  Location     Type
-   452 ;;		None
-   453 ;; Return value:  Size  Location     Type
-   454 ;;		None               void
-   455 ;; Registers used:
-   456 ;;		wreg, status,2
-   457 ;; Tracked objects:
-   458 ;;		On entry : 0/0
-   459 ;;		On exit  : 0/0
-   460 ;;		Unchanged: 0/0
-   461 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2
-   462 ;;      Params:         0       0       0       0
-   463 ;;      Locals:         0       0       0       0
-   464 ;;      Temps:          0       0       0       0
-   465 ;;      Totals:         0       0       0       0
-   466 ;;Total ram usage:        0 bytes
-   467 ;; Hardware stack levels used:    1
-   468 ;; This function calls:
-   469 ;;		Nothing
-   470 ;; This function is called by:
-   471 ;;		_main
-   472 ;; This function uses a non-reentrant model
-   473 ;;
-   474                           
-   475                           	psect	text1
-   476  003B58                     __ptext1:
-   477                           	opt stack 0
-   478  003B58                     _spiConfig_1:
-   479                           	opt stack 30
-   480                           
-   481                           ;main.c: 241: SSP1CON1bits.CKP = 0;
-   482                           
-   483                           ;incstack = 0
-   484  003B58  98C6               	bcf	4038,4,c	;volatile
-   485                           
-   486                           ;main.c: 242: SSP1STATbits.CKE = 1;
-   487  003B5A  8CC7               	bsf	4039,6,c	;volatile
-   488                           
-   489                           ;main.c: 243: SSP1STATbits.SMP = 1;
-   490  003B5C  8EC7               	bsf	4039,7,c	;volatile
-   491                           
-   492                           ;main.c: 244: SSP1ADD = 0b00001111;
-   493  003B5E  0E0F               	movlw	15
-   494  003B60  6EC8               	movwf	4040,c	;volatile
-   495                           
-   496                           ;main.c: 245: SSP1CON1bits.SSPM = 0b1010;
-   497  003B62  50C6               	movf	4038,w,c	;volatile
-   498  003B64  0BF0               	andlw	-16
-   499  003B66  090A               	iorlw	10
-   500  003B68  6EC6               	movwf	4038,c	;volatile
-   501                           
-   502                           ;main.c: 247: SSP1CON1bits.SSPEN = 1;
-   503  003B6A  8AC6               	bsf	4038,5,c	;volatile
-   504                           
-   505                           ;main.c: 248: LATAbits.LATA2 = 1;
-   506  003B6C  8489               	bsf	3977,2,c	;volatile
-   507  003B6E  0012               	return	
-   508  003B70                     __end_of_spiConfig_1:
-   509                           	opt stack 0
-   510                           tblptru	equ	0xFF8
-   511                           tblptrh	equ	0xFF7
-   512                           tblptrl	equ	0xFF6
-   513                           tablat	equ	0xFF5
-   514                           postinc0	equ	0xFEE
-   515                           wreg	equ	0xFE8
-   516                           postdec1	equ	0xFE5
-   517                           fsr1l	equ	0xFE1
-   518                           status	equ	0xFD8
-   519                           
-   520 ;; *************** function _portConfig *****************
-   521 ;; Defined at:
-   522 ;;		line 226 in file "main.c"
-   523 ;; Parameters:    Size  Location     Type
-   524 ;;		None
-   525 ;; Auto vars:     Size  Location     Type
-   526 ;;		None
-   527 ;; Return value:  Size  Location     Type
-   528 ;;		None               void
-   529 ;; Registers used:
-   530 ;;		wreg, status,2
-   531 ;; Tracked objects:
-   532 ;;		On entry : 0/0
-   533 ;;		On exit  : 0/0
-   534 ;;		Unchanged: 0/0
-   535 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2
-   536 ;;      Params:         0       0       0       0
-   537 ;;      Locals:         0       0       0       0
-   538 ;;      Temps:          0       0       0       0
-   539 ;;      Totals:         0       0       0       0
-   540 ;;Total ram usage:        0 bytes
-   541 ;; Hardware stack levels used:    1
-   542 ;; This function calls:
-   543 ;;		Nothing
-   544 ;; This function is called by:
-   545 ;;		_main
-   546 ;; This function uses a non-reentrant model
-   547 ;;
-   548                           
-   549                           	psect	text2
-   550  003B70                     __ptext2:
-   551                           	opt stack 0
-   552  003B70                     _portConfig:
-   553                           	opt stack 30
-   554                           
-   555                           ;main.c: 227: TRISA = 0b00001000;
-   556                           
-   557                           ;incstack = 0
-   558  003B70  0E08               	movlw	8
-   559  003B72  6E92               	movwf	3986,c	;volatile
+   432                           ;main.c: 217: LATAbits.LATA0 = 1;
+   433  003E2A  8089               	bsf	3977,0,c	;volatile
+   434                           
+   435                           ;main.c: 218: delay10ms(10);
+   436  003E2C  0E00               	movlw	0
+   437  003E2E  6E23               	movwf	delay10ms@ms_multi+1,c
+   438  003E30  0E0A               	movlw	10
+   439  003E32  6E22               	movwf	delay10ms@ms_multi,c
+   440  003E34  ECC3  F01D         	call	_delay10ms	;wreg free
+   441                           
+   442                           ;main.c: 219: LATAbits.LATA0 = 0;
+   443  003E38  9089               	bcf	3977,0,c	;volatile
+   444                           
+   445                           ;main.c: 220: nrfGetStatus();
+   446  003E3A  ECB2  F01D         	call	_nrfGetStatus	;wreg free
+   447  003E3E                     l1088:
+   448                           
+   449                           ;main.c: 221: }
+   450                           ;main.c: 224: dataBufOut[0] = 0b01110000;
+   451  003E3E  0E70               	movlw	112
+   452  003E40  0100               	movlb	0	; () banked
+   453  003E42  6F60               	movwf	_dataBufOut& (0+255),b
+   454                           
+   455                           ; BSR set to: 0
+   456                           ;main.c: 225: spiTransfer('w',0x07,1);
+   457  003E44  0E07               	movlw	7
+   458  003E46  6E24               	movwf	spiTransfer@command,c
+   459  003E48  0E00               	movlw	0
+   460  003E4A  6E26               	movwf	spiTransfer@len+1,c
+   461  003E4C  0E01               	movlw	1
+   462  003E4E  6E25               	movwf	spiTransfer@len,c
+   463  003E50  0E77               	movlw	119
+   464  003E52  EC32  F01F         	call	_spiTransfer
+   465                           
+   466                           ;main.c: 227: delay10ms(80);
+   467  003E56  0E00               	movlw	0
+   468  003E58  6E23               	movwf	delay10ms@ms_multi+1,c
+   469  003E5A  0E50               	movlw	80
+   470  003E5C  6E22               	movwf	delay10ms@ms_multi,c
+   471  003E5E  ECC3  F01D         	call	_delay10ms	;wreg free
+   472                           
+   473                           ;main.c: 228: }
+   474  003E62  D7BB               	goto	l1064
+   475  003E64                     __end_of_main:
+   476                           	opt stack 0
+   477                           tblptru	equ	0xFF8
+   478                           tblptrh	equ	0xFF7
+   479                           tblptrl	equ	0xFF6
+   480                           tablat	equ	0xFF5
+   481                           postinc0	equ	0xFEE
+   482                           wreg	equ	0xFE8
+   483                           postdec1	equ	0xFE5
+   484                           fsr1l	equ	0xFE1
+   485                           status	equ	0xFD8
+   486                           
+   487 ;; *************** function _spiConfig_1 *****************
+   488 ;; Defined at:
+   489 ;;		line 248 in file "main.c"
+   490 ;; Parameters:    Size  Location     Type
+   491 ;;		None
+   492 ;; Auto vars:     Size  Location     Type
+   493 ;;		None
+   494 ;; Return value:  Size  Location     Type
+   495 ;;		None               void
+   496 ;; Registers used:
+   497 ;;		wreg, status,2
+   498 ;; Tracked objects:
+   499 ;;		On entry : 0/0
+   500 ;;		On exit  : 0/0
+   501 ;;		Unchanged: 0/0
+   502 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2
+   503 ;;      Params:         0       0       0       0
+   504 ;;      Locals:         0       0       0       0
+   505 ;;      Temps:          0       0       0       0
+   506 ;;      Totals:         0       0       0       0
+   507 ;;Total ram usage:        0 bytes
+   508 ;; Hardware stack levels used:    1
+   509 ;; This function calls:
+   510 ;;		Nothing
+   511 ;; This function is called by:
+   512 ;;		_main
+   513 ;; This function uses a non-reentrant model
+   514 ;;
+   515                           
+   516                           	psect	text1
+   517  003B32                     __ptext1:
+   518                           	opt stack 0
+   519  003B32                     _spiConfig_1:
+   520                           	opt stack 30
+   521                           
+   522                           ;main.c: 249: SSP1CON1bits.CKP = 0;
+   523                           
+   524                           ;incstack = 0
+   525  003B32  98C6               	bcf	4038,4,c	;volatile
+   526                           
+   527                           ;main.c: 250: SSP1STATbits.CKE = 1;
+   528  003B34  8CC7               	bsf	4039,6,c	;volatile
+   529                           
+   530                           ;main.c: 251: SSP1STATbits.SMP = 1;
+   531  003B36  8EC7               	bsf	4039,7,c	;volatile
+   532                           
+   533                           ;main.c: 252: SSP1ADD = 0b00001111;
+   534  003B38  0E0F               	movlw	15
+   535  003B3A  6EC8               	movwf	4040,c	;volatile
+   536                           
+   537                           ;main.c: 253: SSP1CON1bits.SSPM = 0b1010;
+   538  003B3C  50C6               	movf	4038,w,c	;volatile
+   539  003B3E  0BF0               	andlw	-16
+   540  003B40  090A               	iorlw	10
+   541  003B42  6EC6               	movwf	4038,c	;volatile
+   542                           
+   543                           ;main.c: 255: SSP1CON1bits.SSPEN = 1;
+   544  003B44  8AC6               	bsf	4038,5,c	;volatile
+   545                           
+   546                           ;main.c: 256: LATAbits.LATA2 = 1;
+   547  003B46  8489               	bsf	3977,2,c	;volatile
+   548  003B48  0012               	return	
+   549  003B4A                     __end_of_spiConfig_1:
+   550                           	opt stack 0
+   551                           tblptru	equ	0xFF8
+   552                           tblptrh	equ	0xFF7
+   553                           tblptrl	equ	0xFF6
+   554                           tablat	equ	0xFF5
+   555                           postinc0	equ	0xFEE
+   556                           wreg	equ	0xFE8
+   557                           postdec1	equ	0xFE5
+   558                           fsr1l	equ	0xFE1
+   559                           status	equ	0xFD8
    560                           
-   561                           ;main.c: 228: TRISB = 0b00000000;
-   562  003B74  0E00               	movlw	0
-   563  003B76  6E93               	movwf	3987,c	;volatile
-   564                           
-   565                           ;main.c: 229: TRISC = 0b00010000;
-   566  003B78  0E10               	movlw	16
-   567  003B7A  6E94               	movwf	3988,c	;volatile
-   568                           
-   569                           ;main.c: 231: LATA = 0b00000100;
-   570  003B7C  0E04               	movlw	4
-   571  003B7E  6E89               	movwf	3977,c	;volatile
-   572                           
-   573                           ;main.c: 232: LATB = 0x00;
-   574  003B80  0E00               	movlw	0
-   575  003B82  6E8A               	movwf	3978,c	;volatile
-   576                           
-   577                           ;main.c: 233: LATC = 0x00;
-   578  003B84  0E00               	movlw	0
-   579  003B86  6E8B               	movwf	3979,c	;volatile
-   580  003B88  0012               	return	
-   581  003B8A                     __end_of_portConfig:
-   582                           	opt stack 0
-   583                           tblptru	equ	0xFF8
-   584                           tblptrh	equ	0xFF7
-   585                           tblptrl	equ	0xFF6
-   586                           tablat	equ	0xFF5
-   587                           postinc0	equ	0xFEE
-   588                           wreg	equ	0xFE8
-   589                           postdec1	equ	0xFE5
-   590                           fsr1l	equ	0xFE1
-   591                           status	equ	0xFD8
-   592                           
-   593 ;; *************** function _nrfTXData *****************
-   594 ;; Defined at:
-   595 ;;		line 414 in file "main.c"
-   596 ;; Parameters:    Size  Location     Type
-   597 ;;  len             2    2[COMRAM] int 
-   598 ;; Auto vars:     Size  Location     Type
-   599 ;;  i               2   10[COMRAM] int 
-   600 ;;  i               2    8[COMRAM] int 
-   601 ;; Return value:  Size  Location     Type
-   602 ;;		None               void
-   603 ;; Registers used:
-   604 ;;		wreg, fsr2l, fsr2h, status,2, status,0, cstack
-   605 ;; Tracked objects:
-   606 ;;		On entry : 0/0
-   607 ;;		On exit  : 0/0
-   608 ;;		Unchanged: 0/0
-   609 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2
-   610 ;;      Params:         2       0       0       0
-   611 ;;      Locals:         4       0       0       0
-   612 ;;      Temps:          4       0       0       0
-   613 ;;      Totals:        10       0       0       0
-   614 ;;Total ram usage:       10 bytes
-   615 ;; Hardware stack levels used:    1
-   616 ;; Hardware stack levels required when called:    1
-   617 ;; This function calls:
-   618 ;;		_setCSN
-   619 ;;		_spiTransferByte
-   620 ;; This function is called by:
-   621 ;;		_main
-   622 ;; This function uses a non-reentrant model
-   623 ;;
-   624                           
-   625                           	psect	text3
-   626  003E7E                     __ptext3:
-   627                           	opt stack 0
-   628  003E7E                     _nrfTXData:
-   629                           	opt stack 29
-   630                           
-   631                           ;main.c: 416: setCSN(0);
-   632                           
-   633                           ;incstack = 0
-   634  003E7E  0E00               	movlw	0
-   635  003E80  6E24               	movwf	setCSN@level+1,c
-   636  003E82  0E00               	movlw	0
-   637  003E84  6E23               	movwf	setCSN@level,c
-   638  003E86  ECA0  F01D         	call	_setCSN	;wreg free
-   639                           
-   640                           ;main.c: 418: spiTransferByte(0xA0);
-   641  003E8A  0EA0               	movlw	160
-   642  003E8C  EC97  F01D         	call	_spiTransferByte
-   643                           
-   644                           ;main.c: 420: if (len != 0) {
-   645  003E90  5026               	movf	nrfTXData@len+1,w,c
-   646  003E92  1025               	iorwf	nrfTXData@len,w,c
-   647  003E94  B4D8               	btfsc	status,2,c
-   648  003E96  D026               	goto	l1014
-   649                           
-   650                           ;main.c: 421: for (int i=1;i<=len;i++) {
-   651  003E98  0E00               	movlw	0
-   652  003E9A  6E2E               	movwf	nrfTXData@i+1,c
-   653  003E9C  0E01               	movlw	1
-   654  003E9E  6E2D               	movwf	nrfTXData@i,c
-   655  003EA0  D017               	goto	l1012
-   656  003EA2                     l1008:
-   657                           
-   658                           ;main.c: 422: spiTransferByte(dataBufOut[i-1]);
-   659  003EA2  0EFF               	movlw	255
-   660  003EA4  6E27               	movwf	??_nrfTXData& (0+255),c
-   661  003EA6  0EFF               	movlw	255
-   662  003EA8  6E28               	movwf	(??_nrfTXData+1)& (0+255),c
-   663  003EAA  C02D  F029         	movff	nrfTXData@i,??_nrfTXData+2
-   664  003EAE  C02E  F02A         	movff	nrfTXData@i+1,??_nrfTXData+3
-   665  003EB2  5027               	movf	??_nrfTXData,w,c
-   666  003EB4  2629               	addwf	??_nrfTXData+2,f,c
-   667  003EB6  5028               	movf	??_nrfTXData+1,w,c
-   668  003EB8  222A               	addwfc	??_nrfTXData+3,f,c
-   669  003EBA  0E01               	movlw	low _dataBufOut
-   670  003EBC  2429               	addwf	??_nrfTXData+2,w,c
-   671  003EBE  6ED9               	movwf	fsr2l,c
-   672  003EC0  0E00               	movlw	high _dataBufOut
-   673  003EC2  202A               	addwfc	??_nrfTXData+3,w,c
-   674  003EC4  6EDA               	movwf	fsr2h,c
-   675  003EC6  50DF               	movf	indf2,w,c
-   676  003EC8  EC97  F01D         	call	_spiTransferByte
-   677  003ECC  4A2D               	infsnz	nrfTXData@i,f,c
-   678  003ECE  2A2E               	incf	nrfTXData@i+1,f,c
-   679  003ED0                     l1012:
-   680  003ED0  5026               	movf	nrfTXData@len+1,w,c
-   681  003ED2  0A80               	xorlw	128
-   682  003ED4  6E27               	movwf	??_nrfTXData& (0+255),c
-   683  003ED6  502D               	movf	nrfTXData@i,w,c
-   684  003ED8  5C25               	subwf	nrfTXData@len,w,c
-   685  003EDA  502E               	movf	nrfTXData@i+1,w,c
-   686  003EDC  0A80               	xorlw	128
-   687  003EDE  5827               	subwfb	??_nrfTXData& (0+255),w,c
-   688  003EE0  B0D8               	btfsc	status,0,c
-   689  003EE2  D7DF               	goto	l1008
-   690  003EE4                     l1014:
-   691                           
-   692                           ;main.c: 423: }
-   693                           ;main.c: 424: }
-   694                           ;main.c: 426: setCSN(1);
-   695  003EE4  0E00               	movlw	0
-   696  003EE6  6E24               	movwf	setCSN@level+1,c
-   697  003EE8  0E01               	movlw	1
-   698  003EEA  6E23               	movwf	setCSN@level,c
-   699  003EEC  ECA0  F01D         	call	_setCSN	;wreg free
-   700                           
-   701                           ;main.c: 429: LATAbits.LATA1 = 1;
-   702  003EF0  8289               	bsf	3977,1,c	;volatile
-   703                           
-   704                           ;main.c: 430: _delay((unsigned long)((11)*(64000000/4000000.0)));
-   705  003EF2  0E3A               	movlw	58
-   706  003EF4                     u347:
-   707  003EF4  2EE8               	decfsz	wreg,f,c
-   708  003EF6  D7FE               	goto	u347
-   709  003EF8  D000               	nop2		;nop
-   710                           
-   711                           ;main.c: 431: LATAbits.LATA1 = 0;
-   712  003EFA  9289               	bcf	3977,1,c	;volatile
-   713                           
-   714                           ;main.c: 432: _delay((unsigned long)((170)*(64000000/4000000.0)));
-   715  003EFC  0E04               	movlw	4
-   716  003EFE  6E27               	movwf	??_nrfTXData& (0+255),c
-   717  003F00  0E87               	movlw	135
-   718  003F02                     u357:
-   719  003F02  2EE8               	decfsz	wreg,f,c
-   720  003F04  D7FE               	goto	u357
-   721  003F06  2E27               	decfsz	??_nrfTXData& (0+255),f,c
-   722  003F08  D7FC               	goto	u357
-   723  003F0A  F000               	nop	
-   724                           
-   725                           ;main.c: 433: for (int i=0;i<len;i++) {
-   726  003F0C  0E00               	movlw	0
-   727  003F0E  6E2C               	movwf	nrfTXData@i_556+1,c
-   728  003F10  0E00               	movlw	0
-   729  003F12  6E2B               	movwf	nrfTXData@i_556,c
-   730  003F14  D005               	goto	l137
-   731  003F16                     l1026:
-   732                           
-   733                           ;main.c: 434: _delay((unsigned long)((12)*(64000000/4000000.0)));
-   734  003F16  0E40               	movlw	64
-   735  003F18                     u367:
-   736  003F18  2EE8               	decfsz	wreg,f,c
-   737  003F1A  D7FE               	goto	u367
-   738  003F1C  4A2B               	infsnz	nrfTXData@i_556,f,c
-   739  003F1E  2A2C               	incf	nrfTXData@i_556+1,f,c
-   740  003F20                     l137:
-   741  003F20  502C               	movf	nrfTXData@i_556+1,w,c
-   742  003F22  0A80               	xorlw	128
-   743  003F24  6E27               	movwf	??_nrfTXData& (0+255),c
-   744  003F26  5025               	movf	nrfTXData@len,w,c
-   745  003F28  5C2B               	subwf	nrfTXData@i_556,w,c
-   746  003F2A  5026               	movf	nrfTXData@len+1,w,c
-   747  003F2C  0A80               	xorlw	128
-   748  003F2E  5827               	subwfb	??_nrfTXData& (0+255),w,c
-   749  003F30  B0D8               	btfsc	status,0,c
-   750  003F32  0012               	return	
-   751  003F34  D7F0               	goto	l1026
-   752  003F36                     __end_of_nrfTXData:
-   753                           	opt stack 0
-   754                           tblptru	equ	0xFF8
-   755                           tblptrh	equ	0xFF7
-   756                           tblptrl	equ	0xFF6
-   757                           tablat	equ	0xFF5
-   758                           postinc0	equ	0xFEE
-   759                           wreg	equ	0xFE8
-   760                           postdec1	equ	0xFE5
-   761                           fsr1l	equ	0xFE1
-   762                           indf2	equ	0xFDF
-   763                           fsr2h	equ	0xFDA
-   764                           fsr2l	equ	0xFD9
-   765                           status	equ	0xFD8
-   766                           
-   767 ;; *************** function _nrfGetStatus *****************
-   768 ;; Defined at:
-   769 ;;		line 297 in file "main.c"
-   770 ;; Parameters:    Size  Location     Type
-   771 ;;		None
-   772 ;; Auto vars:     Size  Location     Type
-   773 ;;		None
-   774 ;; Return value:  Size  Location     Type
-   775 ;;		None               void
-   776 ;; Registers used:
-   777 ;;		wreg, status,2, status,0, cstack
-   778 ;; Tracked objects:
-   779 ;;		On entry : 0/0
-   780 ;;		On exit  : 0/0
-   781 ;;		Unchanged: 0/0
-   782 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2
-   783 ;;      Params:         0       0       0       0
-   784 ;;      Locals:         0       0       0       0
-   785 ;;      Temps:          0       0       0       0
-   786 ;;      Totals:         0       0       0       0
-   787 ;;Total ram usage:        0 bytes
-   788 ;; Hardware stack levels used:    1
-   789 ;; Hardware stack levels required when called:    1
-   790 ;; This function calls:
-   791 ;;		_setCSN
-   792 ;;		_spiTransferByte
-   793 ;; This function is called by:
-   794 ;;		_main
-   795 ;; This function uses a non-reentrant model
-   796 ;;
-   797                           
-   798                           	psect	text4
-   799  003B8A                     __ptext4:
-   800                           	opt stack 0
-   801  003B8A                     _nrfGetStatus:
-   802                           	opt stack 29
-   803                           
-   804                           ;main.c: 299: setCSN(0);
-   805                           
-   806                           ;incstack = 0
-   807  003B8A  0E00               	movlw	0
-   808  003B8C  6E24               	movwf	setCSN@level+1,c
-   809  003B8E  0E00               	movlw	0
-   810  003B90  6E23               	movwf	setCSN@level,c
-   811  003B92  ECA0  F01D         	call	_setCSN	;wreg free
-   812                           
-   813                           ;main.c: 301: nrfSTATUS = spiTransferByte(0xFF);
-   814  003B96  0EFF               	movlw	255
-   815  003B98  EC97  F01D         	call	_spiTransferByte
-   816  003B9C  6E22               	movwf	_nrfSTATUS,c
-   817                           
-   818                           ;main.c: 303: setCSN(1);
-   819  003B9E  0E00               	movlw	0
-   820  003BA0  6E24               	movwf	setCSN@level+1,c
-   821  003BA2  0E01               	movlw	1
-   822  003BA4  6E23               	movwf	setCSN@level,c
-   823  003BA6  ECA0  F01D         	call	_setCSN	;wreg free
-   824  003BAA  0012               	return	
-   825  003BAC                     __end_of_nrfGetStatus:
-   826                           	opt stack 0
-   827                           tblptru	equ	0xFF8
-   828                           tblptrh	equ	0xFF7
-   829                           tblptrl	equ	0xFF6
-   830                           tablat	equ	0xFF5
-   831                           postinc0	equ	0xFEE
-   832                           wreg	equ	0xFE8
-   833                           postdec1	equ	0xFE5
-   834                           fsr1l	equ	0xFE1
-   835                           indf2	equ	0xFDF
-   836                           fsr2h	equ	0xFDA
-   837                           fsr2l	equ	0xFD9
-   838                           status	equ	0xFD8
-   839                           
-   840 ;; *************** function _nrfConfig *****************
-   841 ;; Defined at:
-   842 ;;		line 254 in file "main.c"
-   843 ;; Parameters:    Size  Location     Type
-   844 ;;		None
-   845 ;; Auto vars:     Size  Location     Type
-   846 ;;		None
-   847 ;; Return value:  Size  Location     Type
-   848 ;;		None               void
-   849 ;; Registers used:
-   850 ;;		wreg, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, cstack
-   851 ;; Tracked objects:
-   852 ;;		On entry : 0/0
-   853 ;;		On exit  : 0/0
-   854 ;;		Unchanged: 0/0
-   855 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2
-   856 ;;      Params:         0       0       0       0
-   857 ;;      Locals:         0       0       0       0
-   858 ;;      Temps:          0       0       0       0
-   859 ;;      Totals:         0       0       0       0
-   860 ;;Total ram usage:        0 bytes
-   861 ;; Hardware stack levels used:    1
-   862 ;; Hardware stack levels required when called:    2
-   863 ;; This function calls:
-   864 ;;		_nrfConfigReg
-   865 ;;		_nrfSetRXAddr
-   866 ;;		_nrfSetTXAddr
-   867 ;;		_spiTransfer
-   868 ;; This function is called by:
-   869 ;;		_main
-   870 ;; This function uses a non-reentrant model
-   871 ;;
-   872                           
-   873                           	psect	text5
-   874  003DD0                     __ptext5:
-   875                           	opt stack 0
-   876  003DD0                     _nrfConfig:
-   877                           	opt stack 28
-   878                           
-   879                           ;main.c: 257: nrfConfigReg('w',0x00,CONFIG_CURR);
-   880                           
-   881                           ;incstack = 0
-   882  003DD0  0E00               	movlw	0
-   883  003DD2  6E25               	movwf	nrfConfigReg@command,c
-   884  003DD4  C035  F026         	movff	_CONFIG_CURR,nrfConfigReg@data
-   885  003DD8  0E77               	movlw	119
-   886  003DDA  EC13  F01E         	call	_nrfConfigReg
-   887                           
-   888                           ;main.c: 259: nrfConfigReg('w',0x01,EN_AA_CURR);
-   889  003DDE  0E01               	movlw	1
-   890  003DE0  6E25               	movwf	nrfConfigReg@command,c
-   891  003DE2  C021  F026         	movff	_EN_AA_CURR,nrfConfigReg@data
-   892  003DE6  0E77               	movlw	119
-   893  003DE8  EC13  F01E         	call	_nrfConfigReg
-   894                           
-   895                           ;main.c: 261: nrfConfigReg('w',0x02,EN_RXADDR_CURR);
-   896  003DEC  0E02               	movlw	2
-   897  003DEE  6E25               	movwf	nrfConfigReg@command,c
-   898  003DF0  C036  F026         	movff	_EN_RXADDR_CURR,nrfConfigReg@data
-   899  003DF4  0E77               	movlw	119
-   900  003DF6  EC13  F01E         	call	_nrfConfigReg
-   901                           
-   902                           ;main.c: 263: nrfConfigReg('w',0x03,SETUP_AW_CURR);
-   903  003DFA  0E03               	movlw	3
-   904  003DFC  6E25               	movwf	nrfConfigReg@command,c
-   905  003DFE  C03A  F026         	movff	_SETUP_AW_CURR,nrfConfigReg@data
-   906  003E02  0E77               	movlw	119
-   907  003E04  EC13  F01E         	call	_nrfConfigReg
-   908                           
-   909                           ;main.c: 265: nrfConfigReg('w',0x04,SETUP_RETR_CURR);
-   910  003E08  0E04               	movlw	4
-   911  003E0A  6E25               	movwf	nrfConfigReg@command,c
-   912  003E0C  C03B  F026         	movff	_SETUP_RETR_CURR,nrfConfigReg@data
-   913  003E10  0E77               	movlw	119
-   914  003E12  EC13  F01E         	call	_nrfConfigReg
-   915                           
-   916                           ;main.c: 267: nrfConfigReg('w',0x05,RF_CH_CURR);
-   917  003E16  0E05               	movlw	5
-   918  003E18  6E25               	movwf	nrfConfigReg@command,c
-   919  003E1A  C037  F026         	movff	_RF_CH_CURR,nrfConfigReg@data
-   920  003E1E  0E77               	movlw	119
-   921  003E20  EC13  F01E         	call	_nrfConfigReg
-   922                           
-   923                           ;main.c: 269: nrfConfigReg('w',0x06,RF_SETUP_CURR);
-   924  003E24  0E06               	movlw	6
-   925  003E26  6E25               	movwf	nrfConfigReg@command,c
-   926  003E28  C038  F026         	movff	_RF_SETUP_CURR,nrfConfigReg@data
-   927  003E2C  0E77               	movlw	119
-   928  003E2E  EC13  F01E         	call	_nrfConfigReg
-   929                           
-   930                           ;main.c: 271: nrfSetRXAddr(0x0A,RX_ADDRESS,4);
-   931  003E32  0E00               	movlw	high _RX_ADDRESS
-   932  003E34  6E26               	movwf	nrfSetRXAddr@addr+1,c
-   933  003E36  0E3C               	movlw	low _RX_ADDRESS
-   934  003E38  6E25               	movwf	nrfSetRXAddr@addr,c
-   935  003E3A  0E00               	movlw	0
-   936  003E3C  6E28               	movwf	nrfSetRXAddr@len+1,c
-   937  003E3E  0E04               	movlw	4
-   938  003E40  6E27               	movwf	nrfSetRXAddr@len,c
-   939  003E42  0E0A               	movlw	10
-   940  003E44  ECAC  F01E         	call	_nrfSetRXAddr
-   941                           
-   942                           ;main.c: 273: nrfSetTXAddr(TX_ADDRESS,4);
-   943  003E48  0E00               	movlw	high _TX_ADDRESS
-   944  003E4A  6E26               	movwf	nrfSetTXAddr@addr+1,c
-   945  003E4C  0E40               	movlw	low _TX_ADDRESS
-   946  003E4E  6E25               	movwf	nrfSetTXAddr@addr,c
-   947  003E50  0E00               	movlw	0
-   948  003E52  6E28               	movwf	nrfSetTXAddr@len+1,c
-   949  003E54  0E04               	movlw	4
-   950  003E56  6E27               	movwf	nrfSetTXAddr@len,c
-   951  003E58  EC38  F01E         	call	_nrfSetTXAddr	;wreg free
-   952                           
-   953                           ;main.c: 275: nrfConfigReg('w',0x11,RX_PW_P0_CURR);
-   954  003E5C  0E11               	movlw	17
-   955  003E5E  6E25               	movwf	nrfConfigReg@command,c
-   956  003E60  C039  F026         	movff	_RX_PW_P0_CURR,nrfConfigReg@data
-   957  003E64  0E77               	movlw	119
-   958  003E66  EC13  F01E         	call	_nrfConfigReg
-   959                           
-   960                           ;main.c: 277: spiTransfer('n',0xE1,0);
-   961  003E6A  0EE1               	movlw	225
-   962  003E6C  6E25               	movwf	spiTransfer@command,c
-   963  003E6E  0E00               	movlw	0
-   964  003E70  6E27               	movwf	spiTransfer@len+1,c
-   965  003E72  0E00               	movlw	0
-   966  003E74  6E26               	movwf	spiTransfer@len,c
-   967  003E76  0E6E               	movlw	110
-   968  003E78  EC9B  F01F         	call	_spiTransfer
-   969  003E7C  0012               	return	
-   970  003E7E                     __end_of_nrfConfig:
-   971                           	opt stack 0
-   972                           tblptru	equ	0xFF8
-   973                           tblptrh	equ	0xFF7
-   974                           tblptrl	equ	0xFF6
-   975                           tablat	equ	0xFF5
-   976                           postinc0	equ	0xFEE
-   977                           wreg	equ	0xFE8
-   978                           postdec1	equ	0xFE5
-   979                           fsr1l	equ	0xFE1
-   980                           indf2	equ	0xFDF
-   981                           fsr2h	equ	0xFDA
-   982                           fsr2l	equ	0xFD9
-   983                           status	equ	0xFD8
-   984                           
-   985 ;; *************** function _spiTransfer *****************
-   986 ;; Defined at:
-   987 ;;		line 377 in file "main.c"
-   988 ;; Parameters:    Size  Location     Type
-   989 ;;  wrn             1    wreg     unsigned char 
-   990 ;;  command         1    2[COMRAM] unsigned char 
-   991 ;;  len             2    3[COMRAM] int 
-   992 ;; Auto vars:     Size  Location     Type
-   993 ;;  wrn             1   13[COMRAM] unsigned char 
-   994 ;;  i               2   14[COMRAM] int 
-   995 ;; Return value:  Size  Location     Type
-   996 ;;		None               void
-   997 ;; Registers used:
-   998 ;;		wreg, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, cstack
-   999 ;; Tracked objects:
-  1000 ;;		On entry : 0/0
-  1001 ;;		On exit  : 0/0
-  1002 ;;		Unchanged: 0/0
-  1003 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2
-  1004 ;;      Params:         3       0       0       0
-  1005 ;;      Locals:         3       0       0       0
-  1006 ;;      Temps:          8       0       0       0
-  1007 ;;      Totals:        14       0       0       0
-  1008 ;;Total ram usage:       14 bytes
-  1009 ;; Hardware stack levels used:    1
-  1010 ;; Hardware stack levels required when called:    1
-  1011 ;; This function calls:
-  1012 ;;		_setCSN
-  1013 ;;		_spiTransferByte
-  1014 ;; This function is called by:
-  1015 ;;		_main
-  1016 ;;		_nrfConfig
-  1017 ;; This function uses a non-reentrant model
-  1018 ;;
-  1019                           
-  1020                           	psect	text6
-  1021  003F36                     __ptext6:
-  1022                           	opt stack 0
-  1023  003F36                     _spiTransfer:
-  1024                           	opt stack 29
-  1025                           
-  1026                           ;incstack = 0
-  1027                           ;spiTransfer@wrn stored from wreg
-  1028  003F36  6E30               	movwf	spiTransfer@wrn,c
-  1029                           
-  1030                           ;main.c: 379: setCSN(0);
-  1031  003F38  0E00               	movlw	0
-  1032  003F3A  6E24               	movwf	setCSN@level+1,c
-  1033  003F3C  0E00               	movlw	0
-  1034  003F3E  6E23               	movwf	setCSN@level,c
-  1035  003F40  ECA0  F01D         	call	_setCSN	;wreg free
-  1036                           
-  1037                           ;main.c: 381: if (wrn == 'w') {
-  1038  003F44  5030               	movf	spiTransfer@wrn,w,c
-  1039  003F46  0A77               	xorlw	119
-  1040  003F48  A4D8               	btfss	status,2,c
-  1041  003F4A  D005               	goto	l926
+   561 ;; *************** function _portConfig *****************
+   562 ;; Defined at:
+   563 ;;		line 234 in file "main.c"
+   564 ;; Parameters:    Size  Location     Type
+   565 ;;		None
+   566 ;; Auto vars:     Size  Location     Type
+   567 ;;		None
+   568 ;; Return value:  Size  Location     Type
+   569 ;;		None               void
+   570 ;; Registers used:
+   571 ;;		wreg, status,2
+   572 ;; Tracked objects:
+   573 ;;		On entry : 0/0
+   574 ;;		On exit  : 0/0
+   575 ;;		Unchanged: 0/0
+   576 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2
+   577 ;;      Params:         0       0       0       0
+   578 ;;      Locals:         0       0       0       0
+   579 ;;      Temps:          0       0       0       0
+   580 ;;      Totals:         0       0       0       0
+   581 ;;Total ram usage:        0 bytes
+   582 ;; Hardware stack levels used:    1
+   583 ;; This function calls:
+   584 ;;		Nothing
+   585 ;; This function is called by:
+   586 ;;		_main
+   587 ;; This function uses a non-reentrant model
+   588 ;;
+   589                           
+   590                           	psect	text2
+   591  003B4A                     __ptext2:
+   592                           	opt stack 0
+   593  003B4A                     _portConfig:
+   594                           	opt stack 30
+   595                           
+   596                           ;main.c: 235: TRISA = 0b00001000;
+   597                           
+   598                           ;incstack = 0
+   599  003B4A  0E08               	movlw	8
+   600  003B4C  6E92               	movwf	3986,c	;volatile
+   601                           
+   602                           ;main.c: 236: TRISB = 0b00000000;
+   603  003B4E  0E00               	movlw	0
+   604  003B50  6E93               	movwf	3987,c	;volatile
+   605                           
+   606                           ;main.c: 237: TRISC = 0b00010000;
+   607  003B52  0E10               	movlw	16
+   608  003B54  6E94               	movwf	3988,c	;volatile
+   609                           
+   610                           ;main.c: 239: LATA = 0b00000100;
+   611  003B56  0E04               	movlw	4
+   612  003B58  6E89               	movwf	3977,c	;volatile
+   613                           
+   614                           ;main.c: 240: LATB = 0x00;
+   615  003B5A  0E00               	movlw	0
+   616  003B5C  6E8A               	movwf	3978,c	;volatile
+   617                           
+   618                           ;main.c: 241: LATC = 0x00;
+   619  003B5E  0E00               	movlw	0
+   620  003B60  6E8B               	movwf	3979,c	;volatile
+   621  003B62  0012               	return	
+   622  003B64                     __end_of_portConfig:
+   623                           	opt stack 0
+   624                           tblptru	equ	0xFF8
+   625                           tblptrh	equ	0xFF7
+   626                           tblptrl	equ	0xFF6
+   627                           tablat	equ	0xFF5
+   628                           postinc0	equ	0xFEE
+   629                           wreg	equ	0xFE8
+   630                           postdec1	equ	0xFE5
+   631                           fsr1l	equ	0xFE1
+   632                           status	equ	0xFD8
+   633                           
+   634 ;; *************** function _nrfTXData *****************
+   635 ;; Defined at:
+   636 ;;		line 426 in file "main.c"
+   637 ;; Parameters:    Size  Location     Type
+   638 ;;  len             2    2[COMRAM] int 
+   639 ;; Auto vars:     Size  Location     Type
+   640 ;;  i               2    8[COMRAM] int 
+   641 ;; Return value:  Size  Location     Type
+   642 ;;		None               void
+   643 ;; Registers used:
+   644 ;;		wreg, fsr2l, fsr2h, status,2, status,0, cstack
+   645 ;; Tracked objects:
+   646 ;;		On entry : 0/0
+   647 ;;		On exit  : 0/0
+   648 ;;		Unchanged: 0/0
+   649 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2
+   650 ;;      Params:         2       0       0       0
+   651 ;;      Locals:         2       0       0       0
+   652 ;;      Temps:          4       0       0       0
+   653 ;;      Totals:         8       0       0       0
+   654 ;;Total ram usage:        8 bytes
+   655 ;; Hardware stack levels used:    1
+   656 ;; Hardware stack levels required when called:    1
+   657 ;; This function calls:
+   658 ;;		_setCSN
+   659 ;;		_spiTransferByte
+   660 ;; This function is called by:
+   661 ;;		_main
+   662 ;; This function uses a non-reentrant model
+   663 ;;
+   664                           
+   665                           	psect	text3
+   666  003D36                     __ptext3:
+   667                           	opt stack 0
+   668  003D36                     _nrfTXData:
+   669                           	opt stack 29
+   670                           
+   671                           ;main.c: 428: setCSN(0);
+   672                           
+   673                           ;incstack = 0
+   674  003D36  0E00               	movlw	0
+   675  003D38  6E23               	movwf	setCSN@level+1,c
+   676  003D3A  0E00               	movlw	0
+   677  003D3C  6E22               	movwf	setCSN@level,c
+   678  003D3E  EC8D  F01D         	call	_setCSN	;wreg free
+   679                           
+   680                           ;main.c: 430: spiTransferByte(0xA0);
+   681  003D42  0EA0               	movlw	160
+   682  003D44  EC84  F01D         	call	_spiTransferByte
+   683                           
+   684                           ;main.c: 432: if (len != 0) {
+   685  003D48  5025               	movf	nrfTXData@len+1,w,c
+   686  003D4A  1024               	iorwf	nrfTXData@len,w,c
+   687  003D4C  B4D8               	btfsc	status,2,c
+   688  003D4E  D028               	goto	l1042
+   689                           
+   690                           ;main.c: 433: for (int i=1;i<=len;i++) {
+   691  003D50  0E00               	movlw	0
+   692  003D52  6E2B               	movwf	nrfTXData@i+1,c
+   693  003D54  0E01               	movlw	1
+   694  003D56  6E2A               	movwf	nrfTXData@i,c
+   695  003D58  D019               	goto	l1040
+   696  003D5A                     l1036:
+   697                           
+   698                           ;main.c: 434: spiTransferByte(dataBufOut[i-1]);
+   699  003D5A  0EFF               	movlw	255
+   700  003D5C  6E26               	movwf	??_nrfTXData& (0+255),c
+   701  003D5E  0EFF               	movlw	255
+   702  003D60  6E27               	movwf	(??_nrfTXData+1)& (0+255),c
+   703  003D62  C02A  F028         	movff	nrfTXData@i,??_nrfTXData+2
+   704  003D66  C02B  F029         	movff	nrfTXData@i+1,??_nrfTXData+3
+   705  003D6A  5026               	movf	??_nrfTXData,w,c
+   706  003D6C  2628               	addwf	??_nrfTXData+2,f,c
+   707  003D6E  5027               	movf	??_nrfTXData+1,w,c
+   708  003D70  2229               	addwfc	??_nrfTXData+3,f,c
+   709  003D72  0100               	movlb	0	; () banked
+   710  003D74  0E60               	movlw	low _dataBufOut
+   711  003D76  2428               	addwf	??_nrfTXData+2,w,c
+   712  003D78  6ED9               	movwf	fsr2l,c
+   713  003D7A  0100               	movlb	0	; () banked
+   714  003D7C  0E00               	movlw	high _dataBufOut
+   715  003D7E  2029               	addwfc	??_nrfTXData+3,w,c
+   716  003D80  6EDA               	movwf	fsr2h,c
+   717  003D82  50DF               	movf	indf2,w,c
+   718  003D84  EC84  F01D         	call	_spiTransferByte
+   719  003D88  4A2A               	infsnz	nrfTXData@i,f,c
+   720  003D8A  2A2B               	incf	nrfTXData@i+1,f,c
+   721  003D8C                     l1040:
+   722  003D8C  5025               	movf	nrfTXData@len+1,w,c
+   723  003D8E  0A80               	xorlw	128
+   724  003D90  6E26               	movwf	??_nrfTXData& (0+255),c
+   725  003D92  502A               	movf	nrfTXData@i,w,c
+   726  003D94  5C24               	subwf	nrfTXData@len,w,c
+   727  003D96  502B               	movf	nrfTXData@i+1,w,c
+   728  003D98  0A80               	xorlw	128
+   729  003D9A  5826               	subwfb	??_nrfTXData& (0+255),w,c
+   730  003D9C  B0D8               	btfsc	status,0,c
+   731  003D9E  D7DD               	goto	l1036
+   732  003DA0                     l1042:
+   733                           
+   734                           ;main.c: 435: }
+   735                           ;main.c: 436: }
+   736                           ;main.c: 438: setCSN(1);
+   737  003DA0  0E00               	movlw	0
+   738  003DA2  6E23               	movwf	setCSN@level+1,c
+   739  003DA4  0E01               	movlw	1
+   740  003DA6  6E22               	movwf	setCSN@level,c
+   741  003DA8  EC8D  F01D         	call	_setCSN	;wreg free
+   742                           
+   743                           ;main.c: 441: LATAbits.LATA1 = 1;
+   744  003DAC  8289               	bsf	3977,1,c	;volatile
+   745                           
+   746                           ;main.c: 442: _delay((unsigned long)((11)*(64000000/4000000.0)));
+   747  003DAE  0E3A               	movlw	58
+   748  003DB0                     u357:
+   749  003DB0  2EE8               	decfsz	wreg,f,c
+   750  003DB2  D7FE               	goto	u357
+   751  003DB4  D000               	nop2		;nop
+   752                           
+   753                           ;main.c: 443: LATAbits.LATA1 = 0;
+   754  003DB6  9289               	bcf	3977,1,c	;volatile
+   755  003DB8  0012               	return	
+   756  003DBA                     __end_of_nrfTXData:
+   757                           	opt stack 0
+   758                           tblptru	equ	0xFF8
+   759                           tblptrh	equ	0xFF7
+   760                           tblptrl	equ	0xFF6
+   761                           tablat	equ	0xFF5
+   762                           postinc0	equ	0xFEE
+   763                           wreg	equ	0xFE8
+   764                           postdec1	equ	0xFE5
+   765                           fsr1l	equ	0xFE1
+   766                           indf2	equ	0xFDF
+   767                           fsr2h	equ	0xFDA
+   768                           fsr2l	equ	0xFD9
+   769                           status	equ	0xFD8
+   770                           
+   771 ;; *************** function _nrfGetStatus *****************
+   772 ;; Defined at:
+   773 ;;		line 309 in file "main.c"
+   774 ;; Parameters:    Size  Location     Type
+   775 ;;		None
+   776 ;; Auto vars:     Size  Location     Type
+   777 ;;		None
+   778 ;; Return value:  Size  Location     Type
+   779 ;;		None               void
+   780 ;; Registers used:
+   781 ;;		wreg, status,2, status,0, cstack
+   782 ;; Tracked objects:
+   783 ;;		On entry : 0/0
+   784 ;;		On exit  : 0/0
+   785 ;;		Unchanged: 0/0
+   786 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2
+   787 ;;      Params:         0       0       0       0
+   788 ;;      Locals:         0       0       0       0
+   789 ;;      Temps:          0       0       0       0
+   790 ;;      Totals:         0       0       0       0
+   791 ;;Total ram usage:        0 bytes
+   792 ;; Hardware stack levels used:    1
+   793 ;; Hardware stack levels required when called:    1
+   794 ;; This function calls:
+   795 ;;		_setCSN
+   796 ;;		_spiTransferByte
+   797 ;; This function is called by:
+   798 ;;		_main
+   799 ;; This function uses a non-reentrant model
+   800 ;;
+   801                           
+   802                           	psect	text4
+   803  003B64                     __ptext4:
+   804                           	opt stack 0
+   805  003B64                     _nrfGetStatus:
+   806                           	opt stack 29
+   807                           
+   808                           ;main.c: 311: setCSN(0);
+   809                           
+   810                           ;incstack = 0
+   811  003B64  0E00               	movlw	0
+   812  003B66  6E23               	movwf	setCSN@level+1,c
+   813  003B68  0E00               	movlw	0
+   814  003B6A  6E22               	movwf	setCSN@level,c
+   815  003B6C  EC8D  F01D         	call	_setCSN	;wreg free
+   816                           
+   817                           ;main.c: 313: nrfSTATUS = spiTransferByte(0xFF);
+   818  003B70  0EFF               	movlw	255
+   819  003B72  EC84  F01D         	call	_spiTransferByte
+   820  003B76  6E21               	movwf	_nrfSTATUS,c
+   821                           
+   822                           ;main.c: 315: setCSN(1);
+   823  003B78  0E00               	movlw	0
+   824  003B7A  6E23               	movwf	setCSN@level+1,c
+   825  003B7C  0E01               	movlw	1
+   826  003B7E  6E22               	movwf	setCSN@level,c
+   827  003B80  EC8D  F01D         	call	_setCSN	;wreg free
+   828  003B84  0012               	return	
+   829  003B86                     __end_of_nrfGetStatus:
+   830                           	opt stack 0
+   831                           tblptru	equ	0xFF8
+   832                           tblptrh	equ	0xFF7
+   833                           tblptrl	equ	0xFF6
+   834                           tablat	equ	0xFF5
+   835                           postinc0	equ	0xFEE
+   836                           wreg	equ	0xFE8
+   837                           postdec1	equ	0xFE5
+   838                           fsr1l	equ	0xFE1
+   839                           indf2	equ	0xFDF
+   840                           fsr2h	equ	0xFDA
+   841                           fsr2l	equ	0xFD9
+   842                           status	equ	0xFD8
+   843                           
+   844 ;; *************** function _nrfConfig *****************
+   845 ;; Defined at:
+   846 ;;		line 262 in file "main.c"
+   847 ;; Parameters:    Size  Location     Type
+   848 ;;		None
+   849 ;; Auto vars:     Size  Location     Type
+   850 ;;		None
+   851 ;; Return value:  Size  Location     Type
+   852 ;;		None               void
+   853 ;; Registers used:
+   854 ;;		wreg, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, cstack
+   855 ;; Tracked objects:
+   856 ;;		On entry : 0/0
+   857 ;;		On exit  : 0/0
+   858 ;;		Unchanged: 0/0
+   859 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2
+   860 ;;      Params:         0       0       0       0
+   861 ;;      Locals:         0       0       0       0
+   862 ;;      Temps:          0       0       0       0
+   863 ;;      Totals:         0       0       0       0
+   864 ;;Total ram usage:        0 bytes
+   865 ;; Hardware stack levels used:    1
+   866 ;; Hardware stack levels required when called:    2
+   867 ;; This function calls:
+   868 ;;		_nrfConfigReg
+   869 ;;		_nrfSetRXAddr
+   870 ;;		_nrfSetTXAddr
+   871 ;;		_spiTransfer
+   872 ;; This function is called by:
+   873 ;;		_main
+   874 ;; This function uses a non-reentrant model
+   875 ;;
+   876                           
+   877                           	psect	text5
+   878  003F2E                     __ptext5:
+   879                           	opt stack 0
+   880  003F2E                     _nrfConfig:
+   881                           	opt stack 28
+   882                           
+   883                           ;main.c: 265: nrfConfigReg('w',0x00,CONFIG_CURR);
+   884                           
+   885                           ;incstack = 0
+   886  003F2E  0E00               	movlw	0
+   887  003F30  6E24               	movwf	nrfConfigReg@command,c
+   888  003F32  C035  F025         	movff	_CONFIG_CURR,nrfConfigReg@data
+   889  003F36  0E77               	movlw	119
+   890  003F38  EC00  F01E         	call	_nrfConfigReg
+   891                           
+   892                           ;main.c: 267: nrfConfigReg('w',0x01,EN_AA_CURR);
+   893  003F3C  0E01               	movlw	1
+   894  003F3E  6E24               	movwf	nrfConfigReg@command,c
+   895  003F40  C036  F025         	movff	_EN_AA_CURR,nrfConfigReg@data
+   896  003F44  0E77               	movlw	119
+   897  003F46  EC00  F01E         	call	_nrfConfigReg
+   898                           
+   899                           ;main.c: 269: nrfConfigReg('w',0x02,EN_RXADDR_CURR);
+   900  003F4A  0E02               	movlw	2
+   901  003F4C  6E24               	movwf	nrfConfigReg@command,c
+   902  003F4E  C037  F025         	movff	_EN_RXADDR_CURR,nrfConfigReg@data
+   903  003F52  0E77               	movlw	119
+   904  003F54  EC00  F01E         	call	_nrfConfigReg
+   905                           
+   906                           ;main.c: 271: nrfConfigReg('w',0x03,SETUP_AW_CURR);
+   907  003F58  0E03               	movlw	3
+   908  003F5A  6E24               	movwf	nrfConfigReg@command,c
+   909  003F5C  C03B  F025         	movff	_SETUP_AW_CURR,nrfConfigReg@data
+   910  003F60  0E77               	movlw	119
+   911  003F62  EC00  F01E         	call	_nrfConfigReg
+   912                           
+   913                           ;main.c: 273: nrfConfigReg('w',0x04,SETUP_RETR_CURR);
+   914  003F66  0E04               	movlw	4
+   915  003F68  6E24               	movwf	nrfConfigReg@command,c
+   916  003F6A  C03C  F025         	movff	_SETUP_RETR_CURR,nrfConfigReg@data
+   917  003F6E  0E77               	movlw	119
+   918  003F70  EC00  F01E         	call	_nrfConfigReg
+   919                           
+   920                           ;main.c: 275: nrfConfigReg('w',0x05,RF_CH_CURR);
+   921  003F74  0E05               	movlw	5
+   922  003F76  6E24               	movwf	nrfConfigReg@command,c
+   923  003F78  C038  F025         	movff	_RF_CH_CURR,nrfConfigReg@data
+   924  003F7C  0E77               	movlw	119
+   925  003F7E  EC00  F01E         	call	_nrfConfigReg
+   926                           
+   927                           ;main.c: 277: nrfConfigReg('w',0x06,RF_SETUP_CURR);
+   928  003F82  0E06               	movlw	6
+   929  003F84  6E24               	movwf	nrfConfigReg@command,c
+   930  003F86  C039  F025         	movff	_RF_SETUP_CURR,nrfConfigReg@data
+   931  003F8A  0E77               	movlw	119
+   932  003F8C  EC00  F01E         	call	_nrfConfigReg
+   933                           
+   934                           ;main.c: 279: nrfSetRXAddr(0x0A,TX_ADDRESS,4);
+   935  003F90  0E00               	movlw	high _TX_ADDRESS
+   936  003F92  6E25               	movwf	nrfSetRXAddr@addr+1,c
+   937  003F94  0E41               	movlw	low _TX_ADDRESS
+   938  003F96  6E24               	movwf	nrfSetRXAddr@addr,c
+   939  003F98  0E00               	movlw	0
+   940  003F9A  6E27               	movwf	nrfSetRXAddr@len+1,c
+   941  003F9C  0E04               	movlw	4
+   942  003F9E  6E26               	movwf	nrfSetRXAddr@len,c
+   943  003FA0  0E0A               	movlw	10
+   944  003FA2  EC5F  F01E         	call	_nrfSetRXAddr
+   945                           
+   946                           ;main.c: 281: nrfSetRXAddr(0x0B,RX_ADDRESS,4);
+   947  003FA6  0E00               	movlw	high _RX_ADDRESS
+   948  003FA8  6E25               	movwf	nrfSetRXAddr@addr+1,c
+   949  003FAA  0E3D               	movlw	low _RX_ADDRESS
+   950  003FAC  6E24               	movwf	nrfSetRXAddr@addr,c
+   951  003FAE  0E00               	movlw	0
+   952  003FB0  6E27               	movwf	nrfSetRXAddr@len+1,c
+   953  003FB2  0E04               	movlw	4
+   954  003FB4  6E26               	movwf	nrfSetRXAddr@len,c
+   955  003FB6  0E0B               	movlw	11
+   956  003FB8  EC5F  F01E         	call	_nrfSetRXAddr
+   957                           
+   958                           ;main.c: 283: nrfSetTXAddr(TX_ADDRESS,4);
+   959  003FBC  0E00               	movlw	high _TX_ADDRESS
+   960  003FBE  6E25               	movwf	nrfSetTXAddr@addr+1,c
+   961  003FC0  0E41               	movlw	low _TX_ADDRESS
+   962  003FC2  6E24               	movwf	nrfSetTXAddr@addr,c
+   963  003FC4  0E00               	movlw	0
+   964  003FC6  6E27               	movwf	nrfSetTXAddr@len+1,c
+   965  003FC8  0E04               	movlw	4
+   966  003FCA  6E26               	movwf	nrfSetTXAddr@len,c
+   967  003FCC  EC25  F01E         	call	_nrfSetTXAddr	;wreg free
+   968                           
+   969                           ;main.c: 285: nrfConfigReg('w',0x11,RX_PW_P0_CURR);
+   970  003FD0  0E11               	movlw	17
+   971  003FD2  6E24               	movwf	nrfConfigReg@command,c
+   972  003FD4  C03A  F025         	movff	_RX_PW_P0_CURR,nrfConfigReg@data
+   973  003FD8  0E77               	movlw	119
+   974  003FDA  EC00  F01E         	call	_nrfConfigReg
+   975                           
+   976                           ;main.c: 287: nrfConfigReg('w',0x12,RX_PW_P0_CURR);
+   977  003FDE  0E12               	movlw	18
+   978  003FE0  6E24               	movwf	nrfConfigReg@command,c
+   979  003FE2  C03A  F025         	movff	_RX_PW_P0_CURR,nrfConfigReg@data
+   980  003FE6  0E77               	movlw	119
+   981  003FE8  EC00  F01E         	call	_nrfConfigReg
+   982                           
+   983                           ;main.c: 289: spiTransfer('n',0xE1,0);
+   984  003FEC  0EE1               	movlw	225
+   985  003FEE  6E24               	movwf	spiTransfer@command,c
+   986  003FF0  0E00               	movlw	0
+   987  003FF2  6E26               	movwf	spiTransfer@len+1,c
+   988  003FF4  0E00               	movlw	0
+   989  003FF6  6E25               	movwf	spiTransfer@len,c
+   990  003FF8  0E6E               	movlw	110
+   991  003FFA  EC32  F01F         	call	_spiTransfer
+   992  003FFE  0012               	return	
+   993  004000                     __end_of_nrfConfig:
+   994                           	opt stack 0
+   995                           tblptru	equ	0xFF8
+   996                           tblptrh	equ	0xFF7
+   997                           tblptrl	equ	0xFF6
+   998                           tablat	equ	0xFF5
+   999                           postinc0	equ	0xFEE
+  1000                           wreg	equ	0xFE8
+  1001                           postdec1	equ	0xFE5
+  1002                           fsr1l	equ	0xFE1
+  1003                           indf2	equ	0xFDF
+  1004                           fsr2h	equ	0xFDA
+  1005                           fsr2l	equ	0xFD9
+  1006                           status	equ	0xFD8
+  1007                           
+  1008 ;; *************** function _spiTransfer *****************
+  1009 ;; Defined at:
+  1010 ;;		line 389 in file "main.c"
+  1011 ;; Parameters:    Size  Location     Type
+  1012 ;;  wrn             1    wreg     unsigned char 
+  1013 ;;  command         1    2[COMRAM] unsigned char 
+  1014 ;;  len             2    3[COMRAM] int 
+  1015 ;; Auto vars:     Size  Location     Type
+  1016 ;;  wrn             1   13[COMRAM] unsigned char 
+  1017 ;;  i               2   14[COMRAM] int 
+  1018 ;; Return value:  Size  Location     Type
+  1019 ;;		None               void
+  1020 ;; Registers used:
+  1021 ;;		wreg, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, cstack
+  1022 ;; Tracked objects:
+  1023 ;;		On entry : 0/0
+  1024 ;;		On exit  : 0/0
+  1025 ;;		Unchanged: 0/0
+  1026 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2
+  1027 ;;      Params:         3       0       0       0
+  1028 ;;      Locals:         3       0       0       0
+  1029 ;;      Temps:          8       0       0       0
+  1030 ;;      Totals:        14       0       0       0
+  1031 ;;Total ram usage:       14 bytes
+  1032 ;; Hardware stack levels used:    1
+  1033 ;; Hardware stack levels required when called:    1
+  1034 ;; This function calls:
+  1035 ;;		_setCSN
+  1036 ;;		_spiTransferByte
+  1037 ;; This function is called by:
+  1038 ;;		_main
+  1039 ;;		_nrfConfig
+  1040 ;; This function uses a non-reentrant model
+  1041 ;;
   1042                           
-  1043                           ;main.c: 382: spiTransferByte(0x20|command);
-  1044  003F4C  5025               	movf	spiTransfer@command,w,c
-  1045  003F4E  0920               	iorlw	32
-  1046  003F50  EC97  F01D         	call	_spiTransferByte
-  1047                           
-  1048                           ;main.c: 383: } else if (wrn == 'r') {
-  1049  003F54  D00F               	goto	l934
-  1050  003F56                     l926:
-  1051  003F56  5030               	movf	spiTransfer@wrn,w,c
-  1052  003F58  0A72               	xorlw	114
-  1053  003F5A  A4D8               	btfss	status,2,c
-  1054  003F5C  D004               	goto	l930
-  1055                           
-  1056                           ;main.c: 384: spiTransferByte(0x00|command);
-  1057  003F5E  5025               	movf	spiTransfer@command,w,c
-  1058  003F60  EC97  F01D         	call	_spiTransferByte
+  1043                           	psect	text6
+  1044  003E64                     __ptext6:
+  1045                           	opt stack 0
+  1046  003E64                     _spiTransfer:
+  1047                           	opt stack 29
+  1048                           
+  1049                           ;incstack = 0
+  1050                           ;spiTransfer@wrn stored from wreg
+  1051  003E64  6E2F               	movwf	spiTransfer@wrn,c
+  1052                           
+  1053                           ;main.c: 391: setCSN(0);
+  1054  003E66  0E00               	movlw	0
+  1055  003E68  6E23               	movwf	setCSN@level+1,c
+  1056  003E6A  0E00               	movlw	0
+  1057  003E6C  6E22               	movwf	setCSN@level,c
+  1058  003E6E  EC8D  F01D         	call	_setCSN	;wreg free
   1059                           
-  1060                           ;main.c: 385: } else if(wrn == 'n') {
-  1061  003F64  D007               	goto	l934
-  1062  003F66                     l930:
-  1063  003F66  5030               	movf	spiTransfer@wrn,w,c
-  1064  003F68  0A6E               	xorlw	110
-  1065  003F6A  A4D8               	btfss	status,2,c
-  1066  003F6C  D003               	goto	l934
-  1067                           
-  1068                           ;main.c: 386: spiTransferByte(command);
-  1069  003F6E  5025               	movf	spiTransfer@command,w,c
-  1070  003F70  EC97  F01D         	call	_spiTransferByte
-  1071  003F74                     l934:
-  1072                           
-  1073                           ;main.c: 387: }
-  1074                           ;main.c: 389: if (len != 0) {
-  1075  003F74  5027               	movf	spiTransfer@len+1,w,c
-  1076  003F76  1026               	iorwf	spiTransfer@len,w,c
-  1077  003F78  B4D8               	btfsc	status,2,c
-  1078  003F7A  D03B               	goto	l944
-  1079                           
-  1080                           ;main.c: 390: for (int i=1;i<=len;i++) {
-  1081  003F7C  0E00               	movlw	0
-  1082  003F7E  6E32               	movwf	spiTransfer@i+1,c
-  1083  003F80  0E01               	movlw	1
-  1084  003F82  6E31               	movwf	spiTransfer@i,c
-  1085  003F84  D02C               	goto	l942
-  1086  003F86                     l938:
-  1087                           
-  1088                           ;main.c: 391: dataBufIn[i-1] = spiTransferByte(dataBufOut[i-1]);
-  1089  003F86  0EFF               	movlw	255
-  1090  003F88  6E28               	movwf	??_spiTransfer& (0+255),c
-  1091  003F8A  0EFF               	movlw	255
-  1092  003F8C  6E29               	movwf	(??_spiTransfer+1)& (0+255),c
-  1093  003F8E  C031  F02A         	movff	spiTransfer@i,??_spiTransfer+2
-  1094  003F92  C032  F02B         	movff	spiTransfer@i+1,??_spiTransfer+3
-  1095  003F96  5028               	movf	??_spiTransfer,w,c
-  1096  003F98  262A               	addwf	??_spiTransfer+2,f,c
-  1097  003F9A  5029               	movf	??_spiTransfer+1,w,c
-  1098  003F9C  222B               	addwfc	??_spiTransfer+3,f,c
-  1099  003F9E  0100               	movlb	0	; () banked
-  1100  003FA0  0E60               	movlw	low _dataBufIn
-  1101  003FA2  242A               	addwf	??_spiTransfer+2,w,c
-  1102  003FA4  6ED9               	movwf	fsr2l,c
-  1103  003FA6  0100               	movlb	0	; () banked
-  1104  003FA8  0E00               	movlw	high _dataBufIn
-  1105  003FAA  202B               	addwfc	??_spiTransfer+3,w,c
-  1106  003FAC  6EDA               	movwf	fsr2h,c
-  1107  003FAE  0EFF               	movlw	255
-  1108  003FB0  6E2C               	movwf	(??_spiTransfer+4)& (0+255),c
-  1109  003FB2  0EFF               	movlw	255
-  1110  003FB4  6E2D               	movwf	(??_spiTransfer+5)& (0+255),c
-  1111  003FB6  C031  F02E         	movff	spiTransfer@i,??_spiTransfer+6
-  1112  003FBA  C032  F02F         	movff	spiTransfer@i+1,??_spiTransfer+7
-  1113  003FBE  502C               	movf	??_spiTransfer+4,w,c
-  1114  003FC0  262E               	addwf	??_spiTransfer+6,f,c
-  1115  003FC2  502D               	movf	??_spiTransfer+5,w,c
-  1116  003FC4  222F               	addwfc	??_spiTransfer+7,f,c
-  1117  003FC6  0E01               	movlw	low _dataBufOut
-  1118  003FC8  242E               	addwf	??_spiTransfer+6,w,c
-  1119  003FCA  6EE1               	movwf	fsr1l,c
-  1120  003FCC  0E00               	movlw	high _dataBufOut
-  1121  003FCE  202F               	addwfc	??_spiTransfer+7,w,c
-  1122  003FD0  6EE2               	movwf	fsr1h,c
-  1123  003FD2  50E7               	movf	indf1,w,c
-  1124  003FD4  EC97  F01D         	call	_spiTransferByte
-  1125  003FD8  6EDF               	movwf	indf2,c
-  1126  003FDA  4A31               	infsnz	spiTransfer@i,f,c
-  1127  003FDC  2A32               	incf	spiTransfer@i+1,f,c
-  1128  003FDE                     l942:
-  1129  003FDE  5027               	movf	spiTransfer@len+1,w,c
-  1130  003FE0  0A80               	xorlw	128
-  1131  003FE2  6E28               	movwf	??_spiTransfer& (0+255),c
-  1132  003FE4  5031               	movf	spiTransfer@i,w,c
-  1133  003FE6  5C26               	subwf	spiTransfer@len,w,c
-  1134  003FE8  5032               	movf	spiTransfer@i+1,w,c
-  1135  003FEA  0A80               	xorlw	128
-  1136  003FEC  5828               	subwfb	??_spiTransfer& (0+255),w,c
-  1137  003FEE  B0D8               	btfsc	status,0,c
-  1138  003FF0  D7CA               	goto	l938
-  1139  003FF2                     l944:
-  1140                           
-  1141                           ;main.c: 392: }
-  1142                           ;main.c: 393: }
-  1143                           ;main.c: 395: setCSN(1);
-  1144  003FF2  0E00               	movlw	0
-  1145  003FF4  6E24               	movwf	setCSN@level+1,c
-  1146  003FF6  0E01               	movlw	1
-  1147  003FF8  6E23               	movwf	setCSN@level,c
-  1148  003FFA  ECA0  F01D         	call	_setCSN	;wreg free
-  1149  003FFE  0012               	return	
-  1150  004000                     __end_of_spiTransfer:
-  1151                           	opt stack 0
-  1152                           tblptru	equ	0xFF8
-  1153                           tblptrh	equ	0xFF7
-  1154                           tblptrl	equ	0xFF6
-  1155                           tablat	equ	0xFF5
-  1156                           postinc0	equ	0xFEE
-  1157                           wreg	equ	0xFE8
-  1158                           indf1	equ	0xFE7
-  1159                           postdec1	equ	0xFE5
-  1160                           fsr1h	equ	0xFE2
-  1161                           fsr1l	equ	0xFE1
-  1162                           indf2	equ	0xFDF
-  1163                           fsr2h	equ	0xFDA
-  1164                           fsr2l	equ	0xFD9
-  1165                           status	equ	0xFD8
-  1166                           
-  1167 ;; *************** function _nrfSetTXAddr *****************
-  1168 ;; Defined at:
-  1169 ;;		line 331 in file "main.c"
-  1170 ;; Parameters:    Size  Location     Type
-  1171 ;;  addr            2    2[COMRAM] PTR unsigned char 
-  1172 ;;		 -> TX_ADDRESS(4), 
-  1173 ;;  len             2    4[COMRAM] int 
-  1174 ;; Auto vars:     Size  Location     Type
-  1175 ;;  i               2   10[COMRAM] int 
-  1176 ;; Return value:  Size  Location     Type
-  1177 ;;		None               void
-  1178 ;; Registers used:
-  1179 ;;		wreg, fsr2l, fsr2h, status,2, status,0, cstack
-  1180 ;; Tracked objects:
-  1181 ;;		On entry : 0/0
-  1182 ;;		On exit  : 0/0
-  1183 ;;		Unchanged: 0/0
-  1184 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2
-  1185 ;;      Params:         4       0       0       0
-  1186 ;;      Locals:         2       0       0       0
-  1187 ;;      Temps:          4       0       0       0
-  1188 ;;      Totals:        10       0       0       0
-  1189 ;;Total ram usage:       10 bytes
-  1190 ;; Hardware stack levels used:    1
-  1191 ;; Hardware stack levels required when called:    1
-  1192 ;; This function calls:
-  1193 ;;		_setCSN
-  1194 ;;		_spiTransferByte
-  1195 ;; This function is called by:
-  1196 ;;		_nrfConfig
-  1197 ;; This function uses a non-reentrant model
-  1198 ;;
-  1199                           
-  1200                           	psect	text7
-  1201  003C70                     __ptext7:
-  1202                           	opt stack 0
-  1203  003C70                     _nrfSetTXAddr:
-  1204                           	opt stack 28
-  1205                           
-  1206                           ;main.c: 333: setCSN(0);
-  1207                           
-  1208                           ;incstack = 0
-  1209  003C70  0E00               	movlw	0
-  1210  003C72  6E24               	movwf	setCSN@level+1,c
-  1211  003C74  0E00               	movlw	0
-  1212  003C76  6E23               	movwf	setCSN@level,c
-  1213  003C78  ECA0  F01D         	call	_setCSN	;wreg free
-  1214                           
-  1215                           ;main.c: 335: spiTransferByte(0x20|0x10);
-  1216  003C7C  0E30               	movlw	48
-  1217  003C7E  EC97  F01D         	call	_spiTransferByte
-  1218                           
-  1219                           ;main.c: 337: if (len != 0) {
-  1220  003C82  5028               	movf	nrfSetTXAddr@len+1,w,c
-  1221  003C84  1027               	iorwf	nrfSetTXAddr@len,w,c
-  1222  003C86  B4D8               	btfsc	status,2,c
-  1223  003C88  D026               	goto	l990
-  1224                           
-  1225                           ;main.c: 339: for (int i=1;i<=len;i++) {
-  1226  003C8A  0E00               	movlw	0
-  1227  003C8C  6E2E               	movwf	nrfSetTXAddr@i+1,c
-  1228  003C8E  0E01               	movlw	1
-  1229  003C90  6E2D               	movwf	nrfSetTXAddr@i,c
-  1230  003C92  D017               	goto	l988
-  1231  003C94                     l984:
-  1232                           
-  1233                           ;main.c: 340: spiTransferByte(addr[i-1]);
-  1234  003C94  0EFF               	movlw	255
-  1235  003C96  6E29               	movwf	??_nrfSetTXAddr& (0+255),c
-  1236  003C98  0EFF               	movlw	255
-  1237  003C9A  6E2A               	movwf	(??_nrfSetTXAddr+1)& (0+255),c
-  1238  003C9C  C02D  F02B         	movff	nrfSetTXAddr@i,??_nrfSetTXAddr+2
-  1239  003CA0  C02E  F02C         	movff	nrfSetTXAddr@i+1,??_nrfSetTXAddr+3
-  1240  003CA4  5029               	movf	??_nrfSetTXAddr,w,c
-  1241  003CA6  262B               	addwf	??_nrfSetTXAddr+2,f,c
-  1242  003CA8  502A               	movf	??_nrfSetTXAddr+1,w,c
-  1243  003CAA  222C               	addwfc	??_nrfSetTXAddr+3,f,c
-  1244  003CAC  502B               	movf	??_nrfSetTXAddr+2,w,c
-  1245  003CAE  2425               	addwf	nrfSetTXAddr@addr,w,c
-  1246  003CB0  6ED9               	movwf	fsr2l,c
-  1247  003CB2  502C               	movf	??_nrfSetTXAddr+3,w,c
-  1248  003CB4  2026               	addwfc	nrfSetTXAddr@addr+1,w,c
-  1249  003CB6  6EDA               	movwf	fsr2h,c
-  1250  003CB8  50DF               	movf	indf2,w,c
-  1251  003CBA  EC97  F01D         	call	_spiTransferByte
-  1252  003CBE  4A2D               	infsnz	nrfSetTXAddr@i,f,c
-  1253  003CC0  2A2E               	incf	nrfSetTXAddr@i+1,f,c
-  1254  003CC2                     l988:
-  1255  003CC2  5028               	movf	nrfSetTXAddr@len+1,w,c
-  1256  003CC4  0A80               	xorlw	128
-  1257  003CC6  6E29               	movwf	??_nrfSetTXAddr& (0+255),c
-  1258  003CC8  502D               	movf	nrfSetTXAddr@i,w,c
-  1259  003CCA  5C27               	subwf	nrfSetTXAddr@len,w,c
-  1260  003CCC  502E               	movf	nrfSetTXAddr@i+1,w,c
-  1261  003CCE  0A80               	xorlw	128
-  1262  003CD0  5829               	subwfb	??_nrfSetTXAddr& (0+255),w,c
-  1263  003CD2  B0D8               	btfsc	status,0,c
-  1264  003CD4  D7DF               	goto	l984
-  1265  003CD6                     l990:
-  1266                           
-  1267                           ;main.c: 341: }
-  1268                           ;main.c: 342: }
-  1269                           ;main.c: 344: setCSN(1);
-  1270  003CD6  0E00               	movlw	0
-  1271  003CD8  6E24               	movwf	setCSN@level+1,c
-  1272  003CDA  0E01               	movlw	1
-  1273  003CDC  6E23               	movwf	setCSN@level,c
-  1274  003CDE  ECA0  F01D         	call	_setCSN	;wreg free
-  1275  003CE2  0012               	return	
-  1276  003CE4                     __end_of_nrfSetTXAddr:
-  1277                           	opt stack 0
-  1278                           tblptru	equ	0xFF8
-  1279                           tblptrh	equ	0xFF7
-  1280                           tblptrl	equ	0xFF6
-  1281                           tablat	equ	0xFF5
-  1282                           postinc0	equ	0xFEE
-  1283                           wreg	equ	0xFE8
-  1284                           indf1	equ	0xFE7
-  1285                           postdec1	equ	0xFE5
-  1286                           fsr1h	equ	0xFE2
-  1287                           fsr1l	equ	0xFE1
-  1288                           indf2	equ	0xFDF
-  1289                           fsr2h	equ	0xFDA
-  1290                           fsr2l	equ	0xFD9
-  1291                           status	equ	0xFD8
-  1292                           
-  1293 ;; *************** function _nrfSetRXAddr *****************
-  1294 ;; Defined at:
-  1295 ;;		line 353 in file "main.c"
-  1296 ;; Parameters:    Size  Location     Type
-  1297 ;;  pipe            1    wreg     unsigned char 
-  1298 ;;  addr            2    2[COMRAM] PTR unsigned char 
-  1299 ;;		 -> RX_ADDRESS(4), 
-  1300 ;;  len             2    4[COMRAM] int 
-  1301 ;; Auto vars:     Size  Location     Type
-  1302 ;;  pipe            1   10[COMRAM] unsigned char 
-  1303 ;;  i               2   11[COMRAM] int 
-  1304 ;; Return value:  Size  Location     Type
-  1305 ;;		None               void
-  1306 ;; Registers used:
-  1307 ;;		wreg, fsr2l, fsr2h, status,2, status,0, cstack
-  1308 ;; Tracked objects:
-  1309 ;;		On entry : 0/0
-  1310 ;;		On exit  : 0/0
-  1311 ;;		Unchanged: 0/0
-  1312 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2
-  1313 ;;      Params:         4       0       0       0
-  1314 ;;      Locals:         3       0       0       0
-  1315 ;;      Temps:          4       0       0       0
-  1316 ;;      Totals:        11       0       0       0
-  1317 ;;Total ram usage:       11 bytes
-  1318 ;; Hardware stack levels used:    1
-  1319 ;; Hardware stack levels required when called:    1
-  1320 ;; This function calls:
-  1321 ;;		_setCSN
-  1322 ;;		_spiTransferByte
-  1323 ;; This function is called by:
-  1324 ;;		_nrfConfig
-  1325 ;; This function uses a non-reentrant model
-  1326 ;;
-  1327                           
-  1328                           	psect	text8
-  1329  003D58                     __ptext8:
-  1330                           	opt stack 0
-  1331  003D58                     _nrfSetRXAddr:
-  1332                           	opt stack 28
-  1333                           
-  1334                           ;incstack = 0
-  1335                           ;nrfSetRXAddr@pipe stored from wreg
-  1336  003D58  6E2D               	movwf	nrfSetRXAddr@pipe,c
-  1337                           
-  1338                           ;main.c: 355: setCSN(0);
-  1339  003D5A  0E00               	movlw	0
-  1340  003D5C  6E24               	movwf	setCSN@level+1,c
-  1341  003D5E  0E00               	movlw	0
-  1342  003D60  6E23               	movwf	setCSN@level,c
-  1343  003D62  ECA0  F01D         	call	_setCSN	;wreg free
-  1344                           
-  1345                           ;main.c: 357: spiTransferByte(0x20|pipe);
-  1346  003D66  502D               	movf	nrfSetRXAddr@pipe,w,c
-  1347  003D68  0920               	iorlw	32
-  1348  003D6A  EC97  F01D         	call	_spiTransferByte
-  1349                           
-  1350                           ;main.c: 359: if (len != 0) {
-  1351  003D6E  5028               	movf	nrfSetRXAddr@len+1,w,c
-  1352  003D70  1027               	iorwf	nrfSetRXAddr@len,w,c
-  1353  003D72  B4D8               	btfsc	status,2,c
-  1354  003D74  D026               	goto	l974
-  1355                           
-  1356                           ;main.c: 361: for (int i=1;i<=len;i++) {
-  1357  003D76  0E00               	movlw	0
-  1358  003D78  6E2F               	movwf	nrfSetRXAddr@i+1,c
-  1359  003D7A  0E01               	movlw	1
-  1360  003D7C  6E2E               	movwf	nrfSetRXAddr@i,c
-  1361  003D7E  D017               	goto	l972
-  1362  003D80                     l968:
-  1363                           
-  1364                           ;main.c: 362: spiTransferByte(addr[i-1]);
-  1365  003D80  0EFF               	movlw	255
-  1366  003D82  6E29               	movwf	??_nrfSetRXAddr& (0+255),c
-  1367  003D84  0EFF               	movlw	255
-  1368  003D86  6E2A               	movwf	(??_nrfSetRXAddr+1)& (0+255),c
-  1369  003D88  C02E  F02B         	movff	nrfSetRXAddr@i,??_nrfSetRXAddr+2
-  1370  003D8C  C02F  F02C         	movff	nrfSetRXAddr@i+1,??_nrfSetRXAddr+3
-  1371  003D90  5029               	movf	??_nrfSetRXAddr,w,c
-  1372  003D92  262B               	addwf	??_nrfSetRXAddr+2,f,c
-  1373  003D94  502A               	movf	??_nrfSetRXAddr+1,w,c
-  1374  003D96  222C               	addwfc	??_nrfSetRXAddr+3,f,c
-  1375  003D98  502B               	movf	??_nrfSetRXAddr+2,w,c
-  1376  003D9A  2425               	addwf	nrfSetRXAddr@addr,w,c
-  1377  003D9C  6ED9               	movwf	fsr2l,c
-  1378  003D9E  502C               	movf	??_nrfSetRXAddr+3,w,c
-  1379  003DA0  2026               	addwfc	nrfSetRXAddr@addr+1,w,c
-  1380  003DA2  6EDA               	movwf	fsr2h,c
-  1381  003DA4  50DF               	movf	indf2,w,c
-  1382  003DA6  EC97  F01D         	call	_spiTransferByte
-  1383  003DAA  4A2E               	infsnz	nrfSetRXAddr@i,f,c
-  1384  003DAC  2A2F               	incf	nrfSetRXAddr@i+1,f,c
-  1385  003DAE                     l972:
-  1386  003DAE  5028               	movf	nrfSetRXAddr@len+1,w,c
-  1387  003DB0  0A80               	xorlw	128
-  1388  003DB2  6E29               	movwf	??_nrfSetRXAddr& (0+255),c
-  1389  003DB4  502E               	movf	nrfSetRXAddr@i,w,c
-  1390  003DB6  5C27               	subwf	nrfSetRXAddr@len,w,c
-  1391  003DB8  502F               	movf	nrfSetRXAddr@i+1,w,c
-  1392  003DBA  0A80               	xorlw	128
-  1393  003DBC  5829               	subwfb	??_nrfSetRXAddr& (0+255),w,c
-  1394  003DBE  B0D8               	btfsc	status,0,c
-  1395  003DC0  D7DF               	goto	l968
-  1396  003DC2                     l974:
-  1397                           
-  1398                           ;main.c: 363: }
-  1399                           ;main.c: 364: }
-  1400                           ;main.c: 366: setCSN(1);
-  1401  003DC2  0E00               	movlw	0
-  1402  003DC4  6E24               	movwf	setCSN@level+1,c
-  1403  003DC6  0E01               	movlw	1
-  1404  003DC8  6E23               	movwf	setCSN@level,c
-  1405  003DCA  ECA0  F01D         	call	_setCSN	;wreg free
-  1406  003DCE  0012               	return	
-  1407  003DD0                     __end_of_nrfSetRXAddr:
-  1408                           	opt stack 0
-  1409                           tblptru	equ	0xFF8
-  1410                           tblptrh	equ	0xFF7
-  1411                           tblptrl	equ	0xFF6
-  1412                           tablat	equ	0xFF5
-  1413                           postinc0	equ	0xFEE
-  1414                           wreg	equ	0xFE8
-  1415                           indf1	equ	0xFE7
-  1416                           postdec1	equ	0xFE5
-  1417                           fsr1h	equ	0xFE2
-  1418                           fsr1l	equ	0xFE1
-  1419                           indf2	equ	0xFDF
-  1420                           fsr2h	equ	0xFDA
-  1421                           fsr2l	equ	0xFD9
-  1422                           status	equ	0xFD8
-  1423                           
-  1424 ;; *************** function _nrfConfigReg *****************
-  1425 ;; Defined at:
-  1426 ;;		line 309 in file "main.c"
-  1427 ;; Parameters:    Size  Location     Type
-  1428 ;;  wr              1    wreg     unsigned char 
-  1429 ;;  command         1    2[COMRAM] unsigned char 
-  1430 ;;  data            1    3[COMRAM] unsigned char 
-  1431 ;; Auto vars:     Size  Location     Type
-  1432 ;;  wr              1    4[COMRAM] unsigned char 
-  1433 ;; Return value:  Size  Location     Type
-  1434 ;;                  1    wreg      unsigned char 
-  1435 ;; Registers used:
-  1436 ;;		wreg, status,2, status,0, cstack
-  1437 ;; Tracked objects:
-  1438 ;;		On entry : 0/0
-  1439 ;;		On exit  : 0/0
-  1440 ;;		Unchanged: 0/0
-  1441 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2
-  1442 ;;      Params:         2       0       0       0
-  1443 ;;      Locals:         1       0       0       0
-  1444 ;;      Temps:          0       0       0       0
-  1445 ;;      Totals:         3       0       0       0
-  1446 ;;Total ram usage:        3 bytes
-  1447 ;; Hardware stack levels used:    1
-  1448 ;; Hardware stack levels required when called:    1
-  1449 ;; This function calls:
-  1450 ;;		_setCSN
-  1451 ;;		_spiTransferByte
-  1452 ;; This function is called by:
-  1453 ;;		_nrfConfig
-  1454 ;; This function uses a non-reentrant model
-  1455 ;;
-  1456                           
-  1457                           	psect	text9
-  1458  003C26                     __ptext9:
-  1459                           	opt stack 0
-  1460  003C26                     _nrfConfigReg:
-  1461                           	opt stack 28
-  1462                           
-  1463                           ;incstack = 0
-  1464                           ;nrfConfigReg@wr stored from wreg
-  1465  003C26  6E27               	movwf	nrfConfigReg@wr,c
-  1466                           
-  1467                           ;main.c: 311: setCSN(0);
-  1468  003C28  0E00               	movlw	0
-  1469  003C2A  6E24               	movwf	setCSN@level+1,c
-  1470  003C2C  0E00               	movlw	0
-  1471  003C2E  6E23               	movwf	setCSN@level,c
-  1472  003C30  ECA0  F01D         	call	_setCSN	;wreg free
-  1473                           
-  1474                           ;main.c: 313: if (wr == 'w') {
-  1475  003C34  5027               	movf	nrfConfigReg@wr,w,c
-  1476  003C36  0A77               	xorlw	119
-  1477  003C38  A4D8               	btfss	status,2,c
-  1478  003C3A  D008               	goto	l954
+  1060                           ;main.c: 393: if (wrn == 'w') {
+  1061  003E72  502F               	movf	spiTransfer@wrn,w,c
+  1062  003E74  0A77               	xorlw	119
+  1063  003E76  A4D8               	btfss	status,2,c
+  1064  003E78  D005               	goto	l932
+  1065                           
+  1066                           ;main.c: 394: spiTransferByte(0x20|command);
+  1067  003E7A  5024               	movf	spiTransfer@command,w,c
+  1068  003E7C  0920               	iorlw	32
+  1069  003E7E  EC84  F01D         	call	_spiTransferByte
+  1070                           
+  1071                           ;main.c: 395: } else if (wrn == 'r') {
+  1072  003E82  D00F               	goto	l940
+  1073  003E84                     l932:
+  1074  003E84  502F               	movf	spiTransfer@wrn,w,c
+  1075  003E86  0A72               	xorlw	114
+  1076  003E88  A4D8               	btfss	status,2,c
+  1077  003E8A  D004               	goto	l936
+  1078                           
+  1079                           ;main.c: 396: spiTransferByte(0x00|command);
+  1080  003E8C  5024               	movf	spiTransfer@command,w,c
+  1081  003E8E  EC84  F01D         	call	_spiTransferByte
+  1082                           
+  1083                           ;main.c: 397: } else if(wrn == 'n') {
+  1084  003E92  D007               	goto	l940
+  1085  003E94                     l936:
+  1086  003E94  502F               	movf	spiTransfer@wrn,w,c
+  1087  003E96  0A6E               	xorlw	110
+  1088  003E98  A4D8               	btfss	status,2,c
+  1089  003E9A  D003               	goto	l940
+  1090                           
+  1091                           ;main.c: 398: spiTransferByte(command);
+  1092  003E9C  5024               	movf	spiTransfer@command,w,c
+  1093  003E9E  EC84  F01D         	call	_spiTransferByte
+  1094  003EA2                     l940:
+  1095                           
+  1096                           ;main.c: 399: }
+  1097                           ;main.c: 401: if (len != 0) {
+  1098  003EA2  5026               	movf	spiTransfer@len+1,w,c
+  1099  003EA4  1025               	iorwf	spiTransfer@len,w,c
+  1100  003EA6  B4D8               	btfsc	status,2,c
+  1101  003EA8  D03B               	goto	l950
+  1102                           
+  1103                           ;main.c: 402: for (int i=1;i<=len;i++) {
+  1104  003EAA  0E00               	movlw	0
+  1105  003EAC  6E31               	movwf	spiTransfer@i+1,c
+  1106  003EAE  0E01               	movlw	1
+  1107  003EB0  6E30               	movwf	spiTransfer@i,c
+  1108  003EB2  D02C               	goto	l948
+  1109  003EB4                     l944:
+  1110                           
+  1111                           ;main.c: 403: dataBufIn[i-1] = spiTransferByte(dataBufOut[i-1]);
+  1112  003EB4  0EFF               	movlw	255
+  1113  003EB6  6E27               	movwf	??_spiTransfer& (0+255),c
+  1114  003EB8  0EFF               	movlw	255
+  1115  003EBA  6E28               	movwf	(??_spiTransfer+1)& (0+255),c
+  1116  003EBC  C030  F029         	movff	spiTransfer@i,??_spiTransfer+2
+  1117  003EC0  C031  F02A         	movff	spiTransfer@i+1,??_spiTransfer+3
+  1118  003EC4  5027               	movf	??_spiTransfer,w,c
+  1119  003EC6  2629               	addwf	??_spiTransfer+2,f,c
+  1120  003EC8  5028               	movf	??_spiTransfer+1,w,c
+  1121  003ECA  222A               	addwfc	??_spiTransfer+3,f,c
+  1122  003ECC  0E01               	movlw	low _dataBufIn
+  1123  003ECE  2429               	addwf	??_spiTransfer+2,w,c
+  1124  003ED0  6ED9               	movwf	fsr2l,c
+  1125  003ED2  0E00               	movlw	high _dataBufIn
+  1126  003ED4  202A               	addwfc	??_spiTransfer+3,w,c
+  1127  003ED6  6EDA               	movwf	fsr2h,c
+  1128  003ED8  0EFF               	movlw	255
+  1129  003EDA  6E2B               	movwf	(??_spiTransfer+4)& (0+255),c
+  1130  003EDC  0EFF               	movlw	255
+  1131  003EDE  6E2C               	movwf	(??_spiTransfer+5)& (0+255),c
+  1132  003EE0  C030  F02D         	movff	spiTransfer@i,??_spiTransfer+6
+  1133  003EE4  C031  F02E         	movff	spiTransfer@i+1,??_spiTransfer+7
+  1134  003EE8  502B               	movf	??_spiTransfer+4,w,c
+  1135  003EEA  262D               	addwf	??_spiTransfer+6,f,c
+  1136  003EEC  502C               	movf	??_spiTransfer+5,w,c
+  1137  003EEE  222E               	addwfc	??_spiTransfer+7,f,c
+  1138  003EF0  0100               	movlb	0	; () banked
+  1139  003EF2  0E60               	movlw	low _dataBufOut
+  1140  003EF4  242D               	addwf	??_spiTransfer+6,w,c
+  1141  003EF6  6EE1               	movwf	fsr1l,c
+  1142  003EF8  0100               	movlb	0	; () banked
+  1143  003EFA  0E00               	movlw	high _dataBufOut
+  1144  003EFC  202E               	addwfc	??_spiTransfer+7,w,c
+  1145  003EFE  6EE2               	movwf	fsr1h,c
+  1146  003F00  50E7               	movf	indf1,w,c
+  1147  003F02  EC84  F01D         	call	_spiTransferByte
+  1148  003F06  6EDF               	movwf	indf2,c
+  1149  003F08  4A30               	infsnz	spiTransfer@i,f,c
+  1150  003F0A  2A31               	incf	spiTransfer@i+1,f,c
+  1151  003F0C                     l948:
+  1152  003F0C  5026               	movf	spiTransfer@len+1,w,c
+  1153  003F0E  0A80               	xorlw	128
+  1154  003F10  6E27               	movwf	??_spiTransfer& (0+255),c
+  1155  003F12  5030               	movf	spiTransfer@i,w,c
+  1156  003F14  5C25               	subwf	spiTransfer@len,w,c
+  1157  003F16  5031               	movf	spiTransfer@i+1,w,c
+  1158  003F18  0A80               	xorlw	128
+  1159  003F1A  5827               	subwfb	??_spiTransfer& (0+255),w,c
+  1160  003F1C  B0D8               	btfsc	status,0,c
+  1161  003F1E  D7CA               	goto	l944
+  1162  003F20                     l950:
+  1163                           
+  1164                           ;main.c: 404: }
+  1165                           ;main.c: 405: }
+  1166                           ;main.c: 407: setCSN(1);
+  1167  003F20  0E00               	movlw	0
+  1168  003F22  6E23               	movwf	setCSN@level+1,c
+  1169  003F24  0E01               	movlw	1
+  1170  003F26  6E22               	movwf	setCSN@level,c
+  1171  003F28  EC8D  F01D         	call	_setCSN	;wreg free
+  1172  003F2C  0012               	return	
+  1173  003F2E                     __end_of_spiTransfer:
+  1174                           	opt stack 0
+  1175                           tblptru	equ	0xFF8
+  1176                           tblptrh	equ	0xFF7
+  1177                           tblptrl	equ	0xFF6
+  1178                           tablat	equ	0xFF5
+  1179                           postinc0	equ	0xFEE
+  1180                           wreg	equ	0xFE8
+  1181                           indf1	equ	0xFE7
+  1182                           postdec1	equ	0xFE5
+  1183                           fsr1h	equ	0xFE2
+  1184                           fsr1l	equ	0xFE1
+  1185                           indf2	equ	0xFDF
+  1186                           fsr2h	equ	0xFDA
+  1187                           fsr2l	equ	0xFD9
+  1188                           status	equ	0xFD8
+  1189                           
+  1190 ;; *************** function _nrfSetTXAddr *****************
+  1191 ;; Defined at:
+  1192 ;;		line 343 in file "main.c"
+  1193 ;; Parameters:    Size  Location     Type
+  1194 ;;  addr            2    2[COMRAM] PTR unsigned char 
+  1195 ;;		 -> TX_ADDRESS(4), 
+  1196 ;;  len             2    4[COMRAM] int 
+  1197 ;; Auto vars:     Size  Location     Type
+  1198 ;;  i               2   10[COMRAM] int 
+  1199 ;; Return value:  Size  Location     Type
+  1200 ;;		None               void
+  1201 ;; Registers used:
+  1202 ;;		wreg, fsr2l, fsr2h, status,2, status,0, cstack
+  1203 ;; Tracked objects:
+  1204 ;;		On entry : 0/0
+  1205 ;;		On exit  : 0/0
+  1206 ;;		Unchanged: 0/0
+  1207 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2
+  1208 ;;      Params:         4       0       0       0
+  1209 ;;      Locals:         2       0       0       0
+  1210 ;;      Temps:          4       0       0       0
+  1211 ;;      Totals:        10       0       0       0
+  1212 ;;Total ram usage:       10 bytes
+  1213 ;; Hardware stack levels used:    1
+  1214 ;; Hardware stack levels required when called:    1
+  1215 ;; This function calls:
+  1216 ;;		_setCSN
+  1217 ;;		_spiTransferByte
+  1218 ;; This function is called by:
+  1219 ;;		_nrfConfig
+  1220 ;; This function uses a non-reentrant model
+  1221 ;;
+  1222                           
+  1223                           	psect	text7
+  1224  003C4A                     __ptext7:
+  1225                           	opt stack 0
+  1226  003C4A                     _nrfSetTXAddr:
+  1227                           	opt stack 28
+  1228                           
+  1229                           ;main.c: 345: setCSN(0);
+  1230                           
+  1231                           ;incstack = 0
+  1232  003C4A  0E00               	movlw	0
+  1233  003C4C  6E23               	movwf	setCSN@level+1,c
+  1234  003C4E  0E00               	movlw	0
+  1235  003C50  6E22               	movwf	setCSN@level,c
+  1236  003C52  EC8D  F01D         	call	_setCSN	;wreg free
+  1237                           
+  1238                           ;main.c: 347: spiTransferByte(0x20|0x10);
+  1239  003C56  0E30               	movlw	48
+  1240  003C58  EC84  F01D         	call	_spiTransferByte
+  1241                           
+  1242                           ;main.c: 349: if (len != 0) {
+  1243  003C5C  5027               	movf	nrfSetTXAddr@len+1,w,c
+  1244  003C5E  1026               	iorwf	nrfSetTXAddr@len,w,c
+  1245  003C60  B4D8               	btfsc	status,2,c
+  1246  003C62  D026               	goto	l996
+  1247                           
+  1248                           ;main.c: 351: for (int i=1;i<=len;i++) {
+  1249  003C64  0E00               	movlw	0
+  1250  003C66  6E2D               	movwf	nrfSetTXAddr@i+1,c
+  1251  003C68  0E01               	movlw	1
+  1252  003C6A  6E2C               	movwf	nrfSetTXAddr@i,c
+  1253  003C6C  D017               	goto	l994
+  1254  003C6E                     l990:
+  1255                           
+  1256                           ;main.c: 352: spiTransferByte(addr[i-1]);
+  1257  003C6E  0EFF               	movlw	255
+  1258  003C70  6E28               	movwf	??_nrfSetTXAddr& (0+255),c
+  1259  003C72  0EFF               	movlw	255
+  1260  003C74  6E29               	movwf	(??_nrfSetTXAddr+1)& (0+255),c
+  1261  003C76  C02C  F02A         	movff	nrfSetTXAddr@i,??_nrfSetTXAddr+2
+  1262  003C7A  C02D  F02B         	movff	nrfSetTXAddr@i+1,??_nrfSetTXAddr+3
+  1263  003C7E  5028               	movf	??_nrfSetTXAddr,w,c
+  1264  003C80  262A               	addwf	??_nrfSetTXAddr+2,f,c
+  1265  003C82  5029               	movf	??_nrfSetTXAddr+1,w,c
+  1266  003C84  222B               	addwfc	??_nrfSetTXAddr+3,f,c
+  1267  003C86  502A               	movf	??_nrfSetTXAddr+2,w,c
+  1268  003C88  2424               	addwf	nrfSetTXAddr@addr,w,c
+  1269  003C8A  6ED9               	movwf	fsr2l,c
+  1270  003C8C  502B               	movf	??_nrfSetTXAddr+3,w,c
+  1271  003C8E  2025               	addwfc	nrfSetTXAddr@addr+1,w,c
+  1272  003C90  6EDA               	movwf	fsr2h,c
+  1273  003C92  50DF               	movf	indf2,w,c
+  1274  003C94  EC84  F01D         	call	_spiTransferByte
+  1275  003C98  4A2C               	infsnz	nrfSetTXAddr@i,f,c
+  1276  003C9A  2A2D               	incf	nrfSetTXAddr@i+1,f,c
+  1277  003C9C                     l994:
+  1278  003C9C  5027               	movf	nrfSetTXAddr@len+1,w,c
+  1279  003C9E  0A80               	xorlw	128
+  1280  003CA0  6E28               	movwf	??_nrfSetTXAddr& (0+255),c
+  1281  003CA2  502C               	movf	nrfSetTXAddr@i,w,c
+  1282  003CA4  5C26               	subwf	nrfSetTXAddr@len,w,c
+  1283  003CA6  502D               	movf	nrfSetTXAddr@i+1,w,c
+  1284  003CA8  0A80               	xorlw	128
+  1285  003CAA  5828               	subwfb	??_nrfSetTXAddr& (0+255),w,c
+  1286  003CAC  B0D8               	btfsc	status,0,c
+  1287  003CAE  D7DF               	goto	l990
+  1288  003CB0                     l996:
+  1289                           
+  1290                           ;main.c: 353: }
+  1291                           ;main.c: 354: }
+  1292                           ;main.c: 356: setCSN(1);
+  1293  003CB0  0E00               	movlw	0
+  1294  003CB2  6E23               	movwf	setCSN@level+1,c
+  1295  003CB4  0E01               	movlw	1
+  1296  003CB6  6E22               	movwf	setCSN@level,c
+  1297  003CB8  EC8D  F01D         	call	_setCSN	;wreg free
+  1298  003CBC  0012               	return	
+  1299  003CBE                     __end_of_nrfSetTXAddr:
+  1300                           	opt stack 0
+  1301                           tblptru	equ	0xFF8
+  1302                           tblptrh	equ	0xFF7
+  1303                           tblptrl	equ	0xFF6
+  1304                           tablat	equ	0xFF5
+  1305                           postinc0	equ	0xFEE
+  1306                           wreg	equ	0xFE8
+  1307                           indf1	equ	0xFE7
+  1308                           postdec1	equ	0xFE5
+  1309                           fsr1h	equ	0xFE2
+  1310                           fsr1l	equ	0xFE1
+  1311                           indf2	equ	0xFDF
+  1312                           fsr2h	equ	0xFDA
+  1313                           fsr2l	equ	0xFD9
+  1314                           status	equ	0xFD8
+  1315                           
+  1316 ;; *************** function _nrfSetRXAddr *****************
+  1317 ;; Defined at:
+  1318 ;;		line 365 in file "main.c"
+  1319 ;; Parameters:    Size  Location     Type
+  1320 ;;  pipe            1    wreg     unsigned char 
+  1321 ;;  addr            2    2[COMRAM] PTR unsigned char 
+  1322 ;;		 -> RX_ADDRESS(4), TX_ADDRESS(4), 
+  1323 ;;  len             2    4[COMRAM] int 
+  1324 ;; Auto vars:     Size  Location     Type
+  1325 ;;  pipe            1   10[COMRAM] unsigned char 
+  1326 ;;  i               2   11[COMRAM] int 
+  1327 ;; Return value:  Size  Location     Type
+  1328 ;;		None               void
+  1329 ;; Registers used:
+  1330 ;;		wreg, fsr2l, fsr2h, status,2, status,0, cstack
+  1331 ;; Tracked objects:
+  1332 ;;		On entry : 0/0
+  1333 ;;		On exit  : 0/0
+  1334 ;;		Unchanged: 0/0
+  1335 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2
+  1336 ;;      Params:         4       0       0       0
+  1337 ;;      Locals:         3       0       0       0
+  1338 ;;      Temps:          4       0       0       0
+  1339 ;;      Totals:        11       0       0       0
+  1340 ;;Total ram usage:       11 bytes
+  1341 ;; Hardware stack levels used:    1
+  1342 ;; Hardware stack levels required when called:    1
+  1343 ;; This function calls:
+  1344 ;;		_setCSN
+  1345 ;;		_spiTransferByte
+  1346 ;; This function is called by:
+  1347 ;;		_nrfConfig
+  1348 ;; This function uses a non-reentrant model
+  1349 ;;
+  1350                           
+  1351                           	psect	text8
+  1352  003CBE                     __ptext8:
+  1353                           	opt stack 0
+  1354  003CBE                     _nrfSetRXAddr:
+  1355                           	opt stack 28
+  1356                           
+  1357                           ;incstack = 0
+  1358                           ;nrfSetRXAddr@pipe stored from wreg
+  1359  003CBE  6E2C               	movwf	nrfSetRXAddr@pipe,c
+  1360                           
+  1361                           ;main.c: 367: setCSN(0);
+  1362  003CC0  0E00               	movlw	0
+  1363  003CC2  6E23               	movwf	setCSN@level+1,c
+  1364  003CC4  0E00               	movlw	0
+  1365  003CC6  6E22               	movwf	setCSN@level,c
+  1366  003CC8  EC8D  F01D         	call	_setCSN	;wreg free
+  1367                           
+  1368                           ;main.c: 369: spiTransferByte(0x20|pipe);
+  1369  003CCC  502C               	movf	nrfSetRXAddr@pipe,w,c
+  1370  003CCE  0920               	iorlw	32
+  1371  003CD0  EC84  F01D         	call	_spiTransferByte
+  1372                           
+  1373                           ;main.c: 371: if (len != 0) {
+  1374  003CD4  5027               	movf	nrfSetRXAddr@len+1,w,c
+  1375  003CD6  1026               	iorwf	nrfSetRXAddr@len,w,c
+  1376  003CD8  B4D8               	btfsc	status,2,c
+  1377  003CDA  D026               	goto	l980
+  1378                           
+  1379                           ;main.c: 373: for (int i=1;i<=len;i++) {
+  1380  003CDC  0E00               	movlw	0
+  1381  003CDE  6E2E               	movwf	nrfSetRXAddr@i+1,c
+  1382  003CE0  0E01               	movlw	1
+  1383  003CE2  6E2D               	movwf	nrfSetRXAddr@i,c
+  1384  003CE4  D017               	goto	l978
+  1385  003CE6                     l974:
+  1386                           
+  1387                           ;main.c: 374: spiTransferByte(addr[i-1]);
+  1388  003CE6  0EFF               	movlw	255
+  1389  003CE8  6E28               	movwf	??_nrfSetRXAddr& (0+255),c
+  1390  003CEA  0EFF               	movlw	255
+  1391  003CEC  6E29               	movwf	(??_nrfSetRXAddr+1)& (0+255),c
+  1392  003CEE  C02D  F02A         	movff	nrfSetRXAddr@i,??_nrfSetRXAddr+2
+  1393  003CF2  C02E  F02B         	movff	nrfSetRXAddr@i+1,??_nrfSetRXAddr+3
+  1394  003CF6  5028               	movf	??_nrfSetRXAddr,w,c
+  1395  003CF8  262A               	addwf	??_nrfSetRXAddr+2,f,c
+  1396  003CFA  5029               	movf	??_nrfSetRXAddr+1,w,c
+  1397  003CFC  222B               	addwfc	??_nrfSetRXAddr+3,f,c
+  1398  003CFE  502A               	movf	??_nrfSetRXAddr+2,w,c
+  1399  003D00  2424               	addwf	nrfSetRXAddr@addr,w,c
+  1400  003D02  6ED9               	movwf	fsr2l,c
+  1401  003D04  502B               	movf	??_nrfSetRXAddr+3,w,c
+  1402  003D06  2025               	addwfc	nrfSetRXAddr@addr+1,w,c
+  1403  003D08  6EDA               	movwf	fsr2h,c
+  1404  003D0A  50DF               	movf	indf2,w,c
+  1405  003D0C  EC84  F01D         	call	_spiTransferByte
+  1406  003D10  4A2D               	infsnz	nrfSetRXAddr@i,f,c
+  1407  003D12  2A2E               	incf	nrfSetRXAddr@i+1,f,c
+  1408  003D14                     l978:
+  1409  003D14  5027               	movf	nrfSetRXAddr@len+1,w,c
+  1410  003D16  0A80               	xorlw	128
+  1411  003D18  6E28               	movwf	??_nrfSetRXAddr& (0+255),c
+  1412  003D1A  502D               	movf	nrfSetRXAddr@i,w,c
+  1413  003D1C  5C26               	subwf	nrfSetRXAddr@len,w,c
+  1414  003D1E  502E               	movf	nrfSetRXAddr@i+1,w,c
+  1415  003D20  0A80               	xorlw	128
+  1416  003D22  5828               	subwfb	??_nrfSetRXAddr& (0+255),w,c
+  1417  003D24  B0D8               	btfsc	status,0,c
+  1418  003D26  D7DF               	goto	l974
+  1419  003D28                     l980:
+  1420                           
+  1421                           ;main.c: 375: }
+  1422                           ;main.c: 376: }
+  1423                           ;main.c: 378: setCSN(1);
+  1424  003D28  0E00               	movlw	0
+  1425  003D2A  6E23               	movwf	setCSN@level+1,c
+  1426  003D2C  0E01               	movlw	1
+  1427  003D2E  6E22               	movwf	setCSN@level,c
+  1428  003D30  EC8D  F01D         	call	_setCSN	;wreg free
+  1429  003D34  0012               	return	
+  1430  003D36                     __end_of_nrfSetRXAddr:
+  1431                           	opt stack 0
+  1432                           tblptru	equ	0xFF8
+  1433                           tblptrh	equ	0xFF7
+  1434                           tblptrl	equ	0xFF6
+  1435                           tablat	equ	0xFF5
+  1436                           postinc0	equ	0xFEE
+  1437                           wreg	equ	0xFE8
+  1438                           indf1	equ	0xFE7
+  1439                           postdec1	equ	0xFE5
+  1440                           fsr1h	equ	0xFE2
+  1441                           fsr1l	equ	0xFE1
+  1442                           indf2	equ	0xFDF
+  1443                           fsr2h	equ	0xFDA
+  1444                           fsr2l	equ	0xFD9
+  1445                           status	equ	0xFD8
+  1446                           
+  1447 ;; *************** function _nrfConfigReg *****************
+  1448 ;; Defined at:
+  1449 ;;		line 321 in file "main.c"
+  1450 ;; Parameters:    Size  Location     Type
+  1451 ;;  wr              1    wreg     unsigned char 
+  1452 ;;  command         1    2[COMRAM] unsigned char 
+  1453 ;;  data            1    3[COMRAM] unsigned char 
+  1454 ;; Auto vars:     Size  Location     Type
+  1455 ;;  wr              1    4[COMRAM] unsigned char 
+  1456 ;; Return value:  Size  Location     Type
+  1457 ;;                  1    wreg      unsigned char 
+  1458 ;; Registers used:
+  1459 ;;		wreg, status,2, status,0, cstack
+  1460 ;; Tracked objects:
+  1461 ;;		On entry : 0/0
+  1462 ;;		On exit  : 0/0
+  1463 ;;		Unchanged: 0/0
+  1464 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2
+  1465 ;;      Params:         2       0       0       0
+  1466 ;;      Locals:         1       0       0       0
+  1467 ;;      Temps:          0       0       0       0
+  1468 ;;      Totals:         3       0       0       0
+  1469 ;;Total ram usage:        3 bytes
+  1470 ;; Hardware stack levels used:    1
+  1471 ;; Hardware stack levels required when called:    1
+  1472 ;; This function calls:
+  1473 ;;		_setCSN
+  1474 ;;		_spiTransferByte
+  1475 ;; This function is called by:
+  1476 ;;		_nrfConfig
+  1477 ;; This function uses a non-reentrant model
+  1478 ;;
   1479                           
-  1480                           ;main.c: 314: spiTransferByte(0x20|command);
-  1481  003C3C  5025               	movf	nrfConfigReg@command,w,c
-  1482  003C3E  0920               	iorlw	32
-  1483  003C40  EC97  F01D         	call	_spiTransferByte
-  1484                           
-  1485                           ;main.c: 315: spiTransferByte(data);
-  1486  003C44  5026               	movf	nrfConfigReg@data,w,c
-  1487  003C46  EC97  F01D         	call	_spiTransferByte
-  1488                           
-  1489                           ;main.c: 316: } else if (wr == 'r') {
-  1490  003C4A  D00B               	goto	l958
-  1491  003C4C                     l954:
-  1492  003C4C  5027               	movf	nrfConfigReg@wr,w,c
-  1493  003C4E  0A72               	xorlw	114
-  1494  003C50  A4D8               	btfss	status,2,c
-  1495  003C52  D007               	goto	l958
+  1480                           	psect	text9
+  1481  003C00                     __ptext9:
+  1482                           	opt stack 0
+  1483  003C00                     _nrfConfigReg:
+  1484                           	opt stack 28
+  1485                           
+  1486                           ;incstack = 0
+  1487                           ;nrfConfigReg@wr stored from wreg
+  1488  003C00  6E26               	movwf	nrfConfigReg@wr,c
+  1489                           
+  1490                           ;main.c: 323: setCSN(0);
+  1491  003C02  0E00               	movlw	0
+  1492  003C04  6E23               	movwf	setCSN@level+1,c
+  1493  003C06  0E00               	movlw	0
+  1494  003C08  6E22               	movwf	setCSN@level,c
+  1495  003C0A  EC8D  F01D         	call	_setCSN	;wreg free
   1496                           
-  1497                           ;main.c: 317: spiTransferByte(0x00|command);
-  1498  003C54  5025               	movf	nrfConfigReg@command,w,c
-  1499  003C56  EC97  F01D         	call	_spiTransferByte
-  1500                           
-  1501                           ;main.c: 318: data = spiTransferByte(0xFF);
-  1502  003C5A  0EFF               	movlw	255
-  1503  003C5C  EC97  F01D         	call	_spiTransferByte
-  1504  003C60  6E26               	movwf	nrfConfigReg@data,c
-  1505  003C62                     l958:
-  1506                           
-  1507                           ;main.c: 319: }
-  1508                           ;main.c: 321: setCSN(1);
-  1509  003C62  0E00               	movlw	0
-  1510  003C64  6E24               	movwf	setCSN@level+1,c
-  1511  003C66  0E01               	movlw	1
-  1512  003C68  6E23               	movwf	setCSN@level,c
-  1513  003C6A  ECA0  F01D         	call	_setCSN	;wreg free
-  1514  003C6E  0012               	return	
-  1515  003C70                     __end_of_nrfConfigReg:
-  1516                           	opt stack 0
-  1517                           tblptru	equ	0xFF8
-  1518                           tblptrh	equ	0xFF7
-  1519                           tblptrl	equ	0xFF6
-  1520                           tablat	equ	0xFF5
-  1521                           postinc0	equ	0xFEE
-  1522                           wreg	equ	0xFE8
-  1523                           indf1	equ	0xFE7
-  1524                           postdec1	equ	0xFE5
-  1525                           fsr1h	equ	0xFE2
-  1526                           fsr1l	equ	0xFE1
-  1527                           indf2	equ	0xFDF
-  1528                           fsr2h	equ	0xFDA
-  1529                           fsr2l	equ	0xFD9
-  1530                           status	equ	0xFD8
-  1531                           
-  1532 ;; *************** function _spiTransferByte *****************
-  1533 ;; Defined at:
-  1534 ;;		line 401 in file "main.c"
-  1535 ;; Parameters:    Size  Location     Type
-  1536 ;;  data            1    wreg     unsigned char 
-  1537 ;; Auto vars:     Size  Location     Type
-  1538 ;;  data            1    0[COMRAM] unsigned char 
-  1539 ;; Return value:  Size  Location     Type
-  1540 ;;                  1    wreg      unsigned char 
-  1541 ;; Registers used:
-  1542 ;;		wreg, status,2, cstack
-  1543 ;; Tracked objects:
-  1544 ;;		On entry : 0/0
-  1545 ;;		On exit  : 0/0
-  1546 ;;		Unchanged: 0/0
-  1547 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2
-  1548 ;;      Params:         0       0       0       0
-  1549 ;;      Locals:         1       0       0       0
-  1550 ;;      Temps:          0       0       0       0
-  1551 ;;      Totals:         1       0       0       0
-  1552 ;;Total ram usage:        1 bytes
-  1553 ;; Hardware stack levels used:    1
-  1554 ;; This function calls:
-  1555 ;;		Nothing
-  1556 ;; This function is called by:
-  1557 ;;		_nrfGetStatus
-  1558 ;;		_nrfConfigReg
-  1559 ;;		_nrfSetTXAddr
-  1560 ;;		_nrfSetRXAddr
-  1561 ;;		_spiTransfer
-  1562 ;;		_nrfTXData
-  1563 ;; This function uses a non-reentrant model
-  1564 ;;
-  1565                           
-  1566                           	psect	text10
-  1567  003B2E                     __ptext10:
-  1568                           	opt stack 0
-  1569  003B2E                     _spiTransferByte:
-  1570                           	opt stack 29
-  1571                           
-  1572                           ;incstack = 0
-  1573                           ;spiTransferByte@data stored from wreg
-  1574  003B2E  6E23               	movwf	spiTransferByte@data,c
-  1575                           
-  1576                           ;main.c: 403: SSP1BUF = data;
-  1577  003B30  C023  FFC9         	movff	spiTransferByte@data,4041	;volatile
-  1578                           
-  1579                           ;main.c: 405: _delay((unsigned long)((8)*(64000000/4000000.0)));
-  1580  003B34  0E2A               	movlw	42
-  1581  003B36                     u377:
-  1582  003B36  2EE8               	decfsz	wreg,f,c
-  1583  003B38  D7FE               	goto	u377
-  1584  003B3A  D000               	nop2		;nop
-  1585                           
-  1586                           ;main.c: 407: return SSP1BUF;
-  1587  003B3C  50C9               	movf	4041,w,c	;volatile
-  1588  003B3E  0012               	return	
-  1589  003B40                     __end_of_spiTransferByte:
-  1590                           	opt stack 0
-  1591                           tblptru	equ	0xFF8
-  1592                           tblptrh	equ	0xFF7
-  1593                           tblptrl	equ	0xFF6
-  1594                           tablat	equ	0xFF5
-  1595                           postinc0	equ	0xFEE
-  1596                           wreg	equ	0xFE8
-  1597                           indf1	equ	0xFE7
-  1598                           postdec1	equ	0xFE5
-  1599                           fsr1h	equ	0xFE2
-  1600                           fsr1l	equ	0xFE1
-  1601                           indf2	equ	0xFDF
-  1602                           fsr2h	equ	0xFDA
-  1603                           fsr2l	equ	0xFD9
-  1604                           status	equ	0xFD8
-  1605                           
-  1606 ;; *************** function _setCSN *****************
-  1607 ;; Defined at:
-  1608 ;;		line 283 in file "main.c"
-  1609 ;; Parameters:    Size  Location     Type
-  1610 ;;  level           2    0[COMRAM] int 
-  1611 ;; Auto vars:     Size  Location     Type
-  1612 ;;		None
-  1613 ;; Return value:  Size  Location     Type
-  1614 ;;		None               void
-  1615 ;; Registers used:
-  1616 ;;		wreg, status,2, status,0
-  1617 ;; Tracked objects:
-  1618 ;;		On entry : 0/0
-  1619 ;;		On exit  : 0/0
-  1620 ;;		Unchanged: 0/0
-  1621 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2
-  1622 ;;      Params:         2       0       0       0
-  1623 ;;      Locals:         0       0       0       0
-  1624 ;;      Temps:          0       0       0       0
-  1625 ;;      Totals:         2       0       0       0
-  1626 ;;Total ram usage:        2 bytes
-  1627 ;; Hardware stack levels used:    1
-  1628 ;; This function calls:
-  1629 ;;		Nothing
-  1630 ;; This function is called by:
-  1631 ;;		_nrfGetStatus
-  1632 ;;		_nrfConfigReg
-  1633 ;;		_nrfSetTXAddr
-  1634 ;;		_nrfSetRXAddr
-  1635 ;;		_spiTransfer
-  1636 ;;		_nrfTXData
-  1637 ;; This function uses a non-reentrant model
-  1638 ;;
-  1639                           
-  1640                           	psect	text11
-  1641  003B40                     __ptext11:
-  1642                           	opt stack 0
-  1643  003B40                     _setCSN:
-  1644                           	opt stack 29
-  1645                           
-  1646                           ;main.c: 285: if (level == 1) {
-  1647                           
-  1648                           ;incstack = 0
-  1649  003B40  0423               	decf	setCSN@level,w,c
-  1650  003B42  1024               	iorwf	setCSN@level+1,w,c
-  1651  003B44  A4D8               	btfss	status,2,c
-  1652  003B46  D006               	goto	l90
-  1653                           
-  1654                           ;main.c: 286: _delay((unsigned long)((1)*(64000000/4000000.0)));
-  1655  003B48  0E05               	movlw	5
-  1656  003B4A                     u387:
-  1657  003B4A  2EE8               	decfsz	wreg,f,c
-  1658  003B4C  D7FE               	goto	u387
-  1659  003B4E  F000               	nop	
-  1660                           
-  1661                           ;main.c: 287: LATAbits.LATA2 = 1;
-  1662  003B50  8489               	bsf	3977,2,c	;volatile
-  1663                           
-  1664                           ;main.c: 288: } else {
-  1665  003B52  0012               	return	
-  1666  003B54                     l90:
-  1667                           
-  1668                           ;main.c: 289: LATAbits.LATA2 = 0;
-  1669  003B54  9489               	bcf	3977,2,c	;volatile
-  1670  003B56  0012               	return	
-  1671  003B58                     __end_of_setCSN:
-  1672                           	opt stack 0
-  1673                           tblptru	equ	0xFF8
-  1674                           tblptrh	equ	0xFF7
-  1675                           tblptrl	equ	0xFF6
-  1676                           tablat	equ	0xFF5
-  1677                           postinc0	equ	0xFEE
-  1678                           wreg	equ	0xFE8
-  1679                           indf1	equ	0xFE7
-  1680                           postdec1	equ	0xFE5
-  1681                           fsr1h	equ	0xFE2
-  1682                           fsr1l	equ	0xFE1
-  1683                           indf2	equ	0xFDF
-  1684                           fsr2h	equ	0xFDA
-  1685                           fsr2l	equ	0xFD9
-  1686                           status	equ	0xFD8
-  1687                           
-  1688 ;; *************** function _delay10ms *****************
-  1689 ;; Defined at:
-  1690 ;;		line 441 in file "main.c"
-  1691 ;; Parameters:    Size  Location     Type
-  1692 ;;  ms_multi        2    0[COMRAM] int 
-  1693 ;; Auto vars:     Size  Location     Type
-  1694 ;;  i               2    3[COMRAM] int 
-  1695 ;; Return value:  Size  Location     Type
-  1696 ;;		None               void
-  1697 ;; Registers used:
-  1698 ;;		wreg, status,2, status,0
-  1699 ;; Tracked objects:
-  1700 ;;		On entry : 0/0
-  1701 ;;		On exit  : 0/0
-  1702 ;;		Unchanged: 0/0
-  1703 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2
-  1704 ;;      Params:         2       0       0       0
-  1705 ;;      Locals:         2       0       0       0
-  1706 ;;      Temps:          1       0       0       0
-  1707 ;;      Totals:         5       0       0       0
-  1708 ;;Total ram usage:        5 bytes
-  1709 ;; Hardware stack levels used:    1
-  1710 ;; This function calls:
-  1711 ;;		Nothing
-  1712 ;; This function is called by:
-  1713 ;;		_main
-  1714 ;; This function uses a non-reentrant model
-  1715 ;;
-  1716                           
-  1717                           	psect	text12
-  1718  003BAC                     __ptext12:
-  1719                           	opt stack 0
-  1720  003BAC                     _delay10ms:
-  1721                           	opt stack 30
-  1722                           
-  1723                           ;main.c: 442: int i = 0;
-  1724                           
-  1725                           ;incstack = 0
-  1726  003BAC  0E00               	movlw	0
-  1727  003BAE  6E27               	movwf	delay10ms@i+1,c
-  1728  003BB0  0E00               	movlw	0
-  1729  003BB2  6E26               	movwf	delay10ms@i,c
-  1730                           
-  1731                           ;main.c: 443: for (i=0;i<ms_multi;i++) {
-  1732  003BB4  0E00               	movlw	0
-  1733  003BB6  6E27               	movwf	delay10ms@i+1,c
-  1734  003BB8  0E00               	movlw	0
-  1735  003BBA  6E26               	movwf	delay10ms@i,c
-  1736  003BBC  D00A               	goto	l143
-  1737  003BBE                     l836:
-  1738                           
-  1739                           ;main.c: 444: _delay((unsigned long)((11)*(64000000/4000.0)));
-  1740  003BBE  0EE5               	movlw	229
-  1741  003BC0  6E25               	movwf	??_delay10ms& (0+255),c
-  1742  003BC2  0E91               	movlw	145
-  1743  003BC4                     u397:
-  1744  003BC4  2EE8               	decfsz	wreg,f,c
-  1745  003BC6  D7FE               	goto	u397
-  1746  003BC8  2E25               	decfsz	??_delay10ms& (0+255),f,c
-  1747  003BCA  D7FC               	goto	u397
-  1748  003BCC  F000               	nop	
-  1749  003BCE  4A26               	infsnz	delay10ms@i,f,c
-  1750  003BD0  2A27               	incf	delay10ms@i+1,f,c
-  1751  003BD2                     l143:
-  1752  003BD2  5027               	movf	delay10ms@i+1,w,c
-  1753  003BD4  0A80               	xorlw	128
-  1754  003BD6  6E25               	movwf	??_delay10ms& (0+255),c
-  1755  003BD8  5023               	movf	delay10ms@ms_multi,w,c
-  1756  003BDA  5C26               	subwf	delay10ms@i,w,c
-  1757  003BDC  5024               	movf	delay10ms@ms_multi+1,w,c
-  1758  003BDE  0A80               	xorlw	128
-  1759  003BE0  5825               	subwfb	??_delay10ms& (0+255),w,c
-  1760  003BE2  B0D8               	btfsc	status,0,c
-  1761  003BE4  0012               	return	
-  1762  003BE6  D7EB               	goto	l836
-  1763  003BE8                     __end_of_delay10ms:
-  1764                           	opt stack 0
-  1765  0000                     tblptru	equ	0xFF8
-  1766                           tblptrh	equ	0xFF7
-  1767                           tblptrl	equ	0xFF6
-  1768                           tablat	equ	0xFF5
-  1769                           postinc0	equ	0xFEE
-  1770                           wreg	equ	0xFE8
-  1771                           indf1	equ	0xFE7
-  1772                           postdec1	equ	0xFE5
-  1773                           fsr1h	equ	0xFE2
-  1774                           fsr1l	equ	0xFE1
-  1775                           indf2	equ	0xFDF
-  1776                           fsr2h	equ	0xFDA
-  1777                           fsr2l	equ	0xFD9
-  1778                           status	equ	0xFD8
-  1779                           tblptru	equ	0xFF8
-  1780                           tblptrh	equ	0xFF7
-  1781                           tblptrl	equ	0xFF6
-  1782                           tablat	equ	0xFF5
-  1783                           postinc0	equ	0xFEE
-  1784                           wreg	equ	0xFE8
-  1785                           indf1	equ	0xFE7
-  1786                           postdec1	equ	0xFE5
-  1787                           fsr1h	equ	0xFE2
-  1788                           fsr1l	equ	0xFE1
-  1789                           indf2	equ	0xFDF
-  1790                           fsr2h	equ	0xFDA
-  1791                           fsr2l	equ	0xFD9
-  1792                           status	equ	0xFD8
-  1793                           
-  1794                           	psect	rparam
-  1795  0000                     tblptru	equ	0xFF8
-  1796                           tblptrh	equ	0xFF7
-  1797                           tblptrl	equ	0xFF6
-  1798                           tablat	equ	0xFF5
-  1799                           postinc0	equ	0xFEE
-  1800                           wreg	equ	0xFE8
-  1801                           indf1	equ	0xFE7
-  1802                           postdec1	equ	0xFE5
-  1803                           fsr1h	equ	0xFE2
-  1804                           fsr1l	equ	0xFE1
-  1805                           indf2	equ	0xFDF
-  1806                           fsr2h	equ	0xFDA
-  1807                           fsr2l	equ	0xFD9
-  1808                           status	equ	0xFD8
+  1497                           ;main.c: 325: if (wr == 'w') {
+  1498  003C0E  5026               	movf	nrfConfigReg@wr,w,c
+  1499  003C10  0A77               	xorlw	119
+  1500  003C12  A4D8               	btfss	status,2,c
+  1501  003C14  D008               	goto	l960
+  1502                           
+  1503                           ;main.c: 326: spiTransferByte(0x20|command);
+  1504  003C16  5024               	movf	nrfConfigReg@command,w,c
+  1505  003C18  0920               	iorlw	32
+  1506  003C1A  EC84  F01D         	call	_spiTransferByte
+  1507                           
+  1508                           ;main.c: 327: spiTransferByte(data);
+  1509  003C1E  5025               	movf	nrfConfigReg@data,w,c
+  1510  003C20  EC84  F01D         	call	_spiTransferByte
+  1511                           
+  1512                           ;main.c: 328: } else if (wr == 'r') {
+  1513  003C24  D00B               	goto	l964
+  1514  003C26                     l960:
+  1515  003C26  5026               	movf	nrfConfigReg@wr,w,c
+  1516  003C28  0A72               	xorlw	114
+  1517  003C2A  A4D8               	btfss	status,2,c
+  1518  003C2C  D007               	goto	l964
+  1519                           
+  1520                           ;main.c: 329: spiTransferByte(0x00|command);
+  1521  003C2E  5024               	movf	nrfConfigReg@command,w,c
+  1522  003C30  EC84  F01D         	call	_spiTransferByte
+  1523                           
+  1524                           ;main.c: 330: data = spiTransferByte(0xFF);
+  1525  003C34  0EFF               	movlw	255
+  1526  003C36  EC84  F01D         	call	_spiTransferByte
+  1527  003C3A  6E25               	movwf	nrfConfigReg@data,c
+  1528  003C3C                     l964:
+  1529                           
+  1530                           ;main.c: 331: }
+  1531                           ;main.c: 333: setCSN(1);
+  1532  003C3C  0E00               	movlw	0
+  1533  003C3E  6E23               	movwf	setCSN@level+1,c
+  1534  003C40  0E01               	movlw	1
+  1535  003C42  6E22               	movwf	setCSN@level,c
+  1536  003C44  EC8D  F01D         	call	_setCSN	;wreg free
+  1537  003C48  0012               	return	
+  1538  003C4A                     __end_of_nrfConfigReg:
+  1539                           	opt stack 0
+  1540                           tblptru	equ	0xFF8
+  1541                           tblptrh	equ	0xFF7
+  1542                           tblptrl	equ	0xFF6
+  1543                           tablat	equ	0xFF5
+  1544                           postinc0	equ	0xFEE
+  1545                           wreg	equ	0xFE8
+  1546                           indf1	equ	0xFE7
+  1547                           postdec1	equ	0xFE5
+  1548                           fsr1h	equ	0xFE2
+  1549                           fsr1l	equ	0xFE1
+  1550                           indf2	equ	0xFDF
+  1551                           fsr2h	equ	0xFDA
+  1552                           fsr2l	equ	0xFD9
+  1553                           status	equ	0xFD8
+  1554                           
+  1555 ;; *************** function _spiTransferByte *****************
+  1556 ;; Defined at:
+  1557 ;;		line 413 in file "main.c"
+  1558 ;; Parameters:    Size  Location     Type
+  1559 ;;  data            1    wreg     unsigned char 
+  1560 ;; Auto vars:     Size  Location     Type
+  1561 ;;  data            1    0[COMRAM] unsigned char 
+  1562 ;; Return value:  Size  Location     Type
+  1563 ;;                  1    wreg      unsigned char 
+  1564 ;; Registers used:
+  1565 ;;		wreg, status,2, cstack
+  1566 ;; Tracked objects:
+  1567 ;;		On entry : 0/0
+  1568 ;;		On exit  : 0/0
+  1569 ;;		Unchanged: 0/0
+  1570 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2
+  1571 ;;      Params:         0       0       0       0
+  1572 ;;      Locals:         1       0       0       0
+  1573 ;;      Temps:          0       0       0       0
+  1574 ;;      Totals:         1       0       0       0
+  1575 ;;Total ram usage:        1 bytes
+  1576 ;; Hardware stack levels used:    1
+  1577 ;; This function calls:
+  1578 ;;		Nothing
+  1579 ;; This function is called by:
+  1580 ;;		_nrfGetStatus
+  1581 ;;		_nrfConfigReg
+  1582 ;;		_nrfSetTXAddr
+  1583 ;;		_nrfSetRXAddr
+  1584 ;;		_spiTransfer
+  1585 ;;		_nrfTXData
+  1586 ;; This function uses a non-reentrant model
+  1587 ;;
+  1588                           
+  1589                           	psect	text10
+  1590  003B08                     __ptext10:
+  1591                           	opt stack 0
+  1592  003B08                     _spiTransferByte:
+  1593                           	opt stack 29
+  1594                           
+  1595                           ;incstack = 0
+  1596                           ;spiTransferByte@data stored from wreg
+  1597  003B08  6E22               	movwf	spiTransferByte@data,c
+  1598                           
+  1599                           ;main.c: 415: SSP1BUF = data;
+  1600  003B0A  C022  FFC9         	movff	spiTransferByte@data,4041	;volatile
+  1601                           
+  1602                           ;main.c: 417: _delay((unsigned long)((8)*(64000000/4000000.0)));
+  1603  003B0E  0E2A               	movlw	42
+  1604  003B10                     u367:
+  1605  003B10  2EE8               	decfsz	wreg,f,c
+  1606  003B12  D7FE               	goto	u367
+  1607  003B14  D000               	nop2		;nop
+  1608                           
+  1609                           ;main.c: 419: return SSP1BUF;
+  1610  003B16  50C9               	movf	4041,w,c	;volatile
+  1611  003B18  0012               	return	
+  1612  003B1A                     __end_of_spiTransferByte:
+  1613                           	opt stack 0
+  1614                           tblptru	equ	0xFF8
+  1615                           tblptrh	equ	0xFF7
+  1616                           tblptrl	equ	0xFF6
+  1617                           tablat	equ	0xFF5
+  1618                           postinc0	equ	0xFEE
+  1619                           wreg	equ	0xFE8
+  1620                           indf1	equ	0xFE7
+  1621                           postdec1	equ	0xFE5
+  1622                           fsr1h	equ	0xFE2
+  1623                           fsr1l	equ	0xFE1
+  1624                           indf2	equ	0xFDF
+  1625                           fsr2h	equ	0xFDA
+  1626                           fsr2l	equ	0xFD9
+  1627                           status	equ	0xFD8
+  1628                           
+  1629 ;; *************** function _setCSN *****************
+  1630 ;; Defined at:
+  1631 ;;		line 295 in file "main.c"
+  1632 ;; Parameters:    Size  Location     Type
+  1633 ;;  level           2    0[COMRAM] int 
+  1634 ;; Auto vars:     Size  Location     Type
+  1635 ;;		None
+  1636 ;; Return value:  Size  Location     Type
+  1637 ;;		None               void
+  1638 ;; Registers used:
+  1639 ;;		wreg, status,2, status,0
+  1640 ;; Tracked objects:
+  1641 ;;		On entry : 0/0
+  1642 ;;		On exit  : 0/0
+  1643 ;;		Unchanged: 0/0
+  1644 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2
+  1645 ;;      Params:         2       0       0       0
+  1646 ;;      Locals:         0       0       0       0
+  1647 ;;      Temps:          0       0       0       0
+  1648 ;;      Totals:         2       0       0       0
+  1649 ;;Total ram usage:        2 bytes
+  1650 ;; Hardware stack levels used:    1
+  1651 ;; This function calls:
+  1652 ;;		Nothing
+  1653 ;; This function is called by:
+  1654 ;;		_nrfGetStatus
+  1655 ;;		_nrfConfigReg
+  1656 ;;		_nrfSetTXAddr
+  1657 ;;		_nrfSetRXAddr
+  1658 ;;		_spiTransfer
+  1659 ;;		_nrfTXData
+  1660 ;; This function uses a non-reentrant model
+  1661 ;;
+  1662                           
+  1663                           	psect	text11
+  1664  003B1A                     __ptext11:
+  1665                           	opt stack 0
+  1666  003B1A                     _setCSN:
+  1667                           	opt stack 29
+  1668                           
+  1669                           ;main.c: 297: if (level == 1) {
+  1670                           
+  1671                           ;incstack = 0
+  1672  003B1A  0422               	decf	setCSN@level,w,c
+  1673  003B1C  1023               	iorwf	setCSN@level+1,w,c
+  1674  003B1E  A4D8               	btfss	status,2,c
+  1675  003B20  D006               	goto	l93
+  1676                           
+  1677                           ;main.c: 298: _delay((unsigned long)((1)*(64000000/4000000.0)));
+  1678  003B22  0E05               	movlw	5
+  1679  003B24                     u377:
+  1680  003B24  2EE8               	decfsz	wreg,f,c
+  1681  003B26  D7FE               	goto	u377
+  1682  003B28  F000               	nop	
+  1683                           
+  1684                           ;main.c: 299: LATAbits.LATA2 = 1;
+  1685  003B2A  8489               	bsf	3977,2,c	;volatile
+  1686                           
+  1687                           ;main.c: 300: } else {
+  1688  003B2C  0012               	return	
+  1689  003B2E                     l93:
+  1690                           
+  1691                           ;main.c: 301: LATAbits.LATA2 = 0;
+  1692  003B2E  9489               	bcf	3977,2,c	;volatile
+  1693  003B30  0012               	return	
+  1694  003B32                     __end_of_setCSN:
+  1695                           	opt stack 0
+  1696                           tblptru	equ	0xFF8
+  1697                           tblptrh	equ	0xFF7
+  1698                           tblptrl	equ	0xFF6
+  1699                           tablat	equ	0xFF5
+  1700                           postinc0	equ	0xFEE
+  1701                           wreg	equ	0xFE8
+  1702                           indf1	equ	0xFE7
+  1703                           postdec1	equ	0xFE5
+  1704                           fsr1h	equ	0xFE2
+  1705                           fsr1l	equ	0xFE1
+  1706                           indf2	equ	0xFDF
+  1707                           fsr2h	equ	0xFDA
+  1708                           fsr2l	equ	0xFD9
+  1709                           status	equ	0xFD8
+  1710                           
+  1711 ;; *************** function _delay10ms *****************
+  1712 ;; Defined at:
+  1713 ;;		line 453 in file "main.c"
+  1714 ;; Parameters:    Size  Location     Type
+  1715 ;;  ms_multi        2    0[COMRAM] int 
+  1716 ;; Auto vars:     Size  Location     Type
+  1717 ;;  i               2    3[COMRAM] int 
+  1718 ;; Return value:  Size  Location     Type
+  1719 ;;		None               void
+  1720 ;; Registers used:
+  1721 ;;		wreg, status,2, status,0
+  1722 ;; Tracked objects:
+  1723 ;;		On entry : 0/0
+  1724 ;;		On exit  : 0/0
+  1725 ;;		Unchanged: 0/0
+  1726 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2
+  1727 ;;      Params:         2       0       0       0
+  1728 ;;      Locals:         2       0       0       0
+  1729 ;;      Temps:          1       0       0       0
+  1730 ;;      Totals:         5       0       0       0
+  1731 ;;Total ram usage:        5 bytes
+  1732 ;; Hardware stack levels used:    1
+  1733 ;; This function calls:
+  1734 ;;		Nothing
+  1735 ;; This function is called by:
+  1736 ;;		_main
+  1737 ;; This function uses a non-reentrant model
+  1738 ;;
+  1739                           
+  1740                           	psect	text12
+  1741  003B86                     __ptext12:
+  1742                           	opt stack 0
+  1743  003B86                     _delay10ms:
+  1744                           	opt stack 30
+  1745                           
+  1746                           ;main.c: 454: int i = 0;
+  1747                           
+  1748                           ;incstack = 0
+  1749  003B86  0E00               	movlw	0
+  1750  003B88  6E26               	movwf	delay10ms@i+1,c
+  1751  003B8A  0E00               	movlw	0
+  1752  003B8C  6E25               	movwf	delay10ms@i,c
+  1753                           
+  1754                           ;main.c: 455: for (i=0;i<ms_multi;i++) {
+  1755  003B8E  0E00               	movlw	0
+  1756  003B90  6E26               	movwf	delay10ms@i+1,c
+  1757  003B92  0E00               	movlw	0
+  1758  003B94  6E25               	movwf	delay10ms@i,c
+  1759  003B96  D00A               	goto	l143
+  1760  003B98                     l1024:
+  1761                           
+  1762                           ;main.c: 456: _delay((unsigned long)((11)*(64000000/4000.0)));
+  1763  003B98  0EE5               	movlw	229
+  1764  003B9A  6E24               	movwf	??_delay10ms& (0+255),c
+  1765  003B9C  0E91               	movlw	145
+  1766  003B9E                     u387:
+  1767  003B9E  2EE8               	decfsz	wreg,f,c
+  1768  003BA0  D7FE               	goto	u387
+  1769  003BA2  2E24               	decfsz	??_delay10ms& (0+255),f,c
+  1770  003BA4  D7FC               	goto	u387
+  1771  003BA6  F000               	nop	
+  1772  003BA8  4A25               	infsnz	delay10ms@i,f,c
+  1773  003BAA  2A26               	incf	delay10ms@i+1,f,c
+  1774  003BAC                     l143:
+  1775  003BAC  5026               	movf	delay10ms@i+1,w,c
+  1776  003BAE  0A80               	xorlw	128
+  1777  003BB0  6E24               	movwf	??_delay10ms& (0+255),c
+  1778  003BB2  5022               	movf	delay10ms@ms_multi,w,c
+  1779  003BB4  5C25               	subwf	delay10ms@i,w,c
+  1780  003BB6  5023               	movf	delay10ms@ms_multi+1,w,c
+  1781  003BB8  0A80               	xorlw	128
+  1782  003BBA  5824               	subwfb	??_delay10ms& (0+255),w,c
+  1783  003BBC  B0D8               	btfsc	status,0,c
+  1784  003BBE  0012               	return	
+  1785  003BC0  D7EB               	goto	l1024
+  1786  003BC2                     __end_of_delay10ms:
+  1787                           	opt stack 0
+  1788  0000                     tblptru	equ	0xFF8
+  1789                           tblptrh	equ	0xFF7
+  1790                           tblptrl	equ	0xFF6
+  1791                           tablat	equ	0xFF5
+  1792                           postinc0	equ	0xFEE
+  1793                           wreg	equ	0xFE8
+  1794                           indf1	equ	0xFE7
+  1795                           postdec1	equ	0xFE5
+  1796                           fsr1h	equ	0xFE2
+  1797                           fsr1l	equ	0xFE1
+  1798                           indf2	equ	0xFDF
+  1799                           fsr2h	equ	0xFDA
+  1800                           fsr2l	equ	0xFD9
+  1801                           status	equ	0xFD8
+  1802                           tblptru	equ	0xFF8
+  1803                           tblptrh	equ	0xFF7
+  1804                           tblptrl	equ	0xFF6
+  1805                           tablat	equ	0xFF5
+  1806                           postinc0	equ	0xFEE
+  1807                           wreg	equ	0xFE8
+  1808                           indf1	equ	0xFE7
+  1809                           postdec1	equ	0xFE5
+  1810                           fsr1h	equ	0xFE2
+  1811                           fsr1l	equ	0xFE1
+  1812                           indf2	equ	0xFDF
+  1813                           fsr2h	equ	0xFDA
+  1814                           fsr2l	equ	0xFD9
+  1815                           status	equ	0xFD8
+  1816                           
+  1817                           	psect	rparam
+  1818  0000                     tblptru	equ	0xFF8
+  1819                           tblptrh	equ	0xFF7
+  1820                           tblptrl	equ	0xFF6
+  1821                           tablat	equ	0xFF5
+  1822                           postinc0	equ	0xFEE
+  1823                           wreg	equ	0xFE8
+  1824                           indf1	equ	0xFE7
+  1825                           postdec1	equ	0xFE5
+  1826                           fsr1h	equ	0xFE2
+  1827                           fsr1l	equ	0xFE1
+  1828                           indf2	equ	0xFDF
+  1829                           fsr2h	equ	0xFDA
+  1830                           fsr2l	equ	0xFD9
+  1831                           status	equ	0xFD8
 
 
 Data Sizes:
     Strings     0
     Constant    0
-    Data        15
-    BSS         66
+    Data        16
+    BSS         65
     Persistent  0
     Stack       0
 
 Auto Spaces:
     Space          Size  Autos    Used
-    COMRAM           95     18      67
+    COMRAM           95     19      68
     BANK0           160      0      32
     BANK1           256      0       0
     BANK2           256      0       0
@@ -1832,7 +1855,7 @@ Auto Spaces:
 Pointer List with Targets:
 
     nrfSetRXAddr@addr	PTR unsigned char  size(2) Largest target is 4
-		 -> RX_ADDRESS(COMRAM[4]), 
+		 -> RX_ADDRESS(COMRAM[4]), TX_ADDRESS(COMRAM[4]), 
 
     nrfSetTXAddr@addr	PTR unsigned char  size(2) Largest target is 4
 		 -> TX_ADDRESS(COMRAM[4]), 
@@ -1866,8 +1889,8 @@ Call Graph Tables:
  ---------------------------------------------------------------------------------
  (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
  ---------------------------------------------------------------------------------
- (0) _main                                                 2     2      0    7467
-                                             16 COMRAM     2     2      0
+ (0) _main                                                 3     3      0    7945
+                                             16 COMRAM     3     3      0
                           _delay10ms
                           _nrfConfig
                        _nrfGetStatus
@@ -1880,8 +1903,8 @@ Call Graph Tables:
  ---------------------------------------------------------------------------------
  (1) _portConfig                                           0     0      0       0
  ---------------------------------------------------------------------------------
- (1) _nrfTXData                                           10     8      2     869
-                                              2 COMRAM    10     8      2
+ (1) _nrfTXData                                            8     6      2     823
+                                              2 COMRAM     8     6      2
                              _setCSN
                     _spiTransferByte
  ---------------------------------------------------------------------------------
@@ -1889,13 +1912,13 @@ Call Graph Tables:
                              _setCSN
                     _spiTransferByte
  ---------------------------------------------------------------------------------
- (1) _nrfConfig                                            0     0      0    4599
+ (1) _nrfConfig                                            0     0      0    4917
                        _nrfConfigReg
                        _nrfSetRXAddr
                        _nrfSetTXAddr
                         _spiTransfer
  ---------------------------------------------------------------------------------
- (1) _spiTransfer                                         14    11      3    1136
+ (1) _spiTransfer                                         14    11      3    1242
                                               2 COMRAM    14    11      3
                              _setCSN
                     _spiTransferByte
@@ -1905,12 +1928,12 @@ Call Graph Tables:
                              _setCSN
                     _spiTransferByte
  ---------------------------------------------------------------------------------
- (2) _nrfSetRXAddr                                        11     7      4     920
+ (2) _nrfSetRXAddr                                        11     7      4    1026
                                               2 COMRAM    11     7      4
                              _setCSN
                     _spiTransferByte
  ---------------------------------------------------------------------------------
- (2) _nrfConfigReg                                         3     1      2    1645
+ (2) _nrfConfigReg                                         3     1      2    1751
                                               2 COMRAM     3     1      2
                              _setCSN
                     _spiTransferByte
@@ -1921,7 +1944,7 @@ Call Graph Tables:
  (2) _setCSN                                               2     0      2     658
                                               0 COMRAM     2     0      2
  ---------------------------------------------------------------------------------
- (1) _delay10ms                                            5     3      2     159
+ (1) _delay10ms                                            5     3      2     259
                                               0 COMRAM     5     3      2
  ---------------------------------------------------------------------------------
  Estimated maximum stack depth 2
@@ -1967,87 +1990,86 @@ BANK1              100      0       0       5        0.0%
 BITBANK0            A0      0       0       3        0.0%
 BANK0               A0      0      20       4       20.0%
 BITCOMRAM           5F      0       0       0        0.0%
-COMRAM              5F     12      43       1       70.5%
+COMRAM              5F     13      44       1       71.6%
 BITSFR_1             0      0       0      40        0.0%
 SFR_1                0      0       0      40        0.0%
 BITSFR               0      0       0      40        0.0%
 SFR                  0      0       0      40        0.0%
 STACK                0      0       0       2        0.0%
 NULL                 0      0       0       0        0.0%
-ABS                  0      0      63       8        0.0%
-DATA                 0      0      63      11        0.0%
+ABS                  0      0      64       8        0.0%
+DATA                 0      0      64      11        0.0%
 CODE                 0      0       0       0        0.0%
 
 
 Microchip Technology PIC18 Macro Assembler V1.33 build 59893 
-Symbol Table                                                                                   Fri Sep 26 11:07:03 2014
+Symbol Table                                                                                   Mon Sep 29 12:11:47 2014
 
-__size_of_spiTransferByte 0012                        l90 3B54                _RX_ADDRESS 003C  
-             __CFG_LVP$ON 000000                       l143 3BD2                       l137 3F20  
-                     l930 3F66                       l836 3BBE                       l942 3FDE  
-                     l934 3F74                       l926 3F56                       l944 3FF2  
-                     l954 3C4C                       l938 3F86                       l972 3DAE  
-                     l958 3C62                       l974 3DC2                       l990 3CD6  
-                     l968 3D80                       l984 3C94                       l988 3CC2  
-                     u347 3EF4                       u357 3F02                       u367 3F18  
-                     u377 3B36                       u387 3B4A                       u397 3BC4  
-                     wreg 000FE8                _TX_ADDRESS 0040                      l1012 3ED0  
-                    l1014 3EE4                      l1008 3EA2                      l1026 3F16  
-                    l1044 3D04                      l1064 3D4A                      _LATA 000F89  
-                    _LATB 000F8A                      _LATC 000F8B        spiTransfer@command 0025  
-                    _main 3CE4                      indf1 000FE7                      fsr1l 000FE1  
-                    indf2 000FDF                      fsr2l 000FD9             __CFG_BORV$190 000000  
-                    start 0000             __CFG_IESO$OFF 000000            nrfConfigReg@wr 0027  
-                   ?_main 0023                     _TRISA 000F92                     _TRISB 000F93  
-                   _TRISC 000F94            __CFG_FCMEN$OFF 000000        __CFG_MCLRE$EXTMCLR 000000  
-                   tablat 000FF5                     status 000FD8            __CFG_HFOFST$ON 000000  
-          __CFG_FOSC$HSHP 000000           __initialization 3BE8              __end_of_main 3D58  
-     spiTransferByte@data 0023                    ??_main 0033             __activetblptr 000000  
-       ??_spiTransferByte 0023            __CFG_PLLCFG$ON 000000             nrfSetRXAddr@i 002E  
-           nrfSetTXAddr@i 002D            __CFG_WDTEN$OFF 000000              ?_spiConfig_1 0023  
-          __CFG_PWRTEN$ON 000000            __CFG_XINST$OFF 000000            __CFG_STVREN$ON 000000  
-                  _setCSN 3B40                    clear_0 3BEE                    clear_1 3BFA  
-             setCSN@level 0023             ?_nrfGetStatus 0023             ?_nrfConfigReg 0025  
-            __pdataCOMRAM 0035              ?_spiTransfer 0025                    tblptrh 000FF7  
-                  tblptrl 000FF6                    tblptru 000FF8                __accesstop 0060  
- __end_of__initialization 3C20           __CFG_PBADEN$OFF 000000             ?_nrfSetRXAddr 0025  
-           ?_nrfSetTXAddr 0025            __pcstackCOMRAM 0023        __size_of_delay10ms 003C  
-          ??_nrfGetStatus 0025            _EN_RXADDR_CURR 0036            ??_nrfConfigReg 0027  
-        nrfConfigReg@data 0026                _dataBufOut 0001                __pbssBANK0 0060  
-          ??_nrfSetRXAddr 0029            ??_nrfSetTXAddr 0029        __size_of_nrfTXData 00B8  
-      __size_of_nrfConfig 00AE       nrfConfigReg@command 0025        __CFG_CCP2MX$PORTC1 000000  
-      __CFG_CCP3MX$PORTB5 000000                   ?_setCSN 0023                   _SSP1ADD 000FC8  
-                 _SSP1BUF 000FC9         __end_of_delay10ms 3BE8          nrfSetRXAddr@addr 0025  
-        nrfSetRXAddr@pipe 002D                   __Hparam 0000                   __Lparam 0000  
-    __size_of_spiConfig_1 0018           _spiTransferByte 3B2E                delay10ms@i 0026  
-           _RX_PW_P0_CURR 0039                   __pcinit 3BE8           __size_of_setCSN 0018  
-        nrfSetTXAddr@addr 0025                   __ramtop 0300                   __ptext0 3CE4  
-                 __ptext1 3B58                   __ptext2 3B70                   __ptext3 3E7E  
-                 __ptext4 3B8A                   __ptext5 3DD0                   __ptext6 3F36  
-                 __ptext7 3C70                   __ptext8 3D58                   __ptext9 3C26  
-       __end_of_nrfTXData 3F36         __end_of_nrfConfig 3E7E      __size_of_spiTransfer 00CA  
-    end_of_initialization 3C20      __end_of_nrfGetStatus 3BAC      __end_of_nrfConfigReg 3C70  
-                 postdec1 000FE5                   postinc0 000FEE              nrfTXData@len 0025  
-              _portConfig 3B70      __end_of_nrfSetRXAddr 3DD0      __end_of_nrfSetTXAddr 3CE4  
- __end_of_spiTransferByte 3B40             __pidataCOMRAM 3B1F            __end_of_setCSN 3B58  
-     start_initialization 3BE8                  ??_setCSN 0025               ?_portConfig 0023  
-              nrfTXData@i 002D               __pbssCOMRAM 0001     __size_of_nrfGetStatus 0022  
-   __size_of_nrfConfigReg 004A                 _dataBufIn 0060          ?_spiTransferByte 0023  
-               _delay10ms 3BAC               _CONFIG_CURR 0035             _SETUP_AW_CURR 003A  
-   __size_of_nrfSetRXAddr 0078     __size_of_nrfSetTXAddr 0074           _SETUP_RETR_CURR 003B  
-        __CFG_PRICLKEN$ON 000000              _nrfGetStatus 3B8A              _nrfConfigReg 3C26  
-         nrfSetRXAddr@len 0027                 _nrfSTATUS 0022                 _nrfTXData 3E7E  
-         nrfSetTXAddr@len 0027                 _nrfConfig 3DD0       __size_of_portConfig 001A  
-                _LATAbits 000F89                ?_delay10ms 0023             ??_spiConfig_1 0023  
-            _nrfSetRXAddr 3D58              _nrfSetTXAddr 3C70          __CFG_WDTPS$32768 000000  
-           _RF_SETUP_CURR 0038         delay10ms@ms_multi 0023             ??_spiTransfer 0028  
-               main@count 0033                ?_nrfTXData 0025                 copy_data0 3C14  
-              ?_nrfConfig 0023                  __Hrparam 0000                  __Lrparam 0000  
-      __CFG_BOREN$SBORDIS 000000         __CFG_P2BMX$PORTB5 000000       __end_of_spiConfig_1 3B70  
-                __ptext10 3B2E                  __ptext11 3B40                  __ptext12 3BAC  
-            _SSP1CON1bits 000FC6       __end_of_spiTransfer 4000             __size_of_main 0074  
-             ??_delay10ms 0025                _EN_AA_CURR 0021              _SSP1STATbits 000FC7  
-            ??_portConfig 0023            nrfTXData@i_556 002B               ??_nrfTXData 0027  
-             ??_nrfConfig 0033        __end_of_portConfig 3B8A               _spiConfig_1 3B58  
-          spiTransfer@len 0026            spiTransfer@wrn 0030                _RF_CH_CURR 0037  
-             _spiTransfer 3F36         __CFG_T3CMX$PORTC0 000000              spiTransfer@i 0031  
+__size_of_spiTransferByte 0012                        l93 3B2E                _RX_ADDRESS 003D  
+             __CFG_LVP$ON 000000                       l143 3BAC                       l940 3EA2  
+                     l932 3E84                       l950 3F20                       l960 3C26  
+                     l944 3EB4                       l936 3E94                       l964 3C3C  
+                     l980 3D28                       l948 3F0C                       l974 3CE6  
+                     l990 3C6E                       l978 3D14                       l994 3C9C  
+                     l996 3CB0                       u357 3DB0                       u367 3B10  
+                     u377 3B24                       u387 3B9E                       wreg 000FE8  
+              _TX_ADDRESS 0041                      l1024 3B98                      l1040 3D8C  
+                    l1042 3DA0                      l1036 3D5A                      l1064 3DDA  
+                    l1074 3E00                      l1076 3E04                      l1088 3E3E  
+                    _LATA 000F89                      _LATB 000F8A                      _LATC 000F8B  
+      spiTransfer@command 0024                      _main 3DBA                      indf1 000FE7  
+                    fsr1l 000FE1                      indf2 000FDF                      fsr2l 000FD9  
+           __CFG_BORV$190 000000                      start 0000             __CFG_IESO$OFF 000000  
+          nrfConfigReg@wr 0026                     ?_main 0022                     _TRISA 000F92  
+                   _TRISB 000F93                     _TRISC 000F94            __CFG_FCMEN$OFF 000000  
+      __CFG_MCLRE$EXTMCLR 000000                     tablat 000FF5                     status 000FD8  
+          __CFG_HFOFST$ON 000000            __CFG_FOSC$HSHP 000000           __initialization 3BC2  
+            __end_of_main 3E64       spiTransferByte@data 0022                    ??_main 0032  
+           __activetblptr 000000         ??_spiTransferByte 0022            __CFG_PLLCFG$ON 000000  
+           nrfSetRXAddr@i 002D             nrfSetTXAddr@i 002C            __CFG_WDTEN$OFF 000000  
+            ?_spiConfig_1 0022            __CFG_PWRTEN$ON 000000            __CFG_XINST$OFF 000000  
+          __CFG_STVREN$ON 000000                    _setCSN 3B1A                    clear_0 3BC8  
+                  clear_1 3BD4               setCSN@level 0022             ?_nrfGetStatus 0022  
+           ?_nrfConfigReg 0024              __pdataCOMRAM 0035              ?_spiTransfer 0024  
+                  tblptrh 000FF7                    tblptrl 000FF6                    tblptru 000FF8  
+              __accesstop 0060   __end_of__initialization 3BFA           __CFG_PBADEN$OFF 000000  
+           ?_nrfSetRXAddr 0024             ?_nrfSetTXAddr 0024            __pcstackCOMRAM 0022  
+      __size_of_delay10ms 003C            ??_nrfGetStatus 0024            _EN_RXADDR_CURR 0037  
+          ??_nrfConfigReg 0026          nrfConfigReg@data 0025                _dataBufOut 0060  
+              __pbssBANK0 0060            ??_nrfSetRXAddr 0028            ??_nrfSetTXAddr 0028  
+      __size_of_nrfTXData 0084        __size_of_nrfConfig 00D2       nrfConfigReg@command 0024  
+      __CFG_CCP2MX$PORTC1 000000        __CFG_CCP3MX$PORTB5 000000                   ?_setCSN 0022  
+                 _SSP1ADD 000FC8                   _SSP1BUF 000FC9         __end_of_delay10ms 3BC2  
+        nrfSetRXAddr@addr 0024          nrfSetRXAddr@pipe 002C                   __Hparam 0000  
+                 __Lparam 0000      __size_of_spiConfig_1 0018           _spiTransferByte 3B08  
+              delay10ms@i 0025             _RX_PW_P0_CURR 003A                   __pcinit 3BC2  
+         __size_of_setCSN 0018          nrfSetTXAddr@addr 0024                   __ramtop 0300  
+                 __ptext0 3DBA                   __ptext1 3B32                   __ptext2 3B4A  
+                 __ptext3 3D36                   __ptext4 3B64                   __ptext5 3F2E  
+                 __ptext6 3E64                   __ptext7 3C4A                   __ptext8 3CBE  
+                 __ptext9 3C00         __end_of_nrfTXData 3DBA         __end_of_nrfConfig 4000  
+    __size_of_spiTransfer 00CA      end_of_initialization 3BFA      __end_of_nrfGetStatus 3B86  
+    __end_of_nrfConfigReg 3C4A                   postdec1 000FE5                   postinc0 000FEE  
+            nrfTXData@len 0024                _portConfig 3B4A      __end_of_nrfSetRXAddr 3D36  
+    __end_of_nrfSetTXAddr 3CBE   __end_of_spiTransferByte 3B1A             __pidataCOMRAM 3AF8  
+          __end_of_setCSN 3B32       start_initialization 3BC2                  ??_setCSN 0024  
+             ?_portConfig 0022                nrfTXData@i 002A               __pbssCOMRAM 0001  
+   __size_of_nrfGetStatus 0022     __size_of_nrfConfigReg 004A                 _dataBufIn 0001  
+        ?_spiTransferByte 0022                 _delay10ms 3B86               _CONFIG_CURR 0035  
+           _SETUP_AW_CURR 003B     __size_of_nrfSetRXAddr 0078     __size_of_nrfSetTXAddr 0074  
+         _SETUP_RETR_CURR 003C          __CFG_PRICLKEN$ON 000000              _nrfGetStatus 3B64  
+            _nrfConfigReg 3C00           nrfSetRXAddr@len 0026                 _nrfSTATUS 0021  
+               _nrfTXData 3D36           nrfSetTXAddr@len 0026                 _nrfConfig 3F2E  
+     __size_of_portConfig 001A                  _LATAbits 000F89                ?_delay10ms 0022  
+           ??_spiConfig_1 0022              _nrfSetRXAddr 3CBE              _nrfSetTXAddr 3C4A  
+        __CFG_WDTPS$32768 000000             _RF_SETUP_CURR 0039         delay10ms@ms_multi 0022  
+           ??_spiTransfer 0027                 main@count 0033                ?_nrfTXData 0024  
+               copy_data0 3BEE                ?_nrfConfig 0022                  __Hrparam 0000  
+                __Lrparam 0000        __CFG_BOREN$SBORDIS 000000         __CFG_P2BMX$PORTB5 000000  
+     __end_of_spiConfig_1 3B4A                  __ptext10 3B08                  __ptext11 3B1A  
+                __ptext12 3B86              _SSP1CON1bits 000FC6       __end_of_spiTransfer 3F2E  
+           __size_of_main 00AA               ??_delay10ms 0024                _EN_AA_CURR 0036  
+            _SSP1STATbits 000FC7              ??_portConfig 0022               ??_nrfTXData 0026  
+             ??_nrfConfig 0032        __end_of_portConfig 3B64               _spiConfig_1 3B32  
+          spiTransfer@len 0025            spiTransfer@wrn 002F                _RF_CH_CURR 0038  
+             _spiTransfer 3E64         __CFG_T3CMX$PORTC0 000000              spiTransfer@i 0030  

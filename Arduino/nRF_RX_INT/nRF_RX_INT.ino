@@ -35,12 +35,12 @@
  * Pin Definitions
 ------------------------------------------------*/
 // LEDs
-const int actLED     = 5;    // Activity LED
+const int actLED     = 6;    // Activity LED
 
 // nRF24L01+ pins
-const int nRF_CE     = 4;    // nRF24L01+ chip enable
-const int nRF_CSN    = 3;    // nRF24L01+ chip select not
-const int nRF_IRQ    = 2;    // nRF24L01+ interrupt
+const int nRF_CE     = 5;    // nRF24L01+ chip enable
+const int nRF_CSN    = 4;    // nRF24L01+ chip select not
+const int nRF_IRQ    = 3;    // nRF24L01+ interrupt
 
 /*------------------------------------------------
  * nRF24L01+ command and register definitions
@@ -95,16 +95,16 @@ const byte FEATURE         = 0x1D;        // Feature register
 /*------------------------------------------------
  * nRF24L01+ current config settings
 ------------------------------------------------*/
-byte CONFIG_CURR           = B00101011;   // Show all interrupts; Enable CRC - 1 byte; Power up; RX
-byte EN_AA_CURR            = B00000000;   // Disable all Auto Ack
-byte EN_RXADDR_CURR        = B00000001;   // Enable data pipe 0 and 1
+byte CONFIG_CURR           = B00101011;   // Show RX_DR and MAX_RT interrupts; Enable CRC - 1 byte; Power up; RX
+byte EN_AA_CURR            = B00000001;   // Enable Auto Ack for pipe 0
+byte EN_RXADDR_CURR        = B00000011;   // Enable data pipe 0,1
 byte SETUP_AW_CURR         = B00000010;   // Set up for 4 byte address
 byte SETUP_RETR_CURR       = B00100000;   // 750us retransmit delay; Disable auto retransmit
 byte RF_CH_CURR            = B01101001;   // Channel 105 (2.400GHz + 0.105GHz = 2.505GHz)
 byte RF_SETUP_CURR         = B00000110;   // RF data rate to 1Mbps; 0dBm output power (highest)
 byte RX_PW_P0_CURR         = B00000001;   // 1 byte payload
-byte RX_ADDRESS[4]         = {0xE7,0xE7,0xE7,0xE7};
-byte TX_ADDRESS[4]         = {0xE7,0xE7,0xE7,0xE7};
+byte RX_ADDRESS[4]         = {0xC7,0xC7,0xC7,0xC7};
+byte TX_ADDRESS[4]         = {0xC7,0xC7,0xC7,0xC7};
 
 
 /*------------------------------------------------
@@ -172,7 +172,7 @@ void setup() {
   delay(1);
   
   intRXData = false;
-  attachInterrupt(0,ISR_RXData,FALLING);
+  attachInterrupt(1,ISR_RXData,LOW);
 }
 
 /*------------------------------------------------
@@ -186,19 +186,20 @@ void loop() {
   
   nrfGetStatus();
   
-  if (intRXData) {
-    intRXData = false;
+  if (intRXData == true) {
     
     digitalWrite(nRF_CE, LOW);           // Keep CE high when receiving
     
     spiTransfer('r',R_RX_PAYLOAD,1);          // Read payload command
+
+    Serial.println(dataBufIn[0]);            // Print to serial monitor
     
     dataBufOut[0] = B01110000;
     spiTransfer('w',STATUS,1);
     
     spiTransfer('n',FLUSH_RX,0);
-
-    Serial.println(dataBufIn[0]);            // Print to serial monitor
+    
+    intRXData = false;
   }
   
 }

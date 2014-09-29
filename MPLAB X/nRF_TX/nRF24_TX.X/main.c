@@ -141,19 +141,21 @@ SCK     -[14/RC3       RC4/15]-       SDI
 #define HIGH            1
 #define LOW             0
 
+#define  testbit(var, bit)  ((var) & (1 <<(bit)))  //bit test macro
+
 /*------------------------------------------------
  * Current config settings - TX
 ------------------------------------------------*/
-unsigned char CONFIG_CURR        = 0b01011010;   // Show all TX interrupts; Enable CRC - 1 byte; Power Up; PTX
-unsigned char EN_AA_CURR         = 0b00000000;   // Disable all Auto Ack
-unsigned char EN_RXADDR_CURR     = 0b00000001;   // Enable data pipe 0
+unsigned char CONFIG_CURR        = 0b01001010;   // Show TX_DS interrupts; Enable CRC - 1 byte; Power Up; PTX
+unsigned char EN_AA_CURR         = 0b00000001;   // Enable Auto Ack for pipe 0
+unsigned char EN_RXADDR_CURR     = 0b00000011;   // Enable data pipe 0,1
 unsigned char SETUP_AW_CURR      = 0b00000010;   // set for 4 byte address
-unsigned char SETUP_RETR_CURR    = 0b00100000;   // 750us retransmit delay; Disable auto retransmit
+unsigned char SETUP_RETR_CURR    = 0b00100101;   // 750us retransmit delay; Disable auto retransmit
 unsigned char RF_CH_CURR         = 0b01101001;   // Channel 105 (2.400GHz + 0.105GHz = 2.505GHz)
 unsigned char RF_SETUP_CURR      = 0b00000110;   // RF data rate to 1Mbps; 0dBm output power (highest)
 unsigned char RX_PW_P0_CURR      = 0b00000001;   // Set pipe 0 payload width to 1
 unsigned char RX_ADDRESS[4] = {0xE7,0xE7,0xE7,0xE7}; // 4 byte initial RX address
-unsigned char TX_ADDRESS[4] = {0xE7,0xE7,0xE7,0xE7}; // 4 byte initial TX address
+unsigned char TX_ADDRESS[4] = {0xC7,0xC7,0xC7,0xC7}; // 4 byte initial TX address
 
 
 /*------------------------------------------------
@@ -201,22 +203,28 @@ void main(void) {
         nrfTXData(1);
         count++;
 
+        delay10ms(1);
+        
         nrfGetStatus();
 
-        if (nrfSTATUS != 0x0E) {
-
-            ACT_LED = 1;
-
-            // Reset interrupt flags
-            dataBufOut[0] = 0b01110000;
-            spiTransfer('w',STATUS,1);
-
-            delay10ms(20);
-
-            ACT_LED = 0;
+        while (nrfSTATUS == 0x0E) {
+            nrfGetStatus();
         }
 
-        delay10ms(80);
+        // Get auto retransmit count
+        spiTransfer('r',OBSERVE_TX,1);
+        if ((dataBufIn[0]&0b11110000)!=0) {
+            ACT_LED = 1;
+            delay10ms(10);
+            ACT_LED = 0;
+            nrfGetStatus();
+        }
+        
+        // Reset interrupt flags
+        dataBufOut[0] = 0b01110000;
+        spiTransfer('w',STATUS,1);
+
+        delay10ms(80); 
     }
 }
 
@@ -267,12 +275,16 @@ void nrfConfig(void) {
     nrfConfigReg('w',RF_CH,RF_CH_CURR);
     // Write to RF setup register
     nrfConfigReg('w',RF_SETUP,RF_SETUP_CURR);
-    // set RX address
-    nrfSetRXAddr(RX_ADDR_P0,RX_ADDRESS,4);
+    // set RX address pipe 0
+    nrfSetRXAddr(RX_ADDR_P0,TX_ADDRESS,4);
+    // set RX address pipe 1
+    nrfSetRXAddr(RX_ADDR_P1,RX_ADDRESS,4);
     // set TX address
     nrfSetTXAddr(TX_ADDRESS,4);
     // Set pipe 0 payload width
     nrfConfigReg('w',RX_PW_P0,RX_PW_P0_CURR);
+    // Set pipe 1 payload width
+    nrfConfigReg('w',RX_PW_P1,RX_PW_P0_CURR);
     // Flush TX FIFO
     spiTransfer('n',FLUSH_TX,0);
 }
@@ -429,10 +441,10 @@ void nrfTXData(int len) {
     nRF_CE = 1;
     __delay_us(11);                     // Wait min 10us
     nRF_CE = 0;
-    __delay_us(170);                    // Wait for transmit to complete w/
-    for (int i=0;i<len;i++) {           // additional time for each additional byte
-        __delay_us(12);
-    }
+//    __delay_us(20);                    // Wait for transmit to complete w/
+//    for (int i=0;i<len;i++) {           // additional time for each additional byte
+//        __delay_us(12);
+//    }
 }
 
 /*------------------------------------------------
