@@ -147,10 +147,10 @@ SCK     -[14/RC3       RC4/15]-       SDI
  * Current config settings - TX
 ------------------------------------------------*/
 unsigned char CONFIG_CURR        = 0b01001010;   // Show TX_DS interrupts; Enable CRC - 1 byte; Power Up; PTX
-unsigned char EN_AA_CURR         = 0b00000001;   // Enable Auto Ack for pipe 0
+unsigned char EN_AA_CURR         = 0b00000011;   // Enable Auto Ack for pipe 0
 unsigned char EN_RXADDR_CURR     = 0b00000011;   // Enable data pipe 0,1
 unsigned char SETUP_AW_CURR      = 0b00000010;   // set for 4 byte address
-unsigned char SETUP_RETR_CURR    = 0b00100101;   // 750us retransmit delay; Disable auto retransmit
+unsigned char SETUP_RETR_CURR    = 0b00110101;   // 1000us retransmit delay; 5 auto retransmits
 unsigned char RF_CH_CURR         = 0b01101001;   // Channel 105 (2.400GHz + 0.105GHz = 2.505GHz)
 unsigned char RF_SETUP_CURR      = 0b00000110;   // RF data rate to 1Mbps; 0dBm output power (highest)
 unsigned char RX_PW_P0_CURR      = 0b00000001;   // Set pipe 0 payload width to 1
@@ -203,28 +203,38 @@ void main(void) {
         nrfTXData(1);
         count++;
 
-        delay10ms(1);
+        delay10ms(2);
         
         nrfGetStatus();
+        //spiTransfer('r',OBSERVE_TX,1);
 
-        while (nrfSTATUS == 0x0E) {
+        while (nrfSTATUS != 0x0E) {
+
+            // Was it MAX_RT interrupt?
+            unsigned char maxRTFlag = nrfSTATUS&0b00010000;
+            if (maxRTFlag == 0x10) {
+                ACT_LED = 1;
+                delay10ms(10);
+                ACT_LED = 0;
+                // Reset interrupt flags
+                dataBufOut[0] = nrfSTATUS|0b00010000;
+                spiTransfer('w',STATUS,1);
+            }
+            
+            // Was it TX_DS interrupt?
+            unsigned char txDSFlag = nrfSTATUS&0b00100000;
+            if (txDSFlag == 0x10) {
+                // Reset interrupt flags
+                dataBufOut[0] = nrfSTATUS|0b00100000;
+                spiTransfer('w',STATUS,1);
+            }
+
             nrfGetStatus();
         }
 
-        // Get auto retransmit count
-        spiTransfer('r',OBSERVE_TX,1);
-        if ((dataBufIn[0]&0b11110000)!=0) {
-            ACT_LED = 1;
-            delay10ms(10);
-            ACT_LED = 0;
-            nrfGetStatus();
-        }
+        spiTransfer('n',FLUSH_TX,0);
         
-        // Reset interrupt flags
-        dataBufOut[0] = 0b01110000;
-        spiTransfer('w',STATUS,1);
-
-        delay10ms(80); 
+        delay10ms(100);
     }
 }
 
@@ -275,7 +285,7 @@ void nrfConfig(void) {
     nrfConfigReg('w',RF_CH,RF_CH_CURR);
     // Write to RF setup register
     nrfConfigReg('w',RF_SETUP,RF_SETUP_CURR);
-    // set RX address pipe 0
+    // set RX address pipe 0 as TX address for AutoAck
     nrfSetRXAddr(RX_ADDR_P0,TX_ADDRESS,4);
     // set RX address pipe 1
     nrfSetRXAddr(RX_ADDR_P1,RX_ADDRESS,4);
