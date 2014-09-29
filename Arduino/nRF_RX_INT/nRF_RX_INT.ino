@@ -115,7 +115,7 @@ byte dataBufOut[32];             // 32 byte buffer for all outgoing SPI data
 
 byte nrfSTATUS;                  // Latest STATUS of nRF
 
-volatile boolean intRXData;      // nRF received packet flag; set by ISR
+volatile int intRXData;      // nRF received packet flag; set by ISR
 
 /*------------------------------------------------
  * Setup
@@ -171,7 +171,7 @@ void setup() {
   
   delay(1);
   
-  intRXData = false;
+  intRXData = 0;
   attachInterrupt(1,ISR_RXData,LOW);
 }
 
@@ -186,7 +186,7 @@ void loop() {
   
   nrfGetStatus();
   
-  if (intRXData == true) {
+  if (intRXData > 0) {
     
     delayMicroseconds(400);              // Wait for Auto Ack to send
     
@@ -201,7 +201,7 @@ void loop() {
     
     spiTransfer('n',FLUSH_RX,0);
     
-    intRXData = false;
+    intRXData--;
   }
   
 }
@@ -210,7 +210,7 @@ void loop() {
  * ISR
 ------------------------------------------------*/
 void ISR_RXData() {
-  intRXData = true;
+  intRXData++;
 }
 
 /*------------------------------------------------
