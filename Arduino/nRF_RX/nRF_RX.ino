@@ -102,10 +102,7 @@ byte SETUP_AW_CURR         = B00000010;   // Set up for 4 byte address
 byte SETUP_RETR_CURR       = B00100000;   // 750us retransmit delay; Disable auto retransmit
 byte RF_CH_CURR            = B01101001;   // Channel 105 (2.400GHz + 0.105GHz = 2.505GHz)
 byte RF_SETUP_CURR         = B00000110;   // RF data rate to 1Mbps; 0dBm output power (highest)
-<<<<<<< HEAD
 //byte RF_SETUP_CURR         = B00001110;   // RF data rate to 2Mbps; 0dBm output power (highest)
-=======
->>>>>>> parent of 015c358... PIC, Arduino code
 byte RX_PW_P0_CURR         = B00000001;   // 1 byte payload
 byte RX_ADDRESS[4]         = {0xE7,0xE7,0xE7,0xE7};
 byte TX_ADDRESS[4]         = {0xE7,0xE7,0xE7,0xE7};
