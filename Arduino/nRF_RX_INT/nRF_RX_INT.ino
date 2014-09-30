@@ -200,8 +200,8 @@ void loop() {
     spiTransfer('w',STATUS,1);
     
     spiTransfer('n',FLUSH_RX,0);
-    
-    intRXData--;
+
+    intRXData = 0;
   }
   
 }

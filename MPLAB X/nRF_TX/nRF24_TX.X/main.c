@@ -146,7 +146,7 @@ SCK     -[14/RC3       RC4/15]-       SDI
 /*------------------------------------------------
  * Current config settings - TX
 ------------------------------------------------*/
-unsigned char CONFIG_CURR        = 0b01001010;   // Show TX_DS interrupts; Enable CRC - 1 byte; Power Up; PTX
+unsigned char CONFIG_CURR        = 0b00001010;   // Show TX_DS interrupts; Enable CRC - 1 byte; Power Up; PTX
 unsigned char EN_AA_CURR         = 0b00000011;   // Enable Auto Ack for pipe 0
 unsigned char EN_RXADDR_CURR     = 0b00000011;   // Enable data pipe 0,1
 unsigned char SETUP_AW_CURR      = 0b00000010;   // set for 4 byte address
@@ -206,31 +206,15 @@ void main(void) {
         delay10ms(2);
         
         nrfGetStatus();
-        //spiTransfer('r',OBSERVE_TX,1);
 
-        while (nrfSTATUS != 0x0E) {
-
-            // Was it MAX_RT interrupt?
-            unsigned char maxRTFlag = nrfSTATUS&0b00010000;
-            if (maxRTFlag == 0x10) {
-                ACT_LED = 1;
-                delay10ms(10);
-                ACT_LED = 0;
-                // Reset interrupt flags
-                dataBufOut[0] = nrfSTATUS|0b00010000;
-                spiTransfer('w',STATUS,1);
-            }
-            
-            // Was it TX_DS interrupt?
-            unsigned char txDSFlag = nrfSTATUS&0b00100000;
-            if (txDSFlag == 0x10) {
-                // Reset interrupt flags
-                dataBufOut[0] = nrfSTATUS|0b00100000;
-                spiTransfer('w',STATUS,1);
-            }
-
-            nrfGetStatus();
+        if (testbit(nrfSTATUS,4) > 0) {
+            ACT_LED = 1;
+            delay10ms(5);
+            ACT_LED = 0;
         }
+
+        dataBufOut[0] = 0b01110000;
+        spiTransfer('w',STATUS,1);
 
         spiTransfer('n',FLUSH_TX,0);
         
