@@ -10066,18 +10066,45 @@ nrfConfig();
 
 delay10ms(1);
 
+dataBufOut[1] = 0b01101010;
+dataBufOut[2] = 0x3F;
+dataBufOut[3] = 182;
+dataBufOut[4] = 0b01101010;
+dataBufOut[5] = 0x3F;
+dataBufOut[6] = 182;
+dataBufOut[7] = 0b01101010;
+dataBufOut[8] = 0x3F;
+dataBufOut[9] = 182;
+dataBufOut[10] = 0b01101010;
+dataBufOut[11] = 0x3F;
+dataBufOut[12] = 182;
+dataBufOut[13] = 0b01101010;
+dataBufOut[14] = 0x3F;
+dataBufOut[15] = 182;
+dataBufOut[16] = 0b01101010;
+dataBufOut[17] = 0x3F;
+dataBufOut[18] = 182;
+dataBufOut[19] = 0b01101010;
+dataBufOut[20] = 0x3F;
+dataBufOut[21] = 182;
+dataBufOut[22] = 0b01101010;
+dataBufOut[23] = 0x3F;
+dataBufOut[24] = 182;
+dataBufOut[25] = 0b01101010;
+dataBufOut[26] = 0x3F;
+dataBufOut[27] = 182;
+dataBufOut[28] = 182;
+dataBufOut[29] = 0b01101010;
+dataBufOut[30] = 0x3F;
+dataBufOut[31] = 182;
+
 
 int count = 1;
 for (;;) {
 
 dataBufOut[0] = count;
-dataBufOut[1] = 0b01101010;
-dataBufOut[2] = 0x3F;
-dataBufOut[3] = 182;
-nrfTXData(4);
+nrfTXData(16);
 count++;
-
-delay10ms(2);
 
 nrfGetStatus();
 
@@ -10094,11 +10121,11 @@ delay10ms(10);
 LATAbits.LATA0 = 0;
 }
 
-delay10ms(80);
+delay10ms(500);
 }
 }
 
-# 236
+# 263
 void portConfig(void) {
 TRISA = 0b00001000;
 TRISB = 0b00000000;
@@ -10109,19 +10136,19 @@ LATB = 0x00;
 LATC = 0x00;
 }
 
-# 250
+# 277
 void spiConfig_1(void) {
 SSP1CON1bits.CKP = 0;
 SSP1STATbits.CKE = 1;
 SSP1STATbits.SMP = 1;
-SSP1ADD = 0b00001111;
+SSP1ADD = 0b00011111;
 SSP1CON1bits.SSPM = 0b1010;
 
 SSP1CON1bits.SSPEN = 1;
 LATAbits.LATA2 = 1;
 }
 
-# 264
+# 291
 void nrfConfig(void) {
 
 
@@ -10154,7 +10181,7 @@ spiTransfer('n',0xE1,0);
 spiTransfer('n',0xE2,0);
 }
 
-# 299
+# 326
 void setCSN(int level) {
 
 if (level == 1) {
@@ -10164,7 +10191,7 @@ LATAbits.LATA2 = 0;
 }
 }
 
-# 312
+# 339
 void nrfGetStatus(void) {
 
 setCSN(0);
@@ -10174,7 +10201,7 @@ nrfSTATUS = spiTransferByte(0xFF);
 setCSN(1);
 }
 
-# 324
+# 351
 unsigned char nrfConfigReg(char wr, unsigned char command, unsigned char data) {
 
 setCSN(0);
@@ -10192,7 +10219,7 @@ setCSN(1);
 return data;
 }
 
-# 346
+# 373
 void nrfSetTXAddr(unsigned char addr[], int len) {
 
 setCSN(0);
@@ -10201,15 +10228,15 @@ spiTransferByte(0x20|0x10);
 
 if (len != 0) {
 
-for (int i=1;i<=len;i++) {
-spiTransferByte(addr[i-1]);
+for (int i=0;i<len;i++) {
+spiTransferByte(addr[i]);
 }
 }
 
 setCSN(1);
 }
 
-# 368
+# 395
 void nrfSetRXAddr(unsigned char pipe, unsigned char addr[], int len) {
 
 setCSN(0);
@@ -10218,15 +10245,15 @@ spiTransferByte(0x20|pipe);
 
 if (len != 0) {
 
-for (int i=1;i<=len;i++) {
-spiTransferByte(addr[i-1]);
+for (int i=0;i<len;i++) {
+spiTransferByte(addr[i]);
 }
 }
 
 setCSN(1);
 }
 
-# 392
+# 419
 void spiTransfer(char wrn, unsigned char command,int len) {
 
 setCSN(0);
@@ -10240,25 +10267,25 @@ spiTransferByte(command);
 }
 
 if (len != 0) {
-for (int i=1;i<=len;i++) {
-dataBufIn[i-1] = spiTransferByte(dataBufOut[i-1]);
+for (int i=0;i<len;i++) {
+dataBufIn[i] = spiTransferByte(dataBufOut[i]);
 }
 }
 
 setCSN(1);
 }
 
-# 416
+# 443
 unsigned char spiTransferByte(unsigned char data) {
 
 SSP1BUF = data;
 
-_delay((unsigned long)((8)*(64000000/4000000.0)));
+_delay((unsigned long)((15)*(64000000/4000000.0)));
 
 return SSP1BUF;
 }
 
-# 429
+# 456
 void nrfTXData(int len) {
 
 setCSN(0);
@@ -10266,10 +10293,12 @@ setCSN(0);
 spiTransferByte(0xA0);
 
 if (len != 0) {
-for (int i=1;i<=len;i++) {
-spiTransferByte(dataBufOut[i-1]);
+for (int i=0;i<len;i++) {
+spiTransferByte(dataBufOut[i]);
 }
 }
+
+_delay((unsigned long)((5)*(64000000/4000000.0)));
 
 setCSN(1);
 
@@ -10277,13 +10306,13 @@ setCSN(1);
 LATAbits.LATA1 = 1;
 _delay((unsigned long)((12)*(64000000/4000000.0)));
 LATAbits.LATA1 = 0;
-
-
-
-
+_delay((unsigned long)((180)*(64000000/4000000.0)));
+for (int i=0;i<len;i++) {
+_delay((unsigned long)((8)*(64000000/4000000.0)));
+}
 }
 
-# 456
+# 485
 void delay10ms(int ms_multi) {
 int i = 0;
 for (i=0;i<ms_multi;i++) {

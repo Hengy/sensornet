@@ -193,15 +193,15 @@ void loop() {
   
   if (intRXData > 0) {
     digitalWrite(nRF_CE, LOW);           // Keep CE high when receiving
-    
-    delayMicroseconds(100);
-    
+
     spiTransfer('r',R_RX_PL_WID,1);             // Get dynamic payload width
     int payloadWidth = dataBufIn[0];
     
     delayMicroseconds(20);
     
     spiTransfer('r',R_RX_PAYLOAD,payloadWidth); // Read payload command
+    
+    delayMicroseconds(200);
 
     Serial.print(payloadWidth);
     Serial.print(": ");
@@ -210,6 +210,8 @@ void loop() {
       Serial.print(" ");
     }
     Serial.println("");
+    
+    delayMicroseconds(30);
     
     // Reset interrupts
     dataBufOut[0] = B01110000;

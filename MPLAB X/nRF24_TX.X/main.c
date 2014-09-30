@@ -198,18 +198,45 @@ void main(void) {
 
     delay10ms(1);                           // Wait for nRF power up
 
+    dataBufOut[1] = 0b01101010;
+    dataBufOut[2] = 0x3F;
+    dataBufOut[3] = 182;
+    dataBufOut[4] = 0b01101010;
+    dataBufOut[5] = 0x3F;
+    dataBufOut[6] = 182;
+    dataBufOut[7] = 0b01101010;
+    dataBufOut[8] = 0x3F;
+    dataBufOut[9] = 182;
+    dataBufOut[10] = 0b01101010;
+    dataBufOut[11] = 0x3F;
+    dataBufOut[12] = 182;
+    dataBufOut[13] = 0b01101010;
+    dataBufOut[14] = 0x3F;
+    dataBufOut[15] = 182;
+    dataBufOut[16] = 0b01101010;
+    dataBufOut[17] = 0x3F;
+    dataBufOut[18] = 182;
+    dataBufOut[19] = 0b01101010;
+    dataBufOut[20] = 0x3F;
+    dataBufOut[21] = 182;
+    dataBufOut[22] = 0b01101010;
+    dataBufOut[23] = 0x3F;
+    dataBufOut[24] = 182;
+    dataBufOut[25] = 0b01101010;
+    dataBufOut[26] = 0x3F;
+    dataBufOut[27] = 182;
+    dataBufOut[28] = 182;
+    dataBufOut[29] = 0b01101010;
+    dataBufOut[30] = 0x3F;
+    dataBufOut[31] = 182;
+
     // Transmit count; read nRF STATUS reg; forever
     int count = 1;
     for (;;) {
 
         dataBufOut[0] = count;
-        dataBufOut[1] = 0b01101010;
-        dataBufOut[2] = 0x3F;
-        dataBufOut[3] = 182;
-        nrfTXData(4);
+        nrfTXData(16);
         count++;
-
-        delay10ms(2);
 
         nrfGetStatus();
 
@@ -226,7 +253,7 @@ void main(void) {
             ACT_LED = 0;
         }
 
-        delay10ms(70);
+        delay10ms(500);
     }
 }
 
@@ -251,7 +278,7 @@ void spiConfig_1(void) {
     SSP1CON1bits.CKP = 0;               // Clock polarity
     SSP1STATbits.CKE = 1;               // Clock edge detect
     SSP1STATbits.SMP = 1;               // Sample bit
-    SSP1ADD = 0b00001111;               // Set to 31
+    SSP1ADD = 0b00011111;               // Set to 31
     SSP1CON1bits.SSPM = 0b1010;         // Clock = Fosc/(SSP1ADD + 1)(4) = 500KHz
     //SSP1CON1bits.SSPM = 0b0010;         // Clock = Fosc/64 = 1MHz
     SSP1CON1bits.SSPEN = 1;             // Enable SPI
@@ -351,8 +378,8 @@ void nrfSetTXAddr(unsigned char addr[], int len) {
 
     if (len != 0) {
         // Send address bytes
-        for (int i=1;i<=len;i++) {
-            spiTransferByte(addr[i-1]);
+        for (int i=0;i<len;i++) {
+            spiTransferByte(addr[i]);
         }
     }
 
@@ -373,8 +400,8 @@ void nrfSetRXAddr(unsigned char pipe, unsigned char addr[], int len) {
 
     if (len != 0) {
         // Send address bytes
-        for (int i=1;i<=len;i++) {
-            spiTransferByte(addr[i-1]);
+        for (int i=0;i<len;i++) {
+            spiTransferByte(addr[i]);
         }
     }
 
@@ -402,8 +429,8 @@ void spiTransfer(char wrn, unsigned char command,int len) {
     }
 
     if (len != 0) {
-        for (int i=1;i<=len;i++) {
-            dataBufIn[i-1] = spiTransferByte(dataBufOut[i-1]);
+        for (int i=0;i<len;i++) {
+            dataBufIn[i] = spiTransferByte(dataBufOut[i]);
         }
     }
 
@@ -417,7 +444,7 @@ unsigned char spiTransferByte(unsigned char data) {
 
     SSP1BUF = data;                     // Write data to MSSP
     
-    __delay_us(8);                      // Wait for transfer to complete
+    __delay_us(15);                      // Wait for transfer to complete
 
     return SSP1BUF;                     // return recieved data
 }
@@ -433,10 +460,12 @@ void nrfTXData(int len) {
     spiTransferByte(W_TX_PAYLOAD);
 
     if (len != 0) {
-        for (int i=1;i<=len;i++) {
-            spiTransferByte(dataBufOut[i-1]);
+        for (int i=0;i<len;i++) {
+            spiTransferByte(dataBufOut[i]);
         }
     }
+
+    __delay_us(5);
 
     setCSN(HIGH);                       // Set CSN high
 
@@ -444,10 +473,10 @@ void nrfTXData(int len) {
     nRF_CE = 1;
     __delay_us(12);                     // Wait min 10us
     nRF_CE = 0;
-//    __delay_us(170);                    // Wait for transmit to complete w/
-//    for (int i=0;i<len;i++) {           // additional time for each additional byte
-//        __delay_us(10);
-//    }
+    __delay_us(180);
+    for (int i=0;i<len;i++) {
+        __delay_us(8);
+    }
 }
 
 /*------------------------------------------------
