@@ -1,33 +1,15 @@
-<<<<<<< HEAD
-_nrfConfigReg: CODE, 15348 0 74
-_spiConfig_1: CODE, 15142 0 24
-_spiTransfer: CODE, 15954 0 202
-_main: CODE, 15786 0 168
-_setCSN: CODE, 15118 0 24
-_nrfSetTXAddr: CODE, 15422 0 116
-__initialization: CODE, 15286 0 56
-_nrfTXData: CODE, 15658 0 128
-_nrfGetStatus: CODE, 15192 0 34
-_spiTransferByte: CODE, 15100 0 18
-_portConfig: CODE, 15166 0 26
-_nrfConfig: CODE, 16156 0 228
-_nrfSetRXAddr: CODE, 15538 0 120
-_delay10ms: CODE, 15226 0 60
-Total: 1278
-=======
-_nrfConfigReg: CODE, 15336 0 86
-_spiConfig_1: CODE, 15130 0 24
-_spiTransfer: CODE, 16170 0 214
-_main: CODE, 15422 0 116
-_setCSN: CODE, 15106 0 24
-_nrfSetTXAddr: CODE, 15538 0 128
-__initialization: CODE, 15274 0 56
-_nrfTXData: CODE, 15972 0 198
-_nrfGetStatus: CODE, 15180 0 34
-_spiTransferByte: CODE, 15090 0 16
-_portConfig: CODE, 15154 0 26
-_nrfConfig: CODE, 15798 0 174
-_nrfSetRXAddr: CODE, 15666 0 132
-_delay10ms: CODE, 15214 0 60
-Total: 1288
->>>>>>> parent of 015c358... PIC, Arduino code
+_nrfConfigReg: CODE, 15386 0 74
+_spiConfig_1: CODE, 15180 0 24
+_spiTransfer: CODE, 15962 0 202
+_main: CODE, 15822 0 140
+_setCSN: CODE, 15128 0 16
+_nrfSetTXAddr: CODE, 15460 0 116
+__initialization: CODE, 15324 0 56
+_nrfTXData: CODE, 15696 0 126
+_nrfGetStatus: CODE, 15230 0 34
+_spiTransferByte: CODE, 15162 0 18
+_portConfig: CODE, 15204 0 26
+_nrfConfig: CODE, 16164 0 220
+_nrfSetRXAddr: CODE, 15576 0 120
+_delay10ms: CODE, 15264 0 60
+Total: 1232

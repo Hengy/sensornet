@@ -5,11 +5,7 @@ Linker command line:
 --edf=C:\Program Files (x86)\Microchip\xc8\v1.33\dat\en_msgs.txt -cs \
   -h+dist/default/production\nRF24_TX.X.production.sym \
   --cmf=dist/default/production\nRF24_TX.X.production.cmf -z -Q18F24K22 \
-<<<<<<< HEAD
-  -oC:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.6 \
-=======
-  -oC:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.6 \
->>>>>>> parent of 015c358... PIC, Arduino code
+  -oC:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.6 \
   -Mdist/default/production/nRF24_TX.X.production.map -E1 -ver=XC8 \
   -ASTACK=080h-02ffh -pstack=STACK -ACODE=00h-03FFFh -ACONST=00h-03FFFh \
   -ASMALLCONST=0300h-03FFhx61 -AMEDIUMCONST=0300h-03FFFh -ACOMRAM=01h-05Fh \
@@ -25,11 +21,7 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE \
-<<<<<<< HEAD
-  C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.obj \
-=======
-  C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.obj \
->>>>>>> parent of 015c358... PIC, Arduino code
+  C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.obj \
   dist/default/production\nRF24_TX.X.production.obj 
 
 Object code version is 3.11
@@ -42,94 +34,51 @@ Call graph: (short form)
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-<<<<<<< HEAD
-C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.obj
-=======
-C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.obj
->>>>>>> parent of 015c358... PIC, Arduino code
+C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.obj
                 end_init                              0        0        4        0       0
                 idloc                            200000   200000        8   200000       0
                 config                           300000   300000        E   300000       0
 dist/default/production\nRF24_TX.X.production.obj
-<<<<<<< HEAD
-                text12                             3B7A     3B7A       3C     1DBD       0
-                text11                             3B0E     3B0E       18     1D87       0
-                text10                             3AFC     3AFC       12     1D7E       0
-                text9                              3BF4     3BF4       4A     1DFA       0
-                text8                              3CB2     3CB2       78     1E59       0
-                text7                              3C3E     3C3E       74     1E1F       0
-                text6                              3E52     3E52       CA     1F29       0
-                text5                              3F1C     3F1C       E4     1F8E       0
-                text4                              3B58     3B58       22     1DAC       0
-                text3                              3D2A     3D2A       80     1E95       0
-                text2                              3B3E     3B3E       1A     1D9F       0
-                text1                              3B26     3B26       18     1D93       0
-                text0                              3DAA     3DAA       A8     1ED5       0
-=======
-                text12                             3B6E     3B6E       3C     1DB7       0
-                text11                             3B02     3B02       18     1D81       0
-                text10                             3AF2     3AF2       10     1D79       0
-                text9                              3BE8     3BE8       56     1DF4       0
-                text8                              3D32     3D32       84     1E99       0
-                text7                              3CB2     3CB2       80     1E59       0
-                text6                              3F2A     3F2A       D6     1F95       0
-                text5                              3DB6     3DB6       AE     1EDB       0
-                text4                              3B4C     3B4C       22     1DA6       0
-                text3                              3E64     3E64       C6     1F32       0
-                text2                              3B32     3B32       1A     1D99       0
-                text1                              3B1A     3B1A       18     1D8D       0
-                text0                              3C3E     3C3E       74     1E1F       0
->>>>>>> parent of 015c358... PIC, Arduino code
+                text12                             3BA0     3BA0       3C     1DD0       0
+                text11                             3B18     3B18       10     1D8C       0
+                text10                             3B3A     3B3A       12     1D9D       0
+                text9                              3C1A     3C1A       4A     1E0D       0
+                text8                              3CD8     3CD8       78     1E6C       0
+                text7                              3C64     3C64       74     1E32       0
+                text6                              3E5A     3E5A       CA     1F2D       0
+                text5                              3F24     3F24       DC     1F92       0
+                text4                              3B7E     3B7E       22     1DBF       0
+                text3                              3D50     3D50       7E     1EA8       0
+                text2                              3B64     3B64       1A     1DB2       0
+                text1                              3B4C     3B4C       18     1DA6       0
+                text0                              3DCE     3DCE       8C     1EE7       0
                 cstackCOMRAM                         23       23       12        1       1
                 bssBANK0                             60       60       20       60       1
-                dataCOMRAM                           35       35        F        1       1
+                dataCOMRAM                           35       35       11        1       1
                 bssCOMRAM                             1        1       22        1       1
-<<<<<<< HEAD
-                cinit                              3BB6     3BB6       3E     1DDB       0
-                idataCOMRAM                        3AED     3AED        F     3AED       0
-=======
-                cinit                              3BAA     3BAA       3E     1DD5       0
-                idataCOMRAM                        3AE3     3AE3        F     3AE3       0
->>>>>>> parent of 015c358... PIC, Arduino code
+                cinit                              3BDC     3BDC       3E     1DEE       0
+                idataCOMRAM                        3B29     3B29       11     3B29       0
 
 TOTAL           Name                               Link     Load   Length     Space
         CLASS   STACK          
 
         CLASS   CODE           
                 end_init                              0        0        4         0
-<<<<<<< HEAD
-                text12                             3B7A     3B7A       3C         0
-                text11                             3B0E     3B0E       18         0
-                text10                             3AFC     3AFC       12         0
-                text9                              3BF4     3BF4       4A         0
-                text8                              3CB2     3CB2       78         0
-                text7                              3C3E     3C3E       74         0
-                text6                              3E52     3E52       CA         0
-                text5                              3F1C     3F1C       E4         0
-                text4                              3B58     3B58       22         0
-                text3                              3D2A     3D2A       80         0
-                text2                              3B3E     3B3E       1A         0
-                text1                              3B26     3B26       18         0
-                text0                              3DAA     3DAA       A8         0
-                cinit                              3BB6     3BB6       3E         0
-                idataCOMRAM                        3AED     3AED        F         0
-=======
-                text12                             3B6E     3B6E       3C         0
-                text11                             3B02     3B02       18         0
-                text10                             3AF2     3AF2       10         0
-                text9                              3BE8     3BE8       56         0
-                text8                              3D32     3D32       84         0
-                text7                              3CB2     3CB2       80         0
-                text6                              3F2A     3F2A       D6         0
-                text5                              3DB6     3DB6       AE         0
-                text4                              3B4C     3B4C       22         0
-                text3                              3E64     3E64       C6         0
-                text2                              3B32     3B32       1A         0
-                text1                              3B1A     3B1A       18         0
-                text0                              3C3E     3C3E       74         0
-                cinit                              3BAA     3BAA       3E         0
-                idataCOMRAM                        3AE3     3AE3        F         0
->>>>>>> parent of 015c358... PIC, Arduino code
+                text12                             3BA0     3BA0       3C         0
+                text11                             3B18     3B18       10         0
+                text10                             3B3A     3B3A       12         0
+                text9                              3C1A     3C1A       4A         0
+                text8                              3CD8     3CD8       78         0
+                text7                              3C64     3C64       74         0
+                text6                              3E5A     3E5A       CA         0
+                text5                              3F24     3F24       DC         0
+                text4                              3B7E     3B7E       22         0
+                text3                              3D50     3D50       7E         0
+                text2                              3B64     3B64       1A         0
+                text1                              3B4C     3B4C       18         0
+                text0                              3DCE     3DCE       8C         0
+                cinit                              3BDC     3BDC       3E         0
+                idataCOMRAM                        3B29     3B29       11         0
 
         CLASS   CONST          
 
@@ -139,7 +88,7 @@ TOTAL           Name                               Link     Load   Length     Sp
 
         CLASS   COMRAM         
                 cstackCOMRAM                         23       23       12         1
-                dataCOMRAM                           35       35        F         1
+                dataCOMRAM                           35       35       11         1
                 bssCOMRAM                             1        1       22         1
 
         CLASS   ABS1           
@@ -172,41 +121,23 @@ TOTAL           Name                               Link     Load   Length     Sp
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class
 
                 reset_vec                      000000  000004  000004         0       0  CODE    
-                bssCOMRAM                      000001  000043  000044         1       1  COMRAM  
+                bssCOMRAM                      000001  000045  000046         1       1  COMRAM  
                 bssBANK0                       000060  000020  000080        60       1  BANK0   
-<<<<<<< HEAD
-                idataCOMRAM                    003AED  00000F  003AFC      3AED       0  CODE    
-                text10                         003AFC  000012  003B0E      1D7E       0  CODE    
-                text11                         003B0E  000018  003B26      1D87       0  CODE    
-                text1                          003B26  000018  003B3E      1D93       0  CODE    
-                text2                          003B3E  00001A  003B58      1D9F       0  CODE    
-                text4                          003B58  000022  003B7A      1DAC       0  CODE    
-                text12                         003B7A  00003C  003BB6      1DBD       0  CODE    
-                cinit                          003BB6  00003E  003BF4      1DDB       0  CODE    
-                text9                          003BF4  00004A  003C3E      1DFA       0  CODE    
-                text7                          003C3E  000074  003CB2      1E1F       0  CODE    
-                text8                          003CB2  000078  003D2A      1E59       0  CODE    
-                text3                          003D2A  000080  003DAA      1E95       0  CODE    
-                text0                          003DAA  0000A8  003E52      1ED5       0  CODE    
-                text6                          003E52  0000CA  003F1C      1F29       0  CODE    
-                text5                          003F1C  0000E4  004000      1F8E       0  CODE    
-=======
-                idataCOMRAM                    003AE3  00000F  003AF2      3AE3       0  CODE    
-                text10                         003AF2  000010  003B02      1D79       0  CODE    
-                text11                         003B02  000018  003B1A      1D81       0  CODE    
-                text1                          003B1A  000018  003B32      1D8D       0  CODE    
-                text2                          003B32  00001A  003B4C      1D99       0  CODE    
-                text4                          003B4C  000022  003B6E      1DA6       0  CODE    
-                text12                         003B6E  00003C  003BAA      1DB7       0  CODE    
-                cinit                          003BAA  00003E  003BE8      1DD5       0  CODE    
-                text9                          003BE8  000056  003C3E      1DF4       0  CODE    
-                text0                          003C3E  000074  003CB2      1E1F       0  CODE    
-                text7                          003CB2  000080  003D32      1E59       0  CODE    
-                text8                          003D32  000084  003DB6      1E99       0  CODE    
-                text5                          003DB6  0000AE  003E64      1EDB       0  CODE    
-                text3                          003E64  0000C6  003F2A      1F32       0  CODE    
-                text6                          003F2A  0000D6  004000      1F95       0  CODE    
->>>>>>> parent of 015c358... PIC, Arduino code
+                text11                         003B18  000010  003B28      1D8C       0  CODE    
+                idataCOMRAM                    003B29  000011  003B3A      3B29       0  CODE    
+                text10                         003B3A  000012  003B4C      1D9D       0  CODE    
+                text1                          003B4C  000018  003B64      1DA6       0  CODE    
+                text2                          003B64  00001A  003B7E      1DB2       0  CODE    
+                text4                          003B7E  000022  003BA0      1DBF       0  CODE    
+                text12                         003BA0  00003C  003BDC      1DD0       0  CODE    
+                cinit                          003BDC  00003E  003C1A      1DEE       0  CODE    
+                text9                          003C1A  00004A  003C64      1E0D       0  CODE    
+                text7                          003C64  000074  003CD8      1E32       0  CODE    
+                text8                          003CD8  000078  003D50      1E6C       0  CODE    
+                text3                          003D50  00007E  003DCE      1EA8       0  CODE    
+                text0                          003DCE  00008C  003E5A      1EE7       0  CODE    
+                text6                          003E5A  0000CA  003F24      1F2D       0  CODE    
+                text5                          003F24  0000DC  004000      1F92       0  CODE    
                 idloc                          200000  000008  200008    200000       0  IDLOC   
                 config                         300000  00000E  30000E    300000       0  CONFIG  
 
@@ -217,44 +148,39 @@ UNUSED ADDRESS RANGES
         BANK0            000080-0000FF               80
         BANK1            000100-0001FF              100
         BANK2            000200-0002FF              100
-        BIGRAM           000044-00005F               1C
+        BIGRAM           000046-00005F               1A
                          000080-0002FF              280
-<<<<<<< HEAD
-        CODE             000004-003AEC             3AE9
-        COMRAM           000044-00005F               1C
-        CONST            000004-003AEC             3AE9
+        CODE             000004-003B17             3B14
+                         003B28-003B28                1
+        COMRAM           000046-00005F               1A
+        CONST            000004-003B17             3B14
+                         003B28-003B28                1
         EEDATA           F00000-F000FF              100
-        MEDIUMCONST      000300-003AEC             37ED
+        MEDIUMCONST      000300-003B17             3818
+                         003B28-003B28                1
         RAM              000080-0002FF              100
         SFR              000F38-000FFF               28
-        SMALLCONST       000300-003AEC              100
-=======
-        CODE             000004-003AE2             3ADF
-        COMRAM           000044-00005F               1C
-        CONST            000004-003AE2             3ADF
-        EEDATA           F00000-F000FF              100
-        MEDIUMCONST      000300-003AE2             37E3
-        RAM              000080-0002FF              100
-        SFR              000F38-000FFF               28
-        SMALLCONST       000300-003AE2              100
->>>>>>> parent of 015c358... PIC, Arduino code
+        SMALLCONST       000300-003B17              100
+                         003B28-003B28                1
         STACK            000080-0002FF              280
 
                                   Symbol Table
 
 _CONFIG_CURR              dataCOMRAM   000035
+_DYNPD_CURR               dataCOMRAM   000036
 _EN_AA_CURR               bssCOMRAM    000021
-_EN_RXADDR_CURR           dataCOMRAM   000036
+_EN_RXADDR_CURR           dataCOMRAM   000037
+_FEATURE_CURR             dataCOMRAM   000038
 _LATA                     (abs)        000F89
 _LATAbits                 (abs)        000F89
 _LATB                     (abs)        000F8A
 _LATC                     (abs)        000F8B
-_RF_CH_CURR               dataCOMRAM   000037
-_RF_SETUP_CURR            dataCOMRAM   000038
-_RX_ADDRESS               dataCOMRAM   00003C
-_RX_PW_P0_CURR            dataCOMRAM   000039
-_SETUP_AW_CURR            dataCOMRAM   00003A
-_SETUP_RETR_CURR          dataCOMRAM   00003B
+_RF_CH_CURR               dataCOMRAM   000039
+_RF_SETUP_CURR            dataCOMRAM   00003A
+_RX_ADDRESS               dataCOMRAM   00003E
+_RX_PW_P0_CURR            dataCOMRAM   00003B
+_SETUP_AW_CURR            dataCOMRAM   00003C
+_SETUP_RETR_CURR          dataCOMRAM   00003D
 _SSP1ADD                  (abs)        000FC8
 _SSP1BUF                  (abs)        000FC9
 _SSP1CON1bits             (abs)        000FC6
@@ -262,7 +188,7 @@ _SSP1STATbits             (abs)        000FC7
 _TRISA                    (abs)        000F92
 _TRISB                    (abs)        000F93
 _TRISC                    (abs)        000F94
-_TX_ADDRESS               dataCOMRAM   000040
+_TX_ADDRESS               dataCOMRAM   000042
 __CFG_BOREN$SBORDIS       (abs)        000000
 __CFG_BORV$190            (abs)        000000
 __CFG_CCP2MX$PORTC1       (abs)        000000
@@ -433,79 +359,41 @@ ___intlo_sp               stack        000000
 ___sp                     stack        000000
 __accesstop               (abs)        000060
 __activetblptr            (abs)        000000
-<<<<<<< HEAD
-__end_of__initialization  cinit        003BEE
-__end_of_delay10ms        text12       003BB6
-__end_of_main             text0        003E52
+__end_of__initialization  cinit        003C14
+__end_of_delay10ms        text12       003BDC
+__end_of_main             text0        003E5A
 __end_of_nrfConfig        text5        004000
-__end_of_nrfConfigReg     text9        003C3E
-__end_of_nrfGetStatus     text4        003B7A
-__end_of_nrfSetRXAddr     text8        003D2A
-__end_of_nrfSetTXAddr     text7        003CB2
-__end_of_nrfTXData        text3        003DAA
-__end_of_portConfig       text2        003B58
-__end_of_setCSN           text11       003B26
-__end_of_spiConfig_1      text1        003B3E
-__end_of_spiTransfer      text6        003F1C
-__end_of_spiTransferByte  text10       003B0E
-__initialization          cinit        003BB6
+__end_of_nrfConfigReg     text9        003C64
+__end_of_nrfGetStatus     text4        003BA0
+__end_of_nrfSetRXAddr     text8        003D50
+__end_of_nrfSetTXAddr     text7        003CD8
+__end_of_nrfTXData        text3        003DCE
+__end_of_portConfig       text2        003B7E
+__end_of_setCSN           text11       003B28
+__end_of_spiConfig_1      text1        003B64
+__end_of_spiTransfer      text6        003F24
+__end_of_spiTransferByte  text10       003B4C
+__initialization          cinit        003BDC
 __mediumconst             mediumconst  000000
 __pbssBANK0               bssBANK0     000060
 __pbssCOMRAM              bssCOMRAM    000001
-__pcinit                  cinit        003BB6
+__pcinit                  cinit        003BDC
 __pcstackCOMRAM           cstackCOMRAM 000023
 __pdataCOMRAM             dataCOMRAM   000035
-__pidataCOMRAM            idataCOMRAM  003AED
-__ptext0                  text0        003DAA
-__ptext1                  text1        003B26
-__ptext10                 text10       003AFC
-__ptext11                 text11       003B0E
-__ptext12                 text12       003B7A
-__ptext2                  text2        003B3E
-__ptext3                  text3        003D2A
-__ptext4                  text4        003B58
-__ptext5                  text5        003F1C
-__ptext6                  text6        003E52
-__ptext7                  text7        003C3E
-__ptext8                  text8        003CB2
-__ptext9                  text9        003BF4
-=======
-__end_of__initialization  cinit        003BE2
-__end_of_delay10ms        text12       003BAA
-__end_of_main             text0        003CB2
-__end_of_nrfConfig        text5        003E64
-__end_of_nrfConfigReg     text9        003C3E
-__end_of_nrfGetStatus     text4        003B6E
-__end_of_nrfSetRXAddr     text8        003DB6
-__end_of_nrfSetTXAddr     text7        003D32
-__end_of_nrfTXData        text3        003F2A
-__end_of_portConfig       text2        003B4C
-__end_of_setCSN           text11       003B1A
-__end_of_spiConfig_1      text1        003B32
-__end_of_spiTransfer      text6        004000
-__end_of_spiTransferByte  text10       003B02
-__initialization          cinit        003BAA
-__mediumconst             mediumconst  000000
-__pbssBANK0               bssBANK0     000060
-__pbssCOMRAM              bssCOMRAM    000001
-__pcinit                  cinit        003BAA
-__pcstackCOMRAM           cstackCOMRAM 000023
-__pdataCOMRAM             dataCOMRAM   000035
-__pidataCOMRAM            idataCOMRAM  003AE3
-__ptext0                  text0        003C3E
-__ptext1                  text1        003B1A
-__ptext10                 text10       003AF2
-__ptext11                 text11       003B02
-__ptext12                 text12       003B6E
-__ptext2                  text2        003B32
-__ptext3                  text3        003E64
-__ptext4                  text4        003B4C
-__ptext5                  text5        003DB6
-__ptext6                  text6        003F2A
-__ptext7                  text7        003CB2
-__ptext8                  text8        003D32
-__ptext9                  text9        003BE8
->>>>>>> parent of 015c358... PIC, Arduino code
+__pidataCOMRAM            idataCOMRAM  003B29
+__ptext0                  text0        003DCE
+__ptext1                  text1        003B4C
+__ptext10                 text10       003B3A
+__ptext11                 text11       003B18
+__ptext12                 text12       003BA0
+__ptext2                  text2        003B64
+__ptext3                  text3        003D50
+__ptext4                  text4        003B7E
+__ptext5                  text5        003F24
+__ptext6                  text6        003E5A
+__ptext7                  text7        003C64
+__ptext8                  text8        003CD8
+__ptext9                  text9        003C1A
 __ramtop                  ramtop       000300
 __size_of_delay10ms       (abs)        000000
 __size_of_main            (abs)        000000
@@ -523,43 +411,23 @@ __size_of_spiTransferByte (abs)        000000
 __smallconst              smallconst   000000
 _dataBufIn                bssBANK0     000060
 _dataBufOut               bssCOMRAM    000001
-<<<<<<< HEAD
-_delay10ms                text12       003B7A
-_main                     text0        003DAA
-_nrfConfig                text5        003F1C
-_nrfConfigReg             text9        003BF4
-_nrfGetStatus             text4        003B58
+_delay10ms                text12       003BA0
+_main                     text0        003DCE
+_nrfConfig                text5        003F24
+_nrfConfigReg             text9        003C1A
+_nrfGetStatus             text4        003B7E
 _nrfSTATUS                bssCOMRAM    000022
-_nrfSetRXAddr             text8        003CB2
-_nrfSetTXAddr             text7        003C3E
-_nrfTXData                text3        003D2A
-_portConfig               text2        003B3E
-_setCSN                   text11       003B0E
-_spiConfig_1              text1        003B26
-_spiTransfer              text6        003E52
-_spiTransferByte          text10       003AFC
+_nrfSetRXAddr             text8        003CD8
+_nrfSetTXAddr             text7        003C64
+_nrfTXData                text3        003D50
+_portConfig               text2        003B64
+_setCSN                   text11       003B18
+_spiConfig_1              text1        003B4C
+_spiTransfer              text6        003E5A
+_spiTransferByte          text10       003B3A
 delay10ms@i               cstackCOMRAM 000026
 delay10ms@ms_multi        cstackCOMRAM 000023
-end_of_initialization     cinit        003BEE
-=======
-_delay10ms                text12       003B6E
-_main                     text0        003C3E
-_nrfConfig                text5        003DB6
-_nrfConfigReg             text9        003BE8
-_nrfGetStatus             text4        003B4C
-_nrfSTATUS                bssCOMRAM    000022
-_nrfSetRXAddr             text8        003D32
-_nrfSetTXAddr             text7        003CB2
-_nrfTXData                text3        003E64
-_portConfig               text2        003B32
-_setCSN                   text11       003B02
-_spiConfig_1              text1        003B1A
-_spiTransfer              text6        003F2A
-_spiTransferByte          text10       003AF2
-delay10ms@i               cstackCOMRAM 000026
-delay10ms@ms_multi        cstackCOMRAM 000023
-end_of_initialization     cinit        003BE2
->>>>>>> parent of 015c358... PIC, Arduino code
+end_of_initialization     cinit        003C14
 intlevel0                 text         000000
 intlevel1                 text         000000
 intlevel2                 text         000000
@@ -586,18 +454,14 @@ spiTransferByte@data      cstackCOMRAM 000023
 stackhi                   (abs)        0002FF
 stacklo                   (abs)        000080
 start                     init         000000
-<<<<<<< HEAD
-start_initialization      cinit        003BB6
-=======
-start_initialization      cinit        003BAA
->>>>>>> parent of 015c358... PIC, Arduino code
+start_initialization      cinit        003BDC
 
 
 FUNCTION INFORMATION:
 
  *************** function _main *****************
  Defined at:
-		line 191 in file "main.c"
+		line 192 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -632,7 +496,7 @@ Total ram usage:        2 bytes
 
  *************** function _spiConfig_1 *****************
  Defined at:
-		line 247 in file "main.c"
+		line 250 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -661,7 +525,7 @@ Total ram usage:        0 bytes
 
  *************** function _portConfig *****************
  Defined at:
-		line 233 in file "main.c"
+		line 236 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -690,11 +554,7 @@ Total ram usage:        0 bytes
 
  *************** function _nrfTXData *****************
  Defined at:
-<<<<<<< HEAD
 		line 429 in file "main.c"
-=======
-		line 424 in file "main.c"
->>>>>>> parent of 015c358... PIC, Arduino code
  Parameters:    Size  Location     Type
   len             2    2[COMRAM] int 
  Auto vars:     Size  Location     Type
@@ -756,7 +616,7 @@ Total ram usage:        0 bytes
 
  *************** function _nrfConfig *****************
  Defined at:
-		line 261 in file "main.c"
+		line 264 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -789,11 +649,7 @@ Total ram usage:        0 bytes
 
  *************** function _spiTransfer *****************
  Defined at:
-<<<<<<< HEAD
 		line 392 in file "main.c"
-=======
-		line 385 in file "main.c"
->>>>>>> parent of 015c358... PIC, Arduino code
  Parameters:    Size  Location     Type
   wrn             1    wreg     unsigned char 
   command         1    2[COMRAM] unsigned char 
@@ -828,11 +684,7 @@ Total ram usage:       14 bytes
 
  *************** function _nrfSetTXAddr *****************
  Defined at:
-<<<<<<< HEAD
 		line 346 in file "main.c"
-=======
-		line 333 in file "main.c"
->>>>>>> parent of 015c358... PIC, Arduino code
  Parameters:    Size  Location     Type
   addr            2    2[COMRAM] PTR unsigned char 
 		 -> TX_ADDRESS(4), 
@@ -865,15 +717,11 @@ Total ram usage:       10 bytes
 
  *************** function _nrfSetRXAddr *****************
  Defined at:
-<<<<<<< HEAD
 		line 368 in file "main.c"
-=======
-		line 358 in file "main.c"
->>>>>>> parent of 015c358... PIC, Arduino code
  Parameters:    Size  Location     Type
   pipe            1    wreg     unsigned char 
   addr            2    2[COMRAM] PTR unsigned char 
-		 -> RX_ADDRESS(4), TX_ADDRESS(4), 
+		 -> RX_ADDRESS(4), 
   len             2    4[COMRAM] int 
  Auto vars:     Size  Location     Type
   pipe            1   10[COMRAM] unsigned char 
@@ -937,11 +785,7 @@ Total ram usage:        3 bytes
 
  *************** function _spiTransferByte *****************
  Defined at:
-<<<<<<< HEAD
 		line 416 in file "main.c"
-=======
-		line 411 in file "main.c"
->>>>>>> parent of 015c358... PIC, Arduino code
  Parameters:    Size  Location     Type
   data            1    wreg     unsigned char 
  Auto vars:     Size  Location     Type
@@ -975,7 +819,7 @@ Total ram usage:        1 bytes
 
  *************** function _setCSN *****************
  Defined at:
-		line 298 in file "main.c"
+		line 299 in file "main.c"
  Parameters:    Size  Location     Type
   level           2    0[COMRAM] int 
  Auto vars:     Size  Location     Type
@@ -1009,11 +853,7 @@ Total ram usage:        2 bytes
 
  *************** function _delay10ms *****************
  Defined at:
-<<<<<<< HEAD
 		line 456 in file "main.c"
-=======
-		line 453 in file "main.c"
->>>>>>> parent of 015c358... PIC, Arduino code
  Parameters:    Size  Location     Type
   ms_multi        2    0[COMRAM] int 
  Auto vars:     Size  Location     Type
@@ -1045,46 +885,24 @@ MODULE INFORMATION
 
 Module		Function		Class		Link	Load	Size
 shared
-<<<<<<< HEAD
-		__initializatio		CODE           	3BB6	0000	56
-=======
-		__initializatio		CODE           	3BAA	0000	56
->>>>>>> parent of 015c358... PIC, Arduino code
+		__initializatio		CODE           	3BDC	0000	56
 
 shared estimated size: 56
 
 main.c
-<<<<<<< HEAD
-		_nrfConfigReg  		CODE           	3BF4	0000	74
-		_spiConfig_1   		CODE           	3B26	0000	24
-		_spiTransfer   		CODE           	3E52	0000	202
-		_main          		CODE           	3DAA	0000	168
-		_setCSN        		CODE           	3B0E	0000	24
-		_nrfSetTXAddr  		CODE           	3C3E	0000	116
-		_nrfTXData     		CODE           	3D2A	0000	128
-		_nrfGetStatus  		CODE           	3B58	0000	34
-		_spiTransferByt		CODE           	3AFC	0000	18
-		_portConfig    		CODE           	3B3E	0000	26
-		_nrfConfig     		CODE           	3F1C	0000	228
-		_nrfSetRXAddr  		CODE           	3CB2	0000	120
-		_delay10ms     		CODE           	3B7A	0000	60
+		_nrfConfigReg  		CODE           	3C1A	0000	74
+		_spiConfig_1   		CODE           	3B4C	0000	24
+		_spiTransfer   		CODE           	3E5A	0000	202
+		_main          		CODE           	3DCE	0000	140
+		_setCSN        		CODE           	3B18	0000	16
+		_nrfSetTXAddr  		CODE           	3C64	0000	116
+		_nrfTXData     		CODE           	3D50	0000	126
+		_nrfGetStatus  		CODE           	3B7E	0000	34
+		_spiTransferByt		CODE           	3B3A	0000	18
+		_portConfig    		CODE           	3B64	0000	26
+		_nrfConfig     		CODE           	3F24	0000	220
+		_nrfSetRXAddr  		CODE           	3CD8	0000	120
+		_delay10ms     		CODE           	3BA0	0000	60
 
-main.c estimated size: 1222
-=======
-		_nrfConfigReg  		CODE           	3BE8	0000	86
-		_spiConfig_1   		CODE           	3B1A	0000	24
-		_spiTransfer   		CODE           	3F2A	0000	214
-		_main          		CODE           	3C3E	0000	116
-		_setCSN        		CODE           	3B02	0000	24
-		_nrfSetTXAddr  		CODE           	3CB2	0000	128
-		_nrfTXData     		CODE           	3E64	0000	198
-		_nrfGetStatus  		CODE           	3B4C	0000	34
-		_spiTransferByt		CODE           	3AF2	0000	16
-		_portConfig    		CODE           	3B32	0000	26
-		_nrfConfig     		CODE           	3DB6	0000	174
-		_nrfSetRXAddr  		CODE           	3D32	0000	132
-		_delay10ms     		CODE           	3B6E	0000	60
-
-main.c estimated size: 1232
->>>>>>> parent of 015c358... PIC, Arduino code
+main.c estimated size: 1176
 

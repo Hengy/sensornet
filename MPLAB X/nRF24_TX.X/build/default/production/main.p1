@@ -1,16 +1,16 @@
 Version 3.2 HI-TECH Software Intermediate Code
 [p mainexit ]
-"166 main.c
+"167 main.c
 [v _portConfig `(v ~T0 @X0 0 ef ]
-"167
-[v _spiConfig_1 `(v ~T0 @X0 0 ef ]
 "168
+[v _spiConfig_1 `(v ~T0 @X0 0 ef ]
+"169
 [v _nrfConfig `(v ~T0 @X0 0 ef ]
-"177
+"178
 [v _delay10ms `(v ~T0 @X0 0 ef1`i ]
-"176
+"177
 [v _nrfTXData `(v ~T0 @X0 0 ef1`i ]
-"170
+"171
 [v _nrfGetStatus `(v ~T0 @X0 0 ef ]
 "7530 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic18f24k22.h
 [s S464 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -44,7 +44,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S463 . . . . . . . . . . ]
 "7572
 [v _LATAbits `VS463 ~T0 @X0 0 e@3977 ]
-"174 main.c
+"175 main.c
 [v _spiTransfer `(v ~T0 @X0 0 ef3`uc`uc`i ]
 "7920 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic18f24k22.h
 [v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
@@ -190,20 +190,20 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _SSP1STATbits `VS870 ~T0 @X0 0 e@4039 ]
 "14850
 [v _SSP1ADD `Vuc ~T0 @X0 0 e@4040 ]
-"171 main.c
+"172 main.c
 [v _nrfConfigReg `(uc ~T0 @X0 0 ef3`uc`uc`uc ]
-"172
-[v _nrfSetRXAddr `(v ~T0 @X0 0 ef3`uc`*uc`i ]
 "173
+[v _nrfSetRXAddr `(v ~T0 @X0 0 ef3`uc`*uc`i ]
+"174
 [v _nrfSetTXAddr `(v ~T0 @X0 0 ef2`*uc`i ]
+"176
+[v _spiTransferByte `(uc ~T0 @X0 0 ef1`uc ]
+"15187 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic18f24k22.h
+[v _SSP1BUF `Vuc ~T0 @X0 0 e@4041 ]
 [v F8467 `(v ~T0 @X0 1 tf1`ul ]
 "147 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic18.h
 [v __delay `JF8467 ~T0 @X0 0 e ]
 [p i __delay ]
-"175 main.c
-[v _spiTransferByte `(uc ~T0 @X0 0 ef1`uc ]
-"15187 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic18f24k22.h
-[v _SSP1BUF `Vuc ~T0 @X0 0 e@4041 ]
 [; ;htc.h: 21: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 24: extern void __builtin_software_breakpoint(void);
 [; ;pic18f24k22.h: 47: extern volatile unsigned char ANSELA @ 0xF38;
@@ -8173,7 +8173,19 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 1 `i `uc
 ]
 [; ;main.c: 157: unsigned char RX_PW_P0_CURR = 0b00000001;
+"158
+[v _DYNPD_CURR `uc ~T0 @X0 1 e ]
+[i _DYNPD_CURR
+-> -> 1 `i `uc
+]
+[; ;main.c: 158: unsigned char DYNPD_CURR = 0b00000001;
 "159
+[v _FEATURE_CURR `uc ~T0 @X0 1 e ]
+[i _FEATURE_CURR
+-> -> 4 `i `uc
+]
+[; ;main.c: 159: unsigned char FEATURE_CURR = 0b00000100;
+"160
 [v _RX_ADDRESS `uc ~T0 @X0 -> 4 `i e ]
 [i _RX_ADDRESS
 :U ..
@@ -8183,269 +8195,250 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 231 `i `uc
 ..
 ]
-[; ;main.c: 159: unsigned char RX_ADDRESS[4] = {0xE7,0xE7,0xE7,0xE7};
-"160
+[; ;main.c: 160: unsigned char RX_ADDRESS[4] = {0xE7,0xE7,0xE7,0xE7};
+"161
 [v _TX_ADDRESS `uc ~T0 @X0 -> 4 `i e ]
 [i _TX_ADDRESS
 :U ..
--> -> 199 `i `uc
--> -> 199 `i `uc
--> -> 199 `i `uc
--> -> 199 `i `uc
+-> -> 231 `i `uc
+-> -> 231 `i `uc
+-> -> 231 `i `uc
+-> -> 231 `i `uc
 ..
 ]
-[; ;main.c: 160: unsigned char TX_ADDRESS[4] = {0xC7,0xC7,0xC7,0xC7};
-[; ;main.c: 166: void portConfig(void);
-[; ;main.c: 167: void spiConfig_1(void);
-[; ;main.c: 168: void nrfConfig(void);
-[; ;main.c: 169: void setCSN(int);
-[; ;main.c: 170: void nrfGetStatus(void);
-[; ;main.c: 171: unsigned char nrfConfigReg(char, unsigned char, unsigned char);
-[; ;main.c: 172: void nrfSetRXAddr(unsigned char, unsigned char *, int);
-[; ;main.c: 173: void nrfSetTXAddr(unsigned char *, int);
-[; ;main.c: 174: void spiTransfer(char, unsigned char,int);
-[; ;main.c: 175: unsigned char spiTransferByte(unsigned char);
-[; ;main.c: 176: void nrfTXData(int);
-[; ;main.c: 177: void delay10ms(int);
-"183
-[v _dataBufIn `uc ~T0 @X0 -> 32 `i e ]
-[; ;main.c: 183: unsigned char dataBufIn[32];
+[; ;main.c: 161: unsigned char TX_ADDRESS[4] = {0xE7,0xE7,0xE7,0xE7};
+[; ;main.c: 167: void portConfig(void);
+[; ;main.c: 168: void spiConfig_1(void);
+[; ;main.c: 169: void nrfConfig(void);
+[; ;main.c: 170: void setCSN(int);
+[; ;main.c: 171: void nrfGetStatus(void);
+[; ;main.c: 172: unsigned char nrfConfigReg(char, unsigned char, unsigned char);
+[; ;main.c: 173: void nrfSetRXAddr(unsigned char, unsigned char *, int);
+[; ;main.c: 174: void nrfSetTXAddr(unsigned char *, int);
+[; ;main.c: 175: void spiTransfer(char, unsigned char,int);
+[; ;main.c: 176: unsigned char spiTransferByte(unsigned char);
+[; ;main.c: 177: void nrfTXData(int);
+[; ;main.c: 178: void delay10ms(int);
 "184
+[v _dataBufIn `uc ~T0 @X0 -> 32 `i e ]
+[; ;main.c: 184: unsigned char dataBufIn[32];
+"185
 [v _dataBufOut `uc ~T0 @X0 -> 32 `i e ]
-[; ;main.c: 184: unsigned char dataBufOut[32];
-"186
+[; ;main.c: 185: unsigned char dataBufOut[32];
+"187
 [v _nrfSTATUS `uc ~T0 @X0 1 e ]
-[; ;main.c: 186: unsigned char nrfSTATUS;
-"191
+[; ;main.c: 187: unsigned char nrfSTATUS;
+"192
 [v _main `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 191: void main(void) {
+[; ;main.c: 192: void main(void) {
 [e :U _main ]
 [f ]
-[; ;main.c: 194: portConfig();
-"194
-[e ( _portConfig ..  ]
-[; ;main.c: 195: spiConfig_1();
+[; ;main.c: 195: portConfig();
 "195
-[e ( _spiConfig_1 ..  ]
-[; ;main.c: 196: nrfConfig();
+[e ( _portConfig ..  ]
+[; ;main.c: 196: spiConfig_1();
 "196
+[e ( _spiConfig_1 ..  ]
+[; ;main.c: 197: nrfConfig();
+"197
 [e ( _nrfConfig ..  ]
-[; ;main.c: 198: delay10ms(1);
-"198
+[; ;main.c: 199: delay10ms(1);
+"199
 [e ( _delay10ms (1 -> 1 `i ]
-"201
-[v _count `i ~T0 @X0 1 a ]
-[; ;main.c: 201: int count = 1;
-[e = _count -> 1 `i ]
-[; ;main.c: 202: for (;;) {
 "202
+[v _count `i ~T0 @X0 1 a ]
+[; ;main.c: 202: int count = 1;
+[e = _count -> 1 `i ]
+[; ;main.c: 203: for (;;) {
+"203
 {
 [e :U 1144 ]
 {
-[; ;main.c: 204: dataBufOut[0] = count;
-"204
-[e = *U + &U _dataBufOut * -> -> -> 0 `i `ui `ux -> -> # *U &U _dataBufOut `ui `ux -> _count `uc ]
-[; ;main.c: 205: nrfTXData(1);
+[; ;main.c: 205: dataBufOut[0] = count;
 "205
-[e ( _nrfTXData (1 -> 1 `i ]
-[; ;main.c: 206: count++;
+[e = *U + &U _dataBufOut * -> -> -> 0 `i `ui `ux -> -> # *U &U _dataBufOut `ui `ux -> _count `uc ]
+[; ;main.c: 206: dataBufOut[1] = 0b01101010;
 "206
-[e ++ _count -> 1 `i ]
-[; ;main.c: 208: delay10ms(1);
+[e = *U + &U _dataBufOut * -> -> -> 1 `i `ui `ux -> -> # *U &U _dataBufOut `ui `ux -> -> 106 `i `uc ]
+[; ;main.c: 207: dataBufOut[2] = 0x3F;
+"207
+[e = *U + &U _dataBufOut * -> -> -> 2 `i `ui `ux -> -> # *U &U _dataBufOut `ui `ux -> -> 63 `i `uc ]
+[; ;main.c: 208: dataBufOut[3] = 182;
 "208
-[e ( _delay10ms (1 -> 1 `i ]
-[; ;main.c: 210: nrfGetStatus();
+[e = *U + &U _dataBufOut * -> -> -> 3 `i `ui `ux -> -> # *U &U _dataBufOut `ui `ux -> -> 182 `i `uc ]
+[; ;main.c: 209: nrfTXData(4);
+"209
+[e ( _nrfTXData (1 -> 4 `i ]
+[; ;main.c: 210: count++;
 "210
-[e ( _nrfGetStatus ..  ]
-[; ;main.c: 212: if (nrfSTATUS != 0x0E) {
+[e ++ _count -> 1 `i ]
+[; ;main.c: 212: delay10ms(2);
 "212
+[e ( _delay10ms (1 -> 2 `i ]
+[; ;main.c: 214: nrfGetStatus();
+"214
+[e ( _nrfGetStatus ..  ]
+[; ;main.c: 216: if (nrfSTATUS != 0x0E) {
+"216
 [e $ ! != -> _nrfSTATUS `i -> 14 `i 1147  ]
 {
-[; ;main.c: 213: LATAbits.LATA0 = 1;
-"213
-[e = . . _LATAbits 0 0 -> -> 1 `i `uc ]
-[; ;main.c: 214: delay10ms(20);
-"214
-[e ( _delay10ms (1 -> 20 `i ]
-[; ;main.c: 215: LATAbits.LATA0 = 0;
-"215
-[e = . . _LATAbits 0 0 -> -> 0 `i `uc ]
-"216
-}
-[e :U 1147 ]
-[; ;main.c: 216: }
-[; ;main.c: 218: dataBufOut[0] = 0b01110000;
+[; ;main.c: 218: LATAbits.LATA0 = 1;
 "218
-[e = *U + &U _dataBufOut * -> -> -> 0 `i `ui `ux -> -> # *U &U _dataBufOut `ui `ux -> -> 112 `i `uc ]
-[; ;main.c: 219: spiTransfer('w',0x07,1);
-"219
-[e ( _spiTransfer (3 , , -> -> 119 `ui `uc -> -> 7 `i `uc -> 1 `i ]
-[; ;main.c: 221: spiTransfer('n',0xE1,0);
+[e = . . _LATAbits 0 0 -> -> 1 `i `uc ]
+[; ;main.c: 221: dataBufOut[0] = 0b01110000;
 "221
-[e ( _spiTransfer (3 , , -> -> 110 `ui `uc -> -> 225 `i `uc -> 0 `i ]
-[; ;main.c: 222: spiTransfer('n',0xE2,0);
+[e = *U + &U _dataBufOut * -> -> -> 0 `i `ui `ux -> -> # *U &U _dataBufOut `ui `ux -> -> 112 `i `uc ]
+[; ;main.c: 222: spiTransfer('w',0x07,1);
 "222
-[e ( _spiTransfer (3 , , -> -> 110 `ui `uc -> -> 226 `i `uc -> 0 `i ]
-[; ;main.c: 224: nrfGetStatus();
+[e ( _spiTransfer (3 , , -> -> 119 `ui `uc -> -> 7 `i `uc -> 1 `i ]
+[; ;main.c: 224: delay10ms(10);
 "224
-[e ( _nrfGetStatus ..  ]
-[; ;main.c: 226: delay10ms(100);
+[e ( _delay10ms (1 -> 10 `i ]
+[; ;main.c: 226: LATAbits.LATA0 = 0;
 "226
-[e ( _delay10ms (1 -> 100 `i ]
+[e = . . _LATAbits 0 0 -> -> 0 `i `uc ]
 "227
 }
+[e :U 1147 ]
 [; ;main.c: 227: }
+[; ;main.c: 229: delay10ms(80);
+"229
+[e ( _delay10ms (1 -> 80 `i ]
+"230
+}
+[; ;main.c: 230: }
 [e $U 1144  ]
 [e :U 1145 ]
 }
-[; ;main.c: 228: }
-"228
+[; ;main.c: 231: }
+"231
 [e :UE 1143 ]
 }
-"233
+"236
 [v _portConfig `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 233: void portConfig(void) {
+[; ;main.c: 236: void portConfig(void) {
 [e :U _portConfig ]
 [f ]
-[; ;main.c: 234: TRISA = 0b00001000;
-"234
+[; ;main.c: 237: TRISA = 0b00001000;
+"237
 [e = _TRISA -> -> 8 `i `uc ]
-[; ;main.c: 235: TRISB = 0b00000000;
-"235
-[e = _TRISB -> -> 0 `i `uc ]
-[; ;main.c: 236: TRISC = 0b00010000;
-"236
-[e = _TRISC -> -> 16 `i `uc ]
-[; ;main.c: 238: LATA = 0b00000100;
+[; ;main.c: 238: TRISB = 0b00000000;
 "238
-[e = _LATA -> -> 4 `i `uc ]
-[; ;main.c: 239: LATB = 0x00;
+[e = _TRISB -> -> 0 `i `uc ]
+[; ;main.c: 239: TRISC = 0b00010000;
 "239
-[e = _LATB -> -> 0 `i `uc ]
-[; ;main.c: 240: LATC = 0x00;
-"240
-[e = _LATC -> -> 0 `i `uc ]
-[; ;main.c: 241: }
+[e = _TRISC -> -> 16 `i `uc ]
+[; ;main.c: 241: LATA = 0b00000100;
 "241
+[e = _LATA -> -> 4 `i `uc ]
+[; ;main.c: 242: LATB = 0x00;
+"242
+[e = _LATB -> -> 0 `i `uc ]
+[; ;main.c: 243: LATC = 0x00;
+"243
+[e = _LATC -> -> 0 `i `uc ]
+[; ;main.c: 244: }
+"244
 [e :UE 1148 ]
 }
-"247
+"250
 [v _spiConfig_1 `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 247: void spiConfig_1(void) {
+[; ;main.c: 250: void spiConfig_1(void) {
 [e :U _spiConfig_1 ]
 [f ]
-[; ;main.c: 248: SSP1CON1bits.CKP = 0;
-"248
-[e = . . _SSP1CON1bits 0 1 -> -> 0 `i `uc ]
-[; ;main.c: 249: SSP1STATbits.CKE = 1;
-"249
-[e = . . _SSP1STATbits 2 6 -> -> 1 `i `uc ]
-[; ;main.c: 250: SSP1STATbits.SMP = 1;
-"250
-[e = . . _SSP1STATbits 2 7 -> -> 1 `i `uc ]
-<<<<<<< HEAD
-[; ;main.c: 251: SSP1ADD = 0b00001111;
+[; ;main.c: 251: SSP1CON1bits.CKP = 0;
 "251
-[e = _SSP1ADD -> -> 15 `i `uc ]
-[; ;main.c: 252: SSP1CON1bits.SSPM = 0b1010;
+[e = . . _SSP1CON1bits 0 1 -> -> 0 `i `uc ]
+[; ;main.c: 252: SSP1STATbits.CKE = 1;
 "252
-=======
-[; ;main.c: 244: SSP1ADD = 0b00111111;
-"244
-[e = _SSP1ADD -> -> 63 `i `uc ]
-[; ;main.c: 245: SSP1CON1bits.SSPM = 0b1010;
-"245
->>>>>>> parent of 015c358... PIC, Arduino code
-[e = . . _SSP1CON1bits 0 0 -> -> 10 `i `uc ]
-[; ;main.c: 254: SSP1CON1bits.SSPEN = 1;
+[e = . . _SSP1STATbits 2 6 -> -> 1 `i `uc ]
+[; ;main.c: 253: SSP1STATbits.SMP = 1;
+"253
+[e = . . _SSP1STATbits 2 7 -> -> 1 `i `uc ]
+[; ;main.c: 254: SSP1ADD = 0b00001111;
 "254
-[e = . . _SSP1CON1bits 0 2 -> -> 1 `i `uc ]
-[; ;main.c: 255: LATAbits.LATA2 = 1;
+[e = _SSP1ADD -> -> 15 `i `uc ]
+[; ;main.c: 255: SSP1CON1bits.SSPM = 0b1010;
 "255
+[e = . . _SSP1CON1bits 0 0 -> -> 10 `i `uc ]
+[; ;main.c: 257: SSP1CON1bits.SSPEN = 1;
+"257
+[e = . . _SSP1CON1bits 0 2 -> -> 1 `i `uc ]
+[; ;main.c: 258: LATAbits.LATA2 = 1;
+"258
 [e = . . _LATAbits 0 2 -> -> 1 `i `uc ]
-[; ;main.c: 256: }
-"256
+[; ;main.c: 259: }
+"259
 [e :UE 1149 ]
 }
-"261
+"264
 [v _nrfConfig `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 261: void nrfConfig(void) {
+[; ;main.c: 264: void nrfConfig(void) {
 [e :U _nrfConfig ]
 [f ]
-[; ;main.c: 264: nrfConfigReg('w',0x00,CONFIG_CURR);
-"264
+[; ;main.c: 267: nrfConfigReg('w',0x00,CONFIG_CURR);
+"267
 [e ( _nrfConfigReg (3 , , -> -> 119 `ui `uc -> -> 0 `i `uc _CONFIG_CURR ]
-[; ;main.c: 266: nrfConfigReg('w',0x01,EN_AA_CURR);
-"266
+[; ;main.c: 269: nrfConfigReg('w',0x01,EN_AA_CURR);
+"269
 [e ( _nrfConfigReg (3 , , -> -> 119 `ui `uc -> -> 1 `i `uc _EN_AA_CURR ]
-[; ;main.c: 268: nrfConfigReg('w',0x02,EN_RXADDR_CURR);
-"268
+[; ;main.c: 271: nrfConfigReg('w',0x02,EN_RXADDR_CURR);
+"271
 [e ( _nrfConfigReg (3 , , -> -> 119 `ui `uc -> -> 2 `i `uc _EN_RXADDR_CURR ]
-[; ;main.c: 270: nrfConfigReg('w',0x03,SETUP_AW_CURR);
-"270
+[; ;main.c: 273: nrfConfigReg('w',0x03,SETUP_AW_CURR);
+"273
 [e ( _nrfConfigReg (3 , , -> -> 119 `ui `uc -> -> 3 `i `uc _SETUP_AW_CURR ]
-[; ;main.c: 272: nrfConfigReg('w',0x04,SETUP_RETR_CURR);
-"272
+[; ;main.c: 275: nrfConfigReg('w',0x04,SETUP_RETR_CURR);
+"275
 [e ( _nrfConfigReg (3 , , -> -> 119 `ui `uc -> -> 4 `i `uc _SETUP_RETR_CURR ]
-[; ;main.c: 274: nrfConfigReg('w',0x05,RF_CH_CURR);
-"274
+[; ;main.c: 277: nrfConfigReg('w',0x05,RF_CH_CURR);
+"277
 [e ( _nrfConfigReg (3 , , -> -> 119 `ui `uc -> -> 5 `i `uc _RF_CH_CURR ]
-[; ;main.c: 276: nrfConfigReg('w',0x06,RF_SETUP_CURR);
-"276
+[; ;main.c: 279: nrfConfigReg('w',0x06,RF_SETUP_CURR);
+"279
 [e ( _nrfConfigReg (3 , , -> -> 119 `ui `uc -> -> 6 `i `uc _RF_SETUP_CURR ]
-[; ;main.c: 278: nrfSetRXAddr(0x0A,TX_ADDRESS,4);
-"278
-[e ( _nrfSetRXAddr (3 , , -> -> 10 `i `uc &U _TX_ADDRESS -> 4 `i ]
-[; ;main.c: 280: nrfSetRXAddr(0x0B,RX_ADDRESS,4);
-"280
-[e ( _nrfSetRXAddr (3 , , -> -> 11 `i `uc &U _RX_ADDRESS -> 4 `i ]
-[; ;main.c: 282: nrfSetTXAddr(TX_ADDRESS,4);
-"282
+[; ;main.c: 281: nrfSetRXAddr(0x0A,RX_ADDRESS,4);
+"281
+[e ( _nrfSetRXAddr (3 , , -> -> 10 `i `uc &U _RX_ADDRESS -> 4 `i ]
+[; ;main.c: 283: nrfSetTXAddr(TX_ADDRESS,4);
+"283
 [e ( _nrfSetTXAddr (2 , &U _TX_ADDRESS -> 4 `i ]
-[; ;main.c: 284: nrfConfigReg('w',0x11,RX_PW_P0_CURR);
-"284
+[; ;main.c: 285: nrfConfigReg('w',0x11,RX_PW_P0_CURR);
+"285
 [e ( _nrfConfigReg (3 , , -> -> 119 `ui `uc -> -> 17 `i `uc _RX_PW_P0_CURR ]
-[; ;main.c: 286: nrfConfigReg('w',0x12,RX_PW_P0_CURR);
-"286
-[e ( _nrfConfigReg (3 , , -> -> 119 `ui `uc -> -> 18 `i `uc _RX_PW_P0_CURR ]
-[; ;main.c: 290: spiTransfer('n',0xE1,0);
-"290
+[; ;main.c: 287: nrfConfigReg('w',0x1C,DYNPD_CURR);
+"287
+[e ( _nrfConfigReg (3 , , -> -> 119 `ui `uc -> -> 28 `i `uc _DYNPD_CURR ]
+[; ;main.c: 289: nrfConfigReg('w',0x1D,FEATURE_CURR);
+"289
+[e ( _nrfConfigReg (3 , , -> -> 119 `ui `uc -> -> 29 `i `uc _FEATURE_CURR ]
+[; ;main.c: 291: spiTransfer('n',0xE1,0);
+"291
 [e ( _spiTransfer (3 , , -> -> 110 `ui `uc -> -> 225 `i `uc -> 0 `i ]
-[; ;main.c: 292: spiTransfer('n',0xE2,0);
-"292
-[e ( _spiTransfer (3 , , -> -> 110 `ui `uc -> -> 226 `i `uc -> 0 `i ]
-[; ;main.c: 293: }
+[; ;main.c: 293: spiTransfer('n',0xE2,0);
 "293
+[e ( _spiTransfer (3 , , -> -> 110 `ui `uc -> -> 226 `i `uc -> 0 `i ]
+[; ;main.c: 294: }
+"294
 [e :UE 1150 ]
 }
-"298
+"299
 [v _setCSN `(v ~T0 @X0 1 ef1`i ]
 {
-[; ;main.c: 298: void setCSN(int level) {
+[; ;main.c: 299: void setCSN(int level) {
 [e :U _setCSN ]
 [v _level `i ~T0 @X0 1 r1 ]
 [f ]
-[; ;main.c: 300: if (level == 1) {
-"300
+[; ;main.c: 301: if (level == 1) {
+"301
 [e $ ! == _level -> 1 `i 1152  ]
 {
-<<<<<<< HEAD
-[; ;main.c: 301: _delay((unsigned long)((1)*(64000000/4000000.0)));
-"301
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
 [; ;main.c: 302: LATAbits.LATA2 = 1;
 "302
-=======
-[; ;main.c: 286: _delay((unsigned long)((2)*(64000000/4000000.0)));
-"286
-[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 287: LATAbits.LATA2 = 1;
-"287
->>>>>>> parent of 015c358... PIC, Arduino code
 [e = . . _LATAbits 0 2 -> -> 1 `i `uc ]
 "303
 }
@@ -8502,29 +8495,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 329: spiTransferByte(0x20|command);
 "329
 [e ( _spiTransferByte (1 -> | -> 32 `i -> _command `i `uc ]
-<<<<<<< HEAD
 [; ;main.c: 330: spiTransferByte(data);
 "330
 [e ( _spiTransferByte (1 _data ]
 "331
 }
 [; ;main.c: 331: } else if (wr == 'r') {
-=======
-[; ;main.c: 315: _delay((unsigned long)((3)*(64000000/4000000.0)));
-"315
-[e ( __delay (1 -> * -> -> 3 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 316: spiTransferByte(data);
-"316
-[e ( _spiTransferByte (1 _data ]
-"317
-}
-[; ;main.c: 317: } else if (wr == 'r') {
->>>>>>> parent of 015c358... PIC, Arduino code
 [e $U 1157  ]
 [e :U 1156 ]
 [e $ ! == -> _wr `ui -> 114 `ui 1158  ]
 {
-<<<<<<< HEAD
 [; ;main.c: 332: spiTransferByte(0x00|command);
 "332
 [e ( _spiTransferByte (1 -> | -> 0 `i -> _command `i `uc ]
@@ -8551,42 +8531,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _nrfSetTXAddr `(v ~T0 @X0 1 ef2`*uc`i ]
 {
 [; ;main.c: 346: void nrfSetTXAddr(unsigned char addr[], int len) {
-=======
-[; ;main.c: 318: spiTransferByte(0x00|command);
-"318
-[e ( _spiTransferByte (1 -> | -> 0 `i -> _command `i `uc ]
-[; ;main.c: 319: _delay((unsigned long)((3)*(64000000/4000000.0)));
-"319
-[e ( __delay (1 -> * -> -> 3 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 320: data = spiTransferByte(0xFF);
-"320
-[e = _data ( _spiTransferByte (1 -> -> 255 `i `uc ]
-"321
-}
-[e :U 1158 ]
-"323
-[e :U 1157 ]
-[; ;main.c: 321: }
-[; ;main.c: 323: setCSN(1);
-[e ( _setCSN (1 -> 1 `i ]
-[; ;main.c: 325: return data;
-"325
-[e ) _data ]
-[e $UE 1155  ]
-[; ;main.c: 326: }
-"326
-[e :UE 1155 ]
-}
-"333
-[v _nrfSetTXAddr `(v ~T0 @X0 1 ef2`*uc`i ]
-{
-[; ;main.c: 333: void nrfSetTXAddr(unsigned char addr[], int len) {
->>>>>>> parent of 015c358... PIC, Arduino code
 [e :U _nrfSetTXAddr ]
 [v _addr `*uc ~T0 @X0 1 r1 ]
 [v _len `i ~T0 @X0 1 r2 ]
 [f ]
-<<<<<<< HEAD
 [; ;main.c: 348: setCSN(0);
 "348
 [e ( _setCSN (1 -> 0 `i ]
@@ -8599,52 +8547,22 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;main.c: 354: for (int i=1;i<=len;i++) {
 "354
-=======
-[; ;main.c: 335: setCSN(0);
-"335
-[e ( _setCSN (1 -> 0 `i ]
-[; ;main.c: 337: spiTransferByte(0x20|0x10);
-"337
-[e ( _spiTransferByte (1 -> | -> 32 `i -> 16 `i `uc ]
-[; ;main.c: 339: _delay((unsigned long)((3)*(64000000/4000000.0)));
-"339
-[e ( __delay (1 -> * -> -> 3 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 341: if (len != 0) {
-"341
-[e $ ! != _len -> 0 `i 1160  ]
-{
-[; ;main.c: 343: for (int i=1;i<=len;i++) {
-"343
->>>>>>> parent of 015c358... PIC, Arduino code
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 1 `i ]
 [e $U 1164  ]
 [e :U 1161 ]
 {
-<<<<<<< HEAD
 [; ;main.c: 355: spiTransferByte(addr[i-1]);
 "355
 [e ( _spiTransferByte (1 *U + _addr * -> - _i -> 1 `i `x -> -> # *U _addr `i `x ]
 "356
 }
 "354
-=======
-[; ;main.c: 344: spiTransferByte(addr[i-1]);
-"344
-[e ( _spiTransferByte (1 *U + _addr * -> - _i -> 1 `i `x -> -> # *U _addr `i `x ]
-[; ;main.c: 345: _delay((unsigned long)((3)*(64000000/4000000.0)));
-"345
-[e ( __delay (1 -> * -> -> 3 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-"346
-}
-"343
->>>>>>> parent of 015c358... PIC, Arduino code
 [e ++ _i -> 1 `i ]
 [e :U 1164 ]
 [e $ <= _i _len 1161  ]
 [e :U 1162 ]
-<<<<<<< HEAD
 "356
 }
 "357
@@ -8663,32 +8581,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _nrfSetRXAddr `(v ~T0 @X0 1 ef3`uc`*uc`i ]
 {
 [; ;main.c: 368: void nrfSetRXAddr(unsigned char pipe, unsigned char addr[], int len) {
-=======
-"346
-}
-"347
-}
-[e :U 1160 ]
-[; ;main.c: 346: }
-[; ;main.c: 347: }
-[; ;main.c: 349: setCSN(1);
-"349
-[e ( _setCSN (1 -> 1 `i ]
-[; ;main.c: 350: }
-"350
-[e :UE 1159 ]
-}
-"358
-[v _nrfSetRXAddr `(v ~T0 @X0 1 ef3`uc`*uc`i ]
-{
-[; ;main.c: 358: void nrfSetRXAddr(unsigned char pipe, unsigned char addr[], int len) {
->>>>>>> parent of 015c358... PIC, Arduino code
 [e :U _nrfSetRXAddr ]
 [v _pipe `uc ~T0 @X0 1 r1 ]
 [v _addr `*uc ~T0 @X0 1 r2 ]
 [v _len `i ~T0 @X0 1 r3 ]
 [f ]
-<<<<<<< HEAD
 [; ;main.c: 370: setCSN(0);
 "370
 [e ( _setCSN (1 -> 0 `i ]
@@ -8701,52 +8598,22 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;main.c: 376: for (int i=1;i<=len;i++) {
 "376
-=======
-[; ;main.c: 360: setCSN(0);
-"360
-[e ( _setCSN (1 -> 0 `i ]
-[; ;main.c: 362: spiTransferByte(0x20|pipe);
-"362
-[e ( _spiTransferByte (1 -> | -> 32 `i -> _pipe `i `uc ]
-[; ;main.c: 364: _delay((unsigned long)((3)*(64000000/4000000.0)));
-"364
-[e ( __delay (1 -> * -> -> 3 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 366: if (len != 0) {
-"366
-[e $ ! != _len -> 0 `i 1166  ]
-{
-[; ;main.c: 368: for (int i=1;i<=len;i++) {
-"368
->>>>>>> parent of 015c358... PIC, Arduino code
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 1 `i ]
 [e $U 1170  ]
 [e :U 1167 ]
 {
-<<<<<<< HEAD
 [; ;main.c: 377: spiTransferByte(addr[i-1]);
 "377
 [e ( _spiTransferByte (1 *U + _addr * -> - _i -> 1 `i `x -> -> # *U _addr `i `x ]
 "378
 }
 "376
-=======
-[; ;main.c: 369: spiTransferByte(addr[i-1]);
-"369
-[e ( _spiTransferByte (1 *U + _addr * -> - _i -> 1 `i `x -> -> # *U _addr `i `x ]
-[; ;main.c: 370: _delay((unsigned long)((3)*(64000000/4000000.0)));
-"370
-[e ( __delay (1 -> * -> -> 3 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-"371
-}
-"368
->>>>>>> parent of 015c358... PIC, Arduino code
 [e ++ _i -> 1 `i ]
 [e :U 1170 ]
 [e $ <= _i _len 1167  ]
 [e :U 1168 ]
-<<<<<<< HEAD
 "378
 }
 "379
@@ -8765,32 +8632,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _spiTransfer `(v ~T0 @X0 1 ef3`uc`uc`i ]
 {
 [; ;main.c: 392: void spiTransfer(char wrn, unsigned char command,int len) {
-=======
-"371
-}
-"372
-}
-[e :U 1166 ]
-[; ;main.c: 371: }
-[; ;main.c: 372: }
-[; ;main.c: 374: setCSN(1);
-"374
-[e ( _setCSN (1 -> 1 `i ]
-[; ;main.c: 375: }
-"375
-[e :UE 1165 ]
-}
-"385
-[v _spiTransfer `(v ~T0 @X0 1 ef3`uc`uc`i ]
-{
-[; ;main.c: 385: void spiTransfer(char wrn, unsigned char command,int len) {
->>>>>>> parent of 015c358... PIC, Arduino code
 [e :U _spiTransfer ]
 [v _wrn `uc ~T0 @X0 1 r1 ]
 [v _command `uc ~T0 @X0 1 r2 ]
 [v _len `i ~T0 @X0 1 r3 ]
 [f ]
-<<<<<<< HEAD
 [; ;main.c: 394: setCSN(0);
 "394
 [e ( _setCSN (1 -> 0 `i ]
@@ -8804,45 +8650,20 @@ Version 3.2 HI-TECH Software Intermediate Code
 "398
 }
 [; ;main.c: 398: } else if (wrn == 'r') {
-=======
-[; ;main.c: 387: setCSN(0);
-"387
-[e ( _setCSN (1 -> 0 `i ]
-[; ;main.c: 389: if (wrn == 'w') {
-"389
-[e $ ! == -> _wrn `ui -> 119 `ui 1172  ]
-{
-[; ;main.c: 390: spiTransferByte(0x20|command);
-"390
-[e ( _spiTransferByte (1 -> | -> 32 `i -> _command `i `uc ]
-"391
-}
-[; ;main.c: 391: } else if (wrn == 'r') {
->>>>>>> parent of 015c358... PIC, Arduino code
 [e $U 1173  ]
 [e :U 1172 ]
 [e $ ! == -> _wrn `ui -> 114 `ui 1174  ]
 {
-<<<<<<< HEAD
 [; ;main.c: 399: spiTransferByte(0x00|command);
 "399
 [e ( _spiTransferByte (1 -> | -> 0 `i -> _command `i `uc ]
 "400
 }
 [; ;main.c: 400: } else if(wrn == 'n') {
-=======
-[; ;main.c: 392: spiTransferByte(0x00|command);
-"392
-[e ( _spiTransferByte (1 -> | -> 0 `i -> _command `i `uc ]
-"393
-}
-[; ;main.c: 393: } else if(wrn == 'n') {
->>>>>>> parent of 015c358... PIC, Arduino code
 [e $U 1175  ]
 [e :U 1174 ]
 [e $ ! == -> _wrn `ui -> 110 `ui 1176  ]
 {
-<<<<<<< HEAD
 [; ;main.c: 401: spiTransferByte(command);
 "401
 [e ( _spiTransferByte (1 _command ]
@@ -8858,55 +8679,22 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;main.c: 405: for (int i=1;i<=len;i++) {
 "405
-=======
-[; ;main.c: 394: spiTransferByte(command);
-"394
-[e ( _spiTransferByte (1 _command ]
-"395
-}
-[e :U 1176 ]
-"396
-[e :U 1175 ]
-[e :U 1173 ]
-[; ;main.c: 395: }
-[; ;main.c: 396: _delay((unsigned long)((3)*(64000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 3 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 398: if (len != 0) {
-"398
-[e $ ! != _len -> 0 `i 1177  ]
-{
-[; ;main.c: 399: for (int i=1;i<=len;i++) {
-"399
->>>>>>> parent of 015c358... PIC, Arduino code
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 1 `i ]
 [e $U 1181  ]
 [e :U 1178 ]
 {
-<<<<<<< HEAD
 [; ;main.c: 406: dataBufIn[i-1] = spiTransferByte(dataBufOut[i-1]);
 "406
 [e = *U + &U _dataBufIn * -> -> - _i -> 1 `i `ui `ux -> -> # *U &U _dataBufIn `ui `ux ( _spiTransferByte (1 *U + &U _dataBufOut * -> -> - _i -> 1 `i `ui `ux -> -> # *U &U _dataBufOut `ui `ux ]
 "407
 }
 "405
-=======
-[; ;main.c: 400: dataBufIn[i-1] = spiTransferByte(dataBufOut[i-1]);
-"400
-[e = *U + &U _dataBufIn * -> -> - _i -> 1 `i `ui `ux -> -> # *U &U _dataBufIn `ui `ux ( _spiTransferByte (1 *U + &U _dataBufOut * -> -> - _i -> 1 `i `ui `ux -> -> # *U &U _dataBufOut `ui `ux ]
-[; ;main.c: 401: _delay((unsigned long)((3)*(64000000/4000000.0)));
-"401
-[e ( __delay (1 -> * -> -> 3 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-"402
-}
-"399
->>>>>>> parent of 015c358... PIC, Arduino code
 [e ++ _i -> 1 `i ]
 [e :U 1181 ]
 [e $ <= _i _len 1178  ]
 [e :U 1179 ]
-<<<<<<< HEAD
 "407
 }
 "408
@@ -8961,94 +8749,22 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;main.c: 436: for (int i=1;i<=len;i++) {
 "436
-=======
-"402
-}
-"403
-}
-[e :U 1177 ]
-[; ;main.c: 402: }
-[; ;main.c: 403: }
-[; ;main.c: 405: setCSN(1);
-"405
-[e ( _setCSN (1 -> 1 `i ]
-[; ;main.c: 406: }
-"406
-[e :UE 1171 ]
-}
-"411
-[v _spiTransferByte `(uc ~T0 @X0 1 ef1`uc ]
-{
-[; ;main.c: 411: unsigned char spiTransferByte(unsigned char data) {
-[e :U _spiTransferByte ]
-[v _data `uc ~T0 @X0 1 r1 ]
-[f ]
-[; ;main.c: 413: SSP1BUF = data;
-"413
-[e = _SSP1BUF _data ]
-[; ;main.c: 415: _delay((unsigned long)((30)*(64000000/4000000.0)));
-"415
-[e ( __delay (1 -> * -> -> 30 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 417: return SSP1BUF;
-"417
-[e ) _SSP1BUF ]
-[e $UE 1182  ]
-[; ;main.c: 418: }
-"418
-[e :UE 1182 ]
-}
-"424
-[v _nrfTXData `(v ~T0 @X0 1 ef1`i ]
-{
-[; ;main.c: 424: void nrfTXData(int len) {
-[e :U _nrfTXData ]
-[v _len `i ~T0 @X0 1 r1 ]
-[f ]
-[; ;main.c: 426: setCSN(0);
-"426
-[e ( _setCSN (1 -> 0 `i ]
-[; ;main.c: 428: spiTransferByte(0xA0);
-"428
-[e ( _spiTransferByte (1 -> -> 160 `i `uc ]
-[; ;main.c: 429: _delay((unsigned long)((3)*(64000000/4000000.0)));
-"429
-[e ( __delay (1 -> * -> -> 3 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 431: if (len != 0) {
-"431
-[e $ ! != _len -> 0 `i 1184  ]
-{
-[; ;main.c: 432: for (int i=1;i<=len;i++) {
-"432
->>>>>>> parent of 015c358... PIC, Arduino code
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 1 `i ]
 [e $U 1188  ]
 [e :U 1185 ]
 {
-<<<<<<< HEAD
 [; ;main.c: 437: spiTransferByte(dataBufOut[i-1]);
 "437
 [e ( _spiTransferByte (1 *U + &U _dataBufOut * -> -> - _i -> 1 `i `ui `ux -> -> # *U &U _dataBufOut `ui `ux ]
 "438
 }
 "436
-=======
-[; ;main.c: 433: spiTransferByte(dataBufOut[i-1]);
-"433
-[e ( _spiTransferByte (1 *U + &U _dataBufOut * -> -> - _i -> 1 `i `ui `ux -> -> # *U &U _dataBufOut `ui `ux ]
-[; ;main.c: 434: _delay((unsigned long)((3)*(64000000/4000000.0)));
-"434
-[e ( __delay (1 -> * -> -> 3 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-"435
-}
-"432
->>>>>>> parent of 015c358... PIC, Arduino code
 [e ++ _i -> 1 `i ]
 [e :U 1188 ]
 [e $ <= _i _len 1185  ]
 [e :U 1186 ]
-<<<<<<< HEAD
 "438
 }
 "439
@@ -9062,9 +8778,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 444: LATAbits.LATA1 = 1;
 "444
 [e = . . _LATAbits 0 1 -> -> 1 `i `uc ]
-[; ;main.c: 445: _delay((unsigned long)((11)*(64000000/4000000.0)));
+[; ;main.c: 445: _delay((unsigned long)((12)*(64000000/4000000.0)));
 "445
-[e ( __delay (1 -> * -> -> 11 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
+[e ( __delay (1 -> * -> -> 12 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
 [; ;main.c: 446: LATAbits.LATA1 = 0;
 "446
 [e = . . _LATAbits 0 1 -> -> 0 `i `uc ]
@@ -9085,74 +8801,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _i -> 0 `i ]
 [; ;main.c: 458: for (i=0;i<ms_multi;i++) {
 "458
-=======
-"435
-}
-"436
-}
-[e :U 1184 ]
-[; ;main.c: 435: }
-[; ;main.c: 436: }
-[; ;main.c: 438: setCSN(1);
-"438
-[e ( _setCSN (1 -> 1 `i ]
-[; ;main.c: 441: LATAbits.LATA1 = 1;
-"441
-[e = . . _LATAbits 0 1 -> -> 1 `i `uc ]
-[; ;main.c: 442: _delay((unsigned long)((11)*(64000000/4000000.0)));
-"442
-[e ( __delay (1 -> * -> -> 11 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 443: LATAbits.LATA1 = 0;
-"443
-[e = . . _LATAbits 0 1 -> -> 0 `i `uc ]
-[; ;main.c: 444: _delay((unsigned long)((170)*(64000000/4000000.0)));
-"444
-[e ( __delay (1 -> * -> -> 170 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-[; ;main.c: 445: for (int i=0;i<len;i++) {
-"445
-{
-[v _i `i ~T0 @X0 1 a ]
-[e = _i -> 0 `i ]
-[e $U 1192  ]
-[e :U 1189 ]
-{
-[; ;main.c: 446: _delay((unsigned long)((10)*(64000000/4000000.0)));
-"446
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
-"447
-}
-"445
-[e ++ _i -> 1 `i ]
-[e :U 1192 ]
-[e $ < _i _len 1189  ]
-[e :U 1190 ]
-"447
-}
-[; ;main.c: 447: }
-[; ;main.c: 448: }
-"448
-[e :UE 1183 ]
-}
-"453
-[v _delay10ms `(v ~T0 @X0 1 ef1`i ]
-{
-[; ;main.c: 453: void delay10ms(int ms_multi) {
-[e :U _delay10ms ]
-[v _ms_multi `i ~T0 @X0 1 r1 ]
-[f ]
-"454
-[v _i `i ~T0 @X0 1 a ]
-[; ;main.c: 454: int i = 0;
-[e = _i -> 0 `i ]
-[; ;main.c: 455: for (i=0;i<ms_multi;i++) {
-"455
->>>>>>> parent of 015c358... PIC, Arduino code
 {
 [e = _i -> 0 `i ]
 [e $U 1193  ]
 [e :U 1190 ]
 {
-<<<<<<< HEAD
 [; ;main.c: 459: _delay((unsigned long)((11)*(64000000/4000.0)));
 "459
 [e ( __delay (1 -> * -> -> 11 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
@@ -9169,22 +8822,4 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 461: }
 "461
 [e :UE 1189 ]
-=======
-[; ;main.c: 456: _delay((unsigned long)((11)*(64000000/4000.0)));
-"456
-[e ( __delay (1 -> * -> -> 11 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"457
-}
-"455
-[e ++ _i -> 1 `i ]
-[e :U 1197 ]
-[e $ < _i _ms_multi 1194  ]
-[e :U 1195 ]
-"457
-}
-[; ;main.c: 457: }
-[; ;main.c: 458: }
-"458
-[e :UE 1193 ]
->>>>>>> parent of 015c358... PIC, Arduino code
 }

@@ -11,55 +11,30 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-<<<<<<< HEAD
-$C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.obj
-=======
-$C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.obj
->>>>>>> parent of 015c358... PIC, Arduino code
+$C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.obj
 end_init CODE 0 0 0 4 1
 idloc IDLOC 0 200000 200000 8 1
 config CONFIG 0 300000 300000 E 1
 $dist/default/production\nRF24_TX.X.production.obj
-<<<<<<< HEAD
-text12 CODE 0 3B7A 3B7A 3C 1
-text11 CODE 0 3B0E 3B0E 18 1
-text10 CODE 0 3AFC 3AFC 12 1
-text9 CODE 0 3BF4 3BF4 4A 1
-text8 CODE 0 3CB2 3CB2 78 1
-text7 CODE 0 3C3E 3C3E 74 1
-text6 CODE 0 3E52 3E52 CA 1
-text5 CODE 0 3F1C 3F1C E4 1
-text4 CODE 0 3B58 3B58 22 1
-text3 CODE 0 3D2A 3D2A 80 1
-text2 CODE 0 3B3E 3B3E 1A 1
-text1 CODE 0 3B26 3B26 18 1
-text0 CODE 0 3DAA 3DAA A8 1
-=======
-text12 CODE 0 3B6E 3B6E 3C 1
-text11 CODE 0 3B02 3B02 18 1
-text10 CODE 0 3AF2 3AF2 10 1
-text9 CODE 0 3BE8 3BE8 56 1
-text8 CODE 0 3D32 3D32 84 1
-text7 CODE 0 3CB2 3CB2 80 1
-text6 CODE 0 3F2A 3F2A D6 1
-text5 CODE 0 3DB6 3DB6 AE 1
-text4 CODE 0 3B4C 3B4C 22 1
-text3 CODE 0 3E64 3E64 C6 1
-text2 CODE 0 3B32 3B32 1A 1
-text1 CODE 0 3B1A 3B1A 18 1
-text0 CODE 0 3C3E 3C3E 74 1
->>>>>>> parent of 015c358... PIC, Arduino code
+text12 CODE 0 3BA0 3BA0 3C 1
+text11 CODE 0 3B18 3B18 10 1
+text10 CODE 0 3B3A 3B3A 12 1
+text9 CODE 0 3C1A 3C1A 4A 1
+text8 CODE 0 3CD8 3CD8 78 1
+text7 CODE 0 3C64 3C64 74 1
+text6 CODE 0 3E5A 3E5A CA 1
+text5 CODE 0 3F24 3F24 DC 1
+text4 CODE 0 3B7E 3B7E 22 1
+text3 CODE 0 3D50 3D50 7E 1
+text2 CODE 0 3B64 3B64 1A 1
+text1 CODE 0 3B4C 3B4C 18 1
+text0 CODE 0 3DCE 3DCE 8C 1
 cstackCOMRAM COMRAM 1 23 23 12 1
 bssBANK0 BANK0 1 60 60 20 1
-dataCOMRAM COMRAM 1 35 35 F 1
+dataCOMRAM COMRAM 1 35 35 11 1
 bssCOMRAM COMRAM 1 1 1 22 1
-<<<<<<< HEAD
-cinit CODE 0 3BB6 3BB6 3E 1
-idataCOMRAM CODE 0 3AED 3AED F 1
-=======
-cinit CODE 0 3BAA 3BAA 3E 1
-idataCOMRAM CODE 0 3AE3 3AE3 F 1
->>>>>>> parent of 015c358... PIC, Arduino code
+cinit CODE 0 3BDC 3BDC 3E 1
+idataCOMRAM CODE 0 3B29 3B29 11 1
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
 # is described on a single line as follows:
@@ -69,27 +44,20 @@ idataCOMRAM CODE 0 3AE3 3AE3 F 1
 BANK0 000080-0000FF 1
 BANK1 000100-0001FF 1
 BANK2 000200-0002FF 1
-BIGRAM 000044-00005F 1
+BIGRAM 000046-00005F 1
 BIGRAM 000080-0002FF 1
-<<<<<<< HEAD
-CODE 000004-003AEC 1
-COMRAM 000044-00005F 1
-CONST 000004-003AEC 1
+CODE 000004-003B17 1
+CODE 003B28-003B28 1
+COMRAM 000046-00005F 1
+CONST 000004-003B17 1
+CONST 003B28-003B28 1
 EEDATA F00000-F000FF 1
-MEDIUMCONST 000300-003AEC 1
+MEDIUMCONST 000300-003B17 1
+MEDIUMCONST 003B28-003B28 1
 RAM 000080-0002FF 1
 SFR 000F38-000FFF 1
-SMALLCONST 000300-003AEC 1
-=======
-CODE 000004-003AE2 1
-COMRAM 000044-00005F 1
-CONST 000004-003AE2 1
-EEDATA F00000-F000FF 1
-MEDIUMCONST 000300-003AE2 1
-RAM 000080-0002FF 1
-SFR 000F38-000FFF 1
-SMALLCONST 000300-003AE2 1
->>>>>>> parent of 015c358... PIC, Arduino code
+SMALLCONST 000300-003B17 1
+SMALLCONST 003B28-003B28 1
 STACK 000080-0002FF 1
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
@@ -105,341 +73,167 @@ STACK 000080-0002FF 1
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\nRF24_TX.X.production.obj
-<<<<<<< HEAD
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":416 3AFC text10 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":418 3AFE text10 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":420 3B02 text10 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":422 3B0A text10 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":298 3B0E text11 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":300 3B0E text11 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":301 3B16 text11 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":302 3B1E text11 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":303 3B20 text11 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":304 3B22 text11 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":247 3B26 text1 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":248 3B26 text1 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":249 3B28 text1 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":250 3B2A text1 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":251 3B2C text1 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":252 3B30 text1 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":254 3B38 text1 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":255 3B3A text1 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":256 3B3C text1 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":233 3B3E text2 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":234 3B3E text2 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":235 3B42 text2 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":236 3B46 text2 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":238 3B4A text2 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":239 3B4E text2 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":240 3B52 text2 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":241 3B56 text2 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":312 3B58 text4 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":314 3B58 text4 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":316 3B64 text4 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":318 3B6C text4 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":319 3B78 text4 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":456 3B7A text12 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":457 3B7A text12 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":458 3B82 text12 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":459 3B8C text12 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":458 3B9C text12 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":461 3BB2 text12 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":458 3BB4 text12 CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.":785 3BB6 cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.":787 3BB6 cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.":790 3BB6 cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.":870 3BB6 cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.":871 3BBA cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.":872 3BBC cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.":873 3BBC cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.":874 3BBE cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.":875 3BC0 cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.":878 3BC2 cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.":879 3BC6 cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.":880 3BC8 cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.":881 3BC8 cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.":882 3BCA cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.":883 3BCC cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.":888 3BCE cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.":889 3BD0 cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.":890 3BD2 cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.":891 3BD4 cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.":892 3BD6 cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.":893 3BD8 cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.":894 3BDA cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.":895 3BDE cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.":896 3BE2 cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.":897 3BE2 cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.":898 3BE4 cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.":899 3BE8 cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.":900 3BEA cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.":901 3BEC cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.":907 3BEE cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.":908 3BEE cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.":909 3BF0 cinit CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":324 3BF4 text9 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":326 3BF6 text9 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":328 3C02 text9 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":329 3C0A text9 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":330 3C12 text9 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":331 3C18 text9 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":332 3C22 text9 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":333 3C28 text9 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":336 3C30 text9 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":346 3C3E text7 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":348 3C3E text7 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":350 3C4A text7 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":352 3C50 text7 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":354 3C58 text7 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":355 3C62 text7 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":354 3C8C text7 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":359 3CA4 text7 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":360 3CB0 text7 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":368 3CB2 text8 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":370 3CB4 text8 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":372 3CC0 text8 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":374 3CC8 text8 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":376 3CD0 text8 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":377 3CDA text8 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":376 3D04 text8 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":381 3D1C text8 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":382 3D28 text8 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":429 3D2A text3 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":431 3D2A text3 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":433 3D36 text3 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":435 3D3C text3 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":436 3D44 text3 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":437 3D4E text3 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":436 3D78 text3 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":441 3D90 text3 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":444 3D9C text3 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":445 3D9E text3 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":446 3DA6 text3 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":451 3DA8 text3 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":191 3DAA text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":194 3DAA text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":195 3DAE text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":196 3DB2 text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":198 3DB6 text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":201 3DC2 text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":204 3DCA text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":205 3DCE text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":206 3DDA text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":208 3DDE text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":210 3DEA text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":212 3DEE text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":213 3DF6 text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":214 3DF8 text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":215 3E04 text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":218 3E06 text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":219 3E0A text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":221 3E1C text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":222 3E2E text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":224 3E40 text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":226 3E44 text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":227 3E50 text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":392 3E52 text6 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":394 3E54 text6 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":396 3E60 text6 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":397 3E68 text6 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":398 3E70 text6 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":399 3E7A text6 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":400 3E80 text6 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":401 3E8A text6 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":404 3E90 text6 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":405 3E98 text6 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":406 3EA2 text6 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":405 3EF6 text6 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":410 3F0E text6 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":411 3F1A text6 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":261 3F1C text5 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":264 3F1C text5 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":266 3F2A text5 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":268 3F38 text5 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":270 3F46 text5 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":272 3F54 text5 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":274 3F62 text5 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":276 3F70 text5 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":278 3F7E text5 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":280 3F94 text5 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":282 3FAA text5 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":284 3FBE text5 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":286 3FCC text5 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":290 3FDA text5 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":292 3FEC text5 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":293 3FFE text5 CODE
-=======
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":411 3AF2 text10 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":413 3AF4 text10 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":415 3AF8 text10 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":417 3AFE text10 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":283 3B02 text11 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":285 3B02 text11 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":286 3B0A text11 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":287 3B12 text11 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":288 3B14 text11 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":289 3B16 text11 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":240 3B1A text1 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":241 3B1A text1 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":242 3B1C text1 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":243 3B1E text1 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":244 3B20 text1 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":245 3B24 text1 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":247 3B2C text1 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":248 3B2E text1 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":249 3B30 text1 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":226 3B32 text2 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":227 3B32 text2 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":228 3B36 text2 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":229 3B3A text2 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":231 3B3E text2 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":232 3B42 text2 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":233 3B46 text2 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":234 3B4A text2 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":297 3B4C text4 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":299 3B4C text4 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":301 3B58 text4 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":303 3B60 text4 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":304 3B6C text4 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":453 3B6E text12 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":454 3B6E text12 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":455 3B76 text12 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":456 3B80 text12 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":455 3B90 text12 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":458 3BA6 text12 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":455 3BA8 text12 CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.":785 3BAA cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.":787 3BAA cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.":790 3BAA cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.":870 3BAA cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.":871 3BAE cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.":872 3BB0 cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.":873 3BB0 cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.":874 3BB2 cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.":875 3BB4 cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.":878 3BB6 cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.":879 3BBA cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.":880 3BBC cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.":881 3BBC cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.":882 3BBE cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.":883 3BC0 cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.":888 3BC2 cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.":889 3BC4 cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.":890 3BC6 cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.":891 3BC8 cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.":892 3BCA cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.":893 3BCC cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.":894 3BCE cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.":895 3BD2 cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.":896 3BD6 cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.":897 3BD6 cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.":898 3BD8 cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.":899 3BDC cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.":900 3BDE cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.":901 3BE0 cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.":907 3BE2 cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.":908 3BE2 cinit CODE
-"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.":909 3BE4 cinit CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":309 3BE8 text9 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":311 3BEA text9 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":313 3BF6 text9 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":314 3BFE text9 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":315 3C06 text9 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":316 3C0C text9 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":317 3C12 text9 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":318 3C1C text9 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":319 3C22 text9 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":320 3C28 text9 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":323 3C30 text9 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":187 3C3E text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":190 3C3E text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":191 3C42 text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":192 3C46 text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":194 3C4A text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":197 3C56 text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":200 3C5E text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":201 3C62 text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":202 3C6E text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":204 3C72 text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":206 3C76 text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":208 3C7E text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":211 3C80 text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":212 3C84 text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":214 3C96 text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":216 3CA2 text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":219 3CA4 text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":220 3CB0 text0 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":333 3CB2 text7 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":335 3CB2 text7 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":337 3CBE text7 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":339 3CC4 text7 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":341 3CCA text7 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":343 3CD2 text7 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":344 3CDC text7 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":345 3D06 text7 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":343 3D0C text7 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":349 3D24 text7 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":350 3D30 text7 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":358 3D32 text8 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":360 3D34 text8 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":362 3D40 text8 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":364 3D48 text8 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":366 3D4E text8 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":368 3D56 text8 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":369 3D60 text8 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":370 3D8A text8 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":368 3D90 text8 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":374 3DA8 text8 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":375 3DB4 text8 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":254 3DB6 text5 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":257 3DB6 text5 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":259 3DC4 text5 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":261 3DD2 text5 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":263 3DE0 text5 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":265 3DEE text5 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":267 3DFC text5 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":269 3E0A text5 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":271 3E18 text5 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":273 3E2E text5 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":275 3E42 text5 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":277 3E50 text5 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":278 3E62 text5 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":424 3E64 text3 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":426 3E64 text3 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":428 3E70 text3 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":429 3E76 text3 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":431 3E7C text3 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":432 3E84 text3 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":433 3E8E text3 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":434 3EB8 text3 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":432 3EBE text3 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":438 3ED6 text3 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":441 3EE2 text3 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":442 3EE4 text3 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":443 3EEC text3 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":444 3EEE text3 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":445 3EFE text3 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":446 3F08 text3 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":445 3F10 text3 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":448 3F26 text3 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":445 3F28 text3 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":385 3F2A text6 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":387 3F2C text6 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":389 3F38 text6 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":390 3F40 text6 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":391 3F48 text6 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":392 3F52 text6 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":393 3F58 text6 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":394 3F62 text6 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":396 3F68 text6 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":398 3F6E text6 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":399 3F76 text6 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":400 3F80 text6 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":401 3FD4 text6 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":399 3FDA text6 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":405 3FF2 text6 CODE
-"E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c":406 3FFE text6 CODE
->>>>>>> parent of 015c358... PIC, Arduino code
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":299 3B18 text11 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":301 3B18 text11 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":302 3B20 text11 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":303 3B22 text11 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":304 3B24 text11 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":416 3B3A text10 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":418 3B3C text10 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":420 3B40 text10 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":422 3B48 text10 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":250 3B4C text1 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":251 3B4C text1 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":252 3B4E text1 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":253 3B50 text1 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":254 3B52 text1 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":255 3B56 text1 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":257 3B5E text1 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":258 3B60 text1 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":259 3B62 text1 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":236 3B64 text2 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":237 3B64 text2 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":238 3B68 text2 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":239 3B6C text2 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":241 3B70 text2 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":242 3B74 text2 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":243 3B78 text2 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":244 3B7C text2 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":312 3B7E text4 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":314 3B7E text4 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":316 3B8A text4 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":318 3B92 text4 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":319 3B9E text4 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":456 3BA0 text12 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":457 3BA0 text12 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":458 3BA8 text12 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":459 3BB2 text12 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":458 3BC2 text12 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":461 3BD8 text12 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":458 3BDA text12 CODE
+"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.":795 3BDC cinit CODE
+"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.":797 3BDC cinit CODE
+"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.":800 3BDC cinit CODE
+"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.":892 3BDC cinit CODE
+"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.":893 3BE0 cinit CODE
+"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.":894 3BE2 cinit CODE
+"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.":895 3BE2 cinit CODE
+"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.":896 3BE4 cinit CODE
+"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.":897 3BE6 cinit CODE
+"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.":900 3BE8 cinit CODE
+"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.":901 3BEC cinit CODE
+"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.":902 3BEE cinit CODE
+"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.":903 3BEE cinit CODE
+"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.":904 3BF0 cinit CODE
+"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.":905 3BF2 cinit CODE
+"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.":910 3BF4 cinit CODE
+"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.":911 3BF6 cinit CODE
+"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.":912 3BF8 cinit CODE
+"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.":913 3BFA cinit CODE
+"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.":914 3BFC cinit CODE
+"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.":915 3BFE cinit CODE
+"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.":916 3C00 cinit CODE
+"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.":917 3C04 cinit CODE
+"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.":918 3C08 cinit CODE
+"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.":919 3C08 cinit CODE
+"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.":920 3C0A cinit CODE
+"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.":921 3C0E cinit CODE
+"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.":922 3C10 cinit CODE
+"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.":923 3C12 cinit CODE
+"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.":929 3C14 cinit CODE
+"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.":930 3C14 cinit CODE
+"C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.":931 3C16 cinit CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":324 3C1A text9 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":326 3C1C text9 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":328 3C28 text9 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":329 3C30 text9 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":330 3C38 text9 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":331 3C3E text9 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":332 3C48 text9 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":333 3C4E text9 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":336 3C56 text9 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":346 3C64 text7 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":348 3C64 text7 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":350 3C70 text7 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":352 3C76 text7 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":354 3C7E text7 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":355 3C88 text7 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":354 3CB2 text7 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":359 3CCA text7 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":360 3CD6 text7 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":368 3CD8 text8 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":370 3CDA text8 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":372 3CE6 text8 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":374 3CEE text8 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":376 3CF6 text8 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":377 3D00 text8 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":376 3D2A text8 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":381 3D42 text8 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":382 3D4E text8 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":429 3D50 text3 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":431 3D50 text3 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":433 3D5C text3 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":435 3D62 text3 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":436 3D6A text3 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":437 3D74 text3 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":436 3D9E text3 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":441 3DB6 text3 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":444 3DC2 text3 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":445 3DC4 text3 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":446 3DCA text3 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":451 3DCC text3 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":192 3DCE text0 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":195 3DCE text0 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":196 3DD2 text0 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":197 3DD6 text0 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":199 3DDA text0 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":202 3DE6 text0 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":205 3DEE text0 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":206 3DF2 text0 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":207 3DF6 text0 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":208 3DFA text0 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":209 3DFE text0 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":210 3E0A text0 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":212 3E0E text0 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":214 3E1A text0 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":216 3E1E text0 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":218 3E26 text0 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":221 3E28 text0 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":222 3E2C text0 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":224 3E3E text0 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":226 3E4A text0 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":229 3E4C text0 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":230 3E58 text0 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":392 3E5A text6 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":394 3E5C text6 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":396 3E68 text6 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":397 3E70 text6 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":398 3E78 text6 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":399 3E82 text6 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":400 3E88 text6 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":401 3E92 text6 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":404 3E98 text6 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":405 3EA0 text6 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":406 3EAA text6 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":405 3EFE text6 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":410 3F16 text6 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":411 3F22 text6 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":264 3F24 text5 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":267 3F24 text5 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":269 3F32 text5 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":271 3F40 text5 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":273 3F4E text5 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":275 3F5C text5 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":277 3F6A text5 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":279 3F78 text5 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":281 3F86 text5 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":283 3F9C text5 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":285 3FB0 text5 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":287 3FBE text5 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":289 3FCC text5 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":291 3FDA text5 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":293 3FEC text5 CODE
+"E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c":294 3FFE text5 CODE
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -454,12 +248,8 @@ $dist/default/production\nRF24_TX.X.production.obj
 %SYMTAB
 __CFG_XINST$OFF 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
 _CONFIG_CURR 35 0 COMRAM 1 dataCOMRAM dist/default/production\nRF24_TX.X.production.obj
-<<<<<<< HEAD
 nrfTXData@i 2B 0 COMRAM 1 cstackCOMRAM dist/default/production\nRF24_TX.X.production.obj
-=======
-nrfTXData@i 2D 0 COMRAM 1 cstackCOMRAM dist/default/production\nRF24_TX.X.production.obj
->>>>>>> parent of 015c358... PIC, Arduino code
-__end_of_nrfConfigReg 3C3E 0 CODE 0 text9 dist/default/production\nRF24_TX.X.production.obj
+__end_of_nrfConfigReg 3C64 0 CODE 0 text9 dist/default/production\nRF24_TX.X.production.obj
 __S0 30000E 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
 __S1 80 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
 __S2 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
@@ -467,18 +257,13 @@ _SSP1STATbits FC7 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
 delay10ms@i 26 0 COMRAM 1 cstackCOMRAM dist/default/production\nRF24_TX.X.production.obj
 __Hintentry 0 0 ABS 0 intentry dist/default/production\nRF24_TX.X.production.obj
 __Lintentry 0 0 ABS 0 intentry dist/default/production\nRF24_TX.X.production.obj
+_FEATURE_CURR 38 0 COMRAM 1 dataCOMRAM dist/default/production\nRF24_TX.X.production.obj
 _LATA F89 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
 _LATB F8A 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
 _LATC F8B 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
-<<<<<<< HEAD
-_main 3DAA 0 CODE 0 text0 dist/default/production\nRF24_TX.X.production.obj
-___sp 0 0 STACK 2 stack C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.obj
-start 0 0 CODE 0 init C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.obj
-=======
-_main 3C3E 0 CODE 0 text0 dist/default/production\nRF24_TX.X.production.obj
-___sp 0 0 STACK 2 stack C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.obj
-start 0 0 CODE 0 init C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.obj
->>>>>>> parent of 015c358... PIC, Arduino code
+_main 3DCE 0 CODE 0 text0 dist/default/production\nRF24_TX.X.production.obj
+___sp 0 0 STACK 2 stack C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.obj
+start 0 0 CODE 0 init C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.obj
 __size_of_nrfGetStatus 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
 _TRISA F92 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
 _TRISB F93 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
@@ -491,26 +276,18 @@ spiTransfer@wrn 30 0 COMRAM 1 cstackCOMRAM dist/default/production\nRF24_TX.X.pr
 setCSN@level 23 0 COMRAM 1 cstackCOMRAM dist/default/production\nRF24_TX.X.production.obj
 __CFG_WDTPS$32768 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
 __Hconfig 30000E 0 CONFIG 0 config dist/default/production\nRF24_TX.X.production.obj
-<<<<<<< HEAD
-__end_of_spiConfig_1 3B3E 0 CODE 0 text1 dist/default/production\nRF24_TX.X.production.obj
-=======
-__end_of_spiConfig_1 3B32 0 CODE 0 text1 dist/default/production\nRF24_TX.X.production.obj
->>>>>>> parent of 015c358... PIC, Arduino code
+__end_of_spiConfig_1 3B64 0 CODE 0 text1 dist/default/production\nRF24_TX.X.production.obj
 __Lconfig 300000 0 CONFIG 0 config dist/default/production\nRF24_TX.X.production.obj
 _dataBufIn 60 0 BANK0 1 bssBANK0 dist/default/production\nRF24_TX.X.production.obj
 __Hbigram 0 0 ABS 0 bigram dist/default/production\nRF24_TX.X.production.obj
 __Lbigram 0 0 ABS 0 bigram dist/default/production\nRF24_TX.X.production.obj
 __Hrparam 0 0 ABS 0 rparam dist/default/production\nRF24_TX.X.production.obj
 __Lrparam 0 0 ABS 0 rparam dist/default/production\nRF24_TX.X.production.obj
-__end_of_spiTransfer 3F1C 0 CODE 0 text6 dist/default/production\nRF24_TX.X.production.obj
+__end_of_spiTransfer 3F24 0 CODE 0 text6 dist/default/production\nRF24_TX.X.production.obj
 __Hram 0 0 ABS 0 ram dist/default/production\nRF24_TX.X.production.obj
 __Lram 0 0 ABS 0 ram dist/default/production\nRF24_TX.X.production.obj
 __Hcomram 0 0 ABS 0 comram dist/default/production\nRF24_TX.X.production.obj
-<<<<<<< HEAD
-_nrfTXData 3D2A 0 CODE 0 text3 dist/default/production\nRF24_TX.X.production.obj
-=======
-_nrfTXData 3E64 0 CODE 0 text3 dist/default/production\nRF24_TX.X.production.obj
->>>>>>> parent of 015c358... PIC, Arduino code
+_nrfTXData 3D50 0 CODE 0 text3 dist/default/production\nRF24_TX.X.production.obj
 __size_of_nrfSetRXAddr 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
 __size_of_nrfSetTXAddr 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
 __Lcomram 0 0 ABS 0 comram dist/default/production\nRF24_TX.X.production.obj
@@ -519,27 +296,19 @@ __Lsfr 0 0 ABS 0 sfr dist/default/production\nRF24_TX.X.production.obj
 __Hbss 0 0 RAM 1 bss dist/default/production\nRF24_TX.X.production.obj
 __CFG_STVREN$ON 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
 __Lbss 0 0 RAM 1 bss dist/default/production\nRF24_TX.X.production.obj
-_RF_SETUP_CURR 38 0 COMRAM 1 dataCOMRAM dist/default/production\nRF24_TX.X.production.obj
+_RF_SETUP_CURR 3A 0 COMRAM 1 dataCOMRAM dist/default/production\nRF24_TX.X.production.obj
 __Hnvrram 0 0 COMRAM 1 nvrram dist/default/production\nRF24_TX.X.production.obj
 __Lnvrram 0 0 COMRAM 1 nvrram dist/default/production\nRF24_TX.X.production.obj
 __CFG_PWRTEN$ON 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
-_SETUP_AW_CURR 3A 0 COMRAM 1 dataCOMRAM dist/default/production\nRF24_TX.X.production.obj
-<<<<<<< HEAD
-_delay10ms 3B7A 0 CODE 0 text12 dist/default/production\nRF24_TX.X.production.obj
-=======
-_delay10ms 3B6E 0 CODE 0 text12 dist/default/production\nRF24_TX.X.production.obj
->>>>>>> parent of 015c358... PIC, Arduino code
-_EN_RXADDR_CURR 36 0 COMRAM 1 dataCOMRAM dist/default/production\nRF24_TX.X.production.obj
+_SETUP_AW_CURR 3C 0 COMRAM 1 dataCOMRAM dist/default/production\nRF24_TX.X.production.obj
+_delay10ms 3BA0 0 CODE 0 text12 dist/default/production\nRF24_TX.X.production.obj
+_EN_RXADDR_CURR 37 0 COMRAM 1 dataCOMRAM dist/default/production\nRF24_TX.X.production.obj
 __Heeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production\nRF24_TX.X.production.obj
 __Leeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production\nRF24_TX.X.production.obj
 _LATAbits F89 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
 __Hintsave_regs 0 0 BIGRAM 1 intsave_regs dist/default/production\nRF24_TX.X.production.obj
 __Lintsave_regs 0 0 BIGRAM 1 intsave_regs dist/default/production\nRF24_TX.X.production.obj
-<<<<<<< HEAD
-_nrfConfigReg 3BF4 0 CODE 0 text9 dist/default/production\nRF24_TX.X.production.obj
-=======
-_nrfConfigReg 3BE8 0 CODE 0 text9 dist/default/production\nRF24_TX.X.production.obj
->>>>>>> parent of 015c358... PIC, Arduino code
+_nrfConfigReg 3C1A 0 CODE 0 text9 dist/default/production\nRF24_TX.X.production.obj
 __Hbigbss 0 0 BIGRAM 1 bigbss dist/default/production\nRF24_TX.X.production.obj
 __Lbigbss 0 0 BIGRAM 1 bigbss dist/default/production\nRF24_TX.X.production.obj
 __Hintret 0 0 ABS 0 intret dist/default/production\nRF24_TX.X.production.obj
@@ -560,35 +329,20 @@ __Hfardata 0 0 FARRAM 0 fardata dist/default/production\nRF24_TX.X.production.ob
 __Lfardata 0 0 FARRAM 0 fardata dist/default/production\nRF24_TX.X.production.obj
 __Habs1 0 0 ABS 0 abs1 dist/default/production\nRF24_TX.X.production.obj
 __Labs1 0 0 ABS 0 abs1 dist/default/production\nRF24_TX.X.production.obj
-<<<<<<< HEAD
-_setCSN 3B0E 0 CODE 0 text11 dist/default/production\nRF24_TX.X.production.obj
+_setCSN 3B18 0 CODE 0 text11 dist/default/production\nRF24_TX.X.production.obj
 __HnvFARRAM 0 0 FARRAM 0 nvFARRAM dist/default/production\nRF24_TX.X.production.obj
 __LnvFARRAM 0 0 FARRAM 0 nvFARRAM dist/default/production\nRF24_TX.X.production.obj
-_nrfConfig 3F1C 0 CODE 0 text5 dist/default/production\nRF24_TX.X.production.obj
-_spiTransferByte 3AFC 0 CODE 0 text10 dist/default/production\nRF24_TX.X.production.obj
-=======
-_setCSN 3B02 0 CODE 0 text11 dist/default/production\nRF24_TX.X.production.obj
-__HnvFARRAM 0 0 FARRAM 0 nvFARRAM dist/default/production\nRF24_TX.X.production.obj
-__LnvFARRAM 0 0 FARRAM 0 nvFARRAM dist/default/production\nRF24_TX.X.production.obj
-_nrfConfig 3DB6 0 CODE 0 text5 dist/default/production\nRF24_TX.X.production.obj
-_spiTransferByte 3AF2 0 CODE 0 text10 dist/default/production\nRF24_TX.X.production.obj
->>>>>>> parent of 015c358... PIC, Arduino code
+_nrfConfig 3F24 0 CODE 0 text5 dist/default/production\nRF24_TX.X.production.obj
+_spiTransferByte 3B3A 0 CODE 0 text10 dist/default/production\nRF24_TX.X.production.obj
 __CFG_PBADEN$OFF 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
 __CFG_CCP2MX$PORTC1 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
 __CFG_CCP3MX$PORTB5 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
 __Hdata 0 0 ABS 0 data dist/default/production\nRF24_TX.X.production.obj
 __Ldata 0 0 ABS 0 data dist/default/production\nRF24_TX.X.production.obj
-<<<<<<< HEAD
-stackhi 2FF 0 ABS 0 - C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.obj
+stackhi 2FF 0 ABS 0 - C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.obj
 __Htemp 0 0 COMRAM 1 temp dist/default/production\nRF24_TX.X.production.obj
 __Ltemp 0 0 COMRAM 1 temp dist/default/production\nRF24_TX.X.production.obj
-stacklo 80 0 ABS 0 - C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.obj
-=======
-stackhi 2FF 0 ABS 0 - C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.obj
-__Htemp 0 0 COMRAM 1 temp dist/default/production\nRF24_TX.X.production.obj
-__Ltemp 0 0 COMRAM 1 temp dist/default/production\nRF24_TX.X.production.obj
-stacklo 80 0 ABS 0 - C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.obj
->>>>>>> parent of 015c358... PIC, Arduino code
+stacklo 80 0 ABS 0 - C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.obj
 __Hrbit 0 0 COMRAM 1 rbit dist/default/production\nRF24_TX.X.production.obj
 __Lrbit 0 0 COMRAM 1 rbit dist/default/production\nRF24_TX.X.production.obj
 __Hinit 0 0 CODE 0 init dist/default/production\nRF24_TX.X.production.obj
@@ -596,37 +350,20 @@ __Linit 0 0 CODE 0 init dist/default/production\nRF24_TX.X.production.obj
 __Hintcodelo 0 0 CODE 0 intcodelo dist/default/production\nRF24_TX.X.production.obj
 __Lintcodelo 0 0 CODE 0 intcodelo dist/default/production\nRF24_TX.X.production.obj
 __Hrbss 0 0 COMRAM 1 rbss dist/default/production\nRF24_TX.X.production.obj
-<<<<<<< HEAD
-__end_of_main 3E52 0 CODE 0 text0 dist/default/production\nRF24_TX.X.production.obj
-=======
-__end_of_main 3CB2 0 CODE 0 text0 dist/default/production\nRF24_TX.X.production.obj
->>>>>>> parent of 015c358... PIC, Arduino code
+__end_of_main 3E5A 0 CODE 0 text0 dist/default/production\nRF24_TX.X.production.obj
 __Lrbss 0 0 COMRAM 1 rbss dist/default/production\nRF24_TX.X.production.obj
 __Htext 0 0 ABS 0 text dist/default/production\nRF24_TX.X.production.obj
 __Ltext 0 0 ABS 0 text dist/default/production\nRF24_TX.X.production.obj
 __CFG_LVP$ON 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
-<<<<<<< HEAD
-end_of_initialization 3BEE 0 CODE 0 cinit dist/default/production\nRF24_TX.X.production.obj
-__end_of_setCSN 3B26 0 CODE 0 text11 dist/default/production\nRF24_TX.X.production.obj
-=======
-end_of_initialization 3BE2 0 CODE 0 cinit dist/default/production\nRF24_TX.X.production.obj
-__end_of_setCSN 3B1A 0 CODE 0 text11 dist/default/production\nRF24_TX.X.production.obj
->>>>>>> parent of 015c358... PIC, Arduino code
+end_of_initialization 3C14 0 CODE 0 cinit dist/default/production\nRF24_TX.X.production.obj
+__end_of_setCSN 3B28 0 CODE 0 text11 dist/default/production\nRF24_TX.X.production.obj
 nrfConfigReg@command 25 0 COMRAM 1 cstackCOMRAM dist/default/production\nRF24_TX.X.production.obj
 nrfSetRXAddr@addr 25 0 COMRAM 1 cstackCOMRAM dist/default/production\nRF24_TX.X.production.obj
-<<<<<<< HEAD
-_spiTransfer 3E52 0 CODE 0 text6 dist/default/production\nRF24_TX.X.production.obj
+_spiTransfer 3E5A 0 CODE 0 text6 dist/default/production\nRF24_TX.X.production.obj
 nrfSetTXAddr@addr 25 0 COMRAM 1 cstackCOMRAM dist/default/production\nRF24_TX.X.production.obj
-__end_of_nrfSetTXAddr 3CB2 0 CODE 0 text7 dist/default/production\nRF24_TX.X.production.obj
+__end_of_nrfSetTXAddr 3CD8 0 CODE 0 text7 dist/default/production\nRF24_TX.X.production.obj
 _SSP1ADD FC8 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
-_spiConfig_1 3B26 0 CODE 0 text1 dist/default/production\nRF24_TX.X.production.obj
-=======
-_spiTransfer 3F2A 0 CODE 0 text6 dist/default/production\nRF24_TX.X.production.obj
-nrfSetTXAddr@addr 25 0 COMRAM 1 cstackCOMRAM dist/default/production\nRF24_TX.X.production.obj
-__end_of_nrfSetTXAddr 3D32 0 CODE 0 text7 dist/default/production\nRF24_TX.X.production.obj
-_SSP1ADD FC8 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
-_spiConfig_1 3B1A 0 CODE 0 text1 dist/default/production\nRF24_TX.X.production.obj
->>>>>>> parent of 015c358... PIC, Arduino code
+_spiConfig_1 3B4C 0 CODE 0 text1 dist/default/production\nRF24_TX.X.production.obj
 _SSP1BUF FC9 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
 __Hibigdata 0 0 CODE 0 ibigdata dist/default/production\nRF24_TX.X.production.obj
 __Libigdata 0 0 CODE 0 ibigdata dist/default/production\nRF24_TX.X.production.obj
@@ -645,78 +382,41 @@ __Htext0 0 0 ABS 0 text0 dist/default/production\nRF24_TX.X.production.obj
 __Ltext0 0 0 ABS 0 text0 dist/default/production\nRF24_TX.X.production.obj
 __Htext1 0 0 ABS 0 text1 dist/default/production\nRF24_TX.X.production.obj
 __Ltext1 0 0 ABS 0 text1 dist/default/production\nRF24_TX.X.production.obj
-<<<<<<< HEAD
-__ptext0 3DAA 0 CODE 0 text0 dist/default/production\nRF24_TX.X.production.obj
+__ptext0 3DCE 0 CODE 0 text0 dist/default/production\nRF24_TX.X.production.obj
 __Htext2 0 0 ABS 0 text2 dist/default/production\nRF24_TX.X.production.obj
 __Ltext2 0 0 ABS 0 text2 dist/default/production\nRF24_TX.X.production.obj
-__ptext1 3B26 0 CODE 0 text1 dist/default/production\nRF24_TX.X.production.obj
+__ptext1 3B4C 0 CODE 0 text1 dist/default/production\nRF24_TX.X.production.obj
 __Htext3 0 0 ABS 0 text3 dist/default/production\nRF24_TX.X.production.obj
 __Ltext3 0 0 ABS 0 text3 dist/default/production\nRF24_TX.X.production.obj
-__ptext2 3B3E 0 CODE 0 text2 dist/default/production\nRF24_TX.X.production.obj
+__ptext2 3B64 0 CODE 0 text2 dist/default/production\nRF24_TX.X.production.obj
 __Htext4 0 0 ABS 0 text4 dist/default/production\nRF24_TX.X.production.obj
 __Ltext4 0 0 ABS 0 text4 dist/default/production\nRF24_TX.X.production.obj
-__ptext3 3D2A 0 CODE 0 text3 dist/default/production\nRF24_TX.X.production.obj
+__ptext3 3D50 0 CODE 0 text3 dist/default/production\nRF24_TX.X.production.obj
 __Htext5 0 0 ABS 0 text5 dist/default/production\nRF24_TX.X.production.obj
 __CFG_P2BMX$PORTB5 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
 __Ltext5 0 0 ABS 0 text5 dist/default/production\nRF24_TX.X.production.obj
-__ptext4 3B58 0 CODE 0 text4 dist/default/production\nRF24_TX.X.production.obj
+__ptext4 3B7E 0 CODE 0 text4 dist/default/production\nRF24_TX.X.production.obj
 __Htext6 0 0 ABS 0 text6 dist/default/production\nRF24_TX.X.production.obj
 __Ltext6 0 0 ABS 0 text6 dist/default/production\nRF24_TX.X.production.obj
-__ptext5 3F1C 0 CODE 0 text5 dist/default/production\nRF24_TX.X.production.obj
+__ptext5 3F24 0 CODE 0 text5 dist/default/production\nRF24_TX.X.production.obj
 __Htext7 0 0 ABS 0 text7 dist/default/production\nRF24_TX.X.production.obj
 __Ltext7 0 0 ABS 0 text7 dist/default/production\nRF24_TX.X.production.obj
-__ptext6 3E52 0 CODE 0 text6 dist/default/production\nRF24_TX.X.production.obj
-=======
-__ptext0 3C3E 0 CODE 0 text0 dist/default/production\nRF24_TX.X.production.obj
-__Htext2 0 0 ABS 0 text2 dist/default/production\nRF24_TX.X.production.obj
-__Ltext2 0 0 ABS 0 text2 dist/default/production\nRF24_TX.X.production.obj
-__ptext1 3B1A 0 CODE 0 text1 dist/default/production\nRF24_TX.X.production.obj
-__Htext3 0 0 ABS 0 text3 dist/default/production\nRF24_TX.X.production.obj
-__Ltext3 0 0 ABS 0 text3 dist/default/production\nRF24_TX.X.production.obj
-__ptext2 3B32 0 CODE 0 text2 dist/default/production\nRF24_TX.X.production.obj
-__Htext4 0 0 ABS 0 text4 dist/default/production\nRF24_TX.X.production.obj
-__Ltext4 0 0 ABS 0 text4 dist/default/production\nRF24_TX.X.production.obj
-__ptext3 3E64 0 CODE 0 text3 dist/default/production\nRF24_TX.X.production.obj
-__Htext5 0 0 ABS 0 text5 dist/default/production\nRF24_TX.X.production.obj
-__CFG_P2BMX$PORTB5 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
-__Ltext5 0 0 ABS 0 text5 dist/default/production\nRF24_TX.X.production.obj
-__ptext4 3B4C 0 CODE 0 text4 dist/default/production\nRF24_TX.X.production.obj
-__Htext6 0 0 ABS 0 text6 dist/default/production\nRF24_TX.X.production.obj
-__Ltext6 0 0 ABS 0 text6 dist/default/production\nRF24_TX.X.production.obj
-__ptext5 3DB6 0 CODE 0 text5 dist/default/production\nRF24_TX.X.production.obj
-__Htext7 0 0 ABS 0 text7 dist/default/production\nRF24_TX.X.production.obj
-__Ltext7 0 0 ABS 0 text7 dist/default/production\nRF24_TX.X.production.obj
-__ptext6 3F2A 0 CODE 0 text6 dist/default/production\nRF24_TX.X.production.obj
->>>>>>> parent of 015c358... PIC, Arduino code
+__ptext6 3E5A 0 CODE 0 text6 dist/default/production\nRF24_TX.X.production.obj
 __HbssCOMRAM 0 0 ABS 0 bssCOMRAM dist/default/production\nRF24_TX.X.production.obj
 __LbssCOMRAM 0 0 ABS 0 bssCOMRAM dist/default/production\nRF24_TX.X.production.obj
 __Htext8 0 0 ABS 0 text8 dist/default/production\nRF24_TX.X.production.obj
 __Ltext8 0 0 ABS 0 text8 dist/default/production\nRF24_TX.X.production.obj
-<<<<<<< HEAD
-__ptext7 3C3E 0 CODE 0 text7 dist/default/production\nRF24_TX.X.production.obj
+__ptext7 3C64 0 CODE 0 text7 dist/default/production\nRF24_TX.X.production.obj
 __pbssCOMRAM 1 0 COMRAM 1 bssCOMRAM dist/default/production\nRF24_TX.X.production.obj
 __Htext9 0 0 ABS 0 text9 dist/default/production\nRF24_TX.X.production.obj
-_portConfig 3B3E 0 CODE 0 text2 dist/default/production\nRF24_TX.X.production.obj
+_portConfig 3B64 0 CODE 0 text2 dist/default/production\nRF24_TX.X.production.obj
 __Ltext9 0 0 ABS 0 text9 dist/default/production\nRF24_TX.X.production.obj
-_RX_ADDRESS 3C 0 COMRAM 1 dataCOMRAM dist/default/production\nRF24_TX.X.production.obj
-_TX_ADDRESS 40 0 COMRAM 1 dataCOMRAM dist/default/production\nRF24_TX.X.production.obj
-__ptext8 3CB2 0 CODE 0 text8 dist/default/production\nRF24_TX.X.production.obj
+_RX_ADDRESS 3E 0 COMRAM 1 dataCOMRAM dist/default/production\nRF24_TX.X.production.obj
+_TX_ADDRESS 42 0 COMRAM 1 dataCOMRAM dist/default/production\nRF24_TX.X.production.obj
+__ptext8 3CD8 0 CODE 0 text8 dist/default/production\nRF24_TX.X.production.obj
 spiTransfer@i 31 0 COMRAM 1 cstackCOMRAM dist/default/production\nRF24_TX.X.production.obj
 __CFG_T3CMX$PORTC0 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
-__ptext9 3BF4 0 CODE 0 text9 dist/default/production\nRF24_TX.X.production.obj
-=======
-__ptext7 3CB2 0 CODE 0 text7 dist/default/production\nRF24_TX.X.production.obj
-__pbssCOMRAM 1 0 COMRAM 1 bssCOMRAM dist/default/production\nRF24_TX.X.production.obj
-__Htext9 0 0 ABS 0 text9 dist/default/production\nRF24_TX.X.production.obj
-_portConfig 3B32 0 CODE 0 text2 dist/default/production\nRF24_TX.X.production.obj
-__Ltext9 0 0 ABS 0 text9 dist/default/production\nRF24_TX.X.production.obj
-_RX_ADDRESS 3C 0 COMRAM 1 dataCOMRAM dist/default/production\nRF24_TX.X.production.obj
-_TX_ADDRESS 40 0 COMRAM 1 dataCOMRAM dist/default/production\nRF24_TX.X.production.obj
-__ptext8 3D32 0 CODE 0 text8 dist/default/production\nRF24_TX.X.production.obj
-spiTransfer@i 31 0 COMRAM 1 cstackCOMRAM dist/default/production\nRF24_TX.X.production.obj
-__CFG_T3CMX$PORTC0 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
-__ptext9 3BE8 0 CODE 0 text9 dist/default/production\nRF24_TX.X.production.obj
->>>>>>> parent of 015c358... PIC, Arduino code
+__ptext9 3C1A 0 CODE 0 text9 dist/default/production\nRF24_TX.X.production.obj
 __Hclrtext 0 0 ABS 0 clrtext dist/default/production\nRF24_TX.X.production.obj
 __Lclrtext 0 0 ABS 0 clrtext dist/default/production\nRF24_TX.X.production.obj
 nrfSetRXAddr@len 27 0 COMRAM 1 cstackCOMRAM dist/default/production\nRF24_TX.X.production.obj
@@ -724,14 +424,11 @@ nrfSetTXAddr@len 27 0 COMRAM 1 cstackCOMRAM dist/default/production\nRF24_TX.X.p
 nrfConfigReg@data 26 0 COMRAM 1 cstackCOMRAM dist/default/production\nRF24_TX.X.production.obj
 __CFG_HFOFST$ON 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
 __CFG_FOSC$HSHP 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
-<<<<<<< HEAD
-__end_of__initialization 3BEE 0 CODE 0 cinit dist/default/production\nRF24_TX.X.production.obj
-=======
-__end_of__initialization 3BE2 0 CODE 0 cinit dist/default/production\nRF24_TX.X.production.obj
->>>>>>> parent of 015c358... PIC, Arduino code
+__end_of__initialization 3C14 0 CODE 0 cinit dist/default/production\nRF24_TX.X.production.obj
 __CFG_PRICLKEN$ON 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
 _EN_AA_CURR 21 0 COMRAM 1 bssCOMRAM dist/default/production\nRF24_TX.X.production.obj
-_RF_CH_CURR 37 0 COMRAM 1 dataCOMRAM dist/default/production\nRF24_TX.X.production.obj
+_DYNPD_CURR 36 0 COMRAM 1 dataCOMRAM dist/default/production\nRF24_TX.X.production.obj
+_RF_CH_CURR 39 0 COMRAM 1 dataCOMRAM dist/default/production\nRF24_TX.X.production.obj
 __size_of_portConfig 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
 nrfSetRXAddr@i 2E 0 COMRAM 1 cstackCOMRAM dist/default/production\nRF24_TX.X.production.obj
 nrfSetTXAddr@i 2D 0 COMRAM 1 cstackCOMRAM dist/default/production\nRF24_TX.X.production.obj
@@ -752,50 +449,30 @@ __HcstackCOMRAM 0 0 ABS 0 cstackCOMRAM dist/default/production\nRF24_TX.X.produc
 __Lspace_0 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
 __LcstackCOMRAM 0 0 ABS 0 cstackCOMRAM dist/default/production\nRF24_TX.X.production.obj
 __pcstackCOMRAM 23 0 COMRAM 1 cstackCOMRAM dist/default/production\nRF24_TX.X.production.obj
-<<<<<<< HEAD
-__end_of_nrfTXData 3DAA 0 CODE 0 text3 dist/default/production\nRF24_TX.X.production.obj
-=======
-__end_of_nrfTXData 3F2A 0 CODE 0 text3 dist/default/production\nRF24_TX.X.production.obj
->>>>>>> parent of 015c358... PIC, Arduino code
+__end_of_nrfTXData 3DCE 0 CODE 0 text3 dist/default/production\nRF24_TX.X.production.obj
 __Hspace_1 80 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
 __Lspace_1 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
 __size_of_nrfConfig 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
 __Hsmallconst 0 0 SMALLCONST 0 smallconst dist/default/production\nRF24_TX.X.production.obj
 __Lsmallconst 0 0 SMALLCONST 0 smallconst dist/default/production\nRF24_TX.X.production.obj
-_SETUP_RETR_CURR 3B 0 COMRAM 1 dataCOMRAM dist/default/production\nRF24_TX.X.production.obj
-<<<<<<< HEAD
-_nrfGetStatus 3B58 0 CODE 0 text4 dist/default/production\nRF24_TX.X.production.obj
-=======
-_nrfGetStatus 3B4C 0 CODE 0 text4 dist/default/production\nRF24_TX.X.production.obj
->>>>>>> parent of 015c358... PIC, Arduino code
+_SETUP_RETR_CURR 3D 0 COMRAM 1 dataCOMRAM dist/default/production\nRF24_TX.X.production.obj
+_nrfGetStatus 3B7E 0 CODE 0 text4 dist/default/production\nRF24_TX.X.production.obj
 __Hspace_2 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
 __Lspace_2 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
 __Hnvbit 0 0 COMRAM 1 nvbit dist/default/production\nRF24_TX.X.production.obj
 __Lnvbit 0 0 COMRAM 1 nvbit dist/default/production\nRF24_TX.X.production.obj
 __Hcinit 0 0 ABS 0 cinit dist/default/production\nRF24_TX.X.production.obj
 __Lcinit 0 0 ABS 0 cinit dist/default/production\nRF24_TX.X.production.obj
-<<<<<<< HEAD
-__pcinit 3BB6 0 CODE 0 cinit dist/default/production\nRF24_TX.X.production.obj
-__ramtop 300 0 RAM 0 ramtop C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.obj
-__mediumconst 0 0 MEDIUMCONST 0 mediumconst C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.obj
-=======
-__pcinit 3BAA 0 CODE 0 cinit dist/default/production\nRF24_TX.X.production.obj
-__ramtop 300 0 RAM 0 ramtop C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.obj
-__mediumconst 0 0 MEDIUMCONST 0 mediumconst C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.obj
->>>>>>> parent of 015c358... PIC, Arduino code
+__pcinit 3BDC 0 CODE 0 cinit dist/default/production\nRF24_TX.X.production.obj
+__ramtop 300 0 RAM 0 ramtop C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.obj
+__mediumconst 0 0 MEDIUMCONST 0 mediumconst C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.obj
 __size_of_main 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
 __Hconst 0 0 CODE 0 const dist/default/production\nRF24_TX.X.production.obj
 __Lconst 0 0 CODE 0 const dist/default/production\nRF24_TX.X.production.obj
 __CFG_PLLCFG$ON 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
-<<<<<<< HEAD
-__end_of_nrfGetStatus 3B7A 0 CODE 0 text4 dist/default/production\nRF24_TX.X.production.obj
+__end_of_nrfGetStatus 3BA0 0 CODE 0 text4 dist/default/production\nRF24_TX.X.production.obj
 __HbssBANK0 0 0 ABS 0 bssBANK0 dist/default/production\nRF24_TX.X.production.obj
-__end_of_spiTransferByte 3B0E 0 CODE 0 text10 dist/default/production\nRF24_TX.X.production.obj
-=======
-__end_of_nrfGetStatus 3B6E 0 CODE 0 text4 dist/default/production\nRF24_TX.X.production.obj
-__HbssBANK0 0 0 ABS 0 bssBANK0 dist/default/production\nRF24_TX.X.production.obj
-__end_of_spiTransferByte 3B02 0 CODE 0 text10 dist/default/production\nRF24_TX.X.production.obj
->>>>>>> parent of 015c358... PIC, Arduino code
+__end_of_spiTransferByte 3B4C 0 CODE 0 text10 dist/default/production\nRF24_TX.X.production.obj
 __LbssBANK0 0 0 ABS 0 bssBANK0 dist/default/production\nRF24_TX.X.production.obj
 __size_of_setCSN 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
 __CFG_MCLRE$EXTMCLR 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
@@ -806,107 +483,58 @@ __Htext10 0 0 ABS 0 text10 dist/default/production\nRF24_TX.X.production.obj
 __Ltext10 0 0 ABS 0 text10 dist/default/production\nRF24_TX.X.production.obj
 __size_of_nrfTXData 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
 __size_of_nrfConfigReg 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
-<<<<<<< HEAD
-__ptext10 3AFC 0 CODE 0 text10 dist/default/production\nRF24_TX.X.production.obj
+__ptext10 3B3A 0 CODE 0 text10 dist/default/production\nRF24_TX.X.production.obj
 __Htext11 0 0 ABS 0 text11 dist/default/production\nRF24_TX.X.production.obj
 __Ltext11 0 0 ABS 0 text11 dist/default/production\nRF24_TX.X.production.obj
-__ptext11 3B0E 0 CODE 0 text11 dist/default/production\nRF24_TX.X.production.obj
+__ptext11 3B18 0 CODE 0 text11 dist/default/production\nRF24_TX.X.production.obj
 __Htext12 0 0 ABS 0 text12 dist/default/production\nRF24_TX.X.production.obj
 __Ltext12 0 0 ABS 0 text12 dist/default/production\nRF24_TX.X.production.obj
-__ptext12 3B7A 0 CODE 0 text12 dist/default/production\nRF24_TX.X.production.obj
+__ptext12 3BA0 0 CODE 0 text12 dist/default/production\nRF24_TX.X.production.obj
 _dataBufOut 1 0 COMRAM 1 bssCOMRAM dist/default/production\nRF24_TX.X.production.obj
-___inthi_sp 0 0 STACK 2 stack C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.obj
+___inthi_sp 0 0 STACK 2 stack C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.obj
 __CFG_WDTEN$OFF 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
-___intlo_sp 0 0 STACK 2 stack C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.obj
-=======
-__ptext10 3AF2 0 CODE 0 text10 dist/default/production\nRF24_TX.X.production.obj
-__Htext11 0 0 ABS 0 text11 dist/default/production\nRF24_TX.X.production.obj
-__Ltext11 0 0 ABS 0 text11 dist/default/production\nRF24_TX.X.production.obj
-__ptext11 3B02 0 CODE 0 text11 dist/default/production\nRF24_TX.X.production.obj
-__Htext12 0 0 ABS 0 text12 dist/default/production\nRF24_TX.X.production.obj
-__Ltext12 0 0 ABS 0 text12 dist/default/production\nRF24_TX.X.production.obj
-__ptext12 3B6E 0 CODE 0 text12 dist/default/production\nRF24_TX.X.production.obj
-_dataBufOut 1 0 COMRAM 1 bssCOMRAM dist/default/production\nRF24_TX.X.production.obj
-___inthi_sp 0 0 STACK 2 stack C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.obj
-__CFG_WDTEN$OFF 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
-___intlo_sp 0 0 STACK 2 stack C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.obj
->>>>>>> parent of 015c358... PIC, Arduino code
+___intlo_sp 0 0 STACK 2 stack C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.obj
 __Hend_init 4 0 CODE 0 end_init dist/default/production\nRF24_TX.X.production.obj
 __Lend_init 0 0 CODE 0 end_init dist/default/production\nRF24_TX.X.production.obj
 __HidataCOMRAM 0 0 ABS 0 idataCOMRAM dist/default/production\nRF24_TX.X.production.obj
 __LidataCOMRAM 0 0 ABS 0 idataCOMRAM dist/default/production\nRF24_TX.X.production.obj
-<<<<<<< HEAD
-__pidataCOMRAM 3AED 0 CODE 0 idataCOMRAM dist/default/production\nRF24_TX.X.production.obj
+__pidataCOMRAM 3B29 0 CODE 0 idataCOMRAM dist/default/production\nRF24_TX.X.production.obj
 nrfConfigReg@wr 27 0 COMRAM 1 cstackCOMRAM dist/default/production\nRF24_TX.X.production.obj
 _nrfSTATUS 22 0 COMRAM 1 bssCOMRAM dist/default/production\nRF24_TX.X.production.obj
-__smallconst 0 0 SMALLCONST 0 smallconst C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.obj
+__smallconst 0 0 SMALLCONST 0 smallconst C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.obj
 __Hreset_vec 0 0 CODE 0 reset_vec dist/default/production\nRF24_TX.X.production.obj
 __Lreset_vec 0 0 CODE 0 reset_vec dist/default/production\nRF24_TX.X.production.obj
 __CFG_BORV$190 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
-__accesstop 60 0 ABS 0 - C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.obj
+__accesstop 60 0 ABS 0 - C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.obj
 __Hintcode_body 0 0 ABS 0 intcode_body dist/default/production\nRF24_TX.X.production.obj
 __Lintcode_body 0 0 ABS 0 intcode_body dist/default/production\nRF24_TX.X.production.obj
-intlevel0 0 0 CODE 0 text C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.obj
-intlevel1 0 0 CODE 0 text C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.obj
-intlevel2 0 0 CODE 0 text C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.obj
-intlevel3 0 0 CODE 0 text C:\Users\STUDEN~1.N20\AppData\Local\Temp\s5u4.obj
-=======
-__pidataCOMRAM 3AE3 0 CODE 0 idataCOMRAM dist/default/production\nRF24_TX.X.production.obj
-nrfConfigReg@wr 27 0 COMRAM 1 cstackCOMRAM dist/default/production\nRF24_TX.X.production.obj
-_nrfSTATUS 22 0 COMRAM 1 bssCOMRAM dist/default/production\nRF24_TX.X.production.obj
-__smallconst 0 0 SMALLCONST 0 smallconst C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.obj
-__Hreset_vec 0 0 CODE 0 reset_vec dist/default/production\nRF24_TX.X.production.obj
-__Lreset_vec 0 0 CODE 0 reset_vec dist/default/production\nRF24_TX.X.production.obj
-__CFG_BORV$190 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
-__accesstop 60 0 ABS 0 - C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.obj
-__Hintcode_body 0 0 ABS 0 intcode_body dist/default/production\nRF24_TX.X.production.obj
-__Lintcode_body 0 0 ABS 0 intcode_body dist/default/production\nRF24_TX.X.production.obj
-intlevel0 0 0 CODE 0 text C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.obj
-intlevel1 0 0 CODE 0 text C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.obj
-intlevel2 0 0 CODE 0 text C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.obj
-intlevel3 0 0 CODE 0 text C:\Users\STUDEN~1.N20\AppData\Local\Temp\s59k.obj
->>>>>>> parent of 015c358... PIC, Arduino code
+intlevel0 0 0 CODE 0 text C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.obj
+intlevel1 0 0 CODE 0 text C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.obj
+intlevel2 0 0 CODE 0 text C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.obj
+intlevel3 0 0 CODE 0 text C:\Users\STUDEN~1.N20\AppData\Local\Temp\s538.obj
 _SSP1CON1bits FC6 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
 nrfTXData@len 25 0 COMRAM 1 cstackCOMRAM dist/default/production\nRF24_TX.X.production.obj
 __HdataCOMRAM 0 0 ABS 0 dataCOMRAM dist/default/production\nRF24_TX.X.production.obj
 __LdataCOMRAM 0 0 ABS 0 dataCOMRAM dist/default/production\nRF24_TX.X.production.obj
 __pdataCOMRAM 35 0 COMRAM 1 dataCOMRAM dist/default/production\nRF24_TX.X.production.obj
 __size_of_spiConfig_1 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
-<<<<<<< HEAD
-start_initialization 3BB6 0 CODE 0 cinit dist/default/production\nRF24_TX.X.production.obj
-=======
-start_initialization 3BAA 0 CODE 0 cinit dist/default/production\nRF24_TX.X.production.obj
->>>>>>> parent of 015c358... PIC, Arduino code
+start_initialization 3BDC 0 CODE 0 cinit dist/default/production\nRF24_TX.X.production.obj
 nrfSetRXAddr@pipe 2D 0 COMRAM 1 cstackCOMRAM dist/default/production\nRF24_TX.X.production.obj
 __CFG_BOREN$SBORDIS 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
 __CFG_IESO$OFF 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
 __size_of_spiTransfer 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
 spiTransfer@len 26 0 COMRAM 1 cstackCOMRAM dist/default/production\nRF24_TX.X.production.obj
-<<<<<<< HEAD
-_nrfSetRXAddr 3CB2 0 CODE 0 text8 dist/default/production\nRF24_TX.X.production.obj
-__end_of_portConfig 3B58 0 CODE 0 text2 dist/default/production\nRF24_TX.X.production.obj
-_nrfSetTXAddr 3C3E 0 CODE 0 text7 dist/default/production\nRF24_TX.X.production.obj
-__initialization 3BB6 0 CODE 0 cinit dist/default/production\nRF24_TX.X.production.obj
+_nrfSetRXAddr 3CD8 0 CODE 0 text8 dist/default/production\nRF24_TX.X.production.obj
+__end_of_portConfig 3B7E 0 CODE 0 text2 dist/default/production\nRF24_TX.X.production.obj
+_nrfSetTXAddr 3C64 0 CODE 0 text7 dist/default/production\nRF24_TX.X.production.obj
+__initialization 3BDC 0 CODE 0 cinit dist/default/production\nRF24_TX.X.production.obj
 __size_of_delay10ms 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
 __end_of_nrfConfig 4000 0 CODE 0 text5 dist/default/production\nRF24_TX.X.production.obj
 __activetblptr 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
-__end_of_nrfSetRXAddr 3D2A 0 CODE 0 text8 dist/default/production\nRF24_TX.X.production.obj
+__end_of_nrfSetRXAddr 3D50 0 CODE 0 text8 dist/default/production\nRF24_TX.X.production.obj
 __size_of_spiTransferByte 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
-_RX_PW_P0_CURR 39 0 COMRAM 1 dataCOMRAM dist/default/production\nRF24_TX.X.production.obj
-__end_of_delay10ms 3BB6 0 CODE 0 text12 dist/default/production\nRF24_TX.X.production.obj
-=======
-_nrfSetRXAddr 3D32 0 CODE 0 text8 dist/default/production\nRF24_TX.X.production.obj
-__end_of_portConfig 3B4C 0 CODE 0 text2 dist/default/production\nRF24_TX.X.production.obj
-_nrfSetTXAddr 3CB2 0 CODE 0 text7 dist/default/production\nRF24_TX.X.production.obj
-__initialization 3BAA 0 CODE 0 cinit dist/default/production\nRF24_TX.X.production.obj
-__size_of_delay10ms 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
-__end_of_nrfConfig 3E64 0 CODE 0 text5 dist/default/production\nRF24_TX.X.production.obj
-__activetblptr 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
-__end_of_nrfSetRXAddr 3DB6 0 CODE 0 text8 dist/default/production\nRF24_TX.X.production.obj
-__size_of_spiTransferByte 0 0 ABS 0 - dist/default/production\nRF24_TX.X.production.obj
-_RX_PW_P0_CURR 39 0 COMRAM 1 dataCOMRAM dist/default/production\nRF24_TX.X.production.obj
-__end_of_delay10ms 3BAA 0 CODE 0 text12 dist/default/production\nRF24_TX.X.production.obj
->>>>>>> parent of 015c358... PIC, Arduino code
+_RX_PW_P0_CURR 3B 0 COMRAM 1 dataCOMRAM dist/default/production\nRF24_TX.X.production.obj
+__end_of_delay10ms 3BDC 0 CODE 0 text12 dist/default/production\nRF24_TX.X.production.obj
 # %SPLITSTAB Section
 # This section enumerates all the psect splits performed by the assembler.
 # The beginning of the section is indicated by %SPLITSTAB.
@@ -934,38 +562,20 @@ __end_of_delay10ms 3BAA 0 CODE 0 text12 dist/default/production\nRF24_TX.X.produ
 reset_vec 0 0 0 4 1
 config 0 300000 300000 E 1
 idloc 0 200000 200000 8 1
-bssCOMRAM 1 1 1 43 1
+bssCOMRAM 1 1 1 45 1
 bssBANK0 1 60 60 20 1
-<<<<<<< HEAD
-text5 0 3F1C 3F1C E4 1
-text6 0 3E52 3E52 CA 1
-text0 0 3DAA 3DAA A8 1
-text3 0 3D2A 3D2A 80 1
-text8 0 3CB2 3CB2 78 1
-text7 0 3C3E 3C3E 74 1
-text9 0 3BF4 3BF4 4A 1
-cinit 0 3BB6 3BB6 3E 1
-text12 0 3B7A 3B7A 3C 1
-text4 0 3B58 3B58 22 1
-text2 0 3B3E 3B3E 1A 1
-text1 0 3B26 3B26 18 1
-text11 0 3B0E 3B0E 18 1
-text10 0 3AFC 3AFC 12 1
-idataCOMRAM 0 3AED 3AED F 1
-=======
-text6 0 3F2A 3F2A D6 1
-text3 0 3E64 3E64 C6 1
-text5 0 3DB6 3DB6 AE 1
-text8 0 3D32 3D32 84 1
-text7 0 3CB2 3CB2 80 1
-text0 0 3C3E 3C3E 74 1
-text9 0 3BE8 3BE8 56 1
-cinit 0 3BAA 3BAA 3E 1
-text12 0 3B6E 3B6E 3C 1
-text4 0 3B4C 3B4C 22 1
-text2 0 3B32 3B32 1A 1
-text1 0 3B1A 3B1A 18 1
-text11 0 3B02 3B02 18 1
-text10 0 3AF2 3AF2 10 1
-idataCOMRAM 0 3AE3 3AE3 F 1
->>>>>>> parent of 015c358... PIC, Arduino code
+text5 0 3F24 3F24 DC 1
+text6 0 3E5A 3E5A CA 1
+text0 0 3DCE 3DCE 8C 1
+text3 0 3D50 3D50 7E 1
+text8 0 3CD8 3CD8 78 1
+text7 0 3C64 3C64 74 1
+text9 0 3C1A 3C1A 4A 1
+cinit 0 3BDC 3BDC 3E 1
+text12 0 3BA0 3BA0 3C 1
+text4 0 3B7E 3B7E 22 1
+text2 0 3B64 3B64 1A 1
+text1 0 3B4C 3B4C 18 1
+text10 0 3B3A 3B3A 12 1
+idataCOMRAM 0 3B29 3B29 11 1
+text11 0 3B18 3B18 10 1

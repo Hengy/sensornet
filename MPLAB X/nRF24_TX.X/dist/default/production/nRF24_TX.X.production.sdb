@@ -125,21 +125,20 @@
 [v ___asftsub __asftsub `(f  1 e 3 0 ]
 "6 C:\Program Files (x86)\Microchip\xc8\v1.33\sources\pic18\aslmul.c
 [v ___aslmul __aslmul `(ul  1 e 4 0 ]
-"191 E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c
+"192 E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c
 [v _main main `(v  1 e 0 0 ]
-"233
+"236
 [v _portConfig portConfig `(v  1 e 0 0 ]
-"247
+"250
 [v _spiConfig_1 spiConfig_1 `(v  1 e 0 0 ]
-"261
+"264
 [v _nrfConfig nrfConfig `(v  1 e 0 0 ]
-"298
+"299
 [v _setCSN setCSN `(v  1 e 0 0 ]
 "312
 [v _nrfGetStatus nrfGetStatus `(v  1 e 0 0 ]
 "324
 [v _nrfConfigReg nrfConfigReg `(uc  1 e 1 0 ]
-<<<<<<< HEAD
 "346
 [v _nrfSetTXAddr nrfSetTXAddr `(v  1 e 0 0 ]
 "368
@@ -151,19 +150,6 @@
 "429
 [v _nrfTXData nrfTXData `(v  1 e 0 0 ]
 "456
-=======
-"333
-[v _nrfSetTXAddr nrfSetTXAddr `(v  1 e 0 0 ]
-"358
-[v _nrfSetRXAddr nrfSetRXAddr `(v  1 e 0 0 ]
-"385
-[v _spiTransfer spiTransfer `(v  1 e 0 0 ]
-"411
-[v _spiTransferByte spiTransferByte `(uc  1 e 1 0 ]
-"424
-[v _nrfTXData nrfTXData `(v  1 e 0 0 ]
-"453
->>>>>>> parent of 015c358... PIC, Arduino code
 [v _delay10ms delay10ms `(v  1 e 0 0 ]
 "7524 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic18f24k22.h
 [v _LATA LATA `VEuc  1 e 1 @3977 ]
@@ -361,7 +347,7 @@
 [v _SSP1ADD SSP1ADD `VEuc  1 e 1 @4040 ]
 "15187
 [v _SSP1BUF SSP1BUF `VEuc  1 e 1 @4041 ]
-"149 E:\GitHub\sensornet\MPLAB X\nRF_TX\nRF24_TX.X\main.c
+"149 E:\GitHub\sensornet\MPLAB X\nRF24_TX.X\main.c
 [v _CONFIG_CURR CONFIG_CURR `uc  1 e 1 0 ]
 "150
 [v _EN_AA_CURR EN_AA_CURR `uc  1 e 1 0 ]
@@ -377,34 +363,37 @@
 [v _RF_SETUP_CURR RF_SETUP_CURR `uc  1 e 1 0 ]
 "157
 [v _RX_PW_P0_CURR RX_PW_P0_CURR `uc  1 e 1 0 ]
+"158
+[v _DYNPD_CURR DYNPD_CURR `uc  1 e 1 0 ]
 "159
-[v _RX_ADDRESS RX_ADDRESS `[4]uc  1 e 4 0 ]
+[v _FEATURE_CURR FEATURE_CURR `uc  1 e 1 0 ]
 "160
+[v _RX_ADDRESS RX_ADDRESS `[4]uc  1 e 4 0 ]
+"161
 [v _TX_ADDRESS TX_ADDRESS `[4]uc  1 e 4 0 ]
-"183
-[v _dataBufIn dataBufIn `[32]uc  1 e 32 0 ]
 "184
+[v _dataBufIn dataBufIn `[32]uc  1 e 32 0 ]
+"185
 [v _dataBufOut dataBufOut `[32]uc  1 e 32 0 ]
-"186
+"187
 [v _nrfSTATUS nrfSTATUS `uc  1 e 1 0 ]
-"191
+"192
 [v _main main `(v  1 e 0 0 ]
 {
-"201
+"202
 [v main@count count `i  1 a 2 16 ]
-"228
+"231
 } 0
-"247
+"250
 [v _spiConfig_1 spiConfig_1 `(v  1 e 0 0 ]
 {
-"256
+"259
 } 0
-"233
+"236
 [v _portConfig portConfig `(v  1 e 0 0 ]
 {
-"241
+"244
 } 0
-<<<<<<< HEAD
 "429
 [v _nrfTXData nrfTXData `(v  1 e 0 0 ]
 {
@@ -413,30 +402,17 @@
 "429
 [v nrfTXData@len len `i  1 p 2 2 ]
 "451
-=======
-"424
-[v _nrfTXData nrfTXData `(v  1 e 0 0 ]
-{
-"432
-[v nrfTXData@i i `i  1 a 2 10 ]
-"445
-[v nrfTXData@i_556 i `i  1 a 2 8 ]
-"424
-[v nrfTXData@len len `i  1 p 2 2 ]
-"448
->>>>>>> parent of 015c358... PIC, Arduino code
 } 0
 "312
 [v _nrfGetStatus nrfGetStatus `(v  1 e 0 0 ]
 {
 "319
 } 0
-"261
+"264
 [v _nrfConfig nrfConfig `(v  1 e 0 0 ]
 {
-"293
+"294
 } 0
-<<<<<<< HEAD
 "392
 [v _spiTransfer spiTransfer `(v  1 e 0 0 ]
 {
@@ -474,45 +450,6 @@
 "370
 [v nrfSetRXAddr@pipe pipe `uc  1 a 1 10 ]
 "382
-=======
-"385
-[v _spiTransfer spiTransfer `(v  1 e 0 0 ]
-{
-[v spiTransfer@wrn wrn `uc  1 a 1 wreg ]
-"399
-[v spiTransfer@i i `i  1 a 2 14 ]
-"385
-[v spiTransfer@wrn wrn `uc  1 a 1 wreg ]
-[v spiTransfer@command command `uc  1 p 1 2 ]
-[v spiTransfer@len len `i  1 p 2 3 ]
-"387
-[v spiTransfer@wrn wrn `uc  1 a 1 13 ]
-"406
-} 0
-"333
-[v _nrfSetTXAddr nrfSetTXAddr `(v  1 e 0 0 ]
-{
-"343
-[v nrfSetTXAddr@i i `i  1 a 2 10 ]
-"333
-[v nrfSetTXAddr@addr addr `*.39uc  1 p 2 2 ]
-[v nrfSetTXAddr@len len `i  1 p 2 4 ]
-"350
-} 0
-"358
-[v _nrfSetRXAddr nrfSetRXAddr `(v  1 e 0 0 ]
-{
-[v nrfSetRXAddr@pipe pipe `uc  1 a 1 wreg ]
-"368
-[v nrfSetRXAddr@i i `i  1 a 2 11 ]
-"358
-[v nrfSetRXAddr@pipe pipe `uc  1 a 1 wreg ]
-[v nrfSetRXAddr@addr addr `*.39uc  1 p 2 2 ]
-[v nrfSetRXAddr@len len `i  1 p 2 4 ]
-"360
-[v nrfSetRXAddr@pipe pipe `uc  1 a 1 10 ]
-"375
->>>>>>> parent of 015c358... PIC, Arduino code
 } 0
 "324
 [v _nrfConfigReg nrfConfigReg `(uc  1 e 1 0 ]
@@ -523,36 +460,23 @@
 [v nrfConfigReg@data data `uc  1 p 1 3 ]
 "326
 [v nrfConfigReg@wr wr `uc  1 a 1 4 ]
-<<<<<<< HEAD
 "339
 } 0
 "416
-=======
-"326
-} 0
-"411
->>>>>>> parent of 015c358... PIC, Arduino code
 [v _spiTransferByte spiTransferByte `(uc  1 e 1 0 ]
 {
 [v spiTransferByte@data data `uc  1 a 1 wreg ]
 [v spiTransferByte@data data `uc  1 a 1 wreg ]
-<<<<<<< HEAD
 "418
 [v spiTransferByte@data data `uc  1 a 1 0 ]
 "423
-=======
-"413
-[v spiTransferByte@data data `uc  1 a 1 0 ]
-"418
->>>>>>> parent of 015c358... PIC, Arduino code
 } 0
-"298
+"299
 [v _setCSN setCSN `(v  1 e 0 0 ]
 {
 [v setCSN@level level `i  1 p 2 0 ]
 "306
 } 0
-<<<<<<< HEAD
 "456
 [v _delay10ms delay10ms `(v  1 e 0 0 ]
 {
@@ -561,14 +485,4 @@
 "456
 [v delay10ms@ms_multi ms_multi `i  1 p 2 0 ]
 "461
-=======
-"453
-[v _delay10ms delay10ms `(v  1 e 0 0 ]
-{
-"454
-[v delay10ms@i i `i  1 a 2 3 ]
-"453
-[v delay10ms@ms_multi ms_multi `i  1 p 2 0 ]
-"458
->>>>>>> parent of 015c358... PIC, Arduino code
 } 0

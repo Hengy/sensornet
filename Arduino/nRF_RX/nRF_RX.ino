@@ -104,6 +104,8 @@ byte RF_CH_CURR            = B01101001;   // Channel 105 (2.400GHz + 0.105GHz = 
 byte RF_SETUP_CURR         = B00000110;   // RF data rate to 1Mbps; 0dBm output power (highest)
 //byte RF_SETUP_CURR         = B00001110;   // RF data rate to 2Mbps; 0dBm output power (highest)
 byte RX_PW_P0_CURR         = B00000001;   // 1 byte payload
+byte DYNPD_CURR            = B00000001;   // Set dynamic payload for pipe 0
+byte FEATURE_CURR          = B00000100;   // Enable dynamic payload
 byte RX_ADDRESS[4]         = {0xE7,0xE7,0xE7,0xE7};
 byte TX_ADDRESS[4]         = {0xE7,0xE7,0xE7,0xE7};
 
@@ -138,7 +140,7 @@ void setup() {
   
   // SPI setup
   SPI.setBitOrder(MSBFIRST);              // Set most significant bit first
-  SPI.setClockDivider(SPI_CLOCK_DIV16);   // Clock to Fosc/16 = 1MHz
+  SPI.setClockDivider(SPI_CLOCK_DIV32);   // Clock to Fosc/16 = 1MHz
   //SPI.setDataMode(SPI_MODE1);             // Clock polarity 0; clock phase 1
   SPI.begin();                            // Start SPI
   
@@ -165,6 +167,10 @@ void setup() {
   nrfSetRXAddr(RX_ADDR_P0,RX_ADDRESS,4);
   // Write pipe 0 payload width
   nrfConfigReg('w',RX_PW_P0,RX_PW_P0_CURR);
+  // Set dynamic payload for pipe 0
+  nrfConfigReg('w',DYNPD,DYNPD_CURR);
+  // Write to FEATURE register
+  nrfConfigReg('w',FEATURE,FEATURE_CURR);
   // Flush RX FIFO
   spiTransfer('n',FLUSH_RX,0);
   // Flush TX FIFO
@@ -188,14 +194,24 @@ void loop() {
   if (intRXData > 0) {
     digitalWrite(nRF_CE, LOW);           // Keep CE high when receiving
     
-    delayMicroseconds(400);
+    delayMicroseconds(100);
     
-    spiTransfer('r',R_RX_PAYLOAD,1);          // Read payload command
+    spiTransfer('r',R_RX_PL_WID,1);             // Get dynamic payload width
+    int payloadWidth = dataBufIn[0];
+    
+    delayMicroseconds(20);
+    
+    spiTransfer('r',R_RX_PAYLOAD,payloadWidth); // Read payload command
 
-    Serial.println(dataBufIn[0]);            // Print to serial monitor
+    Serial.print(payloadWidth);
+    Serial.print(": ");
+    for (int i=0;i<payloadWidth;i++) {
+      Serial.print(dataBufIn[i]);              // Print to serial monitor
+      Serial.print(" ");
+    }
+    Serial.println("");
     
-    delayMicroseconds(40);
-    
+    // Reset interrupts
     dataBufOut[0] = B01110000;
     spiTransfer('w',STATUS,1);
     

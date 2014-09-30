@@ -146,16 +146,17 @@ SCK     -[14/RC3       RC4/15]-       SDI
 /*------------------------------------------------
  * Current config settings - TX
 ------------------------------------------------*/
-unsigned char CONFIG_CURR        = 0b01001010;   // Show all TX interrupts; Enable CRC - 1 byte; Power Up; PTX
-unsigned char EN_AA_CURR         = 0b00000000;   // Disable all Auto Ack
-unsigned char EN_RXADDR_CURR     = 0b00000001;   // Enable data pipe 0
-unsigned char SETUP_AW_CURR      = 0b00000010;   // set for 4 byte address
-//unsigned char SETUP_RETR_CURR    = 0b00110101;   // 1000us retransmit delay; 5 auto retransmits
-unsigned char SETUP_RETR_CURR    = 0b00100000;   // 750us retransmit delay; Disable auto retransmit
-unsigned char RF_CH_CURR         = 0b01101001;   // Channel 105 (2.400GHz + 0.105GHz = 2.505GHz)
-unsigned char RF_SETUP_CURR      = 0b00000110;   // RF data rate to 1Mbps; 0dBm output power (highest)
-unsigned char RX_PW_P0_CURR      = 0b00000001;   // Set pipe 0 payload width to 1
-//unsigned char FEATURE_CURR       = 0b00000100;   // Enable dynamic payload
+unsigned char CONFIG_CURR       = 0b01001010;   // Show all TX interrupts; Enable CRC - 1 byte; Power Up; PTX
+unsigned char EN_AA_CURR        = 0b00000000;   // Disable all Auto Ack
+unsigned char EN_RXADDR_CURR    = 0b00000001;   // Enable data pipe 0
+unsigned char SETUP_AW_CURR     = 0b00000010;   // set for 4 byte address
+//unsigned char SETUP_RETR_CURR   = 0b00110101;   // 1000us retransmit delay; 5 auto retransmits
+unsigned char SETUP_RETR_CURR   = 0b00100000;   // 750us retransmit delay; Disable auto retransmit
+unsigned char RF_CH_CURR        = 0b01101001;   // Channel 105 (2.400GHz + 0.105GHz = 2.505GHz)
+unsigned char RF_SETUP_CURR     = 0b00000110;   // RF data rate to 1Mbps; 0dBm output power (highest)
+unsigned char RX_PW_P0_CURR     = 0b00000001;   // Set pipe 0 payload width to 1
+unsigned char DYNPD_CURR        = 0b00000001;   // Set dynamic payload for pipe 0
+unsigned char FEATURE_CURR      = 0b00000100;   // Enable dynamic payload
 unsigned char RX_ADDRESS[4] = {0xE7,0xE7,0xE7,0xE7}; // 4 byte initial RX address
 unsigned char TX_ADDRESS[4] = {0xE7,0xE7,0xE7,0xE7}; // 4 byte initial TX address
 
@@ -202,8 +203,13 @@ void main(void) {
     for (;;) {
 
         dataBufOut[0] = count;
-        nrfTXData(1);
+        dataBufOut[1] = 0b01101010;
+        dataBufOut[2] = 0x3F;
+        dataBufOut[3] = 182;
+        nrfTXData(4);
         count++;
+
+        delay10ms(2);
 
         nrfGetStatus();
 
@@ -215,12 +221,12 @@ void main(void) {
             dataBufOut[0] = 0b01110000;
             spiTransfer('w',STATUS,1);
 
-            delay10ms(20);
+            delay10ms(10);
 
             ACT_LED = 0;
         }
 
-        delay10ms(80);
+        delay10ms(70);
     }
 }
 
@@ -245,7 +251,7 @@ void spiConfig_1(void) {
     SSP1CON1bits.CKP = 0;               // Clock polarity
     SSP1STATbits.CKE = 1;               // Clock edge detect
     SSP1STATbits.SMP = 1;               // Sample bit
-    SSP1ADD = 0b00111111;               // Set to 31
+    SSP1ADD = 0b00001111;               // Set to 31
     SSP1CON1bits.SSPM = 0b1010;         // Clock = Fosc/(SSP1ADD + 1)(4) = 500KHz
     //SSP1CON1bits.SSPM = 0b0010;         // Clock = Fosc/64 = 1MHz
     SSP1CON1bits.SSPEN = 1;             // Enable SPI
@@ -277,8 +283,10 @@ void nrfConfig(void) {
     nrfSetTXAddr(TX_ADDRESS,4);
     // Set pipe 0 payload width
     nrfConfigReg('w',RX_PW_P0,RX_PW_P0_CURR);
+    // Write to DYNPD register
+    nrfConfigReg('w',DYNPD,DYNPD_CURR);
     // Write to FEATURE register
-    //nrfConfigReg('w',FEATURE,FEATURE_CURR);
+    nrfConfigReg('w',FEATURE,FEATURE_CURR);
     // Flush TX FIFO
     spiTransfer('n',FLUSH_TX,0);
     // Flush RX FIFO
@@ -434,7 +442,7 @@ void nrfTXData(int len) {
 
     // pulse CE pin to transmit
     nRF_CE = 1;
-    __delay_us(11);                     // Wait min 10us
+    __delay_us(12);                     // Wait min 10us
     nRF_CE = 0;
 //    __delay_us(170);                    // Wait for transmit to complete w/
 //    for (int i=0;i<len;i++) {           // additional time for each additional byte
