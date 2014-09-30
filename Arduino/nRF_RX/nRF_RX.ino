@@ -116,6 +116,8 @@ byte dataBufOut[32];                          // 32 byte buffer for all outgoing
 
 byte nrfSTATUS;
 
+volatile int intRXData;                      // nRF received packet flag; set by ISR
+
 /*------------------------------------------------
  * Setup
 ------------------------------------------------*/
@@ -136,7 +138,7 @@ void setup() {
   
   // SPI setup
   SPI.setBitOrder(MSBFIRST);              // Set most significant bit first
-  SPI.setClockDivider(SPI_CLOCK_DIV32);   // Clock to Fosc/16 = 1MHz
+  SPI.setClockDivider(SPI_CLOCK_DIV16);   // Clock to Fosc/16 = 1MHz
   //SPI.setDataMode(SPI_MODE1);             // Clock polarity 0; clock phase 1
   SPI.begin();                            // Start SPI
   
@@ -169,6 +171,9 @@ void setup() {
   spiTransfer('n',FLUSH_TX,0);
   
   delay(1);
+  
+  intRXData = 0;
+  attachInterrupt(1,ISR_RXData,LOW);
 }
 
 /*------------------------------------------------
@@ -180,14 +185,10 @@ void loop() {
   
   digitalWrite(nRF_CE, HIGH);            // Keep CE high when receiving
   
-  delayMicroseconds(20);
-
-  nrfGetStatus();
-  
-  if (nrfSTATUS != 0x0E) {
+  if (intRXData > 0) {
     digitalWrite(nRF_CE, LOW);           // Keep CE high when receiving
     
-    delayMicroseconds(40);
+    delayMicroseconds(400);
     
     spiTransfer('r',R_RX_PAYLOAD,1);          // Read payload command
 
@@ -199,10 +200,18 @@ void loop() {
     spiTransfer('w',STATUS,1);
     
     spiTransfer('n',FLUSH_RX,0);
+    
+    intRXData = 0;
   }
   
 }
 
+/*------------------------------------------------
+ * ISR
+------------------------------------------------*/
+void ISR_RXData() {
+  intRXData++;
+}
 
 /*------------------------------------------------
  * Sets CSN pin HIGH or LOW w/ delay

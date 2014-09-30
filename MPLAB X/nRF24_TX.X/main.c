@@ -141,17 +141,21 @@ SCK     -[14/RC3       RC4/15]-       SDI
 #define HIGH            1
 #define LOW             0
 
+#define  testbit(var, bit)  ((var) & (1 <<(bit)))  //bit test macro
+
 /*------------------------------------------------
  * Current config settings - TX
 ------------------------------------------------*/
-unsigned char CONFIG_CURR        = 0b01011010;   // Show all TX interrupts; Enable CRC - 1 byte; Power Up; PTX
+unsigned char CONFIG_CURR        = 0b01001010;   // Show all TX interrupts; Enable CRC - 1 byte; Power Up; PTX
 unsigned char EN_AA_CURR         = 0b00000000;   // Disable all Auto Ack
 unsigned char EN_RXADDR_CURR     = 0b00000001;   // Enable data pipe 0
 unsigned char SETUP_AW_CURR      = 0b00000010;   // set for 4 byte address
+//unsigned char SETUP_RETR_CURR    = 0b00110101;   // 1000us retransmit delay; 5 auto retransmits
 unsigned char SETUP_RETR_CURR    = 0b00100000;   // 750us retransmit delay; Disable auto retransmit
 unsigned char RF_CH_CURR         = 0b01101001;   // Channel 105 (2.400GHz + 0.105GHz = 2.505GHz)
 unsigned char RF_SETUP_CURR      = 0b00000110;   // RF data rate to 1Mbps; 0dBm output power (highest)
 unsigned char RX_PW_P0_CURR      = 0b00000001;   // Set pipe 0 payload width to 1
+//unsigned char FEATURE_CURR       = 0b00000100;   // Enable dynamic payload
 unsigned char RX_ADDRESS[4] = {0xE7,0xE7,0xE7,0xE7}; // 4 byte initial RX address
 unsigned char TX_ADDRESS[4] = {0xE7,0xE7,0xE7,0xE7}; // 4 byte initial TX address
 
@@ -193,7 +197,7 @@ void main(void) {
 
     delay10ms(1);                           // Wait for nRF power up
 
-    // Transmit count; read nRF STATUS reg; read nRF CONFIG reg; forever
+    // Transmit count; read nRF STATUS reg; forever
     int count = 1;
     for (;;) {
 
@@ -273,8 +277,12 @@ void nrfConfig(void) {
     nrfSetTXAddr(TX_ADDRESS,4);
     // Set pipe 0 payload width
     nrfConfigReg('w',RX_PW_P0,RX_PW_P0_CURR);
+    // Write to FEATURE register
+    //nrfConfigReg('w',FEATURE,FEATURE_CURR);
     // Flush TX FIFO
     spiTransfer('n',FLUSH_TX,0);
+    // Flush RX FIFO
+    spiTransfer('n',FLUSH_RX,0);
 }
 
 /*------------------------------------------------
@@ -283,7 +291,6 @@ void nrfConfig(void) {
 void setCSN(int level) {
 
     if (level == 1) {           // If setting HIGH
-        __delay_us(2);
         nRF_CSN = 1;
     } else {                    // If setting LOW
         nRF_CSN = 0;
@@ -312,11 +319,9 @@ unsigned char nrfConfigReg(char wr, unsigned char command, unsigned char data) {
 
     if (wr == 'w') {                            // Write
         spiTransferByte(W_REGISTER|command);    // Send command
-        __delay_us(3);
         spiTransferByte(data);
     } else if (wr == 'r') {                     // Read
         spiTransferByte(R_REGISTER|command);    // Send command
-        __delay_us(3);
         data = spiTransferByte(NRF_NOP);
     }
 
@@ -336,13 +341,10 @@ void nrfSetTXAddr(unsigned char addr[], int len) {
 
     spiTransferByte(W_REGISTER|TX_ADDR);    // Send command
 
-    __delay_us(3);
-
     if (len != 0) {
         // Send address bytes
         for (int i=1;i<=len;i++) {
             spiTransferByte(addr[i-1]);
-            __delay_us(3);
         }
     }
 
@@ -361,13 +363,10 @@ void nrfSetRXAddr(unsigned char pipe, unsigned char addr[], int len) {
 
     spiTransferByte(W_REGISTER|pipe);   // Send command
 
-    __delay_us(3);
-
     if (len != 0) {
         // Send address bytes
         for (int i=1;i<=len;i++) {
             spiTransferByte(addr[i-1]);
-            __delay_us(3);
         }
     }
 
@@ -393,12 +392,10 @@ void spiTransfer(char wrn, unsigned char command,int len) {
     } else if(wrn == 'n') {
         spiTransferByte(command);               // Send command
     }
-    __delay_us(3);
 
     if (len != 0) {
         for (int i=1;i<=len;i++) {
             dataBufIn[i-1] = spiTransferByte(dataBufOut[i-1]);
-            __delay_us(3);
         }
     }
 
@@ -412,7 +409,7 @@ unsigned char spiTransferByte(unsigned char data) {
 
     SSP1BUF = data;                     // Write data to MSSP
     
-    __delay_us(30);                     // Wait for transfer to complete
+    __delay_us(8);                      // Wait for transfer to complete
 
     return SSP1BUF;                     // return recieved data
 }
@@ -426,12 +423,10 @@ void nrfTXData(int len) {
     setCSN(LOW);                        // Set CSN low
 
     spiTransferByte(W_TX_PAYLOAD);
-    __delay_us(3);
 
     if (len != 0) {
         for (int i=1;i<=len;i++) {
             spiTransferByte(dataBufOut[i-1]);
-            __delay_us(3);
         }
     }
 
@@ -441,10 +436,10 @@ void nrfTXData(int len) {
     nRF_CE = 1;
     __delay_us(11);                     // Wait min 10us
     nRF_CE = 0;
-    __delay_us(170);                    // Wait for transmit to complete w/
-    for (int i=0;i<len;i++) {           // additional time for each additional byte
-        __delay_us(10);
-    }
+//    __delay_us(170);                    // Wait for transmit to complete w/
+//    for (int i=0;i<len;i++) {           // additional time for each additional byte
+//        __delay_us(10);
+//    }
 }
 
 /*------------------------------------------------
