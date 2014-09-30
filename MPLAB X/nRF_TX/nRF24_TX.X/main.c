@@ -144,14 +144,13 @@ SCK     -[14/RC3       RC4/15]-       SDI
 /*------------------------------------------------
  * Current config settings - TX
 ------------------------------------------------*/
-unsigned char CONFIG_CURR        = 0b01111010;   // Show all TX interrupts; Enable CRC - 1 byte; Power Up; PTX
+unsigned char CONFIG_CURR        = 0b01011010;   // Show all TX interrupts; Enable CRC - 1 byte; Power Up; PTX
 unsigned char EN_AA_CURR         = 0b00000000;   // Disable all Auto Ack
 unsigned char EN_RXADDR_CURR     = 0b00000001;   // Enable data pipe 0
 unsigned char SETUP_AW_CURR      = 0b00000010;   // set for 4 byte address
 unsigned char SETUP_RETR_CURR    = 0b00100000;   // 750us retransmit delay; Disable auto retransmit
 unsigned char RF_CH_CURR         = 0b01101001;   // Channel 105 (2.400GHz + 0.105GHz = 2.505GHz)
-//unsigned char RF_SETUP_CURR      = 0b00000110;   // RF data rate to 1Mbps; 0dBm output power (highest)
-unsigned char RF_SETUP_CURR      = 0b00001110;   // RF data rate to 2Mbps; 0dBm output power (highest)
+unsigned char RF_SETUP_CURR      = 0b00000110;   // RF data rate to 1Mbps; 0dBm output power (highest)
 unsigned char RX_PW_P0_CURR      = 0b00000001;   // Set pipe 0 payload width to 1
 unsigned char RX_ADDRESS[4] = {0xE7,0xE7,0xE7,0xE7}; // 4 byte initial RX address
 unsigned char TX_ADDRESS[4] = {0xE7,0xE7,0xE7,0xE7}; // 4 byte initial TX address
