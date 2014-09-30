@@ -95,11 +95,11 @@ const byte FEATURE         = 0x1D;        // Feature register
 /*------------------------------------------------
  * nRF24L01+ current config settings
 ------------------------------------------------*/
-byte CONFIG_CURR           = B00101011;   // Show RX_DR and MAX_RT interrupts; Enable CRC - 1 byte; Power up; RX
-byte EN_AA_CURR            = B00000011;   // Enable Auto Ack for pipe 0
-byte EN_RXADDR_CURR        = B00000011;   // Enable data pipe 0,1
+byte CONFIG_CURR           = B00111011;   // Show RX_DR interrupts; Enable CRC - 1 byte; Power up; RX
+byte EN_AA_CURR            = B00000000;   // Enable Auto Ack for pipe 0
+byte EN_RXADDR_CURR        = B00000001;   // Enable data pipe 0,1
 byte SETUP_AW_CURR         = B00000010;   // Set up for 4 byte address
-byte SETUP_RETR_CURR       = B00110101;   // 1000us retransmit delay; 5 auto retransmit
+byte SETUP_RETR_CURR       = B00100000;   // 1000us retransmit delay; 5 auto retransmit
 byte RF_CH_CURR            = B01101001;   // Channel 105 (2.400GHz + 0.105GHz = 2.505GHz)
 byte RF_SETUP_CURR         = B00000110;   // RF data rate to 1Mbps; 0dBm output power (highest)
 byte RX_PW_P0_CURR         = B00000001;   // 1 byte payload
@@ -184,17 +184,19 @@ void loop() {
   
   digitalWrite(nRF_CE, HIGH);            // Keep CE high when receiving
   
-  nrfGetStatus();
-  
   if (intRXData > 0) {
+    
+    nrfGetStatus();
+    Serial.print("Status:");
+    Serial.println(nrfSTATUS);
     
     delayMicroseconds(400);              // Wait for Auto Ack to send
     
     digitalWrite(nRF_CE, LOW);           // Keep CE high when receiving
     
-    spiTransfer('r',R_RX_PAYLOAD,1);          // Read payload command
+    spiTransfer('r',R_RX_PAYLOAD,1);     // Read payload command
 
-    Serial.println(dataBufIn[0]);            // Print to serial monitor
+    Serial.println(dataBufIn[0]);       // Print to serial monitor
     
     dataBufOut[0] = B01110000;
     spiTransfer('w',STATUS,1);
