@@ -146,12 +146,12 @@ SCK     -[14/RC3       RC4/15]-       SDI
 /*------------------------------------------------
  * Current config settings - TX
 ------------------------------------------------*/
-unsigned char CONFIG_CURR       = 0b01001010;   // Show all TX interrupts; Enable CRC - 1 byte; Power Up; PTX
+unsigned char CONFIG_CURR       = 0b01011010;   // Show all TX interrupts; Enable CRC - 1 byte; Power Up; PTX
 unsigned char EN_AA_CURR        = 0b00000000;   // Disable all Auto Ack
 unsigned char EN_RXADDR_CURR    = 0b00000001;   // Enable data pipe 0
 unsigned char SETUP_AW_CURR     = 0b00000010;   // set for 4 byte address
 //unsigned char SETUP_RETR_CURR   = 0b00110101;   // 1000us retransmit delay; 5 auto retransmits
-unsigned char SETUP_RETR_CURR   = 0b00100000;   // 750us retransmit delay; Disable auto retransmit
+unsigned char SETUP_RETR_CURR   = 0b00100001;   // 750us retransmit delay; Disable auto retransmit
 unsigned char RF_CH_CURR        = 0b01101001;   // Channel 105 (2.400GHz + 0.105GHz = 2.505GHz)
 unsigned char RF_SETUP_CURR     = 0b00000110;   // RF data rate to 1Mbps; 0dBm output power (highest)
 unsigned char RX_PW_P0_CURR     = 0b00000001;   // Set pipe 0 payload width to 1
@@ -164,6 +164,10 @@ unsigned char TX_ADDRESS[4] = {0xE7,0xE7,0xE7,0xE7}; // 4 byte initial TX addres
 /*------------------------------------------------
  * Function Definitions
 ------------------------------------------------*/
+void main(void);
+void interrupt highISR(void);
+void interrupt low_priority lowISR(void);
+void intConfig(void);
 void portConfig(void);
 void spiConfig_1(void);
 void nrfConfig(void);
@@ -235,7 +239,7 @@ void main(void) {
     for (;;) {
 
         dataBufOut[0] = count;
-        nrfTXData(32);
+        nrfTXData(5);
         count++;
 
         nrfGetStatus();
@@ -245,8 +249,11 @@ void main(void) {
             ACT_LED = 1;
 
             // Reset interrupt flags
-            dataBufOut[0] = 0b01110000;
+            dataBufOut[0] = 0b00100000;
             spiTransfer('w',STATUS,1);
+
+            __delay_us(20);
+            nrfGetStatus();
 
             delay10ms(10);
 
@@ -255,6 +262,40 @@ void main(void) {
 
         delay10ms(500);
     }
+}
+
+/*------------------------------------------------
+ * High-priority ISR function
+------------------------------------------------*/
+void interrupt highISR(void) {
+    
+}
+
+/*------------------------------------------------
+ * Low-priority ISR function
+------------------------------------------------*/
+void interrupt low_priority lowISR(void) {
+    
+}
+
+/*------------------------------------------------
+ * Low-priority ISR function
+------------------------------------------------*/
+void intConfig(void) {
+
+    // Enable MSSP1 interrupts
+    PIE1bits.SSP1IE = 1;
+    IPR1bits.SSP1IP = 1;                // High priority
+    PIR1bits.SSP1IF = 0;
+
+    // Enable PORTB interrupt-on-change
+    INTCONbits.RBIE = 1;
+    INTCON2bits.RBIP = 1;               // High priority
+    INTCONbits.RBIF = 0;
+
+    // Enable global interrupts
+    INTCONbits.GIE_GIEH = 1;
+    INTCONbits.GIE = 1;
 }
 
 /*------------------------------------------------
@@ -278,7 +319,7 @@ void spiConfig_1(void) {
     SSP1CON1bits.CKP = 0;               // Clock polarity
     SSP1STATbits.CKE = 1;               // Clock edge detect
     SSP1STATbits.SMP = 1;               // Sample bit
-    SSP1ADD = 0b00000011;               // Set to 7
+    SSP1ADD = 0b00000001;               // Set to 7
     SSP1CON1bits.SSPM = 0b1010;         // Clock = Fosc/(SSP1ADD + 1)(4) = 4MHz
     SSP1CON1bits.SSPEN = 1;             // Enable SPI
     nRF_CSN = 1;
@@ -443,7 +484,7 @@ unsigned char spiTransferByte(unsigned char data) {
 
     SSP1BUF = data;                     // Write data to MSSP
     
-    __delay_us(1);                      // Wait for transfer to complete
+    __delay_us(2);                      // Wait for transfer to complete
 
     return SSP1BUF;                     // return recieved data
 }

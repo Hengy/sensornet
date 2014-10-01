@@ -5,23 +5,23 @@ Linker command line:
 --edf=C:\Program Files (x86)\Microchip\xc8\v1.33\dat\en_msgs.txt -cs \
   -h+dist/default/production\nRF24_TX.X.production.sym \
   --cmf=dist/default/production\nRF24_TX.X.production.cmf -z -Q18F24K22 \
-  -oC:\Users\STUDEN~1.N20\AppData\Local\Temp\s3ek.6 \
+  -oC:\Users\STUDEN~1.N20\AppData\Local\Temp\s13g.6 \
   -Mdist/default/production/nRF24_TX.X.production.map -E1 -ver=XC8 \
-  -ASTACK=060h-02ffh -pstack=STACK -ACODE=00h-03FFFh -ACONST=00h-03FFFh \
+  -ASTACK=090h-02ffh -pstack=STACK -ACODE=00h-03FFFh -ACONST=00h-03FFFh \
   -ASMALLCONST=0300h-03FFhx61 -AMEDIUMCONST=0300h-03FFFh -ACOMRAM=01h-05Fh \
   -AABS1=00h-02FFh -ABIGRAM=01h-02FFh -ARAM=060h-0FFh,0100h-01FFhx2 \
   -ABANK0=060h-0FFh -ABANK1=0100h-01FFh -ABANK2=0200h-02FFh \
   -ASFR=0F38h-0F5Fh,0F60h-0FFFh \
-  -preset_vec=00h,intcode,intcodelo,powerup,init,end_init -pramtop=0300h \
-  -psmallconst=SMALLCONST -pmediumconst=MEDIUMCONST -pconst=CONST \
-  -AFARRAM=00h-00h -ACONFIG=0300000h-030000Dh -pconfig=CONFIG \
+  -preset_vec=00h,intcode=08h,intcodelo=018h,powerup,init,end_init \
+  -pramtop=0300h -psmallconst=SMALLCONST -pmediumconst=MEDIUMCONST \
+  -pconst=CONST -AFARRAM=00h-00h -ACONFIG=0300000h-030000Dh -pconfig=CONFIG \
   -AIDLOC=0200000h-0200007h -pidloc=IDLOC -AEEDATA=0F00000h-0F000FFh \
   -peeprom_data=EEDATA \
   -prdata=COMRAM,nvrram=COMRAM,nvbit=COMRAM,rbss=COMRAM,rbit=COMRAM \
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE \
-  C:\Users\STUDEN~1.N20\AppData\Local\Temp\s3ek.obj \
+  C:\Users\STUDEN~1.N20\AppData\Local\Temp\s13g.obj \
   dist/default/production\nRF24_TX.X.production.obj 
 
 Object code version is 3.11
@@ -34,50 +34,60 @@ Call graph: (short form)
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\STUDEN~1.N20\AppData\Local\Temp\s3ek.obj
-                end_init                              0        0        4        0       0
+C:\Users\STUDEN~1.N20\AppData\Local\Temp\s13g.obj
+                end_init                             A2       A2        4        C       0
+                reset_vec                             0        0        4        0       0
                 idloc                            200000   200000        8   200000       0
                 config                           300000   300000        E   300000       0
 dist/default/production\nRF24_TX.X.production.obj
-                text12                             3BBC     3BBC       3C     1DDE       0
-                text11                             3B02     3B02       10     1D81       0
-                text10                             3B24     3B24       12     1D92       0
-                text9                              3BF8     3BF8       4A     1DFC       0
-                text8                              3C9E     3C9E       60     1E4F       0
-                text7                              3C42     3C42       5C     1E21       0
-                text6                              3CFE     3CFE       96     1E7F       0
-                text5                              3E34     3E34       DC     1F1A       0
-                text4                              3B68     3B68       22     1DB4       0
-                text3                              3D94     3D94       A0     1ECA       0
-                text2                              3B4E     3B4E       1A     1DA7       0
-                text1                              3B36     3B36       18     1D9B       0
-                text0                              3F10     3F10       F0     1F88       0
-                cstackCOMRAM                         54       54        C        1       1
-                dataCOMRAM                           43       43       11        1       1
-                bssCOMRAM                             1        1       42        1       1
-                cinit                              3B8A     3B8A       32     1DC5       0
-                idataCOMRAM                        3B13     3B13       11     3B13       0
+                intcodelo                            18       18       8A        C       0
+                intcode                               8        8       10        4       0
+                intcode_body                        3BE      3BE       66        C       0
+                text12                              568      568       3C        C       0
+                text11                              61C      61C       10      30E       0
+                text10                              5F8      5F8       12        C       0
+                text9                               4E0      4E0       4A        C       0
+                text8                               424      424       60        C       0
+                text7                               484      484       5C        C       0
+                text6                               324      324       9A        C       0
+                text5                               1A8      1A8       DC        C       0
+                text4                               5A4      5A4       22        C       0
+                text3                               284      284       A0        C       0
+                text2                               5C6      5C6       1A        C       0
+                text1                               5E0      5E0       18        C       0
+                text0                                A6       A6      102        C       0
+                cstackCOMRAM                         23       23       1B        1       1
+                cstackBANK0                          80       80       10       60       1
+                bssBANK0                             60       60       20       60       1
+                dataCOMRAM                           3E       3E       11        1       1
+                bssCOMRAM                             1        1       22        1       1
+                cinit                               52A      52A       3E        C       0
+                idataCOMRAM                         60A      60A       11        C       0
 
 TOTAL           Name                               Link     Load   Length     Space
         CLASS   STACK          
 
         CLASS   CODE           
-                end_init                              0        0        4         0
-                text12                             3BBC     3BBC       3C         0
-                text11                             3B02     3B02       10         0
-                text10                             3B24     3B24       12         0
-                text9                              3BF8     3BF8       4A         0
-                text8                              3C9E     3C9E       60         0
-                text7                              3C42     3C42       5C         0
-                text6                              3CFE     3CFE       96         0
-                text5                              3E34     3E34       DC         0
-                text4                              3B68     3B68       22         0
-                text3                              3D94     3D94       A0         0
-                text2                              3B4E     3B4E       1A         0
-                text1                              3B36     3B36       18         0
-                text0                              3F10     3F10       F0         0
-                cinit                              3B8A     3B8A       32         0
-                idataCOMRAM                        3B13     3B13       11         0
+                end_init                             A2       A2        4         0
+                intcodelo                            18       18       8A         0
+                intcode                               8        8       10         0
+                reset_vec                             0        0        4         0
+                intcode_body                        3BE      3BE       66         0
+                text12                              568      568       3C         0
+                text11                              61C      61C       10         0
+                text10                              5F8      5F8       12         0
+                text9                               4E0      4E0       4A         0
+                text8                               424      424       60         0
+                text7                               484      484       5C         0
+                text6                               324      324       9A         0
+                text5                               1A8      1A8       DC         0
+                text4                               5A4      5A4       22         0
+                text3                               284      284       A0         0
+                text2                               5C6      5C6       1A         0
+                text1                               5E0      5E0       18         0
+                text0                                A6       A6      102         0
+                cinit                               52A      52A       3E         0
+                idataCOMRAM                         60A      60A       11         0
 
         CLASS   CONST          
 
@@ -86,9 +96,9 @@ TOTAL           Name                               Link     Load   Length     Sp
         CLASS   MEDIUMCONST    
 
         CLASS   COMRAM         
-                cstackCOMRAM                         54       54        C         1
-                dataCOMRAM                           43       43       11         1
-                bssCOMRAM                             1        1       42         1
+                cstackCOMRAM                         23       23       1B         1
+                dataCOMRAM                           3E       3E       11         1
+                bssCOMRAM                             1        1       22         1
 
         CLASS   ABS1           
 
@@ -97,6 +107,8 @@ TOTAL           Name                               Link     Load   Length     Sp
         CLASS   RAM            
 
         CLASS   BANK0          
+                cstackBANK0                          80       80       10         1
+                bssBANK0                             60       60       20         1
 
         CLASS   BANK1          
 
@@ -119,22 +131,11 @@ TOTAL           Name                               Link     Load   Length     Sp
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class
 
                 reset_vec                      000000  000004  000004         0       0  CODE    
-                bssCOMRAM                      000001  00005F  000060         1       1  COMRAM  
-                text11                         003B02  000010  003B12      1D81       0  CODE    
-                idataCOMRAM                    003B13  000011  003B24      3B13       0  CODE    
-                text10                         003B24  000012  003B36      1D92       0  CODE    
-                text1                          003B36  000018  003B4E      1D9B       0  CODE    
-                text2                          003B4E  00001A  003B68      1DA7       0  CODE    
-                text4                          003B68  000022  003B8A      1DB4       0  CODE    
-                cinit                          003B8A  000032  003BBC      1DC5       0  CODE    
-                text12                         003BBC  00003C  003BF8      1DDE       0  CODE    
-                text9                          003BF8  00004A  003C42      1DFC       0  CODE    
-                text7                          003C42  00005C  003C9E      1E21       0  CODE    
-                text8                          003C9E  000060  003CFE      1E4F       0  CODE    
-                text6                          003CFE  000096  003D94      1E7F       0  CODE    
-                text3                          003D94  0000A0  003E34      1ECA       0  CODE    
-                text5                          003E34  0000DC  003F10      1F1A       0  CODE    
-                text0                          003F10  0000F0  004000      1F88       0  CODE    
+                bssCOMRAM                      000001  00004E  00004F         1       1  COMRAM  
+                intcode                        000008  000010  000018         4       0  CODE    
+                intcodelo                      000018  000603  00061B         C       0  CODE    
+                bssBANK0                       000060  000030  000090        60       1  BANK0   
+                text11                         00061C  000010  00062C       30E       0  CODE    
                 idloc                          200000  000008  200008    200000       0  IDLOC   
                 config                         300000  00000E  30000E    300000       0  CONFIG  
 
@@ -142,40 +143,45 @@ SEGMENTS        Name                           Load    Length   Top    Selector 
 UNUSED ADDRESS RANGES
 
         Name                Unused          Largest block    Delta
-        BANK0            000060-0000FF               A0
+        BANK0            000090-0000FF               70
         BANK1            000100-0001FF              100
         BANK2            000200-0002FF              100
-        BIGRAM           000060-0002FF              2A0
-        CODE             000004-003B01             3AFE
-                         003B12-003B12                1
-        CONST            000004-003B01             3AFE
-                         003B12-003B12                1
+        BIGRAM           00004F-00005F               11
+                         000090-0002FF              270
+        CODE             000004-000007                4
+                         00061B-00061B                1
+                         00062C-003FFF             39D4
+        COMRAM           00004F-00005F               11
+        CONST            000004-000007                4
+                         00061B-00061B                1
+                         00062C-003FFF             39D4
         EEDATA           F00000-F000FF              100
-        MEDIUMCONST      000300-003B01             3802
-                         003B12-003B12                1
-        RAM              000060-0002FF              100
+        MEDIUMCONST      00061B-00061B                1
+                         00062C-003FFF             39D4
+        RAM              000090-0002FF              100
         SFR              000F38-000FFF               28
-        SMALLCONST       000300-003B01              100
-                         003B12-003B12                1
-        STACK            000060-0002FF              2A0
+        SMALLCONST       00061B-00061B                1
+                         00062C-003FFF              100
+        STACK            000090-0002FF              270
 
                                   Symbol Table
 
-_CONFIG_CURR              dataCOMRAM   000043
-_DYNPD_CURR               dataCOMRAM   000044
-_EN_AA_CURR               bssCOMRAM    000041
-_EN_RXADDR_CURR           dataCOMRAM   000045
-_FEATURE_CURR             dataCOMRAM   000046
+_CONFIG_CURR              dataCOMRAM   00003E
+_DYNPD_CURR               dataCOMRAM   00003F
+_EN_AA_CURR               bssCOMRAM    000021
+_EN_RXADDR_CURR           dataCOMRAM   000040
+_FEATURE_CURR             dataCOMRAM   000041
+_INTCONbits               (abs)        000FF2
 _LATA                     (abs)        000F89
 _LATAbits                 (abs)        000F89
 _LATB                     (abs)        000F8A
 _LATC                     (abs)        000F8B
-_RF_CH_CURR               dataCOMRAM   000047
-_RF_SETUP_CURR            dataCOMRAM   000048
-_RX_ADDRESS               dataCOMRAM   00004C
-_RX_PW_P0_CURR            dataCOMRAM   000049
-_SETUP_AW_CURR            dataCOMRAM   00004A
-_SETUP_RETR_CURR          dataCOMRAM   00004B
+_RF_CH_CURR               dataCOMRAM   000042
+_RF_SETUP_CURR            dataCOMRAM   000043
+_RX_ADDRESS               dataCOMRAM   000047
+_RX_PW_P0_CURR            dataCOMRAM   000044
+_SETUP_AW_CURR            dataCOMRAM   000045
+_SETUP_RETR_CURR          dataCOMRAM   000046
 _SSP1ADD                  (abs)        000FC8
 _SSP1BUF                  (abs)        000FC9
 _SSP1CON1bits             (abs)        000FC6
@@ -183,7 +189,7 @@ _SSP1STATbits             (abs)        000FC7
 _TRISA                    (abs)        000F92
 _TRISB                    (abs)        000F93
 _TRISC                    (abs)        000F94
-_TX_ADDRESS               dataCOMRAM   000050
+_TX_ADDRESS               dataCOMRAM   00004B
 __CFG_BOREN$SBORDIS       (abs)        000000
 __CFG_BORV$190            (abs)        000000
 __CFG_CCP2MX$PORTC1       (abs)        000000
@@ -213,17 +219,19 @@ __Hbigbss                 bigbss       000000
 __Hbigdata                bigdata      000000
 __Hbigram                 bigram       000000
 __Hbss                    bss          000000
+__HbssBANK0               bssBANK0     000000
 __HbssCOMRAM              bssCOMRAM    000000
 __Hcinit                  cinit        000000
 __Hclrtext                clrtext      000000
 __Hcomram                 comram       000000
 __Hconfig                 config       30000E
 __Hconst                  const        000000
+__HcstackBANK0            cstackBANK0  000000
 __HcstackCOMRAM           cstackCOMRAM 000000
 __Hdata                   data         000000
 __HdataCOMRAM             dataCOMRAM   000000
 __Heeprom_data            eeprom_data  000000
-__Hend_init               end_init     000004
+__Hend_init               end_init     0000A6
 __Hfarbss                 farbss       000000
 __Hfardata                fardata      000000
 __Hibigdata               ibigdata     000000
@@ -231,10 +239,10 @@ __Hidata                  idata        000000
 __HidataCOMRAM            idataCOMRAM  000000
 __Hidloc                  idloc        200008
 __Hifardata               ifardata     000000
-__Hinit                   init         000000
-__Hintcode                intcode      000000
+__Hinit                   init         0000A2
+__Hintcode                intcode      000018
 __Hintcode_body           intcode_body 000000
-__Hintcodelo              intcodelo    000000
+__Hintcodelo              intcodelo    0000A2
 __Hintentry               intentry     000000
 __Hintret                 intret       000000
 __Hintsave_regs           intsave_regs 000000
@@ -243,19 +251,19 @@ __Hmediumconst            mediumconst  000000
 __HnvFARRAM               nvFARRAM     000000
 __Hnvbit                  nvbit        000000
 __Hnvrram                 nvrram       000000
-__Hparam                  rparam       000000
-__Hpowerup                powerup      000000
+__Hparam                  param0       000000
+__Hparam0                 param0       000000
+__Hpowerup                powerup      0000A2
 __Hram                    ram          000000
 __Hramtop                 ramtop       000300
 __Hrbit                   rbit         000000
 __Hrbss                   rbss         000000
 __Hrdata                  rdata        000000
-__Hreset_vec              reset_vec    000000
-__Hrparam                 rparam       000000
+__Hreset_vec              reset_vec    000004
 __Hsfr                    sfr          000000
 __Hsmallconst             smallconst   000000
 __Hspace_0                (abs)        30000E
-__Hspace_1                (abs)        000060
+__Hspace_1                (abs)        000090
 __Hspace_2                (abs)        000000
 __Hstack                  stack        000000
 __Hstruct                 struct       000000
@@ -283,17 +291,19 @@ __Lbigbss                 bigbss       000000
 __Lbigdata                bigdata      000000
 __Lbigram                 bigram       000000
 __Lbss                    bss          000000
+__LbssBANK0               bssBANK0     000000
 __LbssCOMRAM              bssCOMRAM    000000
 __Lcinit                  cinit        000000
 __Lclrtext                clrtext      000000
 __Lcomram                 comram       000000
 __Lconfig                 config       300000
 __Lconst                  const        000000
+__LcstackBANK0            cstackBANK0  000000
 __LcstackCOMRAM           cstackCOMRAM 000000
 __Ldata                   data         000000
 __LdataCOMRAM             dataCOMRAM   000000
 __Leeprom_data            eeprom_data  000000
-__Lend_init               end_init     000000
+__Lend_init               end_init     0000A2
 __Lfarbss                 farbss       000000
 __Lfardata                fardata      000000
 __Libigdata               ibigdata     000000
@@ -301,10 +311,10 @@ __Lidata                  idata        000000
 __LidataCOMRAM            idataCOMRAM  000000
 __Lidloc                  idloc        200000
 __Lifardata               ifardata     000000
-__Linit                   init         000000
-__Lintcode                intcode      000000
+__Linit                   init         0000A2
+__Lintcode                intcode      000008
 __Lintcode_body           intcode_body 000000
-__Lintcodelo              intcodelo    000000
+__Lintcodelo              intcodelo    000018
 __Lintentry               intentry     000000
 __Lintret                 intret       000000
 __Lintsave_regs           intsave_regs 000000
@@ -313,15 +323,15 @@ __Lmediumconst            mediumconst  000000
 __LnvFARRAM               nvFARRAM     000000
 __Lnvbit                  nvbit        000000
 __Lnvrram                 nvrram       000000
-__Lparam                  rparam       000000
-__Lpowerup                powerup      000000
+__Lparam                  param0       000000
+__Lparam0                 param0       000000
+__Lpowerup                powerup      0000A2
 __Lram                    ram          000000
 __Lramtop                 ramtop       000300
 __Lrbit                   rbit         000000
 __Lrbss                   rbss         000000
 __Lrdata                  rdata        000000
 __Lreset_vec              reset_vec    000000
-__Lrparam                 rparam       000000
 __Lsfr                    sfr          000000
 __Lsmallconst             smallconst   000000
 __Lspace_0                (abs)        000000
@@ -345,49 +355,58 @@ __Ltext7                  text7        000000
 __Ltext8                  text8        000000
 __Ltext9                  text9        000000
 __S0                      (abs)        30000E
-__S1                      (abs)        000060
+__S1                      (abs)        000090
 __S2                      (abs)        000000
 ___inthi_sp               stack        000000
 ___intlo_sp               stack        000000
 ___sp                     stack        000000
 __accesstop               (abs)        000060
 __activetblptr            (abs)        000000
-__end_of__initialization  cinit        003BB6
-__end_of_delay10ms        text12       003BF8
-__end_of_main             text0        004000
-__end_of_nrfConfig        text5        003F10
-__end_of_nrfConfigReg     text9        003C42
-__end_of_nrfGetStatus     text4        003B8A
-__end_of_nrfSetRXAddr     text8        003CFE
-__end_of_nrfSetTXAddr     text7        003C9E
-__end_of_nrfTXData        text3        003E34
-__end_of_portConfig       text2        003B68
-__end_of_setCSN           text11       003B12
-__end_of_spiConfig_1      text1        003B4E
-__end_of_spiTransfer      text6        003D94
-__end_of_spiTransferByte  text10       003B36
-__initialization          cinit        003B8A
+__end_of__initialization  cinit        000562
+__end_of_delay10ms        text12       0005A4
+__end_of_highISR          intcode_body 000424
+__end_of_lowISR           intcodelo    0000A2
+__end_of_main             text0        0001A8
+__end_of_nrfConfig        text5        000284
+__end_of_nrfConfigReg     text9        00052A
+__end_of_nrfGetStatus     text4        0005C6
+__end_of_nrfSetRXAddr     text8        000484
+__end_of_nrfSetTXAddr     text7        0004E0
+__end_of_nrfTXData        text3        000324
+__end_of_portConfig       text2        0005E0
+__end_of_setCSN           text11       00062C
+__end_of_spiConfig_1      text1        0005F8
+__end_of_spiTransfer      text6        0003BE
+__end_of_spiTransferByte  text10       00060A
+__initialization          cinit        00052A
 __mediumconst             mediumconst  000000
+__pbssBANK0               bssBANK0     000060
 __pbssCOMRAM              bssCOMRAM    000001
-__pcinit                  cinit        003B8A
-__pcstackCOMRAM           cstackCOMRAM 000054
-__pdataCOMRAM             dataCOMRAM   000043
-__pidataCOMRAM            idataCOMRAM  003B13
-__ptext0                  text0        003F10
-__ptext1                  text1        003B36
-__ptext10                 text10       003B24
-__ptext11                 text11       003B02
-__ptext12                 text12       003BBC
-__ptext2                  text2        003B4E
-__ptext3                  text3        003D94
-__ptext4                  text4        003B68
-__ptext5                  text5        003E34
-__ptext6                  text6        003CFE
-__ptext7                  text7        003C42
-__ptext8                  text8        003C9E
-__ptext9                  text9        003BF8
+__pcinit                  cinit        00052A
+__pcstackBANK0            cstackBANK0  000080
+__pcstackCOMRAM           cstackCOMRAM 000023
+__pdataCOMRAM             dataCOMRAM   00003E
+__pidataCOMRAM            idataCOMRAM  00060A
+__pintcode                intcode      000008
+__pintcode_body           intcode_body 0003BE
+__pintcodelo              intcodelo    000018
+__ptext0                  text0        0000A6
+__ptext1                  text1        0005E0
+__ptext10                 text10       0005F8
+__ptext11                 text11       00061C
+__ptext12                 text12       000568
+__ptext2                  text2        0005C6
+__ptext3                  text3        000284
+__ptext4                  text4        0005A4
+__ptext5                  text5        0001A8
+__ptext6                  text6        000324
+__ptext7                  text7        000484
+__ptext8                  text8        000424
+__ptext9                  text9        0004E0
 __ramtop                  ramtop       000300
 __size_of_delay10ms       (abs)        000000
+__size_of_highISR         (abs)        000000
+__size_of_lowISR          (abs)        000000
 __size_of_main            (abs)        000000
 __size_of_nrfConfig       (abs)        000000
 __size_of_nrfConfigReg    (abs)        000000
@@ -401,64 +420,67 @@ __size_of_spiConfig_1     (abs)        000000
 __size_of_spiTransfer     (abs)        000000
 __size_of_spiTransferByte (abs)        000000
 __smallconst              smallconst   000000
-_dataBufIn                bssCOMRAM    000001
-_dataBufOut               bssCOMRAM    000021
-_delay10ms                text12       003BBC
-_main                     text0        003F10
-_nrfConfig                text5        003E34
-_nrfConfigReg             text9        003BF8
-_nrfGetStatus             text4        003B68
-_nrfSTATUS                bssCOMRAM    000042
-_nrfSetRXAddr             text8        003C9E
-_nrfSetTXAddr             text7        003C42
-_nrfTXData                text3        003D94
-_portConfig               text2        003B4E
-_setCSN                   text11       003B02
-_spiConfig_1              text1        003B36
-_spiTransfer              text6        003CFE
-_spiTransferByte          text10       003B24
-delay10ms@i               cstackCOMRAM 000057
-delay10ms@ms_multi        cstackCOMRAM 000054
-end_of_initialization     cinit        003BB6
+_dataBufIn                bssBANK0     000060
+_dataBufOut               bssCOMRAM    000001
+_delay10ms                text12       000568
+_highISR                  intcode      000008
+_lowISR                   intcodelo    000018
+_main                     text0        0000A6
+_nrfConfig                text5        0001A8
+_nrfConfigReg             text9        0004E0
+_nrfGetStatus             text4        0005A4
+_nrfSTATUS                bssCOMRAM    000022
+_nrfSetRXAddr             text8        000424
+_nrfSetTXAddr             text7        000484
+_nrfTXData                text3        000284
+_portConfig               text2        0005C6
+_setCSN                   text11       00061C
+_spiConfig_1              text1        0005E0
+_spiTransfer              text6        000324
+_spiTransferByte          text10       0005F8
+delay10ms@i               cstackCOMRAM 000037
+delay10ms@ms_multi        cstackCOMRAM 000034
+end_of_initialization     cinit        000562
+int_func                  intcode_body 0003BE
 intlevel0                 text         000000
 intlevel1                 text         000000
 intlevel2                 text         000000
 intlevel3                 text         000000
-main@count                cstackCOMRAM 00005E
-nrfConfigReg@command      cstackCOMRAM 000056
-nrfConfigReg@data         cstackCOMRAM 000057
-nrfConfigReg@wr           cstackCOMRAM 000058
-nrfSetRXAddr@addr         cstackCOMRAM 000056
-nrfSetRXAddr@i            cstackCOMRAM 00005C
-nrfSetRXAddr@len          cstackCOMRAM 000058
-nrfSetRXAddr@pipe         cstackCOMRAM 00005B
-nrfSetTXAddr@addr         cstackCOMRAM 000056
-nrfSetTXAddr@i            cstackCOMRAM 00005B
-nrfSetTXAddr@len          cstackCOMRAM 000058
-nrfTXData@i               cstackCOMRAM 00005B
-nrfTXData@i_558           cstackCOMRAM 000059
-nrfTXData@len             cstackCOMRAM 000056
-setCSN@level              cstackCOMRAM 000054
-spiTransfer@command       cstackCOMRAM 000056
-spiTransfer@i             cstackCOMRAM 00005A
-spiTransfer@len           cstackCOMRAM 000057
-spiTransfer@wrn           cstackCOMRAM 00005C
-spiTransferByte@data      cstackCOMRAM 000054
+main@count                cstackBANK0  00008E
+nrfConfigReg@command      cstackCOMRAM 000036
+nrfConfigReg@data         cstackCOMRAM 000037
+nrfConfigReg@wr           cstackCOMRAM 000038
+nrfSetRXAddr@addr         cstackCOMRAM 000036
+nrfSetRXAddr@i            cstackCOMRAM 00003C
+nrfSetRXAddr@len          cstackCOMRAM 000038
+nrfSetRXAddr@pipe         cstackCOMRAM 00003B
+nrfSetTXAddr@addr         cstackCOMRAM 000036
+nrfSetTXAddr@i            cstackCOMRAM 00003B
+nrfSetTXAddr@len          cstackCOMRAM 000038
+nrfTXData@i               cstackCOMRAM 00003B
+nrfTXData@i_656           cstackCOMRAM 000039
+nrfTXData@len             cstackCOMRAM 000036
+setCSN@level              cstackCOMRAM 000034
+spiTransfer@command       cstackCOMRAM 000036
+spiTransfer@i             cstackCOMRAM 00003B
+spiTransfer@len           cstackCOMRAM 000037
+spiTransfer@wrn           cstackCOMRAM 00003A
+spiTransferByte@data      cstackCOMRAM 000034
 stackhi                   (abs)        0002FF
-stacklo                   (abs)        000060
-start                     init         000000
-start_initialization      cinit        003B8A
+stacklo                   (abs)        000090
+start                     init         0000A2
+start_initialization      cinit        00052A
 
 
 FUNCTION INFORMATION:
 
  *************** function _main *****************
  Defined at:
-		line 192 in file "main.c"
+		line 196 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
-  count           2   10[COMRAM] int 
+  count           2   14[BANK0 ] int 
  Return value:  Size  Location     Type
 		None               void
  Registers used:
@@ -469,11 +491,11 @@ FUNCTION INFORMATION:
 		Unchanged: 
  Data sizes:     COMRAM   BANK0   BANK1   BANK2
       Params:         0       0       0       0
-      Locals:         2       0       0       0
+      Locals:         0       2       0       0
       Temps:          0       0       0       0
-      Totals:         2       0       0       0
+      Totals:         0       2       0       0
 Total ram usage:        2 bytes
- Hardware stack levels required when called:    3
+ Hardware stack levels required when called:    5
  This function calls:
 		_delay10ms
 		_nrfConfig
@@ -489,7 +511,7 @@ Total ram usage:        2 bytes
 
  *************** function _spiConfig_1 *****************
  Defined at:
-		line 277 in file "main.c"
+		line 307 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -509,6 +531,7 @@ Total ram usage:        2 bytes
       Totals:         0       0       0       0
 Total ram usage:        0 bytes
  Hardware stack levels used:    1
+ Hardware stack levels required when called:    2
  This function calls:
 		Nothing
  This function is called by:
@@ -518,7 +541,7 @@ Total ram usage:        0 bytes
 
  *************** function _portConfig *****************
  Defined at:
-		line 263 in file "main.c"
+		line 293 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -538,6 +561,7 @@ Total ram usage:        0 bytes
       Totals:         0       0       0       0
 Total ram usage:        0 bytes
  Hardware stack levels used:    1
+ Hardware stack levels required when called:    2
  This function calls:
 		Nothing
  This function is called by:
@@ -547,12 +571,12 @@ Total ram usage:        0 bytes
 
  *************** function _nrfTXData *****************
  Defined at:
-		line 455 in file "main.c"
+		line 485 in file "main.c"
  Parameters:    Size  Location     Type
-  len             2    2[COMRAM] int 
+  len             2   19[COMRAM] int 
  Auto vars:     Size  Location     Type
-  i               2    7[COMRAM] int 
-  i               2    5[COMRAM] int 
+  i               2   24[COMRAM] int 
+  i               2   22[COMRAM] int 
  Return value:  Size  Location     Type
 		None               void
  Registers used:
@@ -568,7 +592,7 @@ Total ram usage:        0 bytes
       Totals:         7       0       0       0
 Total ram usage:        7 bytes
  Hardware stack levels used:    1
- Hardware stack levels required when called:    1
+ Hardware stack levels required when called:    3
  This function calls:
 		_setCSN
 		_spiTransferByte
@@ -579,7 +603,7 @@ Total ram usage:        7 bytes
 
  *************** function _nrfGetStatus *****************
  Defined at:
-		line 338 in file "main.c"
+		line 368 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -599,7 +623,7 @@ Total ram usage:        7 bytes
       Totals:         0       0       0       0
 Total ram usage:        0 bytes
  Hardware stack levels used:    1
- Hardware stack levels required when called:    1
+ Hardware stack levels required when called:    3
  This function calls:
 		_setCSN
 		_spiTransferByte
@@ -610,7 +634,7 @@ Total ram usage:        0 bytes
 
  *************** function _nrfConfig *****************
  Defined at:
-		line 290 in file "main.c"
+		line 320 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -630,7 +654,7 @@ Total ram usage:        0 bytes
       Totals:         0       0       0       0
 Total ram usage:        0 bytes
  Hardware stack levels used:    1
- Hardware stack levels required when called:    2
+ Hardware stack levels required when called:    4
  This function calls:
 		_nrfConfigReg
 		_nrfSetRXAddr
@@ -643,14 +667,14 @@ Total ram usage:        0 bytes
 
  *************** function _spiTransfer *****************
  Defined at:
-		line 418 in file "main.c"
+		line 448 in file "main.c"
  Parameters:    Size  Location     Type
   wrn             1    wreg     unsigned char 
-  command         1    2[COMRAM] unsigned char 
-  len             2    3[COMRAM] int 
+  command         1   19[COMRAM] unsigned char 
+  len             2   20[COMRAM] int 
  Auto vars:     Size  Location     Type
-  wrn             1    8[COMRAM] unsigned char 
-  i               2    6[COMRAM] int 
+  wrn             1   23[COMRAM] unsigned char 
+  i               2   24[COMRAM] int 
  Return value:  Size  Location     Type
 		None               void
  Registers used:
@@ -666,7 +690,7 @@ Total ram usage:        0 bytes
       Totals:         7       0       0       0
 Total ram usage:        7 bytes
  Hardware stack levels used:    1
- Hardware stack levels required when called:    1
+ Hardware stack levels required when called:    3
  This function calls:
 		_setCSN
 		_spiTransferByte
@@ -678,13 +702,13 @@ Total ram usage:        7 bytes
 
  *************** function _nrfSetTXAddr *****************
  Defined at:
-		line 372 in file "main.c"
+		line 402 in file "main.c"
  Parameters:    Size  Location     Type
-  addr            2    2[COMRAM] PTR unsigned char 
+  addr            2   19[COMRAM] PTR unsigned char 
 		 -> TX_ADDRESS(4), 
-  len             2    4[COMRAM] int 
+  len             2   21[COMRAM] int 
  Auto vars:     Size  Location     Type
-  i               2    7[COMRAM] int 
+  i               2   24[COMRAM] int 
  Return value:  Size  Location     Type
 		None               void
  Registers used:
@@ -700,7 +724,7 @@ Total ram usage:        7 bytes
       Totals:         7       0       0       0
 Total ram usage:        7 bytes
  Hardware stack levels used:    1
- Hardware stack levels required when called:    1
+ Hardware stack levels required when called:    3
  This function calls:
 		_setCSN
 		_spiTransferByte
@@ -711,15 +735,15 @@ Total ram usage:        7 bytes
 
  *************** function _nrfSetRXAddr *****************
  Defined at:
-		line 394 in file "main.c"
+		line 424 in file "main.c"
  Parameters:    Size  Location     Type
   pipe            1    wreg     unsigned char 
-  addr            2    2[COMRAM] PTR unsigned char 
+  addr            2   19[COMRAM] PTR unsigned char 
 		 -> RX_ADDRESS(4), 
-  len             2    4[COMRAM] int 
+  len             2   21[COMRAM] int 
  Auto vars:     Size  Location     Type
-  pipe            1    7[COMRAM] unsigned char 
-  i               2    8[COMRAM] int 
+  pipe            1   24[COMRAM] unsigned char 
+  i               2   25[COMRAM] int 
  Return value:  Size  Location     Type
 		None               void
  Registers used:
@@ -735,7 +759,7 @@ Total ram usage:        7 bytes
       Totals:         8       0       0       0
 Total ram usage:        8 bytes
  Hardware stack levels used:    1
- Hardware stack levels required when called:    1
+ Hardware stack levels required when called:    3
  This function calls:
 		_setCSN
 		_spiTransferByte
@@ -746,13 +770,13 @@ Total ram usage:        8 bytes
 
  *************** function _nrfConfigReg *****************
  Defined at:
-		line 350 in file "main.c"
+		line 380 in file "main.c"
  Parameters:    Size  Location     Type
   wr              1    wreg     unsigned char 
-  command         1    2[COMRAM] unsigned char 
-  data            1    3[COMRAM] unsigned char 
+  command         1   19[COMRAM] unsigned char 
+  data            1   20[COMRAM] unsigned char 
  Auto vars:     Size  Location     Type
-  wr              1    4[COMRAM] unsigned char 
+  wr              1   21[COMRAM] unsigned char 
  Return value:  Size  Location     Type
                   1    wreg      unsigned char 
  Registers used:
@@ -768,7 +792,7 @@ Total ram usage:        8 bytes
       Totals:         3       0       0       0
 Total ram usage:        3 bytes
  Hardware stack levels used:    1
- Hardware stack levels required when called:    1
+ Hardware stack levels required when called:    3
  This function calls:
 		_setCSN
 		_spiTransferByte
@@ -779,11 +803,11 @@ Total ram usage:        3 bytes
 
  *************** function _spiTransferByte *****************
  Defined at:
-		line 442 in file "main.c"
+		line 472 in file "main.c"
  Parameters:    Size  Location     Type
   data            1    wreg     unsigned char 
  Auto vars:     Size  Location     Type
-  data            1    0[COMRAM] unsigned char 
+  data            1   17[COMRAM] unsigned char 
  Return value:  Size  Location     Type
                   1    wreg      unsigned char 
  Registers used:
@@ -799,6 +823,7 @@ Total ram usage:        3 bytes
       Totals:         1       0       0       0
 Total ram usage:        1 bytes
  Hardware stack levels used:    1
+ Hardware stack levels required when called:    2
  This function calls:
 		Nothing
  This function is called by:
@@ -813,9 +838,9 @@ Total ram usage:        1 bytes
 
  *************** function _setCSN *****************
  Defined at:
-		line 325 in file "main.c"
+		line 355 in file "main.c"
  Parameters:    Size  Location     Type
-  level           2    0[COMRAM] int 
+  level           2   17[COMRAM] int 
  Auto vars:     Size  Location     Type
 		None
  Return value:  Size  Location     Type
@@ -833,6 +858,7 @@ Total ram usage:        1 bytes
       Totals:         2       0       0       0
 Total ram usage:        2 bytes
  Hardware stack levels used:    1
+ Hardware stack levels required when called:    2
  This function calls:
 		Nothing
  This function is called by:
@@ -847,11 +873,11 @@ Total ram usage:        2 bytes
 
  *************** function _delay10ms *****************
  Defined at:
-		line 482 in file "main.c"
+		line 512 in file "main.c"
  Parameters:    Size  Location     Type
-  ms_multi        2    0[COMRAM] int 
+  ms_multi        2   17[COMRAM] int 
  Auto vars:     Size  Location     Type
-  i               2    3[COMRAM] int 
+  i               2   20[COMRAM] int 
  Return value:  Size  Location     Type
 		None               void
  Registers used:
@@ -867,10 +893,70 @@ Total ram usage:        2 bytes
       Totals:         5       0       0       0
 Total ram usage:        5 bytes
  Hardware stack levels used:    1
+ Hardware stack levels required when called:    2
  This function calls:
 		Nothing
  This function is called by:
 		_main
+ This function uses a non-reentrant model
+
+
+ *************** function _lowISR *****************
+ Defined at:
+		line 277 in file "main.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+		None
+ Return value:  Size  Location     Type
+		None               void
+ Registers used:
+		None
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2
+      Params:         0       0       0       0
+      Locals:         0       0       0       0
+      Temps:         17       0       0       0
+      Totals:        17       0       0       0
+Total ram usage:       17 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    1
+ This function calls:
+		Nothing
+ This function is called by:
+		Interrupt level 1
+ This function uses a non-reentrant model
+
+
+ *************** function _highISR *****************
+ Defined at:
+		line 270 in file "main.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+		None
+ Return value:  Size  Location     Type
+		None               void
+ Registers used:
+		None
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2
+      Params:         0       0       0       0
+      Locals:         0       0       0       0
+      Temps:          0      14       0       0
+      Totals:         0      14       0       0
+Total ram usage:       14 bytes
+ Hardware stack levels used:    1
+ This function calls:
+		Nothing
+ This function is called by:
+		Interrupt level 2
  This function uses a non-reentrant model
 
 
@@ -879,24 +965,26 @@ MODULE INFORMATION
 
 Module		Function		Class		Link	Load	Size
 shared
-		__initializatio		CODE           	3B8A	0000	44
+		__initializatio		CODE           	052A	0000	56
 
-shared estimated size: 44
+shared estimated size: 56
 
 main.c
-		_nrfConfigReg  		CODE           	3BF8	0000	74
-		_spiConfig_1   		CODE           	3B36	0000	24
-		_spiTransfer   		CODE           	3CFE	0000	150
-		_main          		CODE           	3F10	0000	240
-		_setCSN        		CODE           	3B02	0000	16
-		_nrfSetTXAddr  		CODE           	3C42	0000	92
-		_nrfTXData     		CODE           	3D94	0000	160
-		_nrfGetStatus  		CODE           	3B68	0000	34
-		_spiTransferByt		CODE           	3B24	0000	18
-		_portConfig    		CODE           	3B4E	0000	26
-		_nrfConfig     		CODE           	3E34	0000	220
-		_nrfSetRXAddr  		CODE           	3C9E	0000	96
-		_delay10ms     		CODE           	3BBC	0000	60
+		_nrfConfigReg  		CODE           	04E0	0000	74
+		_spiConfig_1   		CODE           	05E0	0000	24
+		_spiTransfer   		CODE           	0324	0000	154
+		_main          		CODE           	00A6	0000	258
+		_setCSN        		CODE           	061C	0000	16
+		_highISR       		CODE           	0008	0000	1052
+		_nrfSetTXAddr  		CODE           	0484	0000	92
+		_lowISR        		CODE           	0018	0000	138
+		_nrfTXData     		CODE           	0284	0000	160
+		_nrfGetStatus  		CODE           	05A4	0000	34
+		_spiTransferByt		CODE           	05F8	0000	18
+		_portConfig    		CODE           	05C6	0000	26
+		_nrfConfig     		CODE           	01A8	0000	220
+		_nrfSetRXAddr  		CODE           	0424	0000	96
+		_delay10ms     		CODE           	0568	0000	60
 
-main.c estimated size: 1210
+main.c estimated size: 2422
 

@@ -209,7 +209,8 @@ void loop() {
     
     Serial.print(": ");
     for (int i=0;i<payloadWidth;i++) {
-      Serial.write(dataBufIn[i]);              // Print to serial monitor
+      Serial.print(dataBufIn[i]);              // Print to serial monitor
+      Serial.print(" ");
     }
     Serial.println("");
     
