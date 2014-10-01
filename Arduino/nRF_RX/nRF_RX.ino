@@ -135,13 +135,13 @@ void setup() {
   digitalWrite(nRF_CSN, HIGH);
   
   // Serial setup - TESTING
-  Serial.begin(57600);
+  Serial.begin(115600);
   Serial.println("Receiving...");
   
   // SPI setup
   SPI.setBitOrder(MSBFIRST);              // Set most significant bit first
-  SPI.setClockDivider(SPI_CLOCK_DIV32);   // Clock to Fosc/16 = 1MHz
-  //SPI.setDataMode(SPI_MODE1);             // Clock polarity 0; clock phase 1
+  SPI.setClockDivider(SPI_CLOCK_DIV4);    // Clock to Fosc/CLOCK_DIV = 4MHz
+  SPI.setDataMode(SPI_MODE0);             // Clock polarity 0; clock phase 0
   SPI.begin();                            // Start SPI
   
   delay(1);
@@ -201,17 +201,19 @@ void loop() {
     
     spiTransfer('r',R_RX_PAYLOAD,payloadWidth); // Read payload command
     
-    delayMicroseconds(200);
+    delayMicroseconds(40);
 
     Serial.print(payloadWidth);
+//    Serial.print(":");
+//    Serial.println(dataBufIn[0]);              // Print to serial monitor
+    
     Serial.print(": ");
     for (int i=0;i<payloadWidth;i++) {
-      Serial.print(dataBufIn[i]);              // Print to serial monitor
-      Serial.print(" ");
+      Serial.write(dataBufIn[i]);              // Print to serial monitor
     }
     Serial.println("");
     
-    delayMicroseconds(30);
+    delayMicroseconds(40);
     
     // Reset interrupts
     dataBufOut[0] = B01110000;

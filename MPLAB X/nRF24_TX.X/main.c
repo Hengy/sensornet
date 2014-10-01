@@ -198,44 +198,44 @@ void main(void) {
 
     delay10ms(1);                           // Wait for nRF power up
 
-    dataBufOut[1] = 0b01101010;
-    dataBufOut[2] = 0x3F;
-    dataBufOut[3] = 182;
-    dataBufOut[4] = 0b01101010;
-    dataBufOut[5] = 0x3F;
-    dataBufOut[6] = 182;
-    dataBufOut[7] = 0b01101010;
-    dataBufOut[8] = 0x3F;
-    dataBufOut[9] = 182;
-    dataBufOut[10] = 0b01101010;
-    dataBufOut[11] = 0x3F;
-    dataBufOut[12] = 182;
-    dataBufOut[13] = 0b01101010;
-    dataBufOut[14] = 0x3F;
-    dataBufOut[15] = 182;
-    dataBufOut[16] = 0b01101010;
-    dataBufOut[17] = 0x3F;
-    dataBufOut[18] = 182;
-    dataBufOut[19] = 0b01101010;
-    dataBufOut[20] = 0x3F;
-    dataBufOut[21] = 182;
-    dataBufOut[22] = 0b01101010;
-    dataBufOut[23] = 0x3F;
-    dataBufOut[24] = 182;
-    dataBufOut[25] = 0b01101010;
-    dataBufOut[26] = 0x3F;
-    dataBufOut[27] = 182;
-    dataBufOut[28] = 182;
-    dataBufOut[29] = 0b01101010;
-    dataBufOut[30] = 0x3F;
-    dataBufOut[31] = 182;
+    dataBufOut[1] = 0x48;
+    dataBufOut[2] = 0x4F;
+    dataBufOut[3] = 88;
+    dataBufOut[4] = 0x49;
+    dataBufOut[5] = 0x5F;
+    dataBufOut[6] = 47;
+    dataBufOut[7] = 0x74;
+    dataBufOut[8] = 0x6F;
+    dataBufOut[9] = 58;
+    dataBufOut[10] = 0xA8;
+    dataBufOut[11] = 0x6F;
+    dataBufOut[12] = 99;
+    dataBufOut[13] = 0x88;
+    dataBufOut[14] = 0x5F;
+    dataBufOut[15] = 72;
+    dataBufOut[16] = 0x98;
+    dataBufOut[17] = 0x6F;
+    dataBufOut[18] = 92;
+    dataBufOut[19] = 0x4A;
+    dataBufOut[20] = 0x6F;
+    dataBufOut[21] = 62;
+    dataBufOut[22] = 0x62;
+    dataBufOut[23] = 0x6F;
+    dataBufOut[24] = 82;
+    dataBufOut[25] = 0x86;
+    dataBufOut[26] = 0x7F;
+    dataBufOut[27] = 72;
+    dataBufOut[28] = 102;
+    dataBufOut[29] = 0xC0;
+    dataBufOut[30] = 0x5F;
+    dataBufOut[31] = 122;
 
     // Transmit count; read nRF STATUS reg; forever
     int count = 1;
     for (;;) {
 
         dataBufOut[0] = count;
-        nrfTXData(16);
+        nrfTXData(32);
         count++;
 
         nrfGetStatus();
@@ -278,9 +278,8 @@ void spiConfig_1(void) {
     SSP1CON1bits.CKP = 0;               // Clock polarity
     SSP1STATbits.CKE = 1;               // Clock edge detect
     SSP1STATbits.SMP = 1;               // Sample bit
-    SSP1ADD = 0b00011111;               // Set to 31
-    SSP1CON1bits.SSPM = 0b1010;         // Clock = Fosc/(SSP1ADD + 1)(4) = 500KHz
-    //SSP1CON1bits.SSPM = 0b0010;         // Clock = Fosc/64 = 1MHz
+    SSP1ADD = 0b00000011;               // Set to 7
+    SSP1CON1bits.SSPM = 0b1010;         // Clock = Fosc/(SSP1ADD + 1)(4) = 4MHz
     SSP1CON1bits.SSPEN = 1;             // Enable SPI
     nRF_CSN = 1;
 }
@@ -444,7 +443,7 @@ unsigned char spiTransferByte(unsigned char data) {
 
     SSP1BUF = data;                     // Write data to MSSP
     
-    __delay_us(15);                      // Wait for transfer to complete
+    __delay_us(1);                      // Wait for transfer to complete
 
     return SSP1BUF;                     // return recieved data
 }
@@ -464,8 +463,6 @@ void nrfTXData(int len) {
             spiTransferByte(dataBufOut[i]);
         }
     }
-
-    __delay_us(5);
 
     setCSN(HIGH);                       // Set CSN high
 
