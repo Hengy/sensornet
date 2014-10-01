@@ -292,7 +292,7 @@ __pidataCOMRAM 844 0 CODE 0
 nrfConfigReg@wr 24 0 COMRAM 1
 _nrfSTATUS 3D 0 COMRAM 1
 __smallconst 0 0 SMALLCONST 0
-__Hreset_vec 4 0 CODE 0
+__Hreset_vec 6 0 CODE 0
 __Lreset_vec 0 0 CODE 0
 __CFG_BORV$190 0 0 ABS 0
 __accesstop 60 0 ABS 0
@@ -332,7 +332,7 @@ __size_of_lowISR 0 0 ABS 0
 __end_of_delay10ms 7BE 0 CODE 0
 ___aldiv@dividend 20 0 COMRAM 1
 %segments
-reset_vec 0 3 CODE 0 0
+reset_vec 0 5 CODE 0 0
 intcode 8 17 CODE 8 0
 intcodelo 18 854 CODE 18 0
 config 300000 30000D CONFIG 300000 0
@@ -341,9 +341,9 @@ cstackCOMRAM 1 3E COMRAM 1 1
 bssBANK0 60 B9 BANK0 60 1
 text11 856 875 CODE 856 0
 %locals
-dist/default/production\nRF24_TX.X.production.obj
+dist/default/debug\nRF24_TX.X.debug.obj
 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic18f24k22.h
-C:\Users\STUDEN~1.N20\AppData\Local\Temp\s1ao.
+C:\Users\STUDEN~1.N20\AppData\Local\Temp\s2qk.
 816 7BE 0 CODE 0
 818 7BE 0 CODE 0
 821 7BE 0 CODE 0

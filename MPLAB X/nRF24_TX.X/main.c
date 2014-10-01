@@ -132,7 +132,7 @@ SCK     -[14/RC3       RC4/15]-       SDI
 // nRF24L01+ pins
 #define nRF_CE      LATAbits.LATA1      // nRF24L01+ chip enable
 #define nRF_CSN     LATAbits.LATA2      // nRF24L01+ chip select negative
-#define nRF_IRQ     LATAbits.LATB4      // nRF24L01+ IRQ
+#define nRF_IRQ     LATBbits.LATB4      // nRF24L01+ IRQ
 
 /*------------------------------------------------
  * Misc. Definitions
@@ -192,6 +192,10 @@ unsigned char nrfSTATUS;                    // nRF STATUS register copy
 
 unsigned char spiTXFlag = 0;                // SPI transmit complete flag
 
+unsigned char nrfBusy = 0;                  // nRF busy (transmitting) flag
+
+unsigned char nrfInterrupt = 0;             // nRF Interrupt flag
+
 /*------------------------------------------------
  * Main
 ------------------------------------------------*/
@@ -199,7 +203,6 @@ void main(void) {
 
     // Configure system
     portConfig();                           // Config I/O and initial levels
-    //intConfig();
     spiConfig_1(40);                        // Config MSSP 1 for SPI Master mode 0
     nrfConfig();                            // Config nRF24L01+
 
@@ -237,33 +240,40 @@ void main(void) {
     dataBufOut[30] = 0x5F;
     dataBufOut[31] = 122;
 
+    intConfig();
+
     // Transmit count; read nRF STATUS reg; forever
     int count = 1;
+    int TXtime = 20000;
     for (;;) {
-
-        dataBufOut[0] = count;
-        nrfTXData(5);
-        count++;
 
         nrfGetStatus();
 
-        if (nrfSTATUS != 0x0E) {
-
+        if (!nrfBusy) {
             ACT_LED = 1;
-
-            // Reset interrupt flags
-            dataBufOut[0] = 0b00100000;
-            spiTransfer('w',STATUS,1);
-
-            __delay_us(20);
-            nrfGetStatus();
-
-            delay10ms(10);
-
+            __delay_us(100);
             ACT_LED = 0;
         }
 
-        delay10ms(500);
+        if ((TXtime >= 20000)) {
+            dataBufOut[0] = count;
+            nrfTXData(8);
+            count++;
+            TXtime = 0;
+        }
+
+        if (nrfInterrupt == 1) {
+
+            // Reset interrupt flags
+            dataBufOut[0] = 0b00110000;
+            spiTransfer('w',STATUS,1);
+
+            nrfBusy = 0;
+            nrfInterrupt = 0;
+        }
+
+        __delay_us(200);
+        TXtime++;
     }
 }
 
@@ -272,6 +282,10 @@ void main(void) {
 ------------------------------------------------*/
 void interrupt highISR(void) {
 
+    if (INTCONbits.RBIF) {
+        nrfInterrupt = 1;
+        INTCONbits.RBIF = 0;
+    }
 }
 
 /*------------------------------------------------
@@ -290,8 +304,8 @@ void intConfig(void) {
     PIR1bits.SSP1IF = 0;
 
     // Enable PORTB interrupt-on-change
-//    INTCONbits.RBIE = 1;
-//    INTCON2bits.RBIP = 1;               // High priority
+    INTCONbits.RBIE = 1;
+    INTCON2bits.RBIP = 1;               // High priority
     IOCBbits.IOCB4 = 1;
     INTCONbits.RBIF = 0;
 
@@ -521,10 +535,12 @@ void nrfTXData(int len) {
     nRF_CE = 1;
     __delay_us(12);                     // Wait min 10us
     nRF_CE = 0;
-    __delay_us(180);
-    for (int i=0;i<len;i++) {
-        __delay_us(8);
-    }
+//    __delay_us(180);
+//    for (int i=0;i<len;i++) {
+//        __delay_us(8);
+//    }
+
+    nrfBusy = 1;                        // Flag that nrf is busy transmitting
 }
 
 /*------------------------------------------------

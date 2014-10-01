@@ -3,15 +3,15 @@ Microchip MPLAB XC8 Compiler V1.33 ()
 Linker command line:
 
 --edf=C:\Program Files (x86)\Microchip\xc8\v1.33\dat\en_msgs.txt -cs \
-  -h+dist/default/production\nRF24_TX.X.production.sym \
-  --cmf=dist/default/production\nRF24_TX.X.production.cmf -z -Q18F24K22 \
-  -oC:\Users\STUDEN~1.N20\AppData\Local\Temp\s1ao.6 \
-  -Mdist/default/production/nRF24_TX.X.production.map -E1 -ver=XC8 \
-  -ASTACK=0BAh-02ffh -pstack=STACK -ACODE=00h-03FFFh -ACONST=00h-03FFFh \
+  -h+dist/default/debug\nRF24_TX.X.debug.sym \
+  --cmf=dist/default/debug\nRF24_TX.X.debug.cmf -z -Q18F24K22 \
+  -oC:\Users\STUDEN~1.N20\AppData\Local\Temp\s2qk.6 \
+  -Mdist/default/debug/nRF24_TX.X.debug.map -E1 -ver=XC8 -ASTACK=0BAh-02ffh \
+  -pstack=STACK -ACODE=00h-03FFFh -ACONST=00h-03FFFh \
   -ASMALLCONST=0300h-03FFhx61 -AMEDIUMCONST=0300h-03FFFh -ACOMRAM=01h-05Fh \
   -AABS1=00h-02FFh -ABIGRAM=01h-02FFh -ARAM=060h-0FFh,0100h-01FFhx2 \
   -ABANK0=060h-0FFh -ABANK1=0100h-01FFh -ABANK2=0200h-02FFh \
-  -ASFR=0F38h-0F5Fh,0F60h-0FFFh \
+  -ASFR=0F38h-0F5Fh,0F60h-0FFCh \
   -preset_vec=00h,intcode=08h,intcodelo=018h,powerup,init,end_init \
   -pramtop=0300h -psmallconst=SMALLCONST -pmediumconst=MEDIUMCONST \
   -pconst=CONST -AFARRAM=00h-00h -ACONFIG=0300000h-030000Dh -pconfig=CONFIG \
@@ -21,8 +21,8 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE \
-  C:\Users\STUDEN~1.N20\AppData\Local\Temp\s1ao.obj \
-  dist/default/production\nRF24_TX.X.production.obj 
+  C:\Users\STUDEN~1.N20\AppData\Local\Temp\s2qk.obj \
+  dist/default/debug\nRF24_TX.X.debug.obj 
 
 Object code version is 3.11
 
@@ -34,12 +34,12 @@ Call graph: (short form)
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\STUDEN~1.N20\AppData\Local\Temp\s1ao.obj
+C:\Users\STUDEN~1.N20\AppData\Local\Temp\s2qk.obj
                 end_init                             A2       A2        4        C       0
-                reset_vec                             0        0        4        0       0
+                reset_vec                             0        0        6        0       0
                 idloc                            200000   200000        8   200000       0
                 config                           300000   300000        E   300000       0
-dist/default/production\nRF24_TX.X.production.obj
+dist/default/debug\nRF24_TX.X.debug.obj
                 intcodelo                            18       18       8A        C       0
                 intcode                               8        8       10        4       0
                 intcode_body                        59A      59A       72        C       0
@@ -73,7 +73,7 @@ TOTAL           Name                               Link     Load   Length     Sp
                 end_init                             A2       A2        4         0
                 intcodelo                            18       18       8A         0
                 intcode                               8        8       10         0
-                reset_vec                             0        0        4         0
+                reset_vec                             0        0        6         0
                 intcode_body                        59A      59A       72         0
                 text14                              782      782       3C         0
                 text13                              832      832       12         0
@@ -134,7 +134,7 @@ TOTAL           Name                               Link     Load   Length     Sp
 
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class
 
-                reset_vec                      000000  000004  000004         0       0  CODE    
+                reset_vec                      000000  000006  000006         0       0  CODE    
                 cstackCOMRAM                   000001  00003E  00003F         1       1  COMRAM  
                 intcode                        000008  000010  000018         4       0  CODE    
                 intcodelo                      000018  00083D  000855         C       0  CODE    
@@ -152,18 +152,18 @@ UNUSED ADDRESS RANGES
         BANK2            000200-0002FF              100
         BIGRAM           00003F-00005F               21
                          0000BA-0002FF              246
-        CODE             000004-000007                4
+        CODE             000006-000007                2
                          000855-000855                1
                          000876-003FFF             378A
         COMRAM           00003F-00005F               21
-        CONST            000004-000007                4
+        CONST            000006-000007                2
                          000855-000855                1
                          000876-003FFF             378A
         EEDATA           F00000-F000FF              100
         MEDIUMCONST      000855-000855                1
                          000876-003FFF             378A
         RAM              0000BA-0002FF              100
-        SFR              000F38-000FFF               28
+        SFR              000F38-000FFC               28
         SMALLCONST       000855-000855                1
                          000876-003FFF              100
         STACK            0000BA-0002FF              246
@@ -267,7 +267,7 @@ __Hramtop                 ramtop       000300
 __Hrbit                   rbit         000000
 __Hrbss                   rbss         000000
 __Hrdata                  rdata        000000
-__Hreset_vec              reset_vec    000004
+__Hreset_vec              reset_vec    000006
 __Hrparam                 rparam       000000
 __Hsfr                    sfr          000000
 __Hsmallconst             smallconst   000000

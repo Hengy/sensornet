@@ -1,13 +1,13 @@
 ### HEXMate logfile and output summary ###
 ### Memory Usage ###
  Unused memory ranges:
-  4h - 7h
+  6h - 7h
   876h - 1FFFFFh
   200008h - 2FFFFFh
   30000Eh - 30003Fh
   
- dist/default/production\nRF24_TX.X.production.hex ranges:
-  0h - 3h
+ dist/default/debug\nRF24_TX.X.debug.hex ranges:
+  0h - 5h
   8h - 875h
   200000h - 200007h
   300000h - 30000Dh
@@ -23,8 +23,8 @@
   T = Trailing code
   & = Find & replace opcode
   X = Find & delete opcode
-  1 = dist/default/production\nRF24_TX.X.production.hex
-00000000: 1111----11111111111111111111111111111111111111111111111111111111
+  1 = dist/default/debug\nRF24_TX.X.debug.hex
+00000000: 111111--11111111111111111111111111111111111111111111111111111111
 00000040: 1111111111111111111111111111111111111111111111111111111111111111
 00000080: 1111111111111111111111111111111111111111111111111111111111111111
 000000C0: 1111111111111111111111111111111111111111111111111111111111111111
