@@ -132,7 +132,7 @@ SCK     -[14/RC3       RC4/15]-       SDI
 // nRF24L01+ pins
 #define nRF_CE      LATAbits.LATA1      // nRF24L01+ chip enable
 #define nRF_CSN     LATAbits.LATA2      // nRF24L01+ chip select negative
-#define nRF_IRQ     LATAbits.LATA3      // nRF24L01+ IRQ
+#define nRF_IRQ     LATAbits.LATB4      // nRF24L01+ IRQ
 
 /*------------------------------------------------
  * Misc. Definitions
@@ -169,7 +169,7 @@ void interrupt highISR(void);
 void interrupt low_priority lowISR(void);
 void intConfig(void);
 void portConfig(void);
-void spiConfig_1(void);
+void spiConfig_1(unsigned int);
 void nrfConfig(void);
 void setCSN(int);
 void nrfGetStatus(void);
@@ -188,7 +188,9 @@ void delay10ms(int);
 unsigned char dataBufIn[32];                // 32 byte buffer for all incoming SPI data
 unsigned char dataBufOut[32];               // 32 byte buffer for all outgoing SPI data
 
-unsigned char nrfSTATUS;
+unsigned char nrfSTATUS;                    // nRF STATUS register copy
+
+unsigned char spiTXFlag = 0;                // SPI transmit complete flag
 
 /*------------------------------------------------
  * Main
@@ -197,7 +199,8 @@ void main(void) {
 
     // Configure system
     portConfig();                           // Config I/O and initial levels
-    spiConfig_1();                          // Config MSSP 1 for SPI Master mode 0
+    //intConfig();
+    spiConfig_1(40);                        // Config MSSP 1 for SPI Master mode 0
     nrfConfig();                            // Config nRF24L01+
 
     delay10ms(1);                           // Wait for nRF power up
@@ -268,7 +271,7 @@ void main(void) {
  * High-priority ISR function
 ------------------------------------------------*/
 void interrupt highISR(void) {
-    
+
 }
 
 /*------------------------------------------------
@@ -283,27 +286,27 @@ void interrupt low_priority lowISR(void) {
 ------------------------------------------------*/
 void intConfig(void) {
 
-    // Enable MSSP1 interrupts
-    PIE1bits.SSP1IE = 1;
-    IPR1bits.SSP1IP = 1;                // High priority
+    // Clear MSSP transmit flag
     PIR1bits.SSP1IF = 0;
 
     // Enable PORTB interrupt-on-change
-    INTCONbits.RBIE = 1;
-    INTCON2bits.RBIP = 1;               // High priority
+//    INTCONbits.RBIE = 1;
+//    INTCON2bits.RBIP = 1;               // High priority
+    IOCBbits.IOCB4 = 1;
     INTCONbits.RBIF = 0;
 
     // Enable global interrupts
-    INTCONbits.GIE_GIEH = 1;
-    INTCONbits.GIE = 1;
+    RCONbits.IPEN = 1;                  // Enable interrupt priority mode
+    INTCONbits.GIEH = 1;                // Enable high priority interrupts
+    INTCONbits.GIEL = 1;                // Enable low priority interrupts
 }
 
 /*------------------------------------------------
  * PORT setup function; 1=IN; 0=OUT
 ------------------------------------------------*/
 void portConfig(void) {
-    TRISA = 0b00001000;                 // Configure PORTA I/O
-    TRISB = 0b00000000;                 // Configure PORTB I/O
+    TRISA = 0b00000000;                 // Configure PORTA I/O
+    TRISB = 0b00010000;                 // Configure PORTB I/O
     TRISC = 0b00010000;                 // Configure PORTC I/O
 
     LATA = 0b00000100;                  // Set all pins to low except CSN
@@ -315,14 +318,20 @@ void portConfig(void) {
  * SPI 1 setup function - used for nRF24L01+
  *  -MSSP1
 ------------------------------------------------*/
-void spiConfig_1(void) {
+void spiConfig_1(unsigned int spiSpeed) {
+
     SSP1CON1bits.CKP = 0;               // Clock polarity
     SSP1STATbits.CKE = 1;               // Clock edge detect
     SSP1STATbits.SMP = 1;               // Sample bit
-    SSP1ADD = 0b00000001;               // Set to 7
+
+
+    unsigned int addVal = ((((_XTAL_FREQ/1000)/spiSpeed)/100)/4)-1;
+    SSP1ADD = addVal;                   // Set to 7
     SSP1CON1bits.SSPM = 0b1010;         // Clock = Fosc/(SSP1ADD + 1)(4) = 4MHz
+
     SSP1CON1bits.SSPEN = 1;             // Enable SPI
-    nRF_CSN = 1;
+
+    nRF_CSN = 1;                        // Start chip select pin high
 }
 
 /*------------------------------------------------
@@ -484,7 +493,8 @@ unsigned char spiTransferByte(unsigned char data) {
 
     SSP1BUF = data;                     // Write data to MSSP
     
-    __delay_us(2);                      // Wait for transfer to complete
+    while (!PIR1bits.SSP1IF) { }        // Wait for transfer to complete
+    PIR1bits.SSP1IF = 0;                // Clear flag
 
     return SSP1BUF;                     // return recieved data
 }
