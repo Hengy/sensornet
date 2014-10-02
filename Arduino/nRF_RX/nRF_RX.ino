@@ -201,11 +201,9 @@ void loop() {
     
     spiTransfer('r',R_RX_PAYLOAD,payloadWidth); // Read payload command
     
-    delayMicroseconds(40);
+    delayMicroseconds(100);
 
     Serial.print(payloadWidth);
-//    Serial.print(":");
-//    Serial.println(dataBufIn[0]);              // Print to serial monitor
     
     Serial.print(": ");
     for (int i=0;i<payloadWidth;i++) {
@@ -214,7 +212,7 @@ void loop() {
     }
     Serial.println("");
     
-    delayMicroseconds(40);
+    delayMicroseconds(50);        // Need time to print
     
     // Reset interrupts
     dataBufOut[0] = B01110000;
