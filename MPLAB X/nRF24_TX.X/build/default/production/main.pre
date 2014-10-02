@@ -10130,13 +10130,13 @@ nrfInterrupt = 0;
 }
 
 if ((TXtime >= 12800) && (!nrfBusy)) {
+
 dataBufOut[0] = count;
 nrfTXData(5);
 count++;
 TXtime = 0;
-}
+} else if (!nrfBusy) {
 
-if (!nrfBusy) {
 LATAbits.LATA0 = 1;
 _delay((unsigned long)((20)*(64000000/4000000.0)));
 LATAbits.LATA0 = 0;

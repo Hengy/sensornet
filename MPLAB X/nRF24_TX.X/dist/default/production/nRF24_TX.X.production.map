@@ -5,7 +5,7 @@ Linker command line:
 --edf=C:\Program Files (x86)\Microchip\xc8\v1.33\dat\en_msgs.txt -cs \
   -h+dist/default/production\nRF24_TX.X.production.sym \
   --cmf=dist/default/production\nRF24_TX.X.production.cmf -z -Q18F24K22 \
-  -oC:\Users\STUDEN~1.N20\AppData\Local\Temp\s524.6 \
+  -oC:\Users\STUDEN~1.N20\AppData\Local\Temp\s568.6 \
   -Mdist/default/production/nRF24_TX.X.production.map -E1 -ver=XC8 \
   -ASTACK=0B4h-02ffh -pstack=STACK -ACODE=00h-03FFFh -ACONST=00h-03FFFh \
   -ASMALLCONST=0300h-03FFhx61 -AMEDIUMCONST=0300h-03FFFh -ACOMRAM=01h-05Fh \
@@ -21,7 +21,7 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE \
-  C:\Users\STUDEN~1.N20\AppData\Local\Temp\s524.obj \
+  C:\Users\STUDEN~1.N20\AppData\Local\Temp\s568.obj \
   dist/default/production\nRF24_TX.X.production.obj 
 
 Object code version is 3.11
@@ -34,7 +34,7 @@ Call graph: (short form)
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\STUDEN~1.N20\AppData\Local\Temp\s524.obj
+C:\Users\STUDEN~1.N20\AppData\Local\Temp\s568.obj
                 end_init                             A2       A2        4        C       0
                 reset_vec                             0        0        4        0       0
                 idloc                            200000   200000        8   200000       0
@@ -42,28 +42,28 @@ C:\Users\STUDEN~1.N20\AppData\Local\Temp\s524.obj
 dist/default/production\nRF24_TX.X.production.obj
                 intcodelo                            18       18       8A        C       0
                 intcode                               8        8       10        4       0
-                intcode_body                        566      566       74        C       0
-                text13                              78A      78A       3C        C       0
-                text12                              7E0      7E0       12        C       0
-                text11                              814      814       10      402       0
-                text10                              804      804       10      402       0
-                text9                               704      704       4A        C       0
-                text8                               648      648       60        C       0
-                text7                               6A8      6A8       5C        C       0
-                text6                               438      438       9E        C       0
-                text5                               35C      35C       DC        C       0
-                text4                               5DA      5DA       6E        C       0
-                text3                               7C6      7C6       1A        C       0
-                text2                               230      230      12C        C       0
-                text1                               4D6      4D6       90        C       0
-                text0                                A6       A6      18A        C       0
+                intcode_body                        568      568       74        C       0
+                text13                              78C      78C       3C        C       0
+                text12                              7E2      7E2       12        C       0
+                text11                              816      816       10      403       0
+                text10                              806      806       10      403       0
+                text9                               706      706       4A        C       0
+                text8                               64A      64A       60        C       0
+                text7                               6AA      6AA       5C        C       0
+                text6                               43A      43A       9E        C       0
+                text5                               35E      35E       DC        C       0
+                text4                               5DC      5DC       6E        C       0
+                text3                               7C8      7C8       1A        C       0
+                text2                               232      232      12C        C       0
+                text1                               4D8      4D8       90        C       0
+                text0                                A6       A6      18C        C       0
                 cstackCOMRAM                          1        1       29        1       1
                 cstackBANK0                          A0       A0       14       60       1
                 bssBANK0                             60       60       40       60       1
                 dataCOMRAM                           2A       2A       11        1       1
                 bssCOMRAM                            3B       3B        5        1       1
-                cinit                               74E      74E       3C        C       0
-                idataCOMRAM                         7F2      7F2       11        C       0
+                cinit                               750      750       3C        C       0
+                idataCOMRAM                         7F4      7F4       11        C       0
 
 TOTAL           Name                               Link     Load   Length     Space
         CLASS   STACK          
@@ -73,23 +73,23 @@ TOTAL           Name                               Link     Load   Length     Sp
                 intcodelo                            18       18       8A         0
                 intcode                               8        8       10         0
                 reset_vec                             0        0        4         0
-                intcode_body                        566      566       74         0
-                text13                              78A      78A       3C         0
-                text12                              7E0      7E0       12         0
-                text11                              814      814       10         0
-                text10                              804      804       10         0
-                text9                               704      704       4A         0
-                text8                               648      648       60         0
-                text7                               6A8      6A8       5C         0
-                text6                               438      438       9E         0
-                text5                               35C      35C       DC         0
-                text4                               5DA      5DA       6E         0
-                text3                               7C6      7C6       1A         0
-                text2                               230      230      12C         0
-                text1                               4D6      4D6       90         0
-                text0                                A6       A6      18A         0
-                cinit                               74E      74E       3C         0
-                idataCOMRAM                         7F2      7F2       11         0
+                intcode_body                        568      568       74         0
+                text13                              78C      78C       3C         0
+                text12                              7E2      7E2       12         0
+                text11                              816      816       10         0
+                text10                              806      806       10         0
+                text9                               706      706       4A         0
+                text8                               64A      64A       60         0
+                text7                               6AA      6AA       5C         0
+                text6                               43A      43A       9E         0
+                text5                               35E      35E       DC         0
+                text4                               5DC      5DC       6E         0
+                text3                               7C8      7C8       1A         0
+                text2                               232      232      12C         0
+                text1                               4D8      4D8       90         0
+                text0                                A6       A6      18C         0
+                cinit                               750      750       3C         0
+                idataCOMRAM                         7F4      7F4       11         0
 
         CLASS   CONST          
 
@@ -135,9 +135,9 @@ SEGMENTS        Name                           Load    Length   Top    Selector 
                 reset_vec                      000000  000004  000004         0       0  CODE    
                 cstackCOMRAM                   000001  00003F  000040         1       1  COMRAM  
                 intcode                        000008  000010  000018         4       0  CODE    
-                intcodelo                      000018  0007EB  000803         C       0  CODE    
+                intcodelo                      000018  0007ED  000805         C       0  CODE    
                 bssBANK0                       000060  000054  0000B4        60       1  BANK0   
-                text10                         000804  000020  000824       402       0  CODE    
+                text10                         000806  000020  000826       403       0  CODE    
                 idloc                          200000  000008  200008    200000       0  IDLOC   
                 config                         300000  00000E  30000E    300000       0  CONFIG  
 
@@ -151,19 +151,19 @@ UNUSED ADDRESS RANGES
         BIGRAM           000040-00005F               20
                          0000B4-0002FF              24C
         CODE             000004-000007                4
-                         000803-000803                1
-                         000824-003FFF             37DC
+                         000805-000805                1
+                         000826-003FFF             37DA
         COMRAM           000040-00005F               20
         CONST            000004-000007                4
-                         000803-000803                1
-                         000824-003FFF             37DC
+                         000805-000805                1
+                         000826-003FFF             37DA
         EEDATA           F00000-F000FF              100
-        MEDIUMCONST      000803-000803                1
-                         000824-003FFF             37DC
+        MEDIUMCONST      000805-000805                1
+                         000826-003FFF             37DA
         RAM              0000B4-0002FF              100
         SFR              000F38-000FFF               28
-        SMALLCONST       000803-000803                1
-                         000824-003FFF              100
+        SMALLCONST       000805-000805                1
+                         000826-003FFF              100
         STACK            0000B4-0002FF              24C
 
                                   Symbol Table
@@ -367,7 +367,7 @@ __Ltext9                  text9        000000
 __S0                      (abs)        30000E
 __S1                      (abs)        0000B4
 __S2                      (abs)        000000
-___aldiv                  text2        000230
+___aldiv                  text2        000232
 ___aldiv@counter          cstackBANK0  0000A0
 ___aldiv@dividend         cstackCOMRAM 000020
 ___aldiv@divisor          cstackCOMRAM 000024
@@ -378,49 +378,49 @@ ___intlo_sp               stack        000000
 ___sp                     stack        000000
 __accesstop               (abs)        000060
 __activetblptr            (abs)        000000
-__end_of___aldiv          text2        00035C
-__end_of__initialization  cinit        000784
-__end_of_delay10ms        text13       0007C6
-__end_of_highISR          intcode_body 0005DA
-__end_of_intConfig        text12       0007F2
+__end_of___aldiv          text2        00035E
+__end_of__initialization  cinit        000786
+__end_of_delay10ms        text13       0007C8
+__end_of_highISR          intcode_body 0005DC
+__end_of_intConfig        text12       0007F4
 __end_of_lowISR           intcodelo    0000A2
-__end_of_main             text0        000230
-__end_of_nrfConfig        text5        000438
-__end_of_nrfConfigReg     text9        00074E
-__end_of_nrfSetRXAddr     text8        0006A8
-__end_of_nrfSetTXAddr     text7        000704
-__end_of_nrfTXData        text4        000648
-__end_of_portConfig       text3        0007E0
-__end_of_setCSN           text11       000824
-__end_of_spiConfig_1      text1        000566
-__end_of_spiTransfer      text6        0004D6
-__end_of_spiTransferByte  text10       000814
-__initialization          cinit        00074E
+__end_of_main             text0        000232
+__end_of_nrfConfig        text5        00043A
+__end_of_nrfConfigReg     text9        000750
+__end_of_nrfSetRXAddr     text8        0006AA
+__end_of_nrfSetTXAddr     text7        000706
+__end_of_nrfTXData        text4        00064A
+__end_of_portConfig       text3        0007E2
+__end_of_setCSN           text11       000826
+__end_of_spiConfig_1      text1        000568
+__end_of_spiTransfer      text6        0004D8
+__end_of_spiTransferByte  text10       000816
+__initialization          cinit        000750
 __mediumconst             mediumconst  000000
 __pbssBANK0               bssBANK0     000060
 __pbssCOMRAM              bssCOMRAM    00003B
-__pcinit                  cinit        00074E
+__pcinit                  cinit        000750
 __pcstackBANK0            cstackBANK0  0000A0
 __pcstackCOMRAM           cstackCOMRAM 000001
 __pdataCOMRAM             dataCOMRAM   00002A
-__pidataCOMRAM            idataCOMRAM  0007F2
+__pidataCOMRAM            idataCOMRAM  0007F4
 __pintcode                intcode      000008
-__pintcode_body           intcode_body 000566
+__pintcode_body           intcode_body 000568
 __pintcodelo              intcodelo    000018
 __ptext0                  text0        0000A6
-__ptext1                  text1        0004D6
-__ptext10                 text10       000804
-__ptext11                 text11       000814
-__ptext12                 text12       0007E0
-__ptext13                 text13       00078A
-__ptext2                  text2        000230
-__ptext3                  text3        0007C6
-__ptext4                  text4        0005DA
-__ptext5                  text5        00035C
-__ptext6                  text6        000438
-__ptext7                  text7        0006A8
-__ptext8                  text8        000648
-__ptext9                  text9        000704
+__ptext1                  text1        0004D8
+__ptext10                 text10       000806
+__ptext11                 text11       000816
+__ptext12                 text12       0007E2
+__ptext13                 text13       00078C
+__ptext2                  text2        000232
+__ptext3                  text3        0007C8
+__ptext4                  text4        0005DC
+__ptext5                  text5        00035E
+__ptext6                  text6        00043A
+__ptext7                  text7        0006AA
+__ptext8                  text8        00064A
+__ptext9                  text9        000706
 __ramtop                  ramtop       000300
 __size_of___aldiv         (abs)        000000
 __size_of_delay10ms       (abs)        000000
@@ -441,30 +441,30 @@ __size_of_spiTransferByte (abs)        000000
 __smallconst              smallconst   000000
 _dataBufIn                bssBANK0     000060
 _dataBufOut               bssBANK0     000080
-_delay10ms                text13       00078A
+_delay10ms                text13       00078C
 _highISR                  intcode      000008
-_intConfig                text12       0007E0
+_intConfig                text12       0007E2
 _lowISR                   intcodelo    000018
 _main                     text0        0000A6
 _nrfBusy                  bssCOMRAM    00003C
-_nrfConfig                text5        00035C
-_nrfConfigReg             text9        000704
+_nrfConfig                text5        00035E
+_nrfConfigReg             text9        000706
 _nrfInterrupt             bssCOMRAM    00003D
 _nrfSTATUS                bssCOMRAM    00003E
-_nrfSetRXAddr             text8        000648
-_nrfSetTXAddr             text7        0006A8
-_nrfTXData                text4        0005DA
-_portConfig               text3        0007C6
-_setCSN                   text11       000814
-_spiConfig_1              text1        0004D6
+_nrfSetRXAddr             text8        00064A
+_nrfSetTXAddr             text7        0006AA
+_nrfTXData                text4        0005DC
+_portConfig               text3        0007C8
+_setCSN                   text11       000816
+_spiConfig_1              text1        0004D8
 _spiConfig_1$1492         cstackBANK0  0000AA
 _spiTXFlag                bssCOMRAM    00003F
-_spiTransfer              text6        000438
-_spiTransferByte          text10       000804
+_spiTransfer              text6        00043A
+_spiTransferByte          text10       000806
 delay10ms@i               cstackCOMRAM 000023
 delay10ms@ms_multi        cstackCOMRAM 000020
-end_of_initialization     cinit        000784
-int_func                  intcode_body 000566
+end_of_initialization     cinit        000786
+int_func                  intcode_body 000568
 intlevel0                 text         000000
 intlevel1                 text         000000
 intlevel2                 text         000000
@@ -494,7 +494,7 @@ spiTransferByte@data      cstackCOMRAM 000020
 stackhi                   (abs)        0002FF
 stacklo                   (abs)        0000B4
 start                     init         0000A2
-start_initialization      cinit        00074E
+start_initialization      cinit        000750
 
 
 FUNCTION INFORMATION:
@@ -1022,31 +1022,31 @@ MODULE INFORMATION
 
 Module		Function		Class		Link	Load	Size
 shared
-		__initializatio		CODE           	074E	0000	54
+		__initializatio		CODE           	0750	0000	54
 
 shared estimated size: 54
 
 C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\aldiv.c
-		___aldiv       		CODE           	0230	0000	300
+		___aldiv       		CODE           	0232	0000	300
 
 C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\aldiv.c estimated size: 300
 
 main.c
-		_nrfConfigReg  		CODE           	0704	0000	74
-		_spiConfig_1   		CODE           	04D6	0000	144
-		_spiTransfer   		CODE           	0438	0000	158
-		_main          		CODE           	00A6	0000	394
-		_setCSN        		CODE           	0814	0000	16
-		_highISR       		CODE           	0008	0000	1490
-		_nrfSetTXAddr  		CODE           	06A8	0000	92
-		_intConfig     		CODE           	07E0	0000	18
+		_nrfConfigReg  		CODE           	0706	0000	74
+		_spiConfig_1   		CODE           	04D8	0000	144
+		_spiTransfer   		CODE           	043A	0000	158
+		_main          		CODE           	00A6	0000	396
+		_setCSN        		CODE           	0816	0000	16
+		_highISR       		CODE           	0008	0000	1492
+		_nrfSetTXAddr  		CODE           	06AA	0000	92
+		_intConfig     		CODE           	07E2	0000	18
 		_lowISR        		CODE           	0018	0000	138
-		_nrfTXData     		CODE           	05DA	0000	110
-		_spiTransferByt		CODE           	0804	0000	16
-		_portConfig    		CODE           	07C6	0000	26
-		_nrfConfig     		CODE           	035C	0000	220
-		_nrfSetRXAddr  		CODE           	0648	0000	96
-		_delay10ms     		CODE           	078A	0000	60
+		_nrfTXData     		CODE           	05DC	0000	110
+		_spiTransferByt		CODE           	0806	0000	16
+		_portConfig    		CODE           	07C8	0000	26
+		_nrfConfig     		CODE           	035E	0000	220
+		_nrfSetRXAddr  		CODE           	064A	0000	96
+		_delay10ms     		CODE           	078C	0000	60
 
-main.c estimated size: 3052
+main.c estimated size: 3056
 

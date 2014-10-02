@@ -8521,25 +8521,24 @@ Version 3.2 HI-TECH Software Intermediate Code
 "264
 [e $ ! && >= _TXtime -> -> 12800 `i `ui ! != -> _nrfBusy `i -> -> -> 0 `i `uc `i 1148  ]
 {
-[; ;main.c: 265: dataBufOut[0] = count;
-"265
-[e = *U + &U _dataBufOut * -> -> -> 0 `i `ui `ux -> -> # *U &U _dataBufOut `ui `ux -> _count `uc ]
-[; ;main.c: 266: nrfTXData(5);
+[; ;main.c: 266: dataBufOut[0] = count;
 "266
-[e ( _nrfTXData (1 -> 5 `i ]
-[; ;main.c: 267: count++;
+[e = *U + &U _dataBufOut * -> -> -> 0 `i `ui `ux -> -> # *U &U _dataBufOut `ui `ux -> _count `uc ]
+[; ;main.c: 267: nrfTXData(5);
 "267
-[e ++ _count -> 1 `i ]
-[; ;main.c: 268: TXtime = 0;
+[e ( _nrfTXData (1 -> 5 `i ]
+[; ;main.c: 268: count++;
 "268
-[e = _TXtime -> -> 0 `i `ui ]
+[e ++ _count -> 1 `i ]
+[; ;main.c: 269: TXtime = 0;
 "269
+[e = _TXtime -> -> 0 `i `ui ]
+"270
 }
+[; ;main.c: 270: } else if (!nrfBusy) {
+[e $U 1149  ]
 [e :U 1148 ]
-[; ;main.c: 269: }
-[; ;main.c: 271: if (!nrfBusy) {
-"271
-[e $ ! ! != -> _nrfBusy `i -> -> -> 0 `i `uc `i 1149  ]
+[e $ ! ! != -> _nrfBusy `i -> -> -> 0 `i `uc `i 1150  ]
 {
 [; ;main.c: 272: LATAbits.LATA0 = 1;
 "272
@@ -8552,10 +8551,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _LATAbits 0 0 -> -> 0 `i `uc ]
 "275
 }
+[e :U 1150 ]
+"277
 [e :U 1149 ]
 [; ;main.c: 275: }
 [; ;main.c: 277: _delay((unsigned long)((50)*(64000000/4000000.0)));
-"277
 [e ( __delay (1 -> * -> -> 50 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
 [; ;main.c: 278: TXtime++;
 "278
@@ -8579,29 +8579,29 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;main.c: 287: if (INTCONbits.RBIF) {
 "287
-[e $ ! != -> . . _INTCONbits 0 0 `i -> -> -> 0 `i `Vuc `i 1151  ]
+[e $ ! != -> . . _INTCONbits 0 0 `i -> -> -> 0 `i `Vuc `i 1152  ]
 {
 [; ;main.c: 289: if (PORTBbits.RB4 == 0) {
 "289
-[e $ ! == -> . . _PORTBbits 0 4 `i -> 0 `i 1152  ]
+[e $ ! == -> . . _PORTBbits 0 4 `i -> 0 `i 1153  ]
 {
 [; ;main.c: 290: nrfInterrupt = 1;
 "290
 [e = _nrfInterrupt -> -> 1 `i `uc ]
 "291
 }
-[e :U 1152 ]
+[e :U 1153 ]
 [; ;main.c: 291: }
 [; ;main.c: 293: INTCONbits.RBIF = 0;
 "293
 [e = . . _INTCONbits 0 0 -> -> 0 `i `uc ]
 "294
 }
-[e :U 1151 ]
+[e :U 1152 ]
 [; ;main.c: 294: }
 [; ;main.c: 295: }
 "295
-[e :UE 1150 ]
+[e :UE 1151 ]
 }
 [v F8493 `(v ~T0 @X0 1 tf ]
 "300
@@ -8612,7 +8612,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;main.c: 302: }
 "302
-[e :UE 1153 ]
+[e :UE 1154 ]
 }
 "307
 [v _intConfig `(v ~T0 @X0 1 ef ]
@@ -8646,7 +8646,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _INTCONbits 2 1 -> -> 1 `i `uc ]
 [; ;main.c: 322: }
 "322
-[e :UE 1154 ]
+[e :UE 1155 ]
 }
 "327
 [v _portConfig `(v ~T0 @X0 1 ef ]
@@ -8674,7 +8674,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _LATC -> -> 0 `i `uc ]
 [; ;main.c: 335: }
 "335
-[e :UE 1155 ]
+[e :UE 1156 ]
 }
 "343
 [v _spiConfig_1 `(v ~T0 @X0 1 ef1`ui ]
@@ -8710,7 +8710,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _LATAbits 0 2 -> -> 1 `i `uc ]
 [; ;main.c: 357: }
 "357
-[e :UE 1156 ]
+[e :UE 1157 ]
 }
 "362
 [v _nrfConfig `(v ~T0 @X0 1 ef ]
@@ -8762,7 +8762,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _spiTransfer (3 , , -> -> 110 `ui `uc -> -> 226 `i `uc -> 0 `i ]
 [; ;main.c: 392: }
 "392
-[e :UE 1157 ]
+[e :UE 1158 ]
 }
 "397
 [v _setCSN `(v ~T0 @X0 1 ef1`i ]
@@ -8773,7 +8773,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;main.c: 399: if (level == 1) {
 "399
-[e $ ! == _level -> 1 `i 1159  ]
+[e $ ! == _level -> 1 `i 1160  ]
 {
 [; ;main.c: 400: LATAbits.LATA2 = 1;
 "400
@@ -8781,19 +8781,19 @@ Version 3.2 HI-TECH Software Intermediate Code
 "401
 }
 [; ;main.c: 401: } else {
-[e $U 1160  ]
-[e :U 1159 ]
+[e $U 1161  ]
+[e :U 1160 ]
 {
 [; ;main.c: 402: LATAbits.LATA2 = 0;
 "402
 [e = . . _LATAbits 0 2 -> -> 0 `i `uc ]
 "403
 }
-[e :U 1160 ]
+[e :U 1161 ]
 [; ;main.c: 403: }
 [; ;main.c: 404: }
 "404
-[e :UE 1158 ]
+[e :UE 1159 ]
 }
 "410
 [v _nrfGetStatus `(v ~T0 @X0 1 ef ]
@@ -8812,7 +8812,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _setCSN (1 -> 1 `i ]
 [; ;main.c: 417: }
 "417
-[e :UE 1161 ]
+[e :UE 1162 ]
 }
 "422
 [v _nrfConfigReg `(uc ~T0 @X0 1 ef3`uc`uc`uc ]
@@ -8828,7 +8828,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _setCSN (1 -> 0 `i ]
 [; ;main.c: 426: if (wr == 'w') {
 "426
-[e $ ! == -> _wr `ui -> 119 `ui 1163  ]
+[e $ ! == -> _wr `ui -> 119 `ui 1164  ]
 {
 [; ;main.c: 427: spiTransferByte(0x20|command);
 "427
@@ -8839,9 +8839,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "429
 }
 [; ;main.c: 429: } else if (wr == 'r') {
-[e $U 1164  ]
-[e :U 1163 ]
-[e $ ! == -> _wr `ui -> 114 `ui 1165  ]
+[e $U 1165  ]
+[e :U 1164 ]
+[e $ ! == -> _wr `ui -> 114 `ui 1166  ]
 {
 [; ;main.c: 430: spiTransferByte(0x00|command);
 "430
@@ -8851,19 +8851,19 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _data ( _spiTransferByte (1 -> -> 255 `i `uc ]
 "432
 }
-[e :U 1165 ]
+[e :U 1166 ]
 "434
-[e :U 1164 ]
+[e :U 1165 ]
 [; ;main.c: 432: }
 [; ;main.c: 434: setCSN(1);
 [e ( _setCSN (1 -> 1 `i ]
 [; ;main.c: 436: return data;
 "436
 [e ) _data ]
-[e $UE 1162  ]
+[e $UE 1163  ]
 [; ;main.c: 437: }
 "437
-[e :UE 1162 ]
+[e :UE 1163 ]
 }
 "444
 [v _nrfSetTXAddr `(v ~T0 @X0 1 ef2`*uc`i ]
@@ -8881,15 +8881,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _spiTransferByte (1 -> | -> 32 `i -> 16 `i `uc ]
 [; ;main.c: 450: if (len != 0) {
 "450
-[e $ ! != _len -> 0 `i 1167  ]
+[e $ ! != _len -> 0 `i 1168  ]
 {
 [; ;main.c: 452: for (int i=0;i<len;i++) {
 "452
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-[e $U 1171  ]
-[e :U 1168 ]
+[e $U 1172  ]
+[e :U 1169 ]
 {
 [; ;main.c: 453: spiTransferByte(addr[i]);
 "453
@@ -8898,14 +8898,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 "452
 [e ++ _i -> 1 `i ]
-[e :U 1171 ]
-[e $ < _i _len 1168  ]
-[e :U 1169 ]
+[e :U 1172 ]
+[e $ < _i _len 1169  ]
+[e :U 1170 ]
 "454
 }
 "455
 }
-[e :U 1167 ]
+[e :U 1168 ]
 [; ;main.c: 454: }
 [; ;main.c: 455: }
 [; ;main.c: 457: setCSN(1);
@@ -8913,7 +8913,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _setCSN (1 -> 1 `i ]
 [; ;main.c: 458: }
 "458
-[e :UE 1166 ]
+[e :UE 1167 ]
 }
 "466
 [v _nrfSetRXAddr `(v ~T0 @X0 1 ef3`uc`*uc`i ]
@@ -8932,15 +8932,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _spiTransferByte (1 -> | -> 32 `i -> _pipe `i `uc ]
 [; ;main.c: 472: if (len != 0) {
 "472
-[e $ ! != _len -> 0 `i 1173  ]
+[e $ ! != _len -> 0 `i 1174  ]
 {
 [; ;main.c: 474: for (int i=0;i<len;i++) {
 "474
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-[e $U 1177  ]
-[e :U 1174 ]
+[e $U 1178  ]
+[e :U 1175 ]
 {
 [; ;main.c: 475: spiTransferByte(addr[i]);
 "475
@@ -8949,14 +8949,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 "474
 [e ++ _i -> 1 `i ]
-[e :U 1177 ]
-[e $ < _i _len 1174  ]
-[e :U 1175 ]
+[e :U 1178 ]
+[e $ < _i _len 1175  ]
+[e :U 1176 ]
 "476
 }
 "477
 }
-[e :U 1173 ]
+[e :U 1174 ]
 [; ;main.c: 476: }
 [; ;main.c: 477: }
 [; ;main.c: 479: setCSN(1);
@@ -8964,7 +8964,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _setCSN (1 -> 1 `i ]
 [; ;main.c: 480: }
 "480
-[e :UE 1172 ]
+[e :UE 1173 ]
 }
 "490
 [v _spiTransfer `(v ~T0 @X0 1 ef3`uc`uc`i ]
@@ -8980,7 +8980,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _setCSN (1 -> 0 `i ]
 [; ;main.c: 494: if (wrn == 'w') {
 "494
-[e $ ! == -> _wrn `ui -> 119 `ui 1179  ]
+[e $ ! == -> _wrn `ui -> 119 `ui 1180  ]
 {
 [; ;main.c: 495: spiTransferByte(0x20|command);
 "495
@@ -8988,9 +8988,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "496
 }
 [; ;main.c: 496: } else if (wrn == 'r') {
-[e $U 1180  ]
-[e :U 1179 ]
-[e $ ! == -> _wrn `ui -> 114 `ui 1181  ]
+[e $U 1181  ]
+[e :U 1180 ]
+[e $ ! == -> _wrn `ui -> 114 `ui 1182  ]
 {
 [; ;main.c: 497: spiTransferByte(0x00|command);
 "497
@@ -8998,30 +8998,30 @@ Version 3.2 HI-TECH Software Intermediate Code
 "498
 }
 [; ;main.c: 498: } else if(wrn == 'n') {
-[e $U 1182  ]
-[e :U 1181 ]
-[e $ ! == -> _wrn `ui -> 110 `ui 1183  ]
+[e $U 1183  ]
+[e :U 1182 ]
+[e $ ! == -> _wrn `ui -> 110 `ui 1184  ]
 {
 [; ;main.c: 499: spiTransferByte(command);
 "499
 [e ( _spiTransferByte (1 _command ]
 "500
 }
-[e :U 1183 ]
+[e :U 1184 ]
 "502
-[e :U 1182 ]
-[e :U 1180 ]
+[e :U 1183 ]
+[e :U 1181 ]
 [; ;main.c: 500: }
 [; ;main.c: 502: if (len != 0) {
-[e $ ! != _len -> 0 `i 1184  ]
+[e $ ! != _len -> 0 `i 1185  ]
 {
 [; ;main.c: 503: for (int i=0;i<len;i++) {
 "503
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-[e $U 1188  ]
-[e :U 1185 ]
+[e $U 1189  ]
+[e :U 1186 ]
 {
 [; ;main.c: 504: dataBufIn[i] = spiTransferByte(dataBufOut[i]);
 "504
@@ -9030,14 +9030,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 "503
 [e ++ _i -> 1 `i ]
-[e :U 1188 ]
-[e $ < _i _len 1185  ]
-[e :U 1186 ]
+[e :U 1189 ]
+[e $ < _i _len 1186  ]
+[e :U 1187 ]
 "505
 }
 "506
 }
-[e :U 1184 ]
+[e :U 1185 ]
 [; ;main.c: 505: }
 [; ;main.c: 506: }
 [; ;main.c: 508: setCSN(1);
@@ -9045,7 +9045,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _setCSN (1 -> 1 `i ]
 [; ;main.c: 509: }
 "509
-[e :UE 1178 ]
+[e :UE 1179 ]
 }
 "514
 [v _spiTransferByte `(uc ~T0 @X0 1 ef1`uc ]
@@ -9059,23 +9059,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _SSP1BUF _data ]
 [; ;main.c: 518: while (!PIR1bits.SSP1IF) { }
 "518
-[e $U 1190  ]
-[e :U 1191 ]
+[e $U 1191  ]
+[e :U 1192 ]
 {
 }
-[e :U 1190 ]
-[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1191  ]
-[e :U 1192 ]
+[e :U 1191 ]
+[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 1192  ]
+[e :U 1193 ]
 [; ;main.c: 519: PIR1bits.SSP1IF = 0;
 "519
 [e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
 [; ;main.c: 521: return SSP1BUF;
 "521
 [e ) _SSP1BUF ]
-[e $UE 1189  ]
+[e $UE 1190  ]
 [; ;main.c: 522: }
 "522
-[e :UE 1189 ]
+[e :UE 1190 ]
 }
 "528
 [v _nrfTXData `(v ~T0 @X0 1 ef1`i ]
@@ -9092,15 +9092,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _spiTransferByte (1 -> -> 160 `i `uc ]
 [; ;main.c: 534: if (len != 0) {
 "534
-[e $ ! != _len -> 0 `i 1194  ]
+[e $ ! != _len -> 0 `i 1195  ]
 {
 [; ;main.c: 535: for (int i=0;i<len;i++) {
 "535
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-[e $U 1198  ]
-[e :U 1195 ]
+[e $U 1199  ]
+[e :U 1196 ]
 {
 [; ;main.c: 536: spiTransferByte(dataBufOut[i]);
 "536
@@ -9109,14 +9109,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 "535
 [e ++ _i -> 1 `i ]
-[e :U 1198 ]
-[e $ < _i _len 1195  ]
-[e :U 1196 ]
+[e :U 1199 ]
+[e $ < _i _len 1196  ]
+[e :U 1197 ]
 "537
 }
 "538
 }
-[e :U 1194 ]
+[e :U 1195 ]
 [; ;main.c: 537: }
 [; ;main.c: 538: }
 [; ;main.c: 540: setCSN(1);
@@ -9136,7 +9136,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _nrfBusy -> -> 1 `i `uc ]
 [; ;main.c: 552: }
 "552
-[e :UE 1193 ]
+[e :UE 1194 ]
 }
 "557
 [v _delay10ms `(v ~T0 @X0 1 ef1`i ]
@@ -9153,8 +9153,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 "559
 {
 [e = _i -> 0 `i ]
-[e $U 1203  ]
-[e :U 1200 ]
+[e $U 1204  ]
+[e :U 1201 ]
 {
 [; ;main.c: 560: _delay((unsigned long)((11)*(64000000/4000.0)));
 "560
@@ -9163,13 +9163,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 "559
 [e ++ _i -> 1 `i ]
-[e :U 1203 ]
-[e $ < _i _ms_multi 1200  ]
-[e :U 1201 ]
+[e :U 1204 ]
+[e $ < _i _ms_multi 1201  ]
+[e :U 1202 ]
 "561
 }
 [; ;main.c: 561: }
 [; ;main.c: 562: }
 "562
-[e :UE 1199 ]
+[e :UE 1200 ]
 }

@@ -147,18 +147,18 @@ SCK     -[14/RC3       RC4/15]-       SDI
  * Current config settings - TX
 ------------------------------------------------*/
 unsigned char CONFIG_CURR       = 0b01011010;   // Show all TX interrupts; Enable CRC - 1 byte; Power Up; PTX
-unsigned char EN_AA_CURR        = 0b00000000;   // Disable all Auto Ack
-unsigned char EN_RXADDR_CURR    = 0b00000001;   // Enable data pipe 0
+unsigned char EN_AA_CURR        = 0b00000011;   // Enable Auto Ack on pipe 0,1
+unsigned char EN_RXADDR_CURR    = 0b00000011;   // Enable data pipe 0,1
 unsigned char SETUP_AW_CURR     = 0b00000010;   // set for 4 byte address
-//unsigned char SETUP_RETR_CURR   = 0b00110101;   // 1000us retransmit delay; 5 auto retransmits
-unsigned char SETUP_RETR_CURR   = 0b00100001;   // 750us retransmit delay; Disable auto retransmit
+unsigned char SETUP_RETR_CURR   = 0b00110101;   // 1000us retransmit delay; 5 auto retransmits
+//unsigned char SETUP_RETR_CURR   = 0b00100001;   // 750us retransmit delay; Disable auto retransmit
 unsigned char RF_CH_CURR        = 0b01101001;   // Channel 105 (2.400GHz + 0.105GHz = 2.505GHz)
 unsigned char RF_SETUP_CURR     = 0b00000110;   // RF data rate to 1Mbps; 0dBm output power (highest)
 unsigned char RX_PW_P0_CURR     = 0b00000001;   // Set pipe 0 payload width to 1
 unsigned char DYNPD_CURR        = 0b00000001;   // Set dynamic payload for pipe 0
 unsigned char FEATURE_CURR      = 0b00000100;   // Enable dynamic payload
 unsigned char RX_ADDRESS[4] = {0xE7,0xE7,0xE7,0xE7}; // 4 byte initial RX address
-unsigned char TX_ADDRESS[4] = {0xE7,0xE7,0xE7,0xE7}; // 4 byte initial TX address
+unsigned char TX_ADDRESS[4] = {0xC7,0xC7,0xC7,0xC7}; // 4 byte initial TX address
 
 
 /*------------------------------------------------
@@ -262,13 +262,13 @@ void main(void) {
         }
 
         if ((TXtime >= 12800) && (!nrfBusy)) {
+
             dataBufOut[0] = count;
             nrfTXData(5);
             count++;
             TXtime = 0;
-        }
+        } else if (!nrfBusy) {
 
-        if (!nrfBusy) {
             ACT_LED = 1;
             __delay_us(20);
             ACT_LED = 0;
@@ -377,9 +377,13 @@ void nrfConfig(void) {
     nrfConfigReg('w',RF_SETUP,RF_SETUP_CURR);
     // set RX address
     nrfSetRXAddr(RX_ADDR_P0,RX_ADDRESS,4);
+    // set RX address
+    nrfSetRXAddr(RX_ADDR_P1,TX_ADDRESS,4);
     // set TX address
     nrfSetTXAddr(TX_ADDRESS,4);
     // Set pipe 0 payload width
+    nrfConfigReg('w',RX_PW_P1,RX_PW_P0_CURR);
+    // Set pipe 1 payload width
     nrfConfigReg('w',RX_PW_P0,RX_PW_P0_CURR);
     // Write to DYNPD register
     nrfConfigReg('w',DYNPD,DYNPD_CURR);
