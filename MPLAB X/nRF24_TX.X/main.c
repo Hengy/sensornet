@@ -24,8 +24,8 @@
 MCLR    -[1 /RE3       RB7/28]-       PGD
 LED     -[2 /RA0       RB6/27]-       PGC
 CE      -[3 /RA1       RB5/26]-       
-CSN     -[4 /RA2       RB4/25]-       
-IRQ     -[5 /RA3       RB3/24]-       
+CSN     -[4 /RA2       RB4/25]-       IRQ
+        -[5 /RA3       RB3/24]-
         -[6 /RA4       RB2/23]-       
         -[7 /RA5       RB1/22]-       
 Vss     -[8 /          RB0/21]-       
@@ -127,7 +127,9 @@ SCK     -[14/RC3       RC4/15]-       SDI
  * Pin Definitions
 ------------------------------------------------*/
 // LEDs
-#define ACT_LED     LATAbits.LATA0      // Activity LED
+#define ACT_LED     LATAbits.LATA0      // Activity
+#define nRF_TX_DS   LATAbits.LATA3      // TX_DS interrupt indicator
+#define nRF_MAX_RT  LATAbits.LATA4      // MAX_RT interrupt indicator
 
 // nRF24L01+ pins
 #define nRF_CE      LATAbits.LATA1      // nRF24L01+ chip enable
@@ -146,7 +148,7 @@ SCK     -[14/RC3       RC4/15]-       SDI
 /*------------------------------------------------
  * Current config settings - TX
 ------------------------------------------------*/
-unsigned char CONFIG_CURR       = 0b01011010;   // Show all TX interrupts; Enable CRC - 1 byte; Power Up; PTX
+unsigned char CONFIG_CURR       = 0b01001010;   // Show all TX interrupts; Enable CRC - 1 byte; Power Up; PTX
 unsigned char EN_AA_CURR        = 0b00000011;   // Enable Auto Ack on pipe 0,1
 unsigned char EN_RXADDR_CURR    = 0b00000011;   // Enable data pipe 0,1
 unsigned char SETUP_AW_CURR     = 0b00000010;   // set for 4 byte address
@@ -194,7 +196,9 @@ unsigned char spiTXFlag = 0;                // SPI transmit complete flag
 
 unsigned char nrfBusy = 0;                  // nRF busy (transmitting) flag
 
-volatile unsigned char nrfInterrupt = 0;             // nRF Interrupt flag
+volatile unsigned char nrfInterrupt = 0;            // nRF Interrupt flag
+volatile unsigned char nrfTXDSInt = 0;              // nRF TX_DS Interrupt flag
+volatile unsigned char nrfMAXRTInt = 0;             // nRF MAXRT Interrupt
 
 /*------------------------------------------------
  * Main
@@ -251,8 +255,13 @@ void main(void) {
 
     for (;;) {
 
-        if (nrfInterrupt) {
+        if (TXtime % 800 == 0) {
+            ACT_LED = 1;
+            nrfGetStatus();
+            ACT_LED = 1;
+        }
 
+        if (nrfInterrupt) {
             // Reset interrupt flags
             dataBufOut[0] = 0b00110000;
             spiTransfer('w',STATUS,1);
@@ -261,17 +270,22 @@ void main(void) {
             nrfInterrupt = 0;
         }
 
+        if (nrfTXDSInt) {
+            nRF_TX_DS = 1;
+            nrfTXDSInt = 0;
+        }
+
+        if (nrfMAXRTInt) {
+            nRF_MAX_RT = 1;
+            nrfMAXRTInt = 0;
+        }
+
         if ((TXtime >= 12800) && (!nrfBusy)) {
 
             dataBufOut[0] = count;
-            nrfTXData(5);
+            nrfTXData(3);
             count++;
             TXtime = 0;
-        } else if (!nrfBusy) {
-
-            ACT_LED = 1;
-            __delay_us(20);
-            ACT_LED = 0;
         }
 
         __delay_us(50);
@@ -288,6 +302,16 @@ void interrupt highISR(void) {
 
         if (nRF_IRQ == 0) {                         // If falling edge change
             nrfInterrupt = 1;
+
+            nrfGetStatus();
+
+            if (testbit(nrfSTATUS,5)) {
+                nrfTXDSInt = 1;
+            }
+
+            if (testbit(nrfSTATUS,4)) {
+                nrfMAXRTInt = 1;
+            }
         }
 
         INTCONbits.RBIF = 0;                    // Clear flag
@@ -376,9 +400,9 @@ void nrfConfig(void) {
     // Write to RF setup register
     nrfConfigReg('w',RF_SETUP,RF_SETUP_CURR);
     // set RX address
-    nrfSetRXAddr(RX_ADDR_P0,RX_ADDRESS,4);
+    nrfSetRXAddr(RX_ADDR_P0,TX_ADDRESS,4);
     // set RX address
-    nrfSetRXAddr(RX_ADDR_P1,TX_ADDRESS,4);
+    nrfSetRXAddr(RX_ADDR_P1,RX_ADDRESS,4);
     // set TX address
     nrfSetTXAddr(TX_ADDRESS,4);
     // Set pipe 0 payload width

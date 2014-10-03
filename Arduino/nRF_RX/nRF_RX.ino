@@ -104,7 +104,7 @@ byte RF_CH_CURR            = B01101001;   // Channel 105 (2.400GHz + 0.105GHz = 
 byte RF_SETUP_CURR         = B00000110;   // RF data rate to 1Mbps; 0dBm output power (highest)
 //byte RF_SETUP_CURR         = B00001110;   // RF data rate to 2Mbps; 0dBm output power (highest)
 byte RX_PW_P0_CURR         = B00000001;   // 1 byte payload
-byte DYNPD_CURR            = B00000001;   // Set dynamic payload for pipe 0
+byte DYNPD_CURR            = B00000011;   // Set dynamic payload for pipe 0
 byte FEATURE_CURR          = B00000100;   // Enable dynamic payload
 byte RX_ADDRESS[4]         = {0xC7,0xC7,0xC7,0xC7};
 byte TX_ADDRESS[4]         = {0xC7,0xC7,0xC7,0xC7};
@@ -166,7 +166,7 @@ void setup() {
   // set RX address
   nrfSetRXAddr(RX_ADDR_P0,RX_ADDRESS,4);
   // Write pipe 0 payload width
-  nrfConfigReg('w',RX_PW_P0,RX_PW_P0_CURR);
+  //nrfConfigReg('w',RX_PW_P0,RX_PW_P0_CURR);
   // Set dynamic payload for pipe 0
   nrfConfigReg('w',DYNPD,DYNPD_CURR);
   // Write to FEATURE register
