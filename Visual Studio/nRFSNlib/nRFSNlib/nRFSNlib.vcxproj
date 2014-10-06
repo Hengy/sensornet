@@ -39,7 +39,11 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ExecutablePath />
+    <IncludePath>F:\Program FIles %28x86%29\Arduino\libraries\SPI;F:\Program FIles %28x86%29\Arduino\hardware\arduino\cores\arduino;F:\Program FIles %28x86%29\Arduino\hardware\tools\avr;F:\Program FIles (x86)\Arduino\libraries;$(IncludePath)</IncludePath>
+    <SourcePath>$(ProjectDir);$(SourcePath)</SourcePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>
@@ -74,6 +78,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="nRFSN.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="nRF24L01+.h" />
+    <ClCompile Include="nRFSN.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

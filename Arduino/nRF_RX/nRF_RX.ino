@@ -250,7 +250,7 @@ void nrfGetStatus() {
   
   setCSN(LOW);
   
-  nrfSTATUS = spiTransferByte(NRF_NOP);
+  nrfSTATUS = SPI.transfer(NRF_NOP);
   
   setCSN(HIGH);
 }
@@ -263,11 +263,11 @@ byte nrfConfigReg(char wr, byte command, byte data) {
     setCSN(LOW);                                // Set CSN low
 
     if (wr == 'w') {                            // Write
-        spiTransferByte(W_REGISTER|command);    // Send command
-        spiTransferByte(data);
+        SPI.transfer(W_REGISTER|command);       // Send command
+        SPI.transfer(data);
     } else if (wr == 'r') {                     // Read
-        spiTransferByte(R_REGISTER|command);    // Send command
-        data = spiTransferByte(NRF_NOP);
+        SPI.transfer(R_REGISTER|command);       // Send command
+        data = SPI.transfer(NRF_NOP);
     }
 
     setCSN(HIGH);                               // Set CSN high
@@ -284,13 +284,13 @@ void nrfSetTXAddr(byte addr[], int len) {
 
     setCSN(LOW);                            // Set CSN low
 
-    spiTransferByte(W_REGISTER|TX_ADDR);    // Send command
+    SPI.transfer(W_REGISTER|TX_ADDR);       // Send command
 
 
     if (len != 0) {
         // Send address bytes
         for (int i=1;i<=len;i++) {
-            spiTransferByte(addr[i-1]);
+            SPI.transfer(addr[i-1]);
         }
     }
 
@@ -307,12 +307,12 @@ void nrfSetRXAddr(byte pipe, byte addr[], int len) {
 
     setCSN(LOW);                        // Set CSN low
 
-    spiTransferByte(W_REGISTER|pipe);   // Send command
+    SPI.transfer(W_REGISTER|pipe);      // Send command
 
     if (len != 0) {
         // Send address bytes
         for (int i=1;i<=len;i++) {
-            spiTransferByte(addr[i-1]);
+            SPI.transfer(addr[i-1]);
         }
     }
 
@@ -332,31 +332,19 @@ void spiTransfer(char wrn, byte command,int len) {
     setCSN(LOW);                                // Set CSN low
 
     if (wrn == 'w') {                           // Write
-        spiTransferByte(W_REGISTER|command);    // Send command
+        SPI.transfer(W_REGISTER|command);       // Send command
     } else if (wrn == 'r') {                    // Read
-        spiTransferByte(R_REGISTER|command);    // Send command
+        SPI.transfer(R_REGISTER|command);       // Send command
     } else if(wrn == 'n') {
-        spiTransferByte(command);               // Send command
+        SPI.transfer(command);                  // Send command
     }
 
     if (len != 0) {
         for (int i=1;i<=len;i++) {
-            dataBufIn[i-1] = spiTransferByte(dataBufOut[i-1]);
+            dataBufIn[i-1] = SPI.transfer(dataBufOut[i-1]);
         }
     }
 
     setCSN(HIGH);                               // Set CSN high
-}
-
-/*------------------------------------------------
- * SPI transfer function: send and receive 1 byte
-------------------------------------------------*/
-byte spiTransferByte(byte data) {
-
-  SPDR = data;                            // Send data
-  while (!(SPSR & (1<<SPIF))) {           // Wait until the end of transmission
-  };
-
-  return SPDR;                            // return recieved data
 }
 
