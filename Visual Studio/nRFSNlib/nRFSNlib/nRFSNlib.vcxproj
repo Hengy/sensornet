@@ -41,7 +41,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ExecutablePath />
-    <IncludePath>F:\Program FIles %28x86%29\Arduino\libraries\SPI;F:\Program FIles %28x86%29\Arduino\hardware\arduino\cores\arduino;F:\Program FIles %28x86%29\Arduino\hardware\tools\avr;F:\Program FIles (x86)\Arduino\libraries;$(IncludePath)</IncludePath>
+    <IncludePath>F:\Program FIles %28x86%29\Arduino\libraries\EEPROM;F:\Program FIles %28x86%29\Arduino\libraries\SPI;F:\Program FIles %28x86%29\Arduino\hardware\arduino\cores\arduino;F:\Program FIles %28x86%29\Arduino\hardware\tools\avr;F:\Program FIles (x86)\Arduino\libraries;$(IncludePath)</IncludePath>
     <SourcePath>$(ProjectDir);$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

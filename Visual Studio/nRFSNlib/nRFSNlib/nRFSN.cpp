@@ -25,8 +25,8 @@ void nRFSN::init(uint8_t SPIDiv, uint8_t CEpin, uint8_t CSNpin, uint8_t IRQpin, 
 	RX_PW_P0_CURR         = B00000001;   // 1 payload
 	DYNPD_CURR            = B00000011;   // Set dynamic payload for pipe 0
 	FEATURE_CURR          = B00000100;   // Enable dynamic payload
-	RX_ADDRESS[4]         = {0xC7,0xC7,0xC7,0xC7};
-	TX_ADDRESS[4]         = {0xC7,0xC7,0xC7,0xC7};
+	RX_ADDRESS[4]         = {0xE7,0xE7,0xE7,0xE7};
+	TX_ADDRESS[4]         = {0xE7,0xE7,0xE7,0xE7};
 
 	// nRF24L01+ setup
 	// Write to CONFIG register
@@ -58,6 +58,45 @@ void nRFSN::init(uint8_t SPIDiv, uint8_t CEpin, uint8_t CSNpin, uint8_t IRQpin, 
 
 	nRFSN_RXInt = 0;
 	attachInterrupt(intNum,RX_ISR,LOW);
+}
+
+uint8_t nRFSN::sync(void)
+{
+	uint8_t prevTXAddr[4];
+	memcpy(prevTXAddr,TX_ADDRESS,4);
+	uint8_t prevRXAddr[4];
+	memcpy(prevRXAddr,RX_ADDRESS,4);
+
+	uint8_t addr[4] = {0xE7,0xE7,0xE7,0xE7};
+	setRXAddr(RX_ADDR_P0,addr,4);
+	uint8_t addr[4] = {0xE7,0xE7,0xE7,0xE7};
+	setTXAddr(addr,4);
+
+	uint32_t time = 0;
+	uint8_t synced = 0;
+	while ((time < 300000) && (synced == 0))				// while less than 30s and unsynced
+	{
+		setRXMode();
+		if (nRFSN_RXInt)
+		{
+			uint8_t size = getPayloadSize();
+			getPayload(size);
+
+			//write new address to eeprom
+
+			synced = 1;
+		}
+		delayMicroseconds(1000);	// wait 1ms
+		time++;
+	}
+
+	if (synced) {
+		// set new RX and TX addresses
+	} else {
+		// set old RX and TX addresses
+	}
+
+	return synced;
 }
 
 void nRFSN::RX_ISR(void)
@@ -132,11 +171,9 @@ uint8_t nRFSN::getPayloadSize(void)
 }
 
 
-uint8_t nRFSN::getPayload(uint8_t payloadSize)
+void nRFSN::getPayload(uint8_t payloadSize)
 {
 	transfer('r',R_RX_PAYLOAD,payloadSize);
-
-	return 0;
 }
 
 
@@ -208,4 +245,20 @@ void nRFSN::updateStatus(void)
 	nRFSN_Status = SPI.transfer(NRF_NOP);
 
 	digitalWrite(nRFSN_CSN, HIGH);
+}
+
+
+void nRFSN::clearInt(uint8_t interrupt)
+{
+	configReg('w',STATUS,interrupt);
+}
+
+void nRFSN::flushRX(void)
+{
+	transfer('n',FLUSH_RX,0);
+}
+
+void nRFSN::flushTX(void)
+{
+	transfer('n',FLUSH_TX,0);
 }

@@ -2,6 +2,10 @@
 #include <SPI.h>
 #endif
 
+#ifndef EEPROM_H_
+#include <EEPROM.h>
+#endif
+
 #include <stdint.h>
 
 class nRFSN
@@ -9,6 +13,7 @@ class nRFSN
 
 public:
 	void init(uint8_t SPIDiv, uint8_t CEpin, uint8_t CSNpin, uint8_t IRQpin, uint8_t intNum);
+	uint8_t sync(void);
 	void RX_ISR(void);
 	void setPower(uint8_t pwrLvl);
 	void setTXMode(void);
@@ -17,9 +22,12 @@ public:
 	void setChannel(uint8_t ch);
 	void transfer(char wrn, uint8_t command, uint8_t len);
 	uint8_t getPayloadSize(void);
-	uint8_t getPayload(void);
+	void getPayload(uint8_t payloadSize);
 	void initSPI(uint8_t SPIDiv);
 	void updateStatus(void);
+	void clearInt(uint8_t interrupt);
+	void flushRX(void);
+	void flushTX(void);
 
 	uint8_t nRFSN_CE;
 	uint8_t nRFSN_CSN;
