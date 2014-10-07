@@ -89,7 +89,7 @@ void nRFSN::setRXMode(void)
 
 void nRFSN::setMAX_RT(uint8_t numRT)
 {
-	SETUP_RETR_CURR = SETUP_RETR_CURR
+	SETUP_RETR_CURR = (SETUP_RETR_CURR & B11110000) | (numRT & B00001111);
 	configReg('w',SETUP_RETR,SETUP_RETR_CURR);
 }
 
