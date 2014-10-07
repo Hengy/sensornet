@@ -15,7 +15,7 @@ public:
 	void setRXMode(void);
 	void setMAX_RT(uint8_t numRT);
 	void setChannel(uint8_t ch);
-	uint8_t transmit(void);
+	void transfer(char wrn, uint8_t command, uint8_t len);
 	uint8_t getPayloadSize(void);
 	uint8_t getPayload(void);
 	void initSPI(uint8_t SPIDiv);
@@ -30,10 +30,10 @@ public:
 
 	uint8_t nRFSN_Status;			// nRF24L01+ STATUS register
 
-	volatile int nRFSN_RXInt;     // nRF received packet flag; set by ISR
+	volatile int nRFSN_RXInt;       // nRF received packet flag; set by ISR
 
 protected:
-	void configReg(char wr, uint8_t command, uint8_t data);
+	uint8_t configReg(char wr, uint8_t command, uint8_t data);
 	void setTXAddr(uint8_t addr[], uint8_t len);
 	void setRXAddr(uint8_t pipe, uint8_t addr[], uint8_t len);
 	

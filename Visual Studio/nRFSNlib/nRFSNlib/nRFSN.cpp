@@ -19,7 +19,7 @@ void nRFSN::init(uint8_t SPIDiv, uint8_t CEpin, uint8_t CSNpin, uint8_t IRQpin, 
 	EN_AA_CURR            = B00000011;   // Enable Auto Ack for pipe 0,1
 	EN_RXADDR_CURR        = B00000011;   // Enable data pipe 0,1
 	SETUP_AW_CURR         = B00000010;   // Set up for 4 address
-	SETUP_RETR_CURR       = B00100000;   // 750us retransmit delay; Disable auto retransmit
+	SETUP_RETR_CURR       = B00110000;   // 1000us retransmit delay; 10 retransmits
 	RF_CH_CURR            = B01101001;   // Channel 105 (2.400GHz + 0.105GHz = 2.505GHz)
 	RF_SETUP_CURR         = B00000110;   // RF data rate to 1Mbps; 0dBm output power (highest)
 	RX_PW_P0_CURR         = B00000001;   // 1 payload
@@ -68,58 +68,126 @@ void nRFSN::RX_ISR(void)
 
 void nRFSN::setPower(uint8_t pwrLvl)
 {
+	RF_SETUP_CURR = pwrLvl << 1;
+	configReg('w',RF_SETUP,RF_SETUP_CURR);
 }
 
 
 void nRFSN::setTXMode(void)
 {
+	CONFIG_CURR = B01001010;
+	configReg('w',CONFIG,CONFIG_CURR);
 }
 
 
 void nRFSN::setRXMode(void)
 {
+	CONFIG_CURR = B00101011;
+	configReg('w',CONFIG,CONFIG_CURR);
 }
 
 
 void nRFSN::setMAX_RT(uint8_t numRT)
 {
+	SETUP_RETR_CURR = SETUP_RETR_CURR
+	configReg('w',SETUP_RETR,SETUP_RETR_CURR);
 }
 
 
 void nRFSN::setChannel(uint8_t ch)
 {
+	RF_CH_CURR = ch;
+	configReg('w',RF_CH,RF_CH_CURR);
 }
 
 
-uint8_t nRFSN::transmit(void)
+void nRFSN::transfer(char wrn, uint8_t command, uint8_t len)
 {
-	return 0;
+	digitalWrite(nRFSN_CSN, LOW);
+
+	if (wrn == 'w') {                           // Write
+        SPI.transfer(W_REGISTER|command);       // Send command
+    } else if (wrn == 'r') {                    // Read
+        SPI.transfer(R_REGISTER|command);       // Send command
+    } else if(wrn == 'n') {
+        SPI.transfer(command);                  // Send command
+    }
+
+    if (len != 0) {
+        for (int i=1;i<=len;i++) {
+            nRFSN_BufIn[i-1] = SPI.transfer(nRFSN_BufOut[i-1]);
+        }
+    }
+
+	digitalWrite(nRFSN_CSN, HIGH);
 }
 
 
 uint8_t nRFSN::getPayloadSize(void)
 {
+	SPI.transfer(R_RX_PL_WID);
+	uint8_t payloadSize = SPI.transfer(NRF_NOP);
+	
+	return payloadSize;
+}
+
+
+uint8_t nRFSN::getPayload(uint8_t payloadSize)
+{
+	transfer('r',R_RX_PAYLOAD,payloadSize);
+
 	return 0;
 }
 
 
-uint8_t nRFSN::getPayload(void)
+uint8_t nRFSN::configReg(char wr, uint8_t command, uint8_t data)
 {
-	return 0;
-}
+	digitalWrite(nRFSN_CSN, LOW);
 
+	if (wr == 'w') {                            // Write
+        SPI.transfer(W_REGISTER|command);       // Send command
+        SPI.transfer(data);
+    } else if (wr == 'r') {                     // Read
+        SPI.transfer(R_REGISTER|command);       // Send command
+        data = SPI.transfer(NRF_NOP);
+	}
 
-void nRFSN::configReg(char wr, uint8_t command, uint8_t data)
-{
+	digitalWrite(nRFSN_CSN, HIGH);
+
+	return data;
 }
 
 void nRFSN::setTXAddr(uint8_t addr[], uint8_t len)
 {
+	digitalWrite(nRFSN_CSN, LOW);
+
+	SPI.transfer(W_REGISTER|TX_ADDR);
+
+	if (len != 0) {
+        // Send address bytes
+        for (int i=1;i<=len;i++) {
+            SPI.transfer(addr[i-1]);
+        }
+    }
+
+	digitalWrite(nRFSN_CSN, HIGH);
 }
 
 
 void nRFSN::setRXAddr(uint8_t pipe, uint8_t addr[], uint8_t len)
 {
+	digitalWrite(nRFSN_CSN, LOW);
+
+	SPI.transfer(W_REGISTER|pipe);
+
+	if (len != 0) {
+        // Send address bytes
+        for (int i=1;i<=len;i++) {
+            SPI.transfer(addr[i-1]);
+        }
+    }
+
+	digitalWrite(nRFSN_CSN, HIGH);
 }
 
 
