@@ -25,8 +25,12 @@ void nRFSN::init(uint8_t SPIDiv, uint8_t CEpin, uint8_t CSNpin, uint8_t IRQpin, 
 	RX_PW_P0_CURR         = B00000001;   // 1 payload
 	DYNPD_CURR            = B00000011;   // Set dynamic payload for pipe 0
 	FEATURE_CURR          = B00000100;   // Enable dynamic payload
-	RX_ADDRESS[4]         = {0xE7,0xE7,0xE7,0xE7};
-	TX_ADDRESS[4]         = {0xE7,0xE7,0xE7,0xE7};
+
+	if (!checkAddrs())
+	{
+		RX_ADDRESS[4]         = {0xE7,0xE7,0xE7,0xE7};
+		TX_ADDRESS[4]         = {0xE7,0xE7,0xE7,0xE7};
+	}
 
 	// nRF24L01+ setup
 	// Write to CONFIG register
@@ -72,32 +76,70 @@ uint8_t nRFSN::sync(void)
 	uint8_t addr[4] = {0xE7,0xE7,0xE7,0xE7};
 	setTXAddr(addr,4);
 
+	setRXMode();
 	uint32_t time = 0;
 	uint8_t synced = 0;
 	while ((time < 300000) && (synced == 0))				// while less than 30s and unsynced
 	{
-		setRXMode();
 		if (nRFSN_RXInt)
 		{
 			uint8_t size = getPayloadSize();
 			getPayload(size);
 
-			//write new address to eeprom
+			if ((nRFSN_BufIn[0] == 0x03) && (size == 9))
+			{
+				for (uint8_t i=0; i<4; i++)
+				{
+					EEPROM.write(i,TX_ADDRESS[i]);
+					EEPROM.write(i+4,RX_ADDRESS[i]);
+				}
 
-			synced = 1;
+				synced = 1;
+			}
+			else
+			{
+				break;										// packet was not a valid sync packet
+			}
 		}
 		delayMicroseconds(1000);	// wait 1ms
 		time++;
 	}
 
 	if (synced) {
-		// set new RX and TX addresses
+		for (uint8_t i=0; i<4; i++)
+		{
+			TX_ADDRESS[i] = nRFSN_BufIn[i+1];
+			RX_ADDRESS[i] = nRFSN_BufIn[i+5];
+		}
 	} else {
-		// set old RX and TX addresses
+		memcpy(TX_ADDRESS,prevTXAddr,4);
+		memcpy(RX_ADDRESS,prevRXAddr,4);
 	}
 
 	return synced;
 }
+
+
+uint8_t nRFSN::checkAddrs(void)
+{
+	uint8_t newAddr = 0;
+
+	uint8_t addrByte = EEPROM.read(0);
+
+	if (addrByte != 0xFF)
+	{
+		for (uint8_t i=0; i<4; i++)
+		{
+			TX_ADDRESS[i] = EEPROM.read(i);
+			RX_ADDRESS[i] = EEPROM.read(i+4);
+		}
+
+		newAddr = 1;
+	}
+
+	return newAddr;
+}
+
 
 void nRFSN::RX_ISR(void)
 {

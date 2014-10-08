@@ -41,6 +41,7 @@ public:
 	volatile int nRFSN_RXInt;       // nRF received packet flag; set by ISR
 
 protected:
+	uint8_t checkAddrs(void);
 	uint8_t configReg(char wr, uint8_t command, uint8_t data);
 	void setTXAddr(uint8_t addr[], uint8_t len);
 	void setRXAddr(uint8_t pipe, uint8_t addr[], uint8_t len);
