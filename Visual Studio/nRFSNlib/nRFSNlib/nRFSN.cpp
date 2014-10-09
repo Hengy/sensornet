@@ -9,7 +9,9 @@
  * - Initializes nRF settings to default
  * - Sets TX, RX addresses to default/EEPROM stored values
  * - Initializes interrupt flags and enables IRQ interrupt
- * SPIDiv: SPIDiv
+ * uint8_t SPIDiv: SPI frequency divider (default is SPI_CLOCK_DIV4)
+ * - SPI_CLOCK_DIVx
+ *	where valid x values are: 4, 8, 16, 32, 64, 128
 ------------------------------------------------*/
 void nRFSN::init(uint8_t SPIDiv, uint8_t CEpin, uint8_t CSNpin, uint8_t IRQpin, uint8_t intNum)
 {
@@ -346,11 +348,11 @@ uint8_t nRFSN::configReg(char wr, uint8_t command, uint8_t data)
 /*------------------------------------------------
  * Sets new transmit address
  * uint8_t addr[]: new address
- * uint8_t len: length of address
+ * uint8_t len: length of address (nRFSN uses 4)
 ------------------------------------------------*/
 void nRFSN::setTXAddr(uint8_t addr[], uint8_t len)
 {
-	digitalWrite(nRFSN_CSN, LOW);
+	digitalWrite(nRFSN_CSN, LOW);	// select nRF
 
 	SPI.transfer(W_REGISTER|TX_ADDR);
 
@@ -361,16 +363,19 @@ void nRFSN::setTXAddr(uint8_t addr[], uint8_t len)
         }
     }
 
-	digitalWrite(nRFSN_CSN, HIGH);
+	digitalWrite(nRFSN_CSN, HIGH);	// deselect nRF
 }
 
 
 /*------------------------------------------------
- * nRF24L01+ command and register definitions
+ * Sets new receive address
+ * uint8_t pipe: pipe number (0-5); nRFSN uses 0, 1
+ * uint8_t addr[]: new address
+ * uint8_t len: length of address (nRFSN uses 4)
 ------------------------------------------------*/
 void nRFSN::setRXAddr(uint8_t pipe, uint8_t addr[], uint8_t len)
 {
-	digitalWrite(nRFSN_CSN, LOW);
+	digitalWrite(nRFSN_CSN, LOW);	// select nRF
 
 	SPI.transfer(W_REGISTER|pipe);
 
@@ -381,12 +386,15 @@ void nRFSN::setRXAddr(uint8_t pipe, uint8_t addr[], uint8_t len)
         }
     }
 
-	digitalWrite(nRFSN_CSN, HIGH);
+	digitalWrite(nRFSN_CSN, HIGH);	// deselect nRF
 }
 
 
 /*------------------------------------------------
- * nRF24L01+ command and register definitions
+ * Initialize SPI setting and enable
+ * uint8_t SPIDiv: SPI frequency divider (default is SPI_CLOCK_DIV4)
+ * - SPI_CLOCK_DIVx
+ *	where valid x values are: 4, 8, 16, 32, 64, 128
 ------------------------------------------------*/
 void nRFSN::initSPI(uint8_t SPIDiv)
 {
@@ -399,20 +407,22 @@ void nRFSN::initSPI(uint8_t SPIDiv)
 
 
 /*------------------------------------------------
- * nRF24L01+ command and register definitions
+ * Updates nRF status variable
 ------------------------------------------------*/
 void nRFSN::updateStatus(void)
 {
-	digitalWrite(nRFSN_CSN, LOW);
+	digitalWrite(nRFSN_CSN, LOW);	// select nRF
 
 	nRFSN_Status = SPI.transfer(NRF_NOP);
 
-	digitalWrite(nRFSN_CSN, HIGH);
+	digitalWrite(nRFSN_CSN, HIGH);	// deselect nRF
 }
 
 
 /*------------------------------------------------
- * nRF24L01+ command and register definitions
+ * Clears interrupt flag on nRF
+ * uint8_t interrupt: interrupt number (uses defined constants)
+ *	- valid values: MAX_RT, RX_DR, TX_DS
 ------------------------------------------------*/
 void nRFSN::clearInt(uint8_t interrupt)
 {
