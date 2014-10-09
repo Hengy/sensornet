@@ -14,7 +14,6 @@ class nRFSN
 public:
 	void init(uint8_t SPIDiv, uint8_t CEpin, uint8_t CSNpin, uint8_t IRQpin, uint8_t intNum);
 	uint8_t sync(void);
-	void RX_ISR(void);
 	void setPower(uint8_t pwrLvl);
 	void setTXMode(void);
 	void setRXMode(void);
@@ -26,8 +25,6 @@ public:
 	void initSPI(uint8_t SPIDiv);
 	void updateStatus(void);
 	void clearInt(uint8_t interrupt);
-	void flushRX(void);
-	void flushTX(void);
 
 	uint8_t nRFSN_CE;
 	uint8_t nRFSN_CSN;
@@ -38,10 +35,15 @@ public:
 
 	uint8_t nRFSN_Status;			// nRF24L01+ STATUS register
 
-	volatile int nRFSN_RXInt;       // nRF received packet flag; set by ISR
+	volatile uint8_t nRFSN_Busy;	// nRF busy flag; set when transmitting
+
+	volatile uint8_t nRFSN_RXInt;		// nRF received packet flag set by ISR
+	volatile uint8_t nRFSN_TXInt;       // nRF packet sent flag set by ISR
+	volatile uint8_t nRFSN_MAXInt;      // nRF max retransmit flag set by ISR
 
 protected:
 	uint8_t checkAddrs(void);
+	void nRF_ISR(void);
 	uint8_t configReg(char wr, uint8_t command, uint8_t data);
 	void setTXAddr(uint8_t addr[], uint8_t len);
 	void setRXAddr(uint8_t pipe, uint8_t addr[], uint8_t len);
