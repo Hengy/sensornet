@@ -206,17 +206,17 @@ void nRFSN::nRF_ISR(void)
 
 
 /*------------------------------------------------
- * nRF24L01+ command and register definitions
+ * Set nRF output power. 0: lowest 3: highest
 ------------------------------------------------*/
 void nRFSN::setPower(uint8_t pwrLvl)
 {
-	RF_SETUP_CURR = pwrLvl << 1;
+	RF_SETUP_CURR = pwrLvl << 1;			// shift 1 bit left
 	configReg('w',RF_SETUP,RF_SETUP_CURR);
 }
 
 
 /*------------------------------------------------
- * nRF24L01+ command and register definitions
+ * Set nRF to transmit mode
 ------------------------------------------------*/
 void nRFSN::setTXMode(void)
 {
@@ -226,7 +226,7 @@ void nRFSN::setTXMode(void)
 
 
 /*------------------------------------------------
- * nRF24L01+ command and register definitions
+ * Set nRF to receive mode
 ------------------------------------------------*/
 void nRFSN::setRXMode(void)
 {
@@ -236,17 +236,20 @@ void nRFSN::setRXMode(void)
 
 
 /*------------------------------------------------
- * nRF24L01+ command and register definitions
+ * Set nRF max number of retransmits
+ * uint8_t numRT: Auto Retransmit Count (0: 250us 1111(15): 4000us; each +1 = +150us)
 ------------------------------------------------*/
 void nRFSN::setMAX_RT(uint8_t numRT)
 {
+	// mask out current Auto Retransmit Delay, and OR it with numRT with upper 4 bits (numbers > 16) masked out
+	// result is current ARD and new ARC values
 	SETUP_RETR_CURR = (SETUP_RETR_CURR & B11110000) | (numRT & B00001111);
 	configReg('w',SETUP_RETR,SETUP_RETR_CURR);
 }
 
 
 /*------------------------------------------------
- * nRF24L01+ command and register definitions
+ * Set nRF channel (Fo = 2400 + channel [MHz])
 ------------------------------------------------*/
 void nRFSN::setChannel(uint8_t ch)
 {
@@ -256,12 +259,18 @@ void nRFSN::setChannel(uint8_t ch)
 
 
 /*------------------------------------------------
- * nRF24L01+ command and register definitions
+ * nRF transfer data.
+ * char wrn: write('w')/read('r')/none('n')
+ * uint8_t command: command byte
+ *					- if wrn = 'w' or 'r', command byte is ORed with W_REGISTER, R_REGISTER
+ * uint8_t len: length of data in bytes
+				- data to be sent must be in output buffer
 ------------------------------------------------*/
 void nRFSN::transfer(char wrn, uint8_t command, uint8_t len)
 {
-	digitalWrite(nRFSN_CSN, LOW);
+	digitalWrite(nRFSN_CSN, LOW);	// select nRF
 
+	// construct command byte
 	if (wrn == 'w') {                           // Write
         SPI.transfer(W_REGISTER|command);       // Send command
     } else if (wrn == 'r') {                    // Read
@@ -270,30 +279,37 @@ void nRFSN::transfer(char wrn, uint8_t command, uint8_t len)
         SPI.transfer(command);                  // Send command
     }
 
+	// if there is data to be sent, send it byte at a time
     if (len != 0) {
         for (int i=1;i<=len;i++) {
             nRFSN_BufIn[i-1] = SPI.transfer(nRFSN_BufOut[i-1]);
         }
     }
 
-	digitalWrite(nRFSN_CSN, HIGH);
+	digitalWrite(nRFSN_CSN, HIGH);	// deselect nRF
 }
 
 
 /*------------------------------------------------
- * nRF24L01+ command and register definitions
+ * Gets size of received payload. Must be < 32 bytes
 ------------------------------------------------*/
 uint8_t nRFSN::getPayloadSize(void)
 {
 	SPI.transfer(R_RX_PL_WID);
 	uint8_t payloadSize = SPI.transfer(NRF_NOP);
 	
+	// do not try and read more than 32 bytes.
+	if (payloadSize > 32)
+	{
+		payloadSize = 32;
+	}
+
 	return payloadSize;
 }
 
 
 /*------------------------------------------------
- * nRF24L01+ command and register definitions
+ * Gets payload from nRF
 ------------------------------------------------*/
 void nRFSN::getPayload(uint8_t payloadSize)
 {
@@ -302,11 +318,16 @@ void nRFSN::getPayload(uint8_t payloadSize)
 
 
 /*------------------------------------------------
- * nRF24L01+ command and register definitions
+ * nRF configure register.
+ * char wrn: write('w')/read('r')
+ * uint8_t command: command byte
+ *					- command byte is ORed with W_REGISTER, R_REGISTER
+ * uint8_t data: data byte to send
+ * returns data byte. If writing to register, will return 0x00
 ------------------------------------------------*/
 uint8_t nRFSN::configReg(char wr, uint8_t command, uint8_t data)
 {
-	digitalWrite(nRFSN_CSN, LOW);
+	digitalWrite(nRFSN_CSN, LOW);	// select nRF
 
 	if (wr == 'w') {                            // Write
         SPI.transfer(W_REGISTER|command);       // Send command
@@ -316,14 +337,16 @@ uint8_t nRFSN::configReg(char wr, uint8_t command, uint8_t data)
         data = SPI.transfer(NRF_NOP);
 	}
 
-	digitalWrite(nRFSN_CSN, HIGH);
+	digitalWrite(nRFSN_CSN, HIGH);	// deselect nRF
 
 	return data;
 }
 
 
 /*------------------------------------------------
- * nRF24L01+ command and register definitions
+ * Sets new transmit address
+ * uint8_t addr[]: new address
+ * uint8_t len: length of address
 ------------------------------------------------*/
 void nRFSN::setTXAddr(uint8_t addr[], uint8_t len)
 {
