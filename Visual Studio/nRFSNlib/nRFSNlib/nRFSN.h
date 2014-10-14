@@ -1,22 +1,13 @@
-#ifndef SPI_H_
-#include <SPI.h>
-#endif
-
-#ifndef EEPROM_H_
-#include <EEPROM.h>
-#endif
-
-#include "Arduino.h"
+#include <Arduino.h>
 #include <stdint.h>
+#include <SPI.h>
+#include <EEPROM.h>
 
-#ifndef nRFSN_h
-#define nRFSN_h
+#include "nRF24L01+.h"
 
-class nRFSN
-{
-
+class nRFSNClass {
 public:
-	void init(uint8_t SPIDiv, uint8_t CEpin, uint8_t CSNpin, uint8_t IRQpin, uint8_t intNum);
+	void init(uint8_t SPIDiv, uint8_t CEpin, uint8_t CSNpin, uint8_t IRQpin);
 	uint8_t sync(void);
 	void setPower(uint8_t pwrLvl);
 	void setTXMode(void);
@@ -29,6 +20,8 @@ public:
 	void initSPI(uint8_t SPIDiv);
 	void updateStatus(void);
 	void clearInt(uint8_t interrupt);
+	void nRF_ISR(void);
+	void transmit(uint8_t len);
 
 	uint8_t nRFSN_CE;
 	uint8_t nRFSN_CSN;
@@ -47,7 +40,6 @@ public:
 
 protected:
 	uint8_t checkAddrs(void);
-	void nRF_ISR(void);
 	uint8_t configReg(char wr, uint8_t command, uint8_t data);
 	void setTXAddr(uint8_t addr[], uint8_t len);
 	void setRXAddr(uint8_t pipe, uint8_t addr[], uint8_t len);
@@ -69,4 +61,4 @@ protected:
 	uint8_t TX_ADDRESS[4];
 };
 
-#endif
+extern nRFSNClass nRFSN;

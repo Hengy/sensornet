@@ -1,6 +1,6 @@
-#include "nRF24L01+.h"
 #include "nRFSN.h"
 
+nRFSNClass nRFSN;
 
 /*------------------------------------------------
  * Initialize function
@@ -13,7 +13,7 @@
  * - SPI_CLOCK_DIVx
  *	where valid x values are: 4, 8, 16, 32, 64, 128
 ------------------------------------------------*/
-void nRFSN::init(uint8_t SPIDiv, uint8_t CEpin, uint8_t CSNpin, uint8_t IRQpin, uint8_t intNum)
+void nRFSNClass::init(uint8_t SPIDiv, uint8_t CEpin, uint8_t CSNpin, uint8_t IRQpin)
 {
 	nRFSN_CE = CEpin;
 	nRFSN_CSN = CSNpin;
@@ -45,8 +45,12 @@ void nRFSN::init(uint8_t SPIDiv, uint8_t CEpin, uint8_t CSNpin, uint8_t IRQpin, 
 
 	if (!checkAddrs())		// Is there an address in EEPROM?
 	{
-		RX_ADDRESS[4]         = {0xE7,0xE7,0xE7,0xE7};	// If no EEPROM stored addresses,
-		TX_ADDRESS[4]         = {0xE7,0xE7,0xE7,0xE7};	// set deafults
+		// If no EEPROM stored addresses, set deafults
+		for (int i=0;i<4;i++)
+		{
+			RX_ADDRESS[i] = 0xE7;
+			TX_ADDRESS[i] = 0xE7;
+		}
 	}
 
 	// nRF24L01+ setup
@@ -73,15 +77,14 @@ void nRFSN::init(uint8_t SPIDiv, uint8_t CEpin, uint8_t CSNpin, uint8_t IRQpin, 
 	// Write to FEATURE register
 	configReg('w',FEATURE,FEATURE_CURR);
 	// Flush RX FIFO
-	spiTransfer('n',FLUSH_RX,0);
+	transfer('n',FLUSH_RX,0);
 	// Flush TX FIFO
-	spiTransfer('n',FLUSH_TX,0);
+	transfer('n',FLUSH_TX,0);
 
 	// Initialize interrupt flags
 	nRFSN_RXInt = 0;
 	nRFSN_TXInt = 0;
 	nRFSN_MAXInt = 0;
-	attachInterrupt(intNum,nRF_ISR,LOW);	// Enable IRQ interrupt
 }
 
 
@@ -89,7 +92,7 @@ void nRFSN::init(uint8_t SPIDiv, uint8_t CEpin, uint8_t CSNpin, uint8_t IRQpin, 
  * nRFSN sync function. Syncs to Root (RPi) and stores new TX, RX addresses.
  * Returns 0: Sync fail 1: Sync succeed
 ------------------------------------------------*/
-uint8_t nRFSN::sync(void)
+uint8_t nRFSNClass::sync(void)
 {
 	// make copy of current TX, RX addresses
 	uint8_t prevTXAddr[4];
@@ -98,10 +101,15 @@ uint8_t nRFSN::sync(void)
 	memcpy(prevRXAddr,RX_ADDRESS,4);
 
 	// set default addresses for syncing
-	uint8_t addr[4] = {0xE7,0xE7,0xE7,0xE7};
-	setRXAddr(RX_ADDR_P0,addr,4);
-	uint8_t addr[4] = {0xE7,0xE7,0xE7,0xE7};
-	setTXAddr(addr,4);
+	uint8_t addr1[4];
+	uint8_t addr2[4];
+	for (int i=0;i<4;i++)
+	{
+		RX_ADDRESS[i] = 0xE7;
+		TX_ADDRESS[i] = 0xE7;
+	}
+	setRXAddr(RX_ADDR_P0,addr1,4);
+	setTXAddr(addr2,4);
 
 	// set to receive mode
 	setRXMode();
@@ -157,7 +165,7 @@ uint8_t nRFSN::sync(void)
 /*------------------------------------------------
  * Check EEPROM for valid addresses
 ------------------------------------------------*/
-uint8_t nRFSN::checkAddrs(void)
+uint8_t nRFSNClass::checkAddrs(void)
 {
 	uint8_t newAddr = 0;
 
@@ -186,7 +194,7 @@ uint8_t nRFSN::checkAddrs(void)
 /*------------------------------------------------
  * IRQ pin interrupt service routine
 ------------------------------------------------*/
-void nRFSN::nRF_ISR(void)
+void nRFSNClass::nRF_ISR(void)
 {
 	updateStatus();						// Get current nRF status
 
@@ -210,7 +218,7 @@ void nRFSN::nRF_ISR(void)
 /*------------------------------------------------
  * Set nRF output power. 0: lowest 3: highest
 ------------------------------------------------*/
-void nRFSN::setPower(uint8_t pwrLvl)
+void nRFSNClass::setPower(uint8_t pwrLvl)
 {
 	RF_SETUP_CURR = pwrLvl << 1;			// shift 1 bit left
 	configReg('w',RF_SETUP,RF_SETUP_CURR);
@@ -220,7 +228,7 @@ void nRFSN::setPower(uint8_t pwrLvl)
 /*------------------------------------------------
  * Set nRF to transmit mode
 ------------------------------------------------*/
-void nRFSN::setTXMode(void)
+void nRFSNClass::setTXMode(void)
 {
 	CONFIG_CURR = B01001010;
 	configReg('w',CONFIG,CONFIG_CURR);
@@ -230,7 +238,7 @@ void nRFSN::setTXMode(void)
 /*------------------------------------------------
  * Set nRF to receive mode
 ------------------------------------------------*/
-void nRFSN::setRXMode(void)
+void nRFSNClass::setRXMode(void)
 {
 	CONFIG_CURR = B00101011;
 	configReg('w',CONFIG,CONFIG_CURR);
@@ -241,7 +249,7 @@ void nRFSN::setRXMode(void)
  * Set nRF max number of retransmits
  * uint8_t numRT: Auto Retransmit Count (0: 250us 1111(15): 4000us; each +1 = +150us)
 ------------------------------------------------*/
-void nRFSN::setMAX_RT(uint8_t numRT)
+void nRFSNClass::setMAX_RT(uint8_t numRT)
 {
 	// mask out current Auto Retransmit Delay, and OR it with numRT with upper 4 bits (numbers > 16) masked out
 	// result is current ARD and new ARC values
@@ -253,7 +261,7 @@ void nRFSN::setMAX_RT(uint8_t numRT)
 /*------------------------------------------------
  * Set nRF channel (Fo = 2400 + channel [MHz])
 ------------------------------------------------*/
-void nRFSN::setChannel(uint8_t ch)
+void nRFSNClass::setChannel(uint8_t ch)
 {
 	RF_CH_CURR = ch;
 	configReg('w',RF_CH,RF_CH_CURR);
@@ -261,14 +269,14 @@ void nRFSN::setChannel(uint8_t ch)
 
 
 /*------------------------------------------------
- * nRF transfer data.
+ * nRF transfer data. DO NOT USE TO TRANSMIT!
  * char wrn: write('w')/read('r')/none('n')
  * uint8_t command: command byte
  *					- if wrn = 'w' or 'r', command byte is ORed with W_REGISTER, R_REGISTER
  * uint8_t len: length of data in bytes
 				- data to be sent must be in output buffer
 ------------------------------------------------*/
-void nRFSN::transfer(char wrn, uint8_t command, uint8_t len)
+void nRFSNClass::transfer(char wrn, uint8_t command, uint8_t len)
 {
 	digitalWrite(nRFSN_CSN, LOW);	// select nRF
 
@@ -281,7 +289,7 @@ void nRFSN::transfer(char wrn, uint8_t command, uint8_t len)
         SPI.transfer(command);                  // Send command
     }
 
-	// if there is data to be sent, send it byte at a time
+	// if there is data, do it byte at a time
     if (len != 0) {
         for (int i=1;i<=len;i++) {
             nRFSN_BufIn[i-1] = SPI.transfer(nRFSN_BufOut[i-1]);
@@ -293,9 +301,37 @@ void nRFSN::transfer(char wrn, uint8_t command, uint8_t len)
 
 
 /*------------------------------------------------
+ * nRF transmit data.
+ * uint8_t len: length of data in bytes
+				- data to be sent must be in output buffer
+------------------------------------------------*/
+void nRFSNClass::transmit(uint8_t len)
+{
+	if (len > 0)
+	{
+		digitalWrite(nRFSN_CSN, LOW);	// select nRF
+
+		SPI.transfer(0xA0);				// Send write payload command
+
+		// write payload
+		for (int i=1;i<=len;i++) {
+			SPI.transfer(nRFSN_BufOut[i-1]);
+		}
+
+		digitalWrite(nRFSN_CSN, HIGH);	// deselect nRF
+
+		// toggle CE pin to transmit
+		digitalWrite(nRFSN_CE, HIGH);
+		delayMicroseconds(12);
+		digitalWrite(nRFSN_CE, LOW);
+	}
+}
+
+
+/*------------------------------------------------
  * Gets size of received payload. Must be < 32 bytes
 ------------------------------------------------*/
-uint8_t nRFSN::getPayloadSize(void)
+uint8_t nRFSNClass::getPayloadSize(void)
 {
 	SPI.transfer(R_RX_PL_WID);
 	uint8_t payloadSize = SPI.transfer(NRF_NOP);
@@ -313,7 +349,7 @@ uint8_t nRFSN::getPayloadSize(void)
 /*------------------------------------------------
  * Gets payload from nRF
 ------------------------------------------------*/
-void nRFSN::getPayload(uint8_t payloadSize)
+void nRFSNClass::getPayload(uint8_t payloadSize)
 {
 	transfer('r',R_RX_PAYLOAD,payloadSize);
 }
@@ -327,7 +363,7 @@ void nRFSN::getPayload(uint8_t payloadSize)
  * uint8_t data: data byte to send
  * returns data byte. If writing to register, will return 0x00
 ------------------------------------------------*/
-uint8_t nRFSN::configReg(char wr, uint8_t command, uint8_t data)
+uint8_t nRFSNClass::configReg(char wr, uint8_t command, uint8_t data)
 {
 	digitalWrite(nRFSN_CSN, LOW);	// select nRF
 
@@ -350,7 +386,7 @@ uint8_t nRFSN::configReg(char wr, uint8_t command, uint8_t data)
  * uint8_t addr[]: new address
  * uint8_t len: length of address (nRFSN uses 4)
 ------------------------------------------------*/
-void nRFSN::setTXAddr(uint8_t addr[], uint8_t len)
+void nRFSNClass::setTXAddr(uint8_t addr[], uint8_t len)
 {
 	digitalWrite(nRFSN_CSN, LOW);	// select nRF
 
@@ -373,7 +409,7 @@ void nRFSN::setTXAddr(uint8_t addr[], uint8_t len)
  * uint8_t addr[]: new address
  * uint8_t len: length of address (nRFSN uses 4)
 ------------------------------------------------*/
-void nRFSN::setRXAddr(uint8_t pipe, uint8_t addr[], uint8_t len)
+void nRFSNClass::setRXAddr(uint8_t pipe, uint8_t addr[], uint8_t len)
 {
 	digitalWrite(nRFSN_CSN, LOW);	// select nRF
 
@@ -396,7 +432,7 @@ void nRFSN::setRXAddr(uint8_t pipe, uint8_t addr[], uint8_t len)
  * - SPI_CLOCK_DIVx
  *	where valid x values are: 4, 8, 16, 32, 64, 128
 ------------------------------------------------*/
-void nRFSN::initSPI(uint8_t SPIDiv)
+void nRFSNClass::initSPI(uint8_t SPIDiv)
 {
 	// SPI setup
 	SPI.setBitOrder(MSBFIRST);              // Set most significant bit first
@@ -409,7 +445,7 @@ void nRFSN::initSPI(uint8_t SPIDiv)
 /*------------------------------------------------
  * Updates nRF status variable
 ------------------------------------------------*/
-void nRFSN::updateStatus(void)
+void nRFSNClass::updateStatus(void)
 {
 	digitalWrite(nRFSN_CSN, LOW);	// select nRF
 
@@ -424,7 +460,7 @@ void nRFSN::updateStatus(void)
  * uint8_t interrupt: interrupt number (uses defined constants)
  *	- valid values: MAX_RT, RX_DR, TX_DS
 ------------------------------------------------*/
-void nRFSN::clearInt(uint8_t interrupt)
+void nRFSNClass::clearInt(uint8_t interrupt)
 {
 	configReg('w',STATUS,(interrupt << 4));
 }
