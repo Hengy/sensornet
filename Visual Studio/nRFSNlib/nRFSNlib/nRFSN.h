@@ -10,19 +10,19 @@ class nRFSNClass {
 public:
 	void init(uint8_t SPIDiv, uint8_t CEpin, uint8_t CSNpin, uint8_t IRQpin);
 	uint8_t sync(void);
+	void nRF_ISR(void);
 	void setPower(uint8_t pwrLvl);
 	void setTXMode(void);
 	void setRXMode(void);
 	void setMAX_RT(uint8_t numRT);
 	void setChannel(uint8_t ch);
-	void transfer(char wrn, uint8_t command, uint8_t len);
+	void transfer(char wrn, uint8_t command, uint8_t len, uint8_t offset);
+	void transmit(uint8_t len);
 	uint8_t getPayloadSize(void);
-	void getPayload(uint8_t payloadSize);
+	void getPayload(uint8_t payloadSize, uint8_t offset);
 	void initSPI(uint8_t SPIDiv);
 	void updateStatus(void);
 	void clearInt(uint8_t interrupt);
-	void nRF_ISR(void);
-	void transmit(uint8_t len);
 
 	uint8_t nRFSN_CE;
 	uint8_t nRFSN_CSN;

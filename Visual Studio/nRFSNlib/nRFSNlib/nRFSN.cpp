@@ -77,9 +77,9 @@ void nRFSNClass::init(uint8_t SPIDiv, uint8_t CEpin, uint8_t CSNpin, uint8_t IRQ
 	// Write to FEATURE register
 	configReg('w',FEATURE,FEATURE_CURR);
 	// Flush RX FIFO
-	transfer('n',FLUSH_RX,0);
+	transfer('n',FLUSH_RX,0,0);
 	// Flush TX FIFO
-	transfer('n',FLUSH_TX,0);
+	transfer('n',FLUSH_TX,0,0);
 
 	// Initialize interrupt flags
 	RXInt = 0;
@@ -120,7 +120,7 @@ uint8_t nRFSNClass::sync(void)
 		if (RXInt)									// has a packet been received?
 		{
 			uint8_t size = getPayloadSize();				// If so, get the size
-			getPayload(size);								// then get the packet data and put in buffer
+			getPayload(size,0);								// then get the packet data and put in buffer
 
 			if ((BufIn[0] == 0x03) && (size == 9))	// check for sync command and packet size of 9
 			{
@@ -275,8 +275,9 @@ void nRFSNClass::setChannel(uint8_t ch)
  *					- if wrn = 'w' or 'r', command byte is ORed with W_REGISTER, R_REGISTER
  * uint8_t len: length of data in bytes
 				- data to be sent must be in output buffer
+ * uint8_t offet: where in the buffer to start read/write
 ------------------------------------------------*/
-void nRFSNClass::transfer(char wrn, uint8_t command, uint8_t len)
+void nRFSNClass::transfer(char wrn, uint8_t command, uint8_t len, uint8_t offset)
 {
 	digitalWrite(nRFSN_CSN, LOW);	// select nRF
 
@@ -291,7 +292,7 @@ void nRFSNClass::transfer(char wrn, uint8_t command, uint8_t len)
 
 	// if there is data, do it byte at a time
     if (len != 0) {
-        for (int i=1;i<=len;i++) {
+		for (int i=offset+1;i<=len;i++) {
             BufIn[i-1] = SPI.transfer(BufOut[i-1]);
         }
     }
@@ -351,9 +352,9 @@ uint8_t nRFSNClass::getPayloadSize(void)
 /*------------------------------------------------
  * Gets payload from nRF
 ------------------------------------------------*/
-void nRFSNClass::getPayload(uint8_t payloadSize)
+void nRFSNClass::getPayload(uint8_t payloadSize, uint8_t offset)
 {
-	transfer('r',R_RX_PAYLOAD,payloadSize);
+	transfer('r',R_RX_PAYLOAD,payloadSize,offset);
 }
 
 

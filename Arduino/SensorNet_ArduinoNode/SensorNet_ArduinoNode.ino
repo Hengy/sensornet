@@ -7,6 +7,10 @@
 #include <nRFSN.h>
 //-----------------------------------
 
+
+
+
+
 void setup() {
   nRFSN_setup();  // This code MUST stay. See documentation for user modifications.
   
@@ -16,7 +20,17 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly: 
 
+  nRFSN_loop();
 }
+
+
+
+
+
+
+//-----------------------------------
+// nRFSN required code. See documentation for how to modify this for your project.
+//-----------------------------------
 
 //-----------------------------------
 // This code MUST stay. See documentation for user modifications.
@@ -25,6 +39,8 @@ void nRFSN_setup() {
   nRFSN.init(SPI_CLOCK_DIV4,5,4,3);   // Initialize: SPI clock divider, CE pin, CSN pin, IRQ pin.
                                       // IRQ pin must be capable of interrupts!
   attachInterrupt(0,nRFSN_ISR,LOW);   // Enable nRF24L01+ IRQ interrupt
+  
+  nRFSN.setRXMode();                  // Default to RX mode
 }
 //-----------------------------------
 
@@ -39,14 +55,16 @@ void nRFSN_loop() {
     {
       case SENV_0:  // Request sensor value 0 command
       {
-        byte len = 0;
-        nRFSN.transmit(len);  // Transmit first sensor data
+        // Put data to be sent in BufIn here
+        nRFSN.transmit();  // Specify length of data (in bytes) here. Max 28 bytes
         break;
       }
       
       case AUTOV_0:  // Update automation value 0 command
       {
-        
+        // Get received data length here: len = nRFSN.getPayloadSize();
+        // Get received data using len here. Data is put in BufOut. Command is in BufOut[0]: nRFSN.getPayload(len,1);
+        // Do something wtih payload here
         break;
       }
       
