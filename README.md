@@ -1,4 +1,5 @@
 SensorNet
+-----------------------------------------------
 
 SensorNet is a wireless network optimised for small data transfers that are typical of sensor and automation devices. Where the 802.11 standard (WiFi) is meant for large data streams, networking, etc. - with the overhead that comes with it - Sensornet is optimised for the inherently small data needed for sensors and automation control.
 
