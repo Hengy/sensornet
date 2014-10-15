@@ -34,13 +34,19 @@ void nRFSN_setup() {
 void nRFSN_loop() {
   
   // If data has been received
-  if (nRFSN.nRFSN_RXInt) {
-    switch (nRFSN.nRFSN_BufIn[0])
+  if (nRFSN.RXInt) {
+    switch (nRFSN.BufIn[0])
     {
-      case 0x10:  // CREATE HEADER FILE WITH #DEFINES!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      case SENV_0:  // Request sensor value 0 command
       {
         byte len = 0;
         nRFSN.transmit(len);  // Transmit first sensor data
+        break;
+      }
+      
+      case AUTOV_0:  // Update automation value 0 command
+      {
+        
         break;
       }
       
@@ -48,7 +54,22 @@ void nRFSN_loop() {
         break;
     }
     
-    nRFSN.clearInt(RX_DR);
+    nRFSN.clearInt(RX_DR);  // Clear data received interrupt
+    nRFSN.RXInt = 0;
+  }
+  
+  // If data sent
+  if (nRFSN.TXInt) {
+    
+    nRFSN.clearInt(TX_DS); // Clear data sent interrupt
+    nRFSN.TXInt = 0;
+  }
+  
+  // If max retransmits
+  if (nRFSN.MAXInt) {
+    
+    nRFSN.clearInt(MAX_RT); // Clear max retransmits interrupt
+    nRFSN.MAXInt = 0;
   }
     
 }

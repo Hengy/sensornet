@@ -4,6 +4,7 @@
 #include <EEPROM.h>
 
 #include "nRF24L01+.h"
+#include "nRFSNCommands.h"
 
 class nRFSNClass {
 public:
@@ -27,16 +28,16 @@ public:
 	uint8_t nRFSN_CSN;
 	uint8_t nRFSN_IRQ;
 
-	uint8_t nRFSN_BufIn[32];		// 32 uint8_t buffer for all incoming SPI data
-	uint8_t nRFSN_BufOut[32];		// 32 uint8_t buffer for all outgoing SPI data
+	uint8_t BufIn[32];				// 32 uint8_t buffer for all incoming SPI data
+	uint8_t BufOut[32];				// 32 uint8_t buffer for all outgoing SPI data
 
-	uint8_t nRFSN_Status;			// nRF24L01+ STATUS register
+	uint8_t Status;					// nRF24L01+ STATUS register
 
-	volatile uint8_t nRFSN_Busy;	// nRF busy flag; set when transmitting
+	volatile uint8_t Busy;			// nRF busy flag; set when transmitting
 
-	volatile uint8_t nRFSN_RXInt;		// nRF received packet flag set by ISR
-	volatile uint8_t nRFSN_TXInt;       // nRF packet sent flag set by ISR
-	volatile uint8_t nRFSN_MAXInt;      // nRF max retransmit flag set by ISR
+	volatile uint8_t RXInt;			// nRF received packet flag set by ISR
+	volatile uint8_t TXInt;			// nRF packet sent flag set by ISR
+	volatile uint8_t MAXInt;		// nRF max retransmit flag set by ISR
 
 protected:
 	uint8_t checkAddrs(void);

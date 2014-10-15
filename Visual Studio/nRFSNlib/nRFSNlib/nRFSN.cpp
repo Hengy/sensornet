@@ -82,9 +82,9 @@ void nRFSNClass::init(uint8_t SPIDiv, uint8_t CEpin, uint8_t CSNpin, uint8_t IRQ
 	transfer('n',FLUSH_TX,0);
 
 	// Initialize interrupt flags
-	nRFSN_RXInt = 0;
-	nRFSN_TXInt = 0;
-	nRFSN_MAXInt = 0;
+	RXInt = 0;
+	TXInt = 0;
+	MAXInt = 0;
 }
 
 
@@ -117,17 +117,17 @@ uint8_t nRFSNClass::sync(void)
 	uint8_t synced = 0;
 	while ((time < 300000) && (synced == 0))				// while less than 30s and unsynced
 	{
-		if (nRFSN_RXInt)									// has a packet been received?
+		if (RXInt)									// has a packet been received?
 		{
 			uint8_t size = getPayloadSize();				// If so, get the size
 			getPayload(size);								// then get the packet data and put in buffer
 
-			if ((nRFSN_BufIn[0] == 0x03) && (size == 9))	// check for sync command and packet size of 9
+			if ((BufIn[0] == 0x03) && (size == 9))	// check for sync command and packet size of 9
 			{
 				for (uint8_t i=0; i<4; i++)					// if valid sync packet, write new addresses to EEPROM
 				{
-					EEPROM.write(i,nRFSN_BufIn[i+1]);
-					EEPROM.write(i+4,nRFSN_BufIn[i+5]);
+					EEPROM.write(i,BufIn[i+1]);
+					EEPROM.write(i+4,BufIn[i+5]);
 				}
 
 				synced = 1;									// stop syncing
@@ -144,8 +144,8 @@ uint8_t nRFSNClass::sync(void)
 	if (synced) {								// if sync was successful, set new addresses
 		for (uint8_t i=0; i<4; i++)
 		{
-			TX_ADDRESS[i] = nRFSN_BufIn[i+1];
-			RX_ADDRESS[i] = nRFSN_BufIn[i+5];
+			TX_ADDRESS[i] = BufIn[i+1];
+			RX_ADDRESS[i] = BufIn[i+5];
 		}
 		// set new TX address
 		setTXAddr(TX_ADDRESS,4);
@@ -198,19 +198,19 @@ void nRFSNClass::nRF_ISR(void)
 {
 	updateStatus();						// Get current nRF status
 
-	if (nRFSN_Status & B01000000)		// If data received IRQ
+	if (Status & B01000000)		// If data received IRQ
 	{
-		nRFSN_RXInt = 1;
+		RXInt = 1;
 	}
-	else if (nRFSN_Status & B00100000)	// If data sent IRQ
+	else if (Status & B00100000)	// If data sent IRQ
 	{
-		nRFSN_TXInt = 1;
-		nRFSN_Busy = 0;					// if data sent, nRF no longer busy
+		TXInt = 1;
+		Busy = 0;					// if data sent, nRF no longer busy
 	}
-	else if (nRFSN_Status & B00010000)	// If max retransmits IRQ
+	else if (Status & B00010000)	// If max retransmits IRQ
 	{
-		nRFSN_MAXInt = 1;
-		nRFSN_Busy = 0;					// nRF no longer busy
+		MAXInt = 1;
+		Busy = 0;					// nRF no longer busy
 	}
 }
 
@@ -292,7 +292,7 @@ void nRFSNClass::transfer(char wrn, uint8_t command, uint8_t len)
 	// if there is data, do it byte at a time
     if (len != 0) {
         for (int i=1;i<=len;i++) {
-            nRFSN_BufIn[i-1] = SPI.transfer(nRFSN_BufOut[i-1]);
+            BufIn[i-1] = SPI.transfer(BufOut[i-1]);
         }
     }
 
@@ -304,7 +304,7 @@ void nRFSNClass::transfer(char wrn, uint8_t command, uint8_t len)
  * nRF transmit data.
  * uint8_t len: length of data in bytes
 				- data to be sent must be in output buffer
-------------------------------------------------*/
+-------------------------------------------------*/
 void nRFSNClass::transmit(uint8_t len)
 {
 	if (len > 0)
@@ -315,7 +315,7 @@ void nRFSNClass::transmit(uint8_t len)
 
 		// write payload
 		for (int i=1;i<=len;i++) {
-			SPI.transfer(nRFSN_BufOut[i-1]);
+			SPI.transfer(BufOut[i-1]);
 		}
 
 		digitalWrite(nRFSN_CSN, HIGH);	// deselect nRF
@@ -324,6 +324,8 @@ void nRFSNClass::transmit(uint8_t len)
 		digitalWrite(nRFSN_CE, HIGH);
 		delayMicroseconds(12);
 		digitalWrite(nRFSN_CE, LOW);
+
+		Busy = 1;	// Flag nRF24L01+ is busy
 	}
 }
 
@@ -449,7 +451,7 @@ void nRFSNClass::updateStatus(void)
 {
 	digitalWrite(nRFSN_CSN, LOW);	// select nRF
 
-	nRFSN_Status = SPI.transfer(NRF_NOP);
+	Status = SPI.transfer(NRF_NOP);
 
 	digitalWrite(nRFSN_CSN, HIGH);	// deselect nRF
 }
