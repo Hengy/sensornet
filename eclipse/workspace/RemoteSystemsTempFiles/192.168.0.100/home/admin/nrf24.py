@@ -1,32 +1,47 @@
 #!/usr/bin/python2.7
 
 import pigpio
+import spidev
 import time
 
-SPI_MOSI = 10
-SPI_MISO = 9
-SPI_SCLK = 11
-SPI_CSN = 7
+print "Starting SPI test..."
 
 gpio = pigpio.pi()
 
-gpio.set_mode(SPI_MOSI, pigpio.OUTPUT)
-gpio.set_mode(SPI_MISO, pigpio.OUTPUT)
-gpio.set_mode(SPI_SCLK, pigpio.OUTPUT)
-gpio.set_mode(SPI_CSN, pigpio.OUTPUT)
+spi = spidev.SpiDev()
+spi.open(0,0)
+spi.max_speed_hz = 3000000
+spi.mode = 0
 
-spih = gpio.spi_open(0, 4000000, 0)
+gpio.set_mode(25, pigpio.OUTPUT)
 
-gpio.write(25, 1)
-time.sleep(0.005)
 gpio.write(25, 0)
 
-i = 0
 for i in range(0,5):
-    (count, rx_data) = gpio.spi_xfer(spih, b'\x55')
-    print count
-    print rx_data[0]
+    spi.xfer([0x55])
 
 gpio.write(25, 1)
-print "Done"
-gpio.spi_close(spih)
+print "Done SPI test."
+spi.close()
+
+print "Starting callback test..."
+
+gpio.set_mode(24, pigpio.INPUT)
+
+global done
+done = False
+
+def cbf(pin, level, tick):
+    print "Pin: ", pin
+    print "Level: ", level
+    print "Tick: ", tick
+    global done
+    done = True
+    return
+
+cb1 = gpio.callback(24, pigpio.RISING_EDGE, cbf)
+
+while not done:
+    pass
+
+print "Done callback test."
