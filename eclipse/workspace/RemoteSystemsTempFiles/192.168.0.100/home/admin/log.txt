@@ -1,81 +1,122 @@
-SenorNet testing started:2014-11-05 20:22:14
-SPI:    []
-SenorNet testing started:2014-11-05 20:22:28
-SPI:    []
-SenorNet testing started:2014-11-05 20:22:30
-SPI:    []
-SenorNet testing started:2014-11-05 20:23:03
-SPI:    []
-SenorNet testing started:2014-11-05 20:25:46
-SPI: []
-SenorNet testing started:2014-11-05 20:26:28
-SPI: [SenorNet testing started:2014-11-05 20:32:25
-SPI: [SenorNet testing started:2014-11-05 20:32:36
-SPI: [SenorNet testing started:2014-11-05 20:33:30
-SPI: [SenorNet testing started:2014-11-05 20:33:44
-SPI: [SenorNet testing started:2014-11-05 20:33:59
-SPI: [SenorNet testing started:2014-11-05 20:34:12
-SPI: [SenorNet testing started:2014-11-05 20:34:30
-SPI: [SenorNet testing started:2014-11-05 20:35:04
-SPI: [
-SenorNet testing started:2014-11-05 20:38:43
-SPI: [
-SenorNet testing started:2014-11-05 20:39:22
-SPI: [
-SenorNet testing started:2014-11-05 20:43:13
-SPI: [
-SenorNet testing started:2014-11-05 20:46:27
-SPI: [
-SenorNet testing started:2014-11-05 20:46:52
-SPI: [
-SenorNet testing started:2014-11-05 20:47:00
-SPI: [
-SenorNet testing started:2014-11-05 20:47:41
-SPI: [
-SenorNet testing started:2014-11-05 20:48:36
-SPI: [[90, 90, 90, 90, 90]]
 
-SenorNet testing started:2014-11-05 20:49:02
-SPI: [90, 90, 90, 90, 90]
+SenorNet testing started:2014-11-06 09:46:22
+Log: 2014-11-06 09:46:22 nRFSN created
+SPI: sendByte: [5a]
+SPI: sendBytes: [33,28,fe]
 
-SenorNet testing started:2014-11-05 20:51:01
-SPI: 
-SenorNet testing started:2014-11-05 20:51:21
-SPI: 
-SenorNet testing started:2014-11-05 20:52:25
-SPI: 
-SenorNet testing started:2014-11-05 20:52:48
-SPI: 9090909090
-SenorNet testing started:2014-11-05 20:53:31
-SPI: 9090909090
-SenorNet testing started:2014-11-05 20:53:56
-SPI: 9090909090
-SenorNet testing started:2014-11-05 20:55:28
-SPI: 909090909090
-SenorNet testing started:2014-11-05 20:55:48
-SPI: 909090909090
+SenorNet testing started:2014-11-06 09:47:30
+Log: 2014-11-06 09:47:30 nRFSN created
+SPI: sendByte: [5a]
+SPI: sendBytes: [
+SenorNet testing started:2014-11-06 09:50:13
+Log: 2014-11-06 09:50:13 nRFSN created
+SPI: sendByte: [5a]
+SPI: sendBytes: [
+SenorNet testing started:2014-11-06 10:13:46
+Log: 2014-11-06 10:13:46 nRFSN created
+SPI: sendByte: [5a]
+SPI: sendBytes: [33,28,fe]
 
-SenorNet testing started:2014-11-05 20:56:26
-SPI: [90,90,90,90,90,90,]
+SenorNet testing started:2014-11-06 10:14:17
+Log: 2014-11-06 10:14:17 nRFSN created
+SPI: sendByte: [5a]
+SPI: sendBytes: [33,28,fe]
 
-SenorNet testing started:2014-11-05 20:57:19
-SPI: [90,90,90,90,90,90,]
+SenorNet testing started:2014-11-06 10:14:31
+Log: 2014-11-06 10:14:31 nRFSN created
+SPI: sendByte: [5a]
+SPI: sendBytes: [33,28,fe]
 
-SenorNet testing started:2014-11-05 20:57:40
-SPI: [90,90,90,90,90,90,]
+SenorNet testing started:2014-11-06 10:15:52
+Log: 2014-11-06 10:15:52 nRFSN created
+SPI: sendByte: [5a]
+SPI: sendBytes: [33,28,fe]
 
-SenorNet testing started:2014-11-05 20:58:04
-SPI: [90,90,90,90,90,90]
+SenorNet testing started:2014-11-06 10:16:09
+Log: 2014-11-06 10:16:09 nRFSN created
+SPI: sendByte: [5a]
+SPI: sendBytes: [33,28,fe]
 
-SenorNet testing started:2014-11-05 20:58:40
-SPI: [
-SenorNet testing started:2014-11-05 20:59:07
-SPI: [
-SenorNet testing started:2014-11-05 20:59:27
-SPI: [5a,5a,5a,5a,5a,5a]
+SenorNet testing started:2014-11-06 10:16:23
+Log: 2014-11-06 10:16:23 nRFSN created
+SPI: sendByte: [5a]
+SPI: sendBytes: [33,28,fe]
 
-SenorNet testing started:2014-11-05 21:04:47
-SPI: test:  [5a,5a,5a,5a,5a,5a]
+SenorNet testing started:2014-11-06 10:16:38
+Log: 2014-11-06 10:16:38 nRFSN created
+SPI: sendByte: [5a]
+SPI: sendBytes: [33,28,fe]
 
-SenorNet testing started:2014-11-05 21:05:19
-SPI: test: [5a,5a,5a,5a,5a,5a]
+SenorNet testing started:2014-11-06 10:17:25
+Log: 2014-11-06 10:17:25 nRFSN created
+SPI: sendByte: [5a]
+SPI: sendBytes: [33,28,fe]
+
+SenorNet testing started:2014-11-06 10:17:34
+Log: 2014-11-06 10:17:34 nRFSN created
+SPI: sendByte: [5a]
+SPI: sendBytes: [33,28,fe]
+Log: 2014-11-06 10:17:34 nRFSN destroyed
+
+SenorNet testing started:2014-11-06 10:17:42
+Log: 2014-11-06 10:17:42 nRFSN created
+SPI: sendByte: [5a]
+SPI: sendBytes: [33,28,fe]
+Log: 2014-11-06 10:17:42 nRFSN destroyed
+
+SenorNet testing started:2014-11-06 10:17:53
+Log: 2014-11-06 10:17:53 nRFSN created
+SPI: sendByte: [5a]
+SPI: sendBytes: [33,28,fe]
+Log: 2014-11-06 10:17:53 nRFSN destroyed
+
+SenorNet testing started:2014-11-06 10:18:45
+Log: 2014-11-06 10:18:45 nRFSN created
+SPI: sendBytes: [33,28,fe]
+Log: 2014-11-06 10:18:45 nRFSN destroyed
+
+SenorNet testing started:2014-11-06 10:18:54
+Log: 2014-11-06 10:18:54 nRFSN created
+SPI: sendBytes: [33,28,fe]
+Log: 2014-11-06 10:18:54 nRFSN destroyed
+
+SenorNet testing started:2014-11-06 10:19:49
+Log: 2014-11-06 10:19:49 nRFSN created
+SPI: sendBytes: [33,28,fe]
+Log: 2014-11-06 10:19:49 nRFSN destroyed
+
+SenorNet testing started:2014-11-06 10:20:04
+Log: 2014-11-06 10:20:04 nRFSN created
+SPI: sendBytes: [33,28,fe]
+Log: 2014-11-06 10:20:04 nRFSN destroyed
+
+SenorNet testing started:2014-11-06 10:26:07
+Log: 2014-11-06 10:26:07 nRFSN created
+SPI: sendBytes: [33,28,fe]
+Log: 2014-11-06 10:26:07 nRFSN destroyed
+
+SenorNet testing started:2014-11-06 10:26:25
+Log: 2014-11-06 10:26:25 nRFSN created
+
+SenorNet testing started:2014-11-06 10:26:46
+Log: 2014-11-06 10:26:46 nRFSN created
+SPI: sendBytes: [33,28,fe]
+Log: 2014-11-06 10:26:46 nRFSN destroyed
+
+SenorNet testing started:<2014-11-06 10:34:58>
+Log: <2014-11-06 10:34:58> nRFSN created
+
+SenorNet testing started:<2014-11-06 10:35:17>
+Log: <2014-11-06 10:35:17> nRFSN created
+SPI: sendBytes: [33,28,fe]
+Log: <2014-11-06 10:35:17> nRFSN destroyed
+
+SenorNet testing started:<2014-11-06 10:35:56>
+Log: <2014-11-06 10:35:56> nRFSN created
+SPI: sendBytes: [0x33,0x28,0xfe]
+Log: <2014-11-06 10:35:56> nRFSN destroyed
+
+SenorNet testing started:<2014-11-06 10:37:04>
+Log: <2014-11-06 10:37:04> nRFSN created
+SPI: sendBytes: [0x33,0x28,0xFE]
+Log: <2014-11-06 10:37:04> nRFSN destroyed

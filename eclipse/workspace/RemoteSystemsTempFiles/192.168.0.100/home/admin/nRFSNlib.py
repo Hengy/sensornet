@@ -101,25 +101,69 @@ class nRFSNlib:
     BATT_LVL = 0x30    # Request VCC voltage level
     CURR_LVL = 0x31    # Request current consumption
     
-    def __init__(self, CEpin, IRQpin, CSNpin):
-        print "Welcome to the nRF24L01+ Python library on SensorNet."
+    # nRF defaults
+    CONFIG_CURR     = 0b00101011   #Show RX_DR and MAX_RT interrupts; Enable CRC - 1 uint8_t; Power up; RX
+    EN_AA_CURR      = 0b00000011   #Enable Auto Ack for pipe 0,1
+    EN_RXADDR_CURR  = 0b00000011   #Enable data pipe 0,1
+    SETUP_AW_CURR   = 0b00000010   #Set up for 4 address
+    SETUP_RETR_CURR = 0b00110000   #1000us retransmit delay; 10 retransmits
+    RF_CH_CURR      = 0b01101001   #Channel 105 (2.400GHz + 0.105GHz = 2.505GHz)
+    RF_SETUP_CURR   = 0b00000110   #RF data rate to 1Mbps; 0dBm output power (highest)
+    RX_PW_P0_CURR   = 0b00000001   #1 payload
+    DYNPD_CURR      = 0b00000011   #Set dynamic payload for pipe 0
+    FEATURE_CURR    = 0b00000100   #Enable dynamic payload
+    
+    Status = 0     # nRF24L01+ STATUS register 
+    
+    Busy = False   # nRF busy flag; set when transmitting
+
+    RXInt = False  # nRF received packet flag set by ISR
+    TXInt = False  # nRF packet sent flag set by ISR
+    MAXInt = False # nRF max retransmit flag set by ISR
+    
+    # Buffers
+    BufIn = [0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
+             0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
+             0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
+             0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff]
+    BufOut = [0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
+              0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
+              0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
+              0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff]
+    
+    def __init__(self, CEpin, IRQpin, CSNpin, log):
+        self.log = log
+        self.log.log('nRFSN created')
+        
+        gpio = pigpio.pi()
         
         self.CEpin = CEpin
         self.IRQpin = IRQpin
+        gpio.set_mode(CEpin, pigpio.OUTPUT)
+        gpio.set_mode(IRQpin, pigpio.INPUT)
+        
         if CSNpin == 8:
             self.CSNpin = 8
         elif CSNpin == 7:
             self.CSNpin = 8
+            self.log.logWarn('SPIDEV(0,0) must use pin 8 for CSN. Pin automatically changed.')
         else:
             self.CSNpin = CSNpin
-        
+            gpio.set_mode(CSNpin, OUTPUT)
+
         self.spi = spidev.SpiDev()
         self.spi.open(0,0)
 
     def sendByte(self, byte):
-        print "Executing SPI send byte"
+        self.log.logSPIByte('sendByte:', byte)
         self.spi.xfer2([byte])
+        
+    def sendBytes(self, *bytes):
+        self.log.logSPIBytes('sendBytes:', bytes[0])
+        self.spi.xfer2(bytes[0])
 
     def close(self):
-        print "Closing..."
         self.spi.close()
+        self.log.log('nRFSN destroyed')
+        
+        

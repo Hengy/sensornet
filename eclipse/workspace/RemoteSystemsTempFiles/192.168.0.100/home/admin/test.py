@@ -6,13 +6,12 @@ import nRFSNlib
 def main():
     print "Starting"
     
-    nRFSN = nRFSNlib.nRFSNlib(25, 24, 8)
     log = SensorNetLog.SensorNetLog()
+    nRFSN = nRFSNlib.nRFSNlib(25, 24, 8, log)
     
-    for i in range(0,5):
-        nRFSN.sendByte(0x5a)
+    #nRFSN.sendByte(0x5a)
     
-    log.logSPIBytes('test:',[0x5A,0x5A,0x5A,0x5A,0x5A,0x5A])
+    nRFSN.sendBytes([0x33,0x28,0xFE])
     
     nRFSN.close()
     

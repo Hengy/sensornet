@@ -8,31 +8,48 @@ class SensorNetLog:
     def __init__(self):
         self.logfile = open('log.txt', 'a')
         self.logfile.write('\nSenorNet testing started:')
-        self.logfile.write(datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S'))
+        self.logfile.write(datetime.datetime.fromtimestamp(time.time()).strftime('<%Y-%m-%d %H:%M:%S>'))
         self.logfile.write('\n')
         
     def toHex(self, num):
-        return '%02x' % num
+        str = '%02x' % num
+        return '0x' + str.upper()
     
     def log(self, text):
-        timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
+        timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('<%Y-%m-%d %H:%M:%S>')
         self.logfile.write('Log: ')
         self.logfile.write(timestamp)
         self.logfile.write(' ')
         self.logfile.write(text)
         self.logfile.write('\n')
         
+    def logWarn(self, text):
+        timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('<%Y-%m-%d %H:%M:%S>')
+        self.logfile.write('Warning: ')
+        self.logfile.write(timestamp)
+        self.logfile.write(' ')
+        self.logfile.write(text)
+        self.logfile.write('\n')
+        
     def logError(self, text):
-        timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
-        line = ['Error: ',timestamp,' ',text]
+        timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('<%Y-%m-%d %H:%M:%S>')
         self.logfile.write('Error: ')
         self.logfile.write(timestamp)
         self.logfile.write(' ')
         self.logfile.write(text)
         self.logfile.write('\n')
         
+    def logSPIByte(self, text, byte):
+        timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('<%Y-%m-%d %H:%M:%S>')
+        line = ['SPI: ',timestamp,' ',text]
+        self.logfile.write('SPI: ')
+        self.logfile.write(text)
+        self.logfile.write(' [')
+        self.logfile.write(self.toHex(byte))
+        self.logfile.write(']\n')
+        
     def logSPIBytes(self, text, *bytes):
-        timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
+        timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('<%Y-%m-%d %H:%M:%S>')
         line = ['SPI: ',timestamp,' ',text]
         self.logfile.write('SPI: ')
         self.logfile.write(text)
