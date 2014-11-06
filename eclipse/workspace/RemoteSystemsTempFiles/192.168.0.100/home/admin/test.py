@@ -1,16 +1,20 @@
 #!/usr/bin/python2.7
 
-import nrf24lib
+import SensorNetLog
+import nRFSNlib
 
 def main():
     print "Starting"
     
-    nrf = nrf24lib.nrf24lib()
+    nRFSN = nRFSNlib.nRFSNlib(25, 24, 8)
+    log = SensorNetLog.SensorNetLog()
     
     for i in range(0,5):
-        nrf.sendByte()
+        nRFSN.sendByte(0x5a)
     
-    nrf.close()
+    log.logSPIBytes('test:',[0x5A,0x5A,0x5A,0x5A,0x5A,0x5A])
+    
+    nRFSN.close()
     
     print "Exiting"
     

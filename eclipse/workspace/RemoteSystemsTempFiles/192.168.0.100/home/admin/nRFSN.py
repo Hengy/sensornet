@@ -10,18 +10,19 @@ import spidev
 import time
 import atexit
 
-class nRFSN:
+class nRFSNlib:
     
     def __init__(self, CEpin, IRQpin, CSNpin):
         print "Welcome to the nRF24L01+ Python library on SensorNet."
         
         self.CEpin = CEpin
         self.IRQpin = IRQpin
-        if CEpin == 8:
-            self.CEpin = CEpin
-        elif CEpin == 7:
-            self.CEpin = 8
-            
+        if CSNpin == 8:
+            self.CSNpin = 8
+        elif CSNpin == 7:
+            self.CSNpin = 8
+        else:
+            self.CSNpin = CSNpin
         
         self.spi = spidev.SpiDev()
         self.spi.open(0,0)
