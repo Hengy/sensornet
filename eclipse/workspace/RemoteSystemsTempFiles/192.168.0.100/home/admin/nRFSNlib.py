@@ -5,11 +5,14 @@
 # Uses spidev and pigpio libraries for spi and gpio, resp.
 #-------------------------------------------------
 
-import pigpio
-import time
+import time     #
 import atexit
 
 class nRFSNlib:
+    
+    # pigpio I/O constants
+    OUTPUT = 1
+    INPUT = 0
     
     # nRF24L01+ commands
     R_REGISTER = 0x00       # Read; Bits <5:0> = register map address (LSB first)
@@ -57,60 +60,18 @@ class nRFSNlib:
     TX_DS = 0x20            # Data sent interrupt
     MAX_RT = 0x10           # Max retransmit interrupt
     
-    #------------------------------------------------
-    # nRFSN command definitions
-    #------------------------------------------------
-    # Sensor commands ("Request sensor value")
-    SENV_0 = 0x10
-    SENV_1 = 0x11
-    SENV_2 = 0x12
-    SENV_3 = 0x13
-    SENV_4 = 0x14
-    SENV_5 = 0x15
-    SENV_6 = 0x16
-    SENV_7 = 0x17
-    SENV_8 = 0x18
-    SENV_9 = 0x19
-    SENV_10 = 0x1A
-    SENV_11 = 0x1B
-    SENV_12 = 0x1C
-    SENV_13 = 0x1D
-    SENV_14 = 0x1E
-    SENV_15 = 0x1F
-    
-    # Automation commands ("Update automation value")
-    AUTOV_0 = 0x20
-    AUTOV_1 = 0x21
-    AUTOV_2 = 0x22
-    AUTOV_3 = 0x23
-    AUTOV_4 = 0x24
-    AUTOV_5 = 0x25
-    AUTOV_6 = 0x26
-    AUTOV_7 = 0x27
-    AUTOV_8 = 0x28
-    AUTOV_9 = 0x29
-    AUTOV_10 = 0x2A
-    AUTOV_11 = 0x2B
-    AUTOV_12 = 0x2C
-    AUTOV_13 = 0x2D
-    AUTOV_14 = 0x2E
-    AUTOV_15 = 0x2F
-    
-    # System commands
-    BATT_LVL = 0x30    # Request VCC voltage level
-    CURR_LVL = 0x31    # Request current consumption
-    
     # nRF defaults
-    CONFIG_CURR     = 0b00101011   #Show RX_DR and MAX_RT interrupts; Enable CRC - 1 uint8_t; Power up; RX
-    EN_AA_CURR      = 0b00000011   #Enable Auto Ack for pipe 0,1
-    EN_RXADDR_CURR  = 0b00000011   #Enable data pipe 0,1
-    SETUP_AW_CURR   = 0b00000010   #Set up for 4 address
-    SETUP_RETR_CURR = 0b00110000   #1000us retransmit delay; 10 retransmits
-    RF_CH_CURR      = 0b01101001   #Channel 105 (2.400GHz + 0.105GHz = 2.505GHz)
-    RF_SETUP_CURR   = 0b00000110   #RF data rate to 1Mbps; 0dBm output power (highest)
-    RX_PW_P0_CURR   = 0b00000001   #1 payload
-    DYNPD_CURR      = 0b00000011   #Set dynamic payload for pipe 0
-    FEATURE_CURR    = 0b00000100   #Enable dynamic payload
+    CONFIG_CURR     = 0b00101011   # Show RX_DR and MAX_RT interrupts; Enable CRC - 1 uint8_t; Power up; RX
+    EN_AA_CURR      = 0b00000011   # Enable Auto Ack for pipe 0,1
+    EN_RXADDR_CURR  = 0b00000011   # Enable data pipe 0,1
+    SETUP_AW_CURR   = 0b00000010   # Set up for 4 address
+    SETUP_RETR_CURR = 0b00110000   # 1000us retransmit delay; 10 retransmits
+    RF_CH_CURR      = 0b01101001   # Channel 105 (2.400GHz + 0.105GHz = 2.505GHz)
+    RF_SETUP_CURR   = 0b00000110   # RF data rate to 1Mbps; 0dBm output power (highest)
+    RX_PW_P0_CURR   = 0b00000001   # 1 payload
+    DYNPD_CURR      = 0b00000011   # Set dynamic payload for pipe 0
+    FEATURE_CURR    = 0b00000100   # Enable dynamic payload
+    # Default addresses
     RX_ADDRESS      = [0xE7,0xE7,0xE7,0xE7]
     TX_ADDRESS      = [0xE7,0xE7,0xE7,0xE7]
     
@@ -124,7 +85,7 @@ class nRFSNlib:
     
     manualCSN = False # specifies if CSN pin is triggered by spidev or by manual pin manipulation
     
-    # Buffers
+    # SPI Buffers
     BufIn = [0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
              0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
              0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
@@ -134,57 +95,79 @@ class nRFSNlib:
               0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
               0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff]
     
+    
     def __init__(self, CEpin, IRQpin, CSNpin, spi, gpio, log):
+        """nRFSN Constructor
+        Initializes nRFSN
+        Input
+            - CEpin: Chip Enable pin on RPi
+            - IRQpin: nRF24L01+ IRQ pin  on RPi
+            - CSNpin: Chip Select pin on RPi
+                      MUST be pin 7 or 8 (RPi B rev 2)
+            - spi: spidev object
+            - gpio: pigpio object
+            - log: logging object
+        """
         self.log = log
         self.log.log('nRFSN created')
-        
-        #self.gpio = pigpio.pi()
+
         self.gpio = gpio
         
         self.CEpin = CEpin
         self.IRQpin = IRQpin
-        self.gpio.set_mode(CEpin, pigpio.OUTPUT)
-        self.gpio.set_mode(IRQpin, pigpio.INPUT)
+        self.CSNpin = CSNpin
+        self.gpio.set_mode(CEpin, self.OUTPUT)
+        self.gpio.set_mode(IRQpin, self.INPUT)
         self.gpio.write(CEpin, 0)
         
-        if CSNpin == 8:
-            self.CSNpin = 8
-        elif CSNpin == 7:
-            self.CSNpin = 8
-            self.log.logWarn('SPIDEV(0,0) must use pin 8 for CSN. Pin automatically changed.')
-
         self.spi = spi
-        #self.spi = spidev.SpiDev()
-        #self.spi.open(0,0)
-        #self.spi.max_speed_hz=3000000
         return
     
     def setPower(self, pwrLvl):
+        """Set nRF output power
+        Input
+            - pwrLvl: min -> max: -18dBm (0); -12dBm (1); -6dBm (2); 0dBm (3)
+        """
         self.RF_SETUP_CURR = pwrLvl << 1;
         self.configReg('w',self.RF_SETUP,self.RF_SETUP_CURR)
         return
     
     def setTXMode(self):
+        """Set nRF to transmit mode
+        
+        """
         self.CONFIG_CURR = 0b01001010
         self.configReg('w',self.CONFIG,self.CONFIG_CURR)
         return
     
     def setRXMode(self):
+        """Set nRF to receive mode
+        
+        """
         self.CONFIG_CURR = 0b00101011
         self.configReg('w',self.CONFIG,self.CONFIG_CURR)
         return
         
     def setMAX_RT(self, numRT):
+        """Set max number of retransmits
+        
+        """
         self.SETUP_RETR_CURR = (self.SETUP_RETR_CURR & 0b11110000) | (numRT & 0b00001111)
         self.configReg('w',self.SETUP_RETR,self.SETUP_RETR_CURR)
         return
         
     def setChannel(self, ch):
+        """Set RF channel
+        
+        """
         self.RF_CH_CURR = ch;
         self.configReg('w',self.RF_CH,self.RF_CH_CURR)
         return
         
     def transfer(self, wrn, command, dataLen, offset):
+        """Transfer data to nRF via SPI
+        
+        """
         total = dataLen + offset
         if total > 28:
             total = 28
@@ -205,6 +188,9 @@ class nRFSNlib:
         return
     
     def transmit(self, dataLen):
+        """Transmit data using nRF over wireless
+        
+        """
         if dataLen:
             self.spi.xfer2([0xA0] + self.BufOut[0:dataLen])
 
@@ -214,14 +200,23 @@ class nRFSNlib:
         return
     
     def getPayloadSize(self):
+        """Get size of received payload
+        
+        """
         data = self.spi.xfer2([self.R_RX_PL_WID, self.NRF_NOP])
         return data[1]
     
     def getPayload(self, payloadSize, offset):
+        """Get received payload
+        
+        """
         self.transfer('r',self.R_RX_PAYLOAD,payloadSize,offset)
         return
     
     def configReg(self, wr, command, data):
+        """Configure nRF register
+        
+        """
         if wr == 'w':
             cmdByte = self.W_REGISTER|command
         elif wr == 'r':
@@ -232,22 +227,25 @@ class nRFSNlib:
         return data[1]
 
     def setTXAddr(self, addr, addrLen):
+        """Set transmit address
+        
+        """
         if addrLen:
             data = self.spi.xfer2([self.W_REGISTER|self.TX_ADDR] + addr[0:addrLen])
         return
     
     def setRXAddr(self, pipe, addr, addrLen):
+        """Set receive address
+        
+        """
         if addrLen:
             data = self.spi.xfer2([self.W_REGISTER|pipe] + addr[0:addrLen])
         return
     
     def updateStatus(self):
+        """Get nRF STATUS register
+        
+        """
         self.Status = self.spi.xfer([self.NRF_NOP])
         return
-
-    def close(self):
-        self.spi.close()
-        self.log.log('nRFSN destroyed')
-        return
-        
         

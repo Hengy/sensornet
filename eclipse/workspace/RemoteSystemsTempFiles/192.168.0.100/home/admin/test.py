@@ -31,8 +31,9 @@ nRFSN.setRXAddr(nRFSN.RX_ADDR_P0,nRFSN.RX_ADDRESS,4)
 nRFSN.configReg('w',0x03,nRFSN.CONFIG_CURR)
 
 nRFSN.close()
+spi.close()
+log.log('nRFSN destroyed')
 log.close()
-
 print "Exiting"
 
 exit()
