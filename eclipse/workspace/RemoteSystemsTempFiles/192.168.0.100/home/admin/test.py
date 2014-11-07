@@ -16,21 +16,20 @@ gpio = pigpio.pi()
 log = SensorNetLog.SensorNetLog()
 nRFSN = nRFSNlib.nRFSNlib(25, 24, 8, spi, gpio, log)
 
-nRFSN.BufOut[0] = 0x32
-nRFSN.BufOut[1] = 0x28
-nRFSN.BufOut[2] = 0xFE
-nRFSN.BufOut[3] = 0xD7
-nRFSN.transmit(4)
+# nRFSN.BufOut[0] = 0x32
+# nRFSN.BufOut[1] = 0x28
+# nRFSN.BufOut[2] = 0xFE
+nRFSN.BufOut[31] = 0xD7
+nRFSN.transmit(32)
+#
+# nRFSN.getPayloadSize()
+# 
+# nRFSN.getPayload(4,0)
+# 
+# nRFSN.setRXAddr(nRFSN.RX_ADDR_P0,nRFSN.RX_ADDRESS,4)
+# 
+# nRFSN.configReg('w',0x03,nRFSN.CONFIG_CURR)
 
-nRFSN.getPayloadSize()
-
-nRFSN.getPayload(4,0)
-
-nRFSN.setRXAddr(nRFSN.RX_ADDR_P0,nRFSN.RX_ADDRESS,4)
-
-nRFSN.configReg('w',0x03,nRFSN.CONFIG_CURR)
-
-nRFSN.close()
 spi.close()
 log.log('nRFSN destroyed')
 log.close()

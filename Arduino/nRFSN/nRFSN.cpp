@@ -249,7 +249,7 @@ void nRFSNClass::setRXMode(void)
 
 /*------------------------------------------------
  * Set nRF max number of retransmits
- * uint8_t numRT: Auto Retransmit Count (0: 250us 1111(15): 4000us; each +1 = +150us)
+ * uint8_t numRT: Auto Retransmit Count (1 - 15)
 ------------------------------------------------*/
 void nRFSNClass::setMAX_RT(uint8_t numRT)
 {

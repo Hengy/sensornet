@@ -133,24 +133,21 @@ class nRFSNlib:
         return
     
     def setTXMode(self):
-        """Set nRF to transmit mode
-        
-        """
+        """Set nRF to transmit mode"""
         self.CONFIG_CURR = 0b01001010
         self.configReg('w',self.CONFIG,self.CONFIG_CURR)
         return
     
     def setRXMode(self):
-        """Set nRF to receive mode
-        
-        """
+        """Set nRF to receive mode"""
         self.CONFIG_CURR = 0b00101011
         self.configReg('w',self.CONFIG,self.CONFIG_CURR)
         return
         
     def setMAX_RT(self, numRT):
         """Set max number of retransmits
-        
+        Input
+            - numRT: 1 - 15; maximum number of retransmits
         """
         self.SETUP_RETR_CURR = (self.SETUP_RETR_CURR & 0b11110000) | (numRT & 0b00001111)
         self.configReg('w',self.SETUP_RETR,self.SETUP_RETR_CURR)
@@ -158,7 +155,10 @@ class nRFSNlib:
         
     def setChannel(self, ch):
         """Set RF channel
-        
+        Input
+            - ch: 0 - 126
+                  Output frequency = Fo = 2400 + ch [MHz]
+                  NOTE: CHECK LOCAL LAWS FOR LEGAL CHANNELS! (US/CANADA: 1 - ~67)
         """
         self.RF_CH_CURR = ch;
         self.configReg('w',self.RF_CH,self.RF_CH_CURR)
@@ -166,7 +166,15 @@ class nRFSNlib:
         
     def transfer(self, wrn, command, dataLen, offset):
         """Transfer data to nRF via SPI
-        
+        Data MUST be in BufOut[]
+        Received data is put in BufIn[]
+        Input
+            - wrn: character; write ('w'), read ('r'), none ('n')
+            - command: nRF24L01+ command (see constants at top)
+            - dataLen: length of data in bytes; max 28
+            - offset: offset from first BufOut/BufIn position
+                      ex. offset: 2
+                          [0xXX, 0xXX, data[0], data[1]...]
         """
         total = dataLen + offset
         if total > 28:
@@ -189,7 +197,9 @@ class nRFSNlib:
     
     def transmit(self, dataLen):
         """Transmit data using nRF over wireless
-        
+        Data must be in BufOut[0:31]
+        Input
+            - dataLen: length of data in bytes; max 32
         """
         if dataLen:
             self.spi.xfer2([0xA0] + self.BufOut[0:dataLen])
@@ -201,21 +211,32 @@ class nRFSNlib:
     
     def getPayloadSize(self):
         """Get size of received payload
-        
+        Output
+            - data: byte returned by nRF24; 1 - 32
         """
         data = self.spi.xfer2([self.R_RX_PL_WID, self.NRF_NOP])
         return data[1]
     
     def getPayload(self, payloadSize, offset):
         """Get received payload
-        
+        Received data is put in BufIn[]
+        Input
+            - payloadSize: size of received payload in bytes; 1 - 32
+            - offset: offset from first BufIn position
+                      ex. offset: 2
+                          [0xXX, 0xXX, data[0], data[1]...]
         """
         self.transfer('r',self.R_RX_PAYLOAD,payloadSize,offset)
         return
     
     def configReg(self, wr, command, data):
         """Configure nRF register
-        
+        Input
+            - wr: character; write ('w'), read ('r')
+            - command: nRF24L01+ command (see constants at top)
+            - data: data byte to put in register
+        Output
+            - received data byte
         """
         if wr == 'w':
             cmdByte = self.W_REGISTER|command
@@ -228,7 +249,9 @@ class nRFSNlib:
 
     def setTXAddr(self, addr, addrLen):
         """Set transmit address
-        
+        Input
+            - addr: list of bytes; address to set
+            - addrLen: length of address in bytes
         """
         if addrLen:
             data = self.spi.xfer2([self.W_REGISTER|self.TX_ADDR] + addr[0:addrLen])
@@ -236,7 +259,10 @@ class nRFSNlib:
     
     def setRXAddr(self, pipe, addr, addrLen):
         """Set receive address
-        
+        Input
+            - pipe: nRF pipe to set address to
+            - addr: list of bytes; address to set
+            - addrLen: length of address in bytes
         """
         if addrLen:
             data = self.spi.xfer2([self.W_REGISTER|pipe] + addr[0:addrLen])
@@ -244,7 +270,7 @@ class nRFSNlib:
     
     def updateStatus(self):
         """Get nRF STATUS register
-        
+        Gets STATUS register of nRF and puts in self.Status variable
         """
         self.Status = self.spi.xfer([self.NRF_NOP])
         return
