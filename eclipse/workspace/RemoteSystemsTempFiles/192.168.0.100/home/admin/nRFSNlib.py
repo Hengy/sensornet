@@ -56,9 +56,9 @@ class nRFSNlib:
     FEATURE = 0x1D          # Feature register
     
     # nRF24L01+ interrupts
-    RX_DR = 0x40            # Data received interrupt
-    TX_DS = 0x20            # Data sent interrupt
-    MAX_RT = 0x10           # Max retransmit interrupt
+    RX_DR = 0x20            # Data received interrupt
+    TX_DS = 0x10            # Data sent interrupt
+    MAX_RT = 0x80           # Max retransmit interrupt
     
     # nRF defaults
     CONFIG_CURR     = 0b00101011   # Show RX_DR and MAX_RT interrupts; Enable CRC - 1 uint8_t; Power up; RX
@@ -73,7 +73,7 @@ class nRFSNlib:
     FEATURE_CURR    = 0b00000100   # Enable dynamic payload
     # Default addresses
     RX_ADDRESS      = [0xE7,0xE7,0xE7,0xE7]
-    TX_ADDRESS      = [0xE7,0xE7,0xE7,0xE7]
+    TX_ADDRESS      = [0xC7,0xC7,0xC7,0xC7]
     
     Status = 0     # nRF24L01+ STATUS register 
     
@@ -117,10 +117,48 @@ class nRFSNlib:
         self.IRQpin = IRQpin
         self.CSNpin = CSNpin
         self.gpio.set_mode(CEpin, self.OUTPUT)
-        self.gpio.set_mode(IRQpin, self.INPUT)
+        #self.gpio.set_mode(IRQpin, self.INPUT)
         self.gpio.write(CEpin, 0)
         
         self.spi = spi
+        
+        # nRF24L01+ setup
+        # Write to CONFIG register
+        self.configReg('w',self.CONFIG,self.CONFIG_CURR);
+        # Write to EN_RXADDR register  
+        self.configReg('w',self.EN_RXADDR,self.EN_RXADDR_CURR);
+        # Write to EN_AA register
+        self.configReg('w',self.EN_AA,self.EN_AA_CURR);
+        # Write to SETUP_AW register
+        self.configReg('w',self.SETUP_AW,self.SETUP_AW_CURR);
+        # Write to SETUP_RETR register
+        self.configReg('w',self.SETUP_RETR,self.SETUP_RETR_CURR);
+        # Write to RF channel register
+        self.configReg('w',self.RF_CH,self.RF_CH_CURR);
+        # Write to RF setup register  
+        self.configReg('w',self.RF_SETUP,self.RF_SETUP_CURR);
+        # set TX address
+        self.setTXAddr(self.TX_ADDRESS,4);
+        # set RX address
+        self.setRXAddr(self.RX_ADDR_P0,self.RX_ADDRESS,4);
+        # Set dynamic payload for pipe 0
+        self.configReg('w',self.DYNPD,self.DYNPD_CURR);
+        # Write to FEATURE register
+        self.configReg('w',self.FEATURE,self.FEATURE_CURR);
+        # Flush RX FIFO
+        self.transfer('n',self.FLUSH_RX,0,0);
+        # Flush TX FIFO
+        self.transfer('n',self.FLUSH_TX,0,0);
+        
+        self.clearInt(self.TX_DS)
+        self.clearInt(self.RX_DR)
+        self.clearInt(self.MAX_RT)
+        
+        return
+    
+    def clearInt(self, interrupt):
+        time.sleep(0.2)
+        self.configReg('w',self.STATUS,interrupt)
         return
     
     def setPower(self, pwrLvl):
@@ -202,9 +240,10 @@ class nRFSNlib:
             - dataLen: length of data in bytes; max 32
         """
         if dataLen:
-            self.spi.xfer2([0xA0] + self.BufOut[0:dataLen])
+            data = [0xA0] + self.BufOut[0:dataLen]
+            self.spi.xfer2(data)
 
-            self.gpio.gpio_trigger(self.CEpin, 11, 1)
+            self.gpio.gpio_trigger(self.CEpin, 12, 1)
             
             self.Busy = True;
         return
