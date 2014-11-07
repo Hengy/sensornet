@@ -1,122 +1,72 @@
-
-SenorNet testing started:2014-11-06 09:46:22
-Log: 2014-11-06 09:46:22 nRFSN created
-SPI: sendByte: [5a]
-SPI: sendBytes: [33,28,fe]
-
-SenorNet testing started:2014-11-06 09:47:30
-Log: 2014-11-06 09:47:30 nRFSN created
-SPI: sendByte: [5a]
-SPI: sendBytes: [
-SenorNet testing started:2014-11-06 09:50:13
-Log: 2014-11-06 09:50:13 nRFSN created
-SPI: sendByte: [5a]
-SPI: sendBytes: [
-SenorNet testing started:2014-11-06 10:13:46
-Log: 2014-11-06 10:13:46 nRFSN created
-SPI: sendByte: [5a]
-SPI: sendBytes: [33,28,fe]
-
-SenorNet testing started:2014-11-06 10:14:17
-Log: 2014-11-06 10:14:17 nRFSN created
-SPI: sendByte: [5a]
-SPI: sendBytes: [33,28,fe]
-
-SenorNet testing started:2014-11-06 10:14:31
-Log: 2014-11-06 10:14:31 nRFSN created
-SPI: sendByte: [5a]
-SPI: sendBytes: [33,28,fe]
-
-SenorNet testing started:2014-11-06 10:15:52
-Log: 2014-11-06 10:15:52 nRFSN created
-SPI: sendByte: [5a]
-SPI: sendBytes: [33,28,fe]
-
-SenorNet testing started:2014-11-06 10:16:09
-Log: 2014-11-06 10:16:09 nRFSN created
-SPI: sendByte: [5a]
-SPI: sendBytes: [33,28,fe]
-
-SenorNet testing started:2014-11-06 10:16:23
-Log: 2014-11-06 10:16:23 nRFSN created
-SPI: sendByte: [5a]
-SPI: sendBytes: [33,28,fe]
-
-SenorNet testing started:2014-11-06 10:16:38
-Log: 2014-11-06 10:16:38 nRFSN created
-SPI: sendByte: [5a]
-SPI: sendBytes: [33,28,fe]
-
-SenorNet testing started:2014-11-06 10:17:25
-Log: 2014-11-06 10:17:25 nRFSN created
-SPI: sendByte: [5a]
-SPI: sendBytes: [33,28,fe]
-
-SenorNet testing started:2014-11-06 10:17:34
-Log: 2014-11-06 10:17:34 nRFSN created
-SPI: sendByte: [5a]
-SPI: sendBytes: [33,28,fe]
-Log: 2014-11-06 10:17:34 nRFSN destroyed
-
-SenorNet testing started:2014-11-06 10:17:42
-Log: 2014-11-06 10:17:42 nRFSN created
-SPI: sendByte: [5a]
-SPI: sendBytes: [33,28,fe]
-Log: 2014-11-06 10:17:42 nRFSN destroyed
-
-SenorNet testing started:2014-11-06 10:17:53
-Log: 2014-11-06 10:17:53 nRFSN created
-SPI: sendByte: [5a]
-SPI: sendBytes: [33,28,fe]
-Log: 2014-11-06 10:17:53 nRFSN destroyed
-
-SenorNet testing started:2014-11-06 10:18:45
-Log: 2014-11-06 10:18:45 nRFSN created
-SPI: sendBytes: [33,28,fe]
-Log: 2014-11-06 10:18:45 nRFSN destroyed
-
-SenorNet testing started:2014-11-06 10:18:54
-Log: 2014-11-06 10:18:54 nRFSN created
-SPI: sendBytes: [33,28,fe]
-Log: 2014-11-06 10:18:54 nRFSN destroyed
-
-SenorNet testing started:2014-11-06 10:19:49
-Log: 2014-11-06 10:19:49 nRFSN created
-SPI: sendBytes: [33,28,fe]
-Log: 2014-11-06 10:19:49 nRFSN destroyed
-
-SenorNet testing started:2014-11-06 10:20:04
-Log: 2014-11-06 10:20:04 nRFSN created
-SPI: sendBytes: [33,28,fe]
-Log: 2014-11-06 10:20:04 nRFSN destroyed
-
-SenorNet testing started:2014-11-06 10:26:07
-Log: 2014-11-06 10:26:07 nRFSN created
-SPI: sendBytes: [33,28,fe]
-Log: 2014-11-06 10:26:07 nRFSN destroyed
-
-SenorNet testing started:2014-11-06 10:26:25
-Log: 2014-11-06 10:26:25 nRFSN created
-
-SenorNet testing started:2014-11-06 10:26:46
-Log: 2014-11-06 10:26:46 nRFSN created
-SPI: sendBytes: [33,28,fe]
-Log: 2014-11-06 10:26:46 nRFSN destroyed
-
-SenorNet testing started:<2014-11-06 10:34:58>
-Log: <2014-11-06 10:34:58> nRFSN created
-
-SenorNet testing started:<2014-11-06 10:35:17>
-Log: <2014-11-06 10:35:17> nRFSN created
-SPI: sendBytes: [33,28,fe]
-Log: <2014-11-06 10:35:17> nRFSN destroyed
-
-SenorNet testing started:<2014-11-06 10:35:56>
-Log: <2014-11-06 10:35:56> nRFSN created
-SPI: sendBytes: [0x33,0x28,0xfe]
-Log: <2014-11-06 10:35:56> nRFSN destroyed
-
-SenorNet testing started:<2014-11-06 10:37:04>
-Log: <2014-11-06 10:37:04> nRFSN created
-SPI: sendBytes: [0x33,0x28,0xFE]
-Log: <2014-11-06 10:37:04> nRFSN destroyed
+[2014-11-06 14:00:18] SenorNet testing started:
+[2014-11-06 14:00:18] nRFSN created
+[2014-11-06 14:00:18] SPI transfer: command: [0x25] data: [0x32,0x28,0xFE,0xD7]
+[2014-11-06 14:00:18] SPI transfer: command: [0x05] data: [0x32,0x28,0xFE,0xD7]
+[2014-11-06 14:00:18] SPI transfer: command: [0x05] data: [0x32,0x28,0xFE,0xD7,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF]
+[2014-11-06 14:00:18] nRFSN destroyed
+[2014-11-06 14:00:43] SenorNet testing started:
+[2014-11-06 14:00:43] nRFSN created
+[2014-11-06 14:00:43] SPI transfer: command: [0x25] data: [0x32,0x28,0xFE,0xD7]
+[2014-11-06 14:00:43] SPI transfer: command: [0x05] data: [0x32,0x28,0xFE,0xD7]
+[2014-11-06 14:00:43] SPI transfer: command: [0x05] data: [0x32,0x28,0xFE,0xD7,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF]
+[2014-11-06 14:00:43] nRFSN destroyed
+[2014-11-06 14:15:20] SenorNet testing started:
+[2014-11-06 14:15:20] nRFSN created
+[2014-11-06 14:15:20] SPI transfer: command: [0x25] data: [0x32,0x28,0xFE,0xD7]
+[2014-11-06 14:15:20] SPI transfer: command: [0x05] data: [0x32,0x28,0xFE,0xD7]
+[2014-11-06 14:15:20] SPI transfer: command: [0x05] data: [0x32,0x28,0xFE,0xD7,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF]
+[2014-11-06 14:15:20] nRFSN destroyed
+[2014-11-06 14:15:38] SenorNet testing started:
+[2014-11-06 14:15:38] nRFSN created
+[2014-11-06 14:15:38] SPI transfer: command: [0x25] data: [0x32,0x28,0xFE,0xD7]
+[2014-11-06 14:15:38] SPI transfer: command: [0x05] data: [0x32,0x28,0xFE,0xD7]
+[2014-11-06 14:15:38] SPI transfer: command: [0x05] data: [0x32,0x28,0xFE,0xD7,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF]
+[2014-11-06 14:15:38] nRFSN destroyed
+[2014-11-06 14:16:29] SenorNet testing started:
+[2014-11-06 14:16:29] nRFSN created
+[2014-11-06 14:16:29] SPI transfer: command: [0x25] data: [0x32,0x28,0xFE,0xD7]
+[2014-11-06 14:16:29] SPI transfer: command: [0x05] data: [0x32,0x28,0xFE,0xD7]
+[2014-11-06 14:16:29] SPI transfer: command: [0x05] data: [0x32,0x28,0xFE,0xD7,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF]
+[2014-11-06 14:16:29] nRFSN destroyed
+[2014-11-06 14:17:05] SenorNet testing started:
+[2014-11-06 14:17:05] nRFSN created
+[2014-11-06 14:17:05] SPI transfer: command: [0x25] data: [0x32,0x28,0xFE,0xD7]
+[2014-11-06 14:17:05] SPI transfer: command: [0x05] data: [0x32,0x28,0xFE,0xD7]
+[2014-11-06 14:17:05] SPI transfer: command: [0x05] data: [0x32,0x28,0xFE,0xD7,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF]
+[2014-11-06 14:17:05] nRFSN destroyed
+[2014-11-06 14:17:22] SenorNet testing started:
+[2014-11-06 14:17:22] nRFSN created
+[2014-11-06 14:17:22] SPI transfer: command: [0x25] data: [0x32,0x28,0xFE,0xD7]
+[2014-11-06 14:17:22] SPI transfer: command: [0x05] data: [0x32,0x28,0xFE,0xD7]
+[2014-11-06 14:17:22] SPI transfer: command: [0x05] data: [0x32,0x28,0xFE,0xD7,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF]
+[2014-11-06 14:17:22] nRFSN destroyed
+[2014-11-06 14:17:26] SenorNet testing started:
+[2014-11-06 14:17:26] nRFSN created
+[2014-11-06 14:17:26] SPI transfer: command: [0x25] data: [0x32,0x28,0xFE,0xD7]
+[2014-11-06 14:17:26] SPI transfer: command: [0x05] data: [0x32,0x28,0xFE,0xD7]
+[2014-11-06 14:17:26] SPI transfer: command: [0x05] data: [0x32,0x28,0xFE,0xD7,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF]
+[2014-11-06 14:17:26] nRFSN destroyed
+[2014-11-06 14:17:58] SenorNet testing started:
+[2014-11-06 14:17:58] nRFSN created
+[2014-11-06 14:17:58] SPI transfer: command: [0x25] data: [0x32,0x28,0xFE,0xD7]
+[2014-11-06 14:17:58] SPI transfer: command: [0x05] data: [0x32,0x28,0xFE,0xD7]
+[2014-11-06 14:17:58] SPI transfer: command: [0x05] data: [0x32,0x28,0xFE,0xD7,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF]
+[2014-11-06 14:17:58] nRFSN destroyed
+[2014-11-06 14:18:06] SenorNet testing started:
+[2014-11-06 14:18:06] nRFSN created
+[2014-11-06 14:18:06] SPI transfer: command: [0x25] data: [0x32,0x28,0xFE,0xD7]
+[2014-11-06 14:18:06] SPI transfer: command: [0x05] data: [0x32,0x28,0xFE,0xD7]
+[2014-11-06 14:18:06] SPI transfer: command: [0x05] data: [0x32,0x28,0xFE,0xD7,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF]
+[2014-11-06 14:18:06] nRFSN destroyed
+[2014-11-06 14:25:37] SenorNet testing started:
+[2014-11-06 14:25:37] nRFSN created
+[2014-11-06 14:25:37] SPI transfer: command: [0x25] data: [0x32,0x28,0xFE,0xD7]
+[2014-11-06 14:25:37] SPI transfer: command: [0x05] data: [0x32,0x28,0xFE,0xD7]
+[2014-11-06 14:25:37] SPI transfer: command: [0x05] data: [0x32,0x28,0xFE,0xD7,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF]
+[2014-11-06 14:25:37] nRFSN destroyed
+[2014-11-06 14:25:53] SenorNet testing started:
+[2014-11-06 14:25:53] nRFSN created
+[2014-11-06 14:25:53] SPI transfer: command: [0x25] data: [0x32,0x28,0xFE,0xD7]
+[2014-11-06 14:25:53] SPI transfer: command: [0x05] data: [0x32,0x28,0xFE,0xD7]
+[2014-11-06 14:25:53] SPI transfer: command: [0x05] data: [0x32,0x28,0xFE,0xD7,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF]
+[2014-11-06 14:25:53] nRFSN destroyed

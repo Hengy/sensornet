@@ -6,7 +6,6 @@
 #-------------------------------------------------
 
 import pigpio
-import spidev
 import time
 import atexit
 
@@ -112,6 +111,8 @@ class nRFSNlib:
     RX_PW_P0_CURR   = 0b00000001   #1 payload
     DYNPD_CURR      = 0b00000011   #Set dynamic payload for pipe 0
     FEATURE_CURR    = 0b00000100   #Enable dynamic payload
+    RX_ADDRESS      = [0xE7,0xE7,0xE7,0xE7]
+    TX_ADDRESS      = [0xE7,0xE7,0xE7,0xE7]
     
     Status = 0     # nRF24L01+ STATUS register 
     
@@ -120,6 +121,8 @@ class nRFSNlib:
     RXInt = False  # nRF received packet flag set by ISR
     TXInt = False  # nRF packet sent flag set by ISR
     MAXInt = False # nRF max retransmit flag set by ISR
+    
+    manualCSN = False # specifies if CSN pin is triggered by spidev or by manual pin manipulation
     
     # Buffers
     BufIn = [0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
@@ -131,39 +134,120 @@ class nRFSNlib:
               0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,
               0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff]
     
-    def __init__(self, CEpin, IRQpin, CSNpin, log):
+    def __init__(self, CEpin, IRQpin, CSNpin, spi, gpio, log):
         self.log = log
         self.log.log('nRFSN created')
         
-        gpio = pigpio.pi()
+        #self.gpio = pigpio.pi()
+        self.gpio = gpio
         
         self.CEpin = CEpin
         self.IRQpin = IRQpin
-        gpio.set_mode(CEpin, pigpio.OUTPUT)
-        gpio.set_mode(IRQpin, pigpio.INPUT)
+        self.gpio.set_mode(CEpin, pigpio.OUTPUT)
+        self.gpio.set_mode(IRQpin, pigpio.INPUT)
+        self.gpio.write(CEpin, 0)
         
         if CSNpin == 8:
             self.CSNpin = 8
         elif CSNpin == 7:
             self.CSNpin = 8
             self.log.logWarn('SPIDEV(0,0) must use pin 8 for CSN. Pin automatically changed.')
-        else:
-            self.CSNpin = CSNpin
-            gpio.set_mode(CSNpin, OUTPUT)
 
-        self.spi = spidev.SpiDev()
-        self.spi.open(0,0)
-
-    def sendByte(self, byte):
-        self.log.logSPIByte('sendByte:', byte)
-        self.spi.xfer2([byte])
+        self.spi = spi
+        #self.spi = spidev.SpiDev()
+        #self.spi.open(0,0)
+        #self.spi.max_speed_hz=3000000
+        return
+    
+    def setPower(self, pwrLvl):
+        self.RF_SETUP_CURR = pwrLvl << 1;
+        self.configReg('w',self.RF_SETUP,self.RF_SETUP_CURR)
+        return
+    
+    def setTXMode(self):
+        self.CONFIG_CURR = 0b01001010
+        self.configReg('w',self.CONFIG,self.CONFIG_CURR)
+        return
+    
+    def setRXMode(self):
+        self.CONFIG_CURR = 0b00101011
+        self.configReg('w',self.CONFIG,self.CONFIG_CURR)
+        return
         
-    def sendBytes(self, *bytes):
-        self.log.logSPIBytes('sendBytes:', bytes[0])
-        self.spi.xfer2(bytes[0])
+    def setMAX_RT(self, numRT):
+        self.SETUP_RETR_CURR = (self.SETUP_RETR_CURR & 0b11110000) | (numRT & 0b00001111)
+        self.configReg('w',self.SETUP_RETR,self.SETUP_RETR_CURR)
+        return
+        
+    def setChannel(self, ch):
+        self.RF_CH_CURR = ch;
+        self.configReg('w',self.RF_CH,self.RF_CH_CURR)
+        return
+        
+    def transfer(self, wrn, command, dataLen, offset):
+        total = dataLen + offset
+        if total > 28:
+            total = 28
+
+        if wrn == 'w':
+            cmdByte = self.W_REGISTER|command
+        elif wrn == 'r':
+            cmdByte = self.R_REGISTER|command
+        else:
+            cmdByte = command
+            
+        data = self.spi.xfer2([cmdByte] + self.BufOut[offset:total])
+        self.log.logSPIBytes(cmdByte,self.BufOut[offset:total])
+
+        if dataLen:
+            for i in range(total):
+                self.BufIn[i] = data[i]
+        return
+    
+    def transmit(self, dataLen):
+        if dataLen:
+            self.spi.xfer2([0xA0] + self.BufOut[0:dataLen])
+
+            self.gpio.gpio_trigger(self.CEpin, 11, 1)
+            
+            self.Busy = True;
+        return
+    
+    def getPayloadSize(self):
+        data = self.spi.xfer2([self.R_RX_PL_WID, self.NRF_NOP])
+        return data[1]
+    
+    def getPayload(self, payloadSize, offset):
+        self.transfer('r',self.R_RX_PAYLOAD,payloadSize,offset)
+        return
+    
+    def configReg(self, wr, command, data):
+        if wr == 'w':
+            cmdByte = self.W_REGISTER|command
+        elif wr == 'r':
+            cmdByte = self.R_REGISTER|command
+            data = self.NRF_NOP
+            
+        data = self.spi.xfer2([cmdByte, data])
+        return data[1]
+
+    def setTXAddr(self, addr, addrLen):
+        if addrLen:
+            data = self.spi.xfer2([self.W_REGISTER|self.TX_ADDR] + addr[0:addrLen])
+        return
+    
+    def setRXAddr(self, pipe, addr, addrLen):
+        if addrLen:
+            data = self.spi.xfer2([self.W_REGISTER|pipe] + addr[0:addrLen])
+        return
+    
+    def updateStatus(self):
+        self.Status = self.spi.xfer([self.NRF_NOP])
+        return
 
     def close(self):
         self.spi.close()
         self.log.log('nRFSN destroyed')
+        return
         
         
