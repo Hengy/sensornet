@@ -33,15 +33,18 @@ while True:
         nRFSN.BufOut[i] = ord(word[i])
     nRFSN.transmit(len(word.strip()))
 
-    while nRFSN.Status == 0x1E:
-        nRFSN.clearInt(nRFSN.TX_DS)
-        time.sleep(0.05)
-        nRFSN.updateStatus()
+#     time.sleep(0.0001)
+
+#     while nRFSN.Status == 0x1E:
+#         nRFSN.clearInt(nRFSN.TX_DS)
+#         time.sleep(0.05)
+#         nRFSN.updateStatus()
 
     #gpio.wait_for_edge(4,pigpio.FALLING_EDGE,5)
-
-    #nRFSN.updateStatus()
-    nRFSN.clearInt(nRFSN.TX_DS)
+    for i in range(0,5):
+        nRFSN.updateStatus()
+        if nRFSN.Status > 0x0E:
+            nRFSN.clearInt(nRFSN.TX_DS)
 
 # nRFSN.BufOut[0] = random.randint(0, 255)
 # nRFSN.BufOut[1] = 0x28
