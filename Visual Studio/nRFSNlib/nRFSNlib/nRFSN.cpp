@@ -85,6 +85,8 @@ void nRFSNClass::init(uint8_t SPIDiv, uint8_t CEpin, uint8_t CSNpin, uint8_t IRQ
 	RXInt = 0;
 	TXInt = 0;
 	MAXInt = 0;
+	
+	updateStatus();
 }
 
 
