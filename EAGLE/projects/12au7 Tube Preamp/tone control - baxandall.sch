@@ -3489,10 +3489,10 @@ Source: AVX .. aphvc.pdf</description>
 <instances>
 <instance part="P+1" gate="1" x="106.68" y="81.28"/>
 <instance part="GND1" gate="1" x="106.68" y="53.34"/>
-<instance part="P+2" gate="1" x="-5.08" y="81.28"/>
-<instance part="GND2" gate="1" x="-5.08" y="58.42"/>
-<instance part="C1" gate="G$1" x="-10.16" y="71.12"/>
-<instance part="C2" gate="G$1" x="0" y="71.12"/>
+<instance part="P+2" gate="1" x="-58.42" y="101.6"/>
+<instance part="GND2" gate="1" x="-58.42" y="78.74"/>
+<instance part="C1" gate="G$1" x="-63.5" y="91.44"/>
+<instance part="C2" gate="G$1" x="-53.34" y="91.44"/>
 </instances>
 <busses>
 </busses>
@@ -3500,27 +3500,27 @@ Source: AVX .. aphvc.pdf</description>
 <net name="+24V" class="0">
 <segment>
 <pinref part="P+2" gate="1" pin="+24V"/>
-<wire x1="-5.08" y1="78.74" x2="-5.08" y2="76.2" width="0.1524" layer="91"/>
-<wire x1="-5.08" y1="76.2" x2="0" y2="76.2" width="0.1524" layer="91"/>
+<wire x1="-58.42" y1="99.06" x2="-58.42" y2="96.52" width="0.1524" layer="91"/>
+<wire x1="-58.42" y1="96.52" x2="-53.34" y2="96.52" width="0.1524" layer="91"/>
 <pinref part="C2" gate="G$1" pin="1"/>
-<wire x1="0" y1="76.2" x2="0" y2="73.66" width="0.1524" layer="91"/>
-<wire x1="-5.08" y1="76.2" x2="-10.16" y2="76.2" width="0.1524" layer="91"/>
-<junction x="-5.08" y="76.2"/>
+<wire x1="-53.34" y1="96.52" x2="-53.34" y2="93.98" width="0.1524" layer="91"/>
+<wire x1="-58.42" y1="96.52" x2="-63.5" y2="96.52" width="0.1524" layer="91"/>
+<junction x="-58.42" y="96.52"/>
 <pinref part="C1" gate="G$1" pin="1"/>
-<wire x1="-10.16" y1="76.2" x2="-10.16" y2="73.66" width="0.1524" layer="91"/>
+<wire x1="-63.5" y1="96.52" x2="-63.5" y2="93.98" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="GND" class="0">
 <segment>
 <pinref part="C1" gate="G$1" pin="2"/>
-<wire x1="-10.16" y1="66.04" x2="-10.16" y2="63.5" width="0.1524" layer="91"/>
-<wire x1="-10.16" y1="63.5" x2="-5.08" y2="63.5" width="0.1524" layer="91"/>
+<wire x1="-63.5" y1="86.36" x2="-63.5" y2="83.82" width="0.1524" layer="91"/>
+<wire x1="-63.5" y1="83.82" x2="-58.42" y2="83.82" width="0.1524" layer="91"/>
 <pinref part="GND2" gate="1" pin="GND"/>
-<wire x1="-5.08" y1="63.5" x2="-5.08" y2="60.96" width="0.1524" layer="91"/>
-<wire x1="-5.08" y1="63.5" x2="0" y2="63.5" width="0.1524" layer="91"/>
-<junction x="-5.08" y="63.5"/>
+<wire x1="-58.42" y1="83.82" x2="-58.42" y2="81.28" width="0.1524" layer="91"/>
+<wire x1="-58.42" y1="83.82" x2="-53.34" y2="83.82" width="0.1524" layer="91"/>
+<junction x="-58.42" y="83.82"/>
 <pinref part="C2" gate="G$1" pin="2"/>
-<wire x1="0" y1="63.5" x2="0" y2="66.04" width="0.1524" layer="91"/>
+<wire x1="-53.34" y1="83.82" x2="-53.34" y2="86.36" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
