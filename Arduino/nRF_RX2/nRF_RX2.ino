@@ -220,6 +220,8 @@ void loop() {
       Serial.print("Temp: ");
       Serial.print(temp/100);
       Serial.println("°C");
+      
+      
     }
     
     delayMicroseconds(50);        // Need time to print
@@ -234,6 +236,47 @@ void loop() {
   }
   
 }
+
+
+
+/*------------------------------------------------
+ * ISR
+------------------------------------------------*/
+void respond(int temp) {
+  
+  byte CONFIG_CURR           = B01001010;   // Show RX_DR and MAX_RT interrupts; Enable CRC - 1 byte; Power up; RX
+  
+  // nRF24L01+ setup
+  // Write to CONFIG register
+  nrfConfigReg('w',CONFIG,CONFIG_CURR);
+  // Write to EN_RXADDR register  
+  nrfConfigReg('w',EN_RXADDR,EN_RXADDR_CURR);
+  // Write to EN_AA register
+  nrfConfigReg('w',EN_AA,EN_AA_CURR);
+  // Write to SETUP_AW register
+  nrfConfigReg('w',SETUP_AW,SETUP_AW_CURR);
+  // Write to SETUP_RETR register
+  nrfConfigReg('w',SETUP_RETR,SETUP_RETR_CURR);
+  // Write to RF channel register
+  nrfConfigReg('w',RF_CH,RF_CH_CURR);
+  // Write to RF setup register  
+  nrfConfigReg('w',RF_SETUP,RF_SETUP_CURR);
+  // set TX address
+  nrfSetTXAddr(TX_ADDRESS,4);
+  // set RX address
+  nrfSetRXAddr(RX_ADDR_P0,RX_ADDRESS,4);
+  // Write pipe 0 payload width
+  //nrfConfigReg('w',RX_PW_P0,RX_PW_P0_CURR);
+  // Set dynamic payload for pipe 0
+  nrfConfigReg('w',DYNPD,DYNPD_CURR);
+  // Write to FEATURE register
+  nrfConfigReg('w',FEATURE,FEATURE_CURR);
+  // Flush RX FIFO
+  spiTransfer('n',FLUSH_RX,0);
+  // Flush TX FIFO
+  spiTransfer('n',FLUSH_TX,0);
+}
+
 
 /*------------------------------------------------
  * ISR
