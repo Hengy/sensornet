@@ -11,6 +11,7 @@ public:
 	void init(uint8_t SPIDiv, uint8_t CEpin, uint8_t CSNpin, uint8_t IRQpin);
 	uint8_t sync(void);
 	void nRF_ISR(void);
+	void respond(int data[], uint8_t len);
 	void setPower(uint8_t pwrLvl);
 	void setTXMode(void);
 	void setRXMode(void);
@@ -42,8 +43,8 @@ public:
 protected:
 	uint8_t checkAddrs(void);
 	uint8_t configReg(char wr, uint8_t command, uint8_t data);
-	void setTXAddr(uint8_t addr[], uint8_t len);
-	void setRXAddr(uint8_t pipe, uint8_t addr[], uint8_t len);
+	void setTXAddr(int addr[], uint8_t len);
+	void setRXAddr(uint8_t pipe, int addr[], uint8_t len);
 	
 	/*------------------------------------------------
 	 * nRF24L01+ config variables

@@ -219,7 +219,8 @@ void loop() {
       temp = 25 * analogRead(0) - 2050;
       Serial.print("Temp: ");
       Serial.print(temp/100);
-      Serial.println("°C");
+      Serial.write(183);
+      Serial.println("C");
     }
     
     delayMicroseconds(50);        // Need time to print

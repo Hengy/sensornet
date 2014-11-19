@@ -85,6 +85,8 @@ void nRFSNClass::init(uint8_t SPIDiv, uint8_t CEpin, uint8_t CSNpin, uint8_t IRQ
 	RXInt = 0;
 	TXInt = 0;
 	MAXInt = 0;
+	
+	updateStatus();
 }
 
 
@@ -105,8 +107,8 @@ uint8_t nRFSNClass::sync(void)
 	uint8_t addr2[4];
 	for (int i=0;i<4;i++)
 	{
-		addr1[i] = 0xE7;
-		addr2[i] = 0xE7;
+		RX_ADDRESS[i] = 0xE7;
+		TX_ADDRESS[i] = 0xE7;
 	}
 	setRXAddr(RX_ADDR_P0,addr1,4);
 	setTXAddr(addr2,4);
@@ -115,7 +117,7 @@ uint8_t nRFSNClass::sync(void)
 	setRXMode();
 	uint32_t time = 0;
 	uint8_t synced = 0;
-	while ((time < 600000) && (synced == 0))				// while less than 30s and unsynced
+	while ((time < 300000) && (synced == 0))				// while less than 30s and unsynced
 	{
 		if (RXInt)									// has a packet been received?
 		{
@@ -137,7 +139,7 @@ uint8_t nRFSNClass::sync(void)
 				break;										// packet was not a valid sync packet
 			}
 		}
-		delayMicroseconds(500);							// wait 1ms
+		delayMicroseconds(1000);							// wait 1ms
 		time++;												// increment time variable
 	}
 
@@ -147,18 +149,16 @@ uint8_t nRFSNClass::sync(void)
 			TX_ADDRESS[i] = BufIn[i+1];
 			RX_ADDRESS[i] = BufIn[i+5];
 		}
+		// set new TX address
+		setTXAddr(TX_ADDRESS,4);
+		// set new RX address
+		setRXAddr(RX_ADDR_P0,RX_ADDRESS,4);
 	} else {									// if sync failed, restore prev addresses and delete garbage
 		memcpy(TX_ADDRESS,prevTXAddr,4);
 		memcpy(RX_ADDRESS,prevRXAddr,4);
 		delete prevTXAddr;
 		delete prevRXAddr;
 	}
-	// set new TX address
-	setTXAddr(TX_ADDRESS,4);
-	// set new RX address
-	setRXAddr(RX_ADDR_P0,RX_ADDRESS,4);
-	
-	RXInt = 0;
 
 	return synced;								// return 0 if failed, 1 if sucessful
 }
@@ -218,6 +218,21 @@ void nRFSNClass::nRF_ISR(void)
 
 
 /*------------------------------------------------
+ * Respond function - used to transmit data back upon command
+------------------------------------------------*/
+void nRFSNClass::respond(int data[], uint8_t len)
+{
+	setTXMode();	// switch to transmit mode
+
+	//putBuf()		// put data into buffer
+
+	transmit(len);	// transmit response
+
+	setRXMode();	// switch back to receiving mode
+}
+
+
+/*------------------------------------------------
  * Set nRF output power. 0: lowest 3: highest
 ------------------------------------------------*/
 void nRFSNClass::setPower(uint8_t pwrLvl)
@@ -244,12 +259,13 @@ void nRFSNClass::setRXMode(void)
 {
 	CONFIG_CURR = B00101011;
 	configReg('w',CONFIG,CONFIG_CURR);
+	digitalWrite(nRFSN_CE, HIGH);
 }
 
 
 /*------------------------------------------------
  * Set nRF max number of retransmits
- * uint8_t numRT: Auto Retransmit Count (1 - 15)
+ * uint8_t numRT: Auto Retransmit Count (0: 250us 1111(15): 4000us; each +1 = +150us)
 ------------------------------------------------*/
 void nRFSNClass::setMAX_RT(uint8_t numRT)
 {
@@ -281,11 +297,6 @@ void nRFSNClass::setChannel(uint8_t ch)
 ------------------------------------------------*/
 void nRFSNClass::transfer(char wrn, uint8_t command, uint8_t len, uint8_t offset)
 {
-	int total = len + offset;
-#if total>28
-#error Buffer overflow: more than 28 bytes specified!
-#endif
-
 	digitalWrite(nRFSN_CSN, LOW);	// select nRF
 
 	// construct command byte
@@ -343,8 +354,12 @@ void nRFSNClass::transmit(uint8_t len)
 ------------------------------------------------*/
 uint8_t nRFSNClass::getPayloadSize(void)
 {
+	digitalWrite(nRFSN_CE, LOW);
+
 	SPI.transfer(R_RX_PL_WID);
 	uint8_t payloadSize = SPI.transfer(NRF_NOP);
+
+	digitalWrite(nRFSN_CE, HIGH);
 	
 	// do not try and read more than 32 bytes.
 	if (payloadSize > 32)
@@ -361,7 +376,11 @@ uint8_t nRFSNClass::getPayloadSize(void)
 ------------------------------------------------*/
 void nRFSNClass::getPayload(uint8_t payloadSize, uint8_t offset)
 {
+	digitalWrite(nRFSN_CE, LOW);
+
 	transfer('r',R_RX_PAYLOAD,payloadSize,offset);
+
+	digitalWrite(nRFSN_CE, HIGH);
 }
 
 
@@ -396,7 +415,7 @@ uint8_t nRFSNClass::configReg(char wr, uint8_t command, uint8_t data)
  * uint8_t addr[]: new address
  * uint8_t len: length of address (nRFSN uses 4)
 ------------------------------------------------*/
-void nRFSNClass::setTXAddr(uint8_t addr[], uint8_t len)
+void nRFSNClass::setTXAddr(int addr[], uint8_t len)
 {
 	digitalWrite(nRFSN_CSN, LOW);	// select nRF
 
@@ -419,7 +438,7 @@ void nRFSNClass::setTXAddr(uint8_t addr[], uint8_t len)
  * uint8_t addr[]: new address
  * uint8_t len: length of address (nRFSN uses 4)
 ------------------------------------------------*/
-void nRFSNClass::setRXAddr(uint8_t pipe, uint8_t addr[], uint8_t len)
+void nRFSNClass::setRXAddr(uint8_t pipe, int addr[], uint8_t len)
 {
 	digitalWrite(nRFSN_CSN, LOW);	// select nRF
 
