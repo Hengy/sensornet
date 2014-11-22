@@ -1,8 +1,0 @@
-http://gizmosnack.blogspot.se/2013/05/raspberry-pi-nrf24l01-and-tcp.html
-https://devzone.nordicsemi.com/question/4850/nrf24l01-pipe-settings/
-http://www.diyembedded.com/tutorials/nrf24l01_0/nrf24l01_tutorial_0.pdf
-http://blog.diyembedded.com/
-http://mcuoneclipse.com/2013/07/20/tutorial-ultra-low-cost-2-4-ghz-wireless-transceiver-with-the-frdm-board/
-
-Google:
-https://www.google.ca/search?q=nrf24l01%2B+data+pipe&oq=nrf24l01%2B+data+pipe&aqs=chrome..69i57j0.6784j0j7&sourceid=chrome&es_sm=93&ie=UTF-8

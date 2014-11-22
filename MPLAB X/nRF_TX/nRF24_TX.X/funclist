@@ -1,9 +1,0 @@
-_spiConfig_1: CODE, 16048 0 22
-_spiWrite: CODE, 16026 0 22
-_main: CODE, 16192 0 82
-_nrfTX: CODE, 16096 0 38
-__initialization: CODE, 16016 0 4
-_portConfig: CODE, 16070 0 26
-_nrfConfig: CODE, 16274 0 110
-_delay10ms: CODE, 16134 0 58
-Total: 362
