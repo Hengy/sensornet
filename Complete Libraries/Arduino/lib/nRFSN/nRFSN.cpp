@@ -180,9 +180,12 @@ void nRFSNClass::setPower(uint8_t pwrLvl)
 }
 
 
+/*------------------------------------------------
+ * Gets power configuration of nRF
+------------------------------------------------*/
 uint8_t nRFSNClass::getPower(void)
 {
-	
+	return RF_SETUP_CURR & 6;
 }
 
 
@@ -196,9 +199,12 @@ void nRFSNClass::setChannel(uint8_t ch)
 }
 
 
+/*------------------------------------------------
+ * Gets current channel of nRF
+------------------------------------------------*/
 uint8_t getChannel(void)
 {
-
+	return RF_CH_CURR & 127;
 }
 
 
@@ -215,9 +221,12 @@ void nRFSNClass::setMaxRT(uint8_t numRT)
 }
 
 
+/*------------------------------------------------
+ * Sets maximum number of retries
+------------------------------------------------*/
 uint8_t getMaxRT(void)
 {
-
+	return SETUP_RETR_CURR & 15;
 }
 
 
@@ -266,15 +275,25 @@ void nRFSNClass::setRXAddr(uint8_t pipe, int addr[], uint8_t len)
 }
 
 
-uint8_t getTXAddr(void)
+/*------------------------------------------------
+ * Returns current TX address
+------------------------------------------------*/
+uint8_t *getTXAddr(void)
 {
-
+	static uint8_t addr[4];
+	memcpy(addr,TX_ADDRESS,4);
+	return addr;
 }
 
 
-uint8_t getRXAddr(void)
+/*------------------------------------------------
+ * Returns current RX address
+------------------------------------------------*/
+uint8_t *getRXAddr(void)
 {
-
+	static uint8_t addr[4];
+	memcpy(addr,RX_ADDRESS,4);
+	return addr;
 }
 
 
@@ -428,6 +447,9 @@ uint8_t nRFSNClass::sync(void)
 // }
 
 
+/*------------------------------------------------
+ * Sets config register of nRF
+------------------------------------------------*/
 void nRFSNClass::setReg(uint8_t reg, uint8_t data)
 {
 	digitalWrite(nRFSN_CSN, LOW);	// select nRF
@@ -439,7 +461,9 @@ void nRFSNClass::setReg(uint8_t reg, uint8_t data)
 }
 
 
-
+/*------------------------------------------------
+ * Gets config register of nRF
+------------------------------------------------*/
 uint8_t nRFSNClass::getReg(uint8_t reg)
 {
 	digitalWrite(nRFSN_CSN, LOW);	// select nRF

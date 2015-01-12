@@ -22,8 +22,8 @@ public:
 	uint8_t getMaxRT(void);
 	void setTXAddr(uint8_t addr[], uint8_t len);
 	void setRXAddr(uint8_t pipe, uint8_t addr[], uint8_t len);
-	uint8_t getTXAddr(void);
-	uint8_t getRXAddr(void);
+	uint8_t *getTXAddr(void);
+	uint8_t *getRXAddr(void);
 	
 	void nRF_ISR(void);
 	void clearInt(uint8_t interrupt);
