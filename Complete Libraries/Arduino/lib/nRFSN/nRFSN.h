@@ -11,6 +11,7 @@ public:
 	void init(uint8_t SPIDiv, uint8_t CEpin, uint8_t CSNpin, uint8_t IRQpin);
 	
 	void initSPI(uint8_t SPIDiv);
+	
 	void setTXMode(void);
 	void setRXMode(void);
 	uint8_t getMode(void);
@@ -39,8 +40,8 @@ public:
 	uint8_t getPayloadSize(void);
 	void getPayload(uint8_t payloadSize);
 
-	void putBufOut(uint8_t data, uint8_t len);
-	uint8_t getBufIn(uint8_t len);
+	void putBufOut(uint8_t data[], uint8_t len);
+	uint8_t *getBufIn(uint8_t len);
 
 	volatile uint8_t Busy;			// nRF busy flag; set when transmitting
 
@@ -50,7 +51,9 @@ public:
 
 protected:
 	uint8_t checkAddrs(void);
-	uint8_t configReg(char wr, uint8_t command, uint8_t data);
+	
+	//Depreciated - replaced with setReg() and getReg()
+	//uint8_t configReg(char wr, uint8_t command, uint8_t data);
 	
 	uint8_t nRFSN_CE;
 	uint8_t nRFSN_CSN;

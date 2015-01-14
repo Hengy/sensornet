@@ -202,7 +202,7 @@ void nRFSNClass::setChannel(uint8_t ch)
 /*------------------------------------------------
  * Gets current channel of nRF
 ------------------------------------------------*/
-uint8_t getChannel(void)
+uint8_t nRFSNClass::getChannel(void)
 {
 	return RF_CH_CURR & 127;
 }
@@ -224,7 +224,7 @@ void nRFSNClass::setMaxRT(uint8_t numRT)
 /*------------------------------------------------
  * Sets maximum number of retries
 ------------------------------------------------*/
-uint8_t getMaxRT(void)
+uint8_t nRFSNClass::getMaxRT(void)
 {
 	return SETUP_RETR_CURR & 15;
 }
@@ -278,7 +278,7 @@ void nRFSNClass::setRXAddr(uint8_t pipe, int addr[], uint8_t len)
 /*------------------------------------------------
  * Returns current TX address
 ------------------------------------------------*/
-uint8_t *getTXAddr(void)
+uint8_t *nRFSNClass::getTXAddr(void)
 {
 	static uint8_t addr[4];
 	memcpy(addr,TX_ADDRESS,4);
@@ -289,7 +289,7 @@ uint8_t *getTXAddr(void)
 /*------------------------------------------------
  * Returns current RX address
 ------------------------------------------------*/
-uint8_t *getRXAddr(void)
+uint8_t *nRFSNClass::getRXAddr(void)
 {
 	static uint8_t addr[4];
 	memcpy(addr,RX_ADDRESS,4);
@@ -586,4 +586,24 @@ void nRFSNClass::getPayload(uint8_t payloadSize)
 	transfer('r',R_RX_PAYLOAD,payloadSize);
 
 	digitalWrite(nRFSN_CE, HIGH);
+}
+
+
+/*------------------------------------------------
+ * Gets buffer (out) contents
+------------------------------------------------*/
+void nRFSNClass::putBufOut(uint8_t data[], uint8_t len)
+{
+	memcpy(BufOut,data,len);
+}
+
+
+/*------------------------------------------------
+ * Gets buffer (in) contents
+------------------------------------------------*/
+uint8_t *nRFSNClass::getBufIn(uint8_t len)
+{
+	uint8_t data[32];
+	memcpy(data,BufIn,len);
+	return data;
 }
