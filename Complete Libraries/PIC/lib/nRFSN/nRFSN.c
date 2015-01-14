@@ -46,27 +46,27 @@ void init(void)
 
     // nRF24L01+ setup
     // Write to CONFIG register
-    configReg('w',CONFIG,CONFIG_CURR);
+    setReg('w',CONFIG,CONFIG_CURR);
     // Write to EN_RXADDR register
-    configReg('w',EN_RXADDR,EN_RXADDR_CURR);
+    setReg('w',EN_RXADDR,EN_RXADDR_CURR);
     // Write to EN_AA register
-    configReg('w',EN_AA,EN_AA_CURR);
+    setReg('w',EN_AA,EN_AA_CURR);
     // Write to SETUP_AW register
-    configReg('w',SETUP_AW,SETUP_AW_CURR);
+    setReg('w',SETUP_AW,SETUP_AW_CURR);
     // Write to SETUP_RETR register
-    configReg('w',SETUP_RETR,SETUP_RETR_CURR);
+    setReg('w',SETUP_RETR,SETUP_RETR_CURR);
     // Write to RF channel register
-    configReg('w',RF_CH,RF_CH_CURR);
+    setReg('w',RF_CH,RF_CH_CURR);
     // Write to RF setup register
-    configReg('w',RF_SETUP,RF_SETUP_CURR);
+    setReg('w',RF_SETUP,RF_SETUP_CURR);
     // set TX address
     setTXAddr(TX_ADDRESS,4);
     // set RX address
     setRXAddr(RX_ADDR_P0,RX_ADDRESS,4);
     // Set dynamic payload for pipe 0
-    configReg('w',DYNPD,DYNPD_CURR);
+    setReg('w',DYNPD,DYNPD_CURR);
     // Write to FEATURE register
-    configReg('w',FEATURE,FEATURE_CURR);
+    setReg('w',FEATURE,FEATURE_CURR);
     // Flush RX FIFO
     transfer('n',FLUSH_RX,0,0);
     // Flush TX FIFO
@@ -150,7 +150,7 @@ void setSPIFreq(uint16_t freq)
 void setTXMode(void)
 {
     CONFIG_CURR = 0b01001010;
-    configReg('w',CONFIG,CONFIG_CURR);
+    setReg('w',CONFIG,CONFIG_CURR);
 	currMode = 0;
 }
 
@@ -161,7 +161,7 @@ void setTXMode(void)
 void setRXMode(void)
 {
     CONFIG_CURR = 0b00101011;
-    configReg('w',CONFIG,CONFIG_CURR);
+    setReg('w',CONFIG,CONFIG_CURR);
 	currMode = 1;
 }
 
@@ -181,7 +181,7 @@ uint8_t getMode(void)
 void setPower(uint8_t pwrLvl)
 {
     RF_SETUP_CURR = pwrLvl << 1;		// shift 1 bit left
-    configReg('w',RF_SETUP,RF_SETUP_CURR);
+    setReg('w',RF_SETUP,RF_SETUP_CURR);
 }
 
 
@@ -200,7 +200,7 @@ uint8_t getPower(void)
 void setChannel(uint8_t ch)
 {
     RF_CH_CURR = ch;
-    configReg('w',RF_CH,RF_CH_CURR);
+    setReg('w',RF_CH,RF_CH_CURR);
 }
 
 
@@ -222,7 +222,7 @@ void setMaxRT(uint8_t numRT)
     // mask out current Auto Retransmit Delay, and OR it with numRT with upper 4 bits (numbers > 16) masked out
     // result is current ARD and new ARC values
     SETUP_RETR_CURR = (SETUP_RETR_CURR & 0b11110000) | (numRT & 0b00001111);
-    configReg('w',SETUP_RETR,SETUP_RETR_CURR);
+    setReg('w',SETUP_RETR,SETUP_RETR_CURR);
 }
 
 
@@ -333,7 +333,7 @@ void nRF_ISR(void)
 ------------------------------------------------*/
 void clearInt(uint8_t intNum)
 {
-    configReg('w',STATUS,(intNum << 4));
+    setReg('w',STATUS,(intNum << 4));
 }
 
 

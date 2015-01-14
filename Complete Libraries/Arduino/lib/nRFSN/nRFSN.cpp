@@ -55,31 +55,31 @@ void nRFSNClass::init(uint8_t SPIDiv, uint8_t CEpin, uint8_t CSNpin, uint8_t IRQ
 
 	// nRF24L01+ setup
 	// Write to CONFIG register
-	configReg('w',CONFIG,CONFIG_CURR);
+	setReg('w',CONFIG,CONFIG_CURR);
 	// Write to EN_RXADDR register  
-	configReg('w',EN_RXADDR,EN_RXADDR_CURR);
+	setReg('w',EN_RXADDR,EN_RXADDR_CURR);
 	// Write to EN_AA register
-	configReg('w',EN_AA,EN_AA_CURR);
+	setReg('w',EN_AA,EN_AA_CURR);
 	// Write to SETUP_AW register
-	configReg('w',SETUP_AW,SETUP_AW_CURR);
+	setReg('w',SETUP_AW,SETUP_AW_CURR);
 	// Write to SETUP_RETR register
-	configReg('w',SETUP_RETR,SETUP_RETR_CURR);
+	setReg('w',SETUP_RETR,SETUP_RETR_CURR);
 	// Write to RF channel register
-	configReg('w',RF_CH,RF_CH_CURR);
+	setReg('w',RF_CH,RF_CH_CURR);
 	// Write to RF setup register  
-	configReg('w',RF_SETUP,RF_SETUP_CURR);
+	setReg('w',RF_SETUP,RF_SETUP_CURR);
 	// set TX address
 	setTXAddr(TX_ADDRESS,4);
 	// set RX address
 	setRXAddr(RX_ADDR_P0,RX_ADDRESS,4);
 	// Set dynamic payload for pipe 0
-	configReg('w',DYNPD,DYNPD_CURR);
+	setReg('w',DYNPD,DYNPD_CURR);
 	// Write to FEATURE register
-	configReg('w',FEATURE,FEATURE_CURR);
+	setReg('w',FEATURE,FEATURE_CURR);
 	// Flush RX FIFO
-	transfer('n',FLUSH_RX,0,0);
+	transfer('n',FLUSH_RX,0);
 	// Flush TX FIFO
-	transfer('n',FLUSH_TX,0,0);
+	transfer('n',FLUSH_TX,0);
 	
 	// current mode is RX
 	currMode = 1;	// 1 = RX, 0 = TX
@@ -144,7 +144,7 @@ void nRFSNClass::initSPI(uint8_t SPIDiv)
 void nRFSNClass::setTXMode(void)
 {
 	CONFIG_CURR = B01001010;
-	configReg('w',CONFIG,CONFIG_CURR);
+	setReg('w',CONFIG,CONFIG_CURR);
 	currMode = 0;
 }
 
@@ -155,7 +155,7 @@ void nRFSNClass::setTXMode(void)
 void nRFSNClass::setRXMode(void)
 {
 	CONFIG_CURR = B00101011;
-	configReg('w',CONFIG,CONFIG_CURR);
+	setReg('w',CONFIG,CONFIG_CURR);
 	digitalWrite(nRFSN_CE, HIGH);
 	currMode = 1;
 }
@@ -176,7 +176,7 @@ uint8_t nRFSNClass::getMode(void)
 void nRFSNClass::setPower(uint8_t pwrLvl)
 {
 	RF_SETUP_CURR = pwrLvl << 1;			// shift 1 bit left
-	configReg('w',RF_SETUP,RF_SETUP_CURR);
+	setReg('w',RF_SETUP,RF_SETUP_CURR);
 }
 
 
@@ -195,7 +195,7 @@ uint8_t nRFSNClass::getPower(void)
 void nRFSNClass::setChannel(uint8_t ch)
 {
 	RF_CH_CURR = ch;
-	configReg('w',RF_CH,RF_CH_CURR);
+	setReg('w',RF_CH,RF_CH_CURR);
 }
 
 
@@ -217,7 +217,7 @@ void nRFSNClass::setMaxRT(uint8_t numRT)
 	// mask out current Auto Retransmit Delay, and OR it with numRT with upper 4 bits (numbers > 16) masked out
 	// result is current ARD and new ARC values
 	SETUP_RETR_CURR = (SETUP_RETR_CURR & B11110000) | (numRT & B00001111);
-	configReg('w',SETUP_RETR,SETUP_RETR_CURR);
+	setReg('w',SETUP_RETR,SETUP_RETR_CURR);
 }
 
 
@@ -328,7 +328,7 @@ void nRFSNClass::nRF_ISR(void)
 ------------------------------------------------*/
 void nRFSNClass::clearInt(uint8_t interrupt)
 {
-	configReg('w',STATUS,(interrupt << 4));
+	setReg('w',STATUS,(interrupt << 4));
 }
 
 
