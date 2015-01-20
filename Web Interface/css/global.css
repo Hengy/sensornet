@@ -33,21 +33,28 @@ body {
 
 #nodeList {
 	float: left;
-	white-space: nowrap;
 	
 	width: 320px;
 	
 	height: 100%;
 	
 	padding: 10px;
+
+#divLine {
+	float:left;
 	
-	border-right-style: solid;
-	border-width: 1px;
-    border-color: #e2e2e2;
+	width: 2px;
+	
+	height: 100px;	
+	
+	background: url(images/line.svg);
+  	background-size: 2px 100px;
 }
+
 
 #nodeInfo {
 	display: inline-block;
+	white-space: nowrap;
 	
 	width: calc(96% - 360px);
 	min-width: 500px;
