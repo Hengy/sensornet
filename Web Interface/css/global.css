@@ -16,7 +16,7 @@ body {
 	width: 100%;
 	min-width: 600px;
 	
-	height: 60px;
+	height: 70px;
 	
 	padding: 10px 30px;
 }
@@ -25,16 +25,14 @@ body {
 	float:left;
 	
 	width: 200px;
-	height: 60px;
+	height: 70px;
 }
 
 #options {
 	float:right;
 	
 	min-width: 200px;
-	height: 60px;
-	
-	padding-right: 50px;
+	height: 70px;
 }
 
 #mainWrapper {
@@ -50,23 +48,53 @@ body {
 #nodeList {
 	float: left;
 	
-	width: 320px;
+	width: 360px;
 	height: 100%;
-	
-	padding: 10px 0px 10px 10px;
 }
 
 #searchWrapper {
-	width: 300px;
+	width: 340px;
 	height: 80px;
 	
-	padding: 10px 10px 10px 10px;
+	padding: 10px 10px 20px 10px;
 }
 
 #listWrapper {
-	width: 310px;
-	
-	padding: 20px 0px 10px 10px;
+	width: 360px;
+}
+
+.listButton {
+    width: 100%;
+    height: 80px;
+    
+    background-color: #dfdfdf;
+}
+
+.listButtonIcon {
+    float:left;
+    
+    width:70px;
+    height:70px;
+    
+    padding: 5px 8px 5px 5px;
+}
+
+.listButtonName {
+    float:left;
+    
+    width: calc(96% - 90px);
+    height: 45px;
+    
+    padding-top:5px;
+    
+    font-size: 26px;
+}
+
+.listButtonDetails {
+    float:left;
+    
+    width: calc(96% - 90px);
+    height: 25px;
 }
 
 #vDivLine {
@@ -81,7 +109,7 @@ body {
 	width: 1px;
 	height: 100%;
 	
-	opacity: 0.75;
+	opacity: 0.3;
 }
 
 #nodeInfoWrapper {
@@ -89,16 +117,59 @@ body {
 	white-space: nowrap;
 	
 	width: calc(96% - 360px);
-	min-width: 500px;
+	min-width: 700px;
 	
 	height: 100%;
 }
 
 #nodeMenu {
+    margin-left: calc((100% - 600px)/2);
+    margin-right: calc((100% - 600px)/2);
+    margin-top: 40px;
+    
 	width: 100%;
-	height: 40px;
-	
-	padding: 10px 20px 0px 20px;
+	height: 60px;
+}
+
+#nodeMenuWrapper {
+    width: 600px;
+}
+
+.menuButton {
+    float:left;
+    
+    width: 200px;
+    height: 45px;    
+    
+    padding-top: 15px;
+    
+    color: #000000;
+    text-align: center;
+    font-size: 22px;
+    
+    background-color: #ffffff;
+}
+.menuButtonSel {
+    float:left;
+    
+    width: 200px;
+    height: 45px;    
+    
+    padding-top: 15px;
+    
+    color: #ffffff;
+    text-align: center;
+    font-size: 22px;
+    
+    background-color: #4286ec;
+}
+.menuButton:hover {
+    color: #000000;
+    background-color: #dfdfdf;
+}
+.menuButton:active {
+    color: #ffffff;
+    background-color: #4286ec;
 }
 
 #hDivLine {	
@@ -112,17 +183,17 @@ body {
 
 #hLine {
 	position: relative;
-	top: -14px;
+	top: -15px;
 	
 	width: 100%;
 	height: 1px;
 	
-	opacity: 0.75;
+	opacity: 0.3;
 }
 
 #nodeInfo {
 	width: 98%;
-	height: calc(100% - 100px);
+	height: calc(100% - 140px);
 	
 	padding: 30px 20px 40px 20px;
 }
