@@ -70,6 +70,8 @@ body {
 	
 	width: 360px;
 	height: 100%;
+	
+	margin-top: 90px;
 }
 
 #searchWrapper {
@@ -77,6 +79,37 @@ body {
 	height: 80px;
 	
 	padding: 10px 10px 20px 10px;
+}
+
+#searchBox {
+	
+}
+
+.searchBox {
+	width: calc(100% - 88px);
+	height: 26px;
+	
+	padding-left: 8px;
+	
+	background: white; 
+    border: 1px solid #888888;
+    box-shadow: 0 0 0px #ffffff inset; 
+    color: #AAAAAA;
+}
+.searchBox:hover {
+	box-shadow: 0 0 5px #4286EC inset; 
+}
+.searchBox:active {
+	box-shadow: 0 0 5px #4286EC inset; 
+}
+
+.inputButton {
+	position: relative;
+	
+	left: -5px;
+	
+	width: 70px;
+	height: 30px;
 }
 
 #listWrapper {
