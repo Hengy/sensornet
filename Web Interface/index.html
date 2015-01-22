@@ -19,6 +19,9 @@
 		<!-- CSS -->
 		<link rel="stylesheet" type="text/css" href="css/global.css">
 		
+		<!-- Bootstrap -->
+		
+		
 		<!-- Javascript -->
 
 		<!-- icons -->
@@ -32,8 +35,16 @@
 				Logo
 			</div>
 			
-			<div id="options">
-				Options
+			<div id="gOptions">
+				
+				<div class="gOptionsButton" style="float:left;">
+					Sign In
+				</div>
+				
+				<div class="gOptionsButton">
+					Options
+				</div>
+				
 			</div>
 
 		</div>
@@ -43,7 +54,26 @@
 			<div id="nodeList">
 				
 				<div id="searchWrapper">
-					search
+					
+					<div id="searchBox">
+						
+						<div class="row">
+						  	<div class="col-lg-6">
+						    	<div class="input-group">
+						      		<input type="text" class="form-control" placeholder="Search for...">
+						      		<span class="input-group-btn">
+						        		<button class="btn btn-default" type="button">Go!</button>
+						      		</span>
+						    	</div><!-- /input-group -->
+						  	</div><!-- /.col-lg-6 -->
+						</div><!-- /.row -->
+						
+					</div>
+					
+					<div id="category">
+						
+					</div>
+					
 				</div>
 				
 				<div id="listWrapper">
@@ -59,9 +89,7 @@
 							Location
 						</div>
 					</div>
-					
-					
-					
+										
 				</div>
 
 			</div>
@@ -82,6 +110,9 @@
 					</div>
 					<div class="menuButton">
 						Options
+					</div>
+					<div class="menuButtonRefresh">
+						R
 					</div>
 					
 				</div>

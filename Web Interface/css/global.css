@@ -28,11 +28,31 @@ body {
 	height: 70px;
 }
 
-#options {
+#gOptions {
+    position: relative;
+    top: -10px;
+    
 	float:right;
+		
+	min-width: 180px;
+	height: 22px;
 	
-	min-width: 200px;
-	height: 70px;
+	padding: 10px 22px 10px 22px;
+	margin-right: 100px;
+	
+	background-color: #4286EC;
+}
+
+.gOptionsButton {    
+    float: right;
+    
+    font-size: 20px;
+    color: #E2E2E2;
+    
+    cursor: pointer;
+}
+.gOptionsButton:hover {
+    color: #FFFFFF;
 }
 
 #mainWrapper {
@@ -63,11 +83,52 @@ body {
 	width: 360px;
 }
 
+.listButtonHome {
+    width: 100%;
+    height: 80px;
+    
+    color: #000000;
+    
+    background-color: #ffffff;
+    
+    cursor: pointer;
+}
+.listButtonHome:hover {
+    background-color:#DFDFDF;
+}
+.listButtonHome:active {
+    background-color: #4286EC;
+}
+
 .listButton {
     width: 100%;
     height: 80px;
     
+    color: #000000;
+    
+    background-color: #ffffff;
+    
+    cursor: pointer;
+}
+.listButtonSel {
+    width: 100%;
+    height: 80px;
+    
+    color: #FFFFFF;
+    
+    background-color: #4286EC;
+    
+    cursor: pointer;
+}
+.listButton:hover {
+    color: #000000;
+    
     background-color: #dfdfdf;
+}
+.listButton:active {
+    color: #FFFFFF;
+    
+    background-color: #4286EC;
 }
 
 .listButtonIcon {
@@ -83,9 +144,9 @@ body {
     float:left;
     
     width: calc(96% - 90px);
-    height: 45px;
+    height: 36px;
     
-    padding-top:5px;
+    padding-top:12px;
     
     font-size: 26px;
 }
@@ -95,6 +156,8 @@ body {
     
     width: calc(96% - 90px);
     height: 25px;
+    
+    font-size: 17px;
 }
 
 #vDivLine {
@@ -123,8 +186,8 @@ body {
 }
 
 #nodeMenu {
-    margin-left: calc((100% - 600px)/2);
-    margin-right: calc((100% - 600px)/2);
+    margin-left: calc((100% - 668px)/2);
+    margin-right: calc((100% - 668px)/2);
     margin-top: 40px;
     
 	width: 100%;
@@ -145,9 +208,11 @@ body {
     
     color: #000000;
     text-align: center;
-    font-size: 22px;
+    font-size: 25px;
     
     background-color: #ffffff;
+    
+    cursor: pointer;
 }
 .menuButtonSel {
     float:left;
@@ -159,15 +224,42 @@ body {
     
     color: #ffffff;
     text-align: center;
-    font-size: 22px;
+    font-size: 25px;
     
     background-color: #4286ec;
+    
+    cursor: pointer;
 }
 .menuButton:hover {
     color: #000000;
     background-color: #dfdfdf;
 }
 .menuButton:active {
+    color: #ffffff;
+    background-color: #4286ec;
+}
+
+.menuButtonRefresh {
+    float:left;
+    
+    width: 68px;
+    height: 45px;    
+    
+    padding-top: 15px;
+    
+    color: #000000;
+    text-align: center;
+    font-size: 30px;
+    
+    background-color: #ffffff;
+    
+    cursor: pointer;
+}
+.menuButtonRefresh:hover {
+    color: #000000;
+    background-color: #dfdfdf;
+}
+.menuButtonRefresh:active {
     color: #ffffff;
     background-color: #4286ec;
 }
