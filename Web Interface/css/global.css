@@ -15,6 +15,22 @@ body {
 	background-color: #222222;
 }
 
+#listWrapper::-webkit-scrollbar-track {
+	background-color: #222222;
+}
+
+#listWrapper::-webkit-scrollbar {
+	width: 14px;
+	background-color: #222222;
+}
+
+#listWrapper::-webkit-scrollbar-thumb {
+	background-color: #292929;
+}
+#listWrapper::-webkit-scrollbar-thumb:hover {
+	background-color: #37435e;
+}
+
 #header {
 	width: 100%;
 	min-width: 600px;
@@ -76,28 +92,28 @@ body {
 	width: 330px;
 	height: 100%;
 	
-	margin-top: 90px;
+	margin-top: 40px;
 }
 
 #searchWrapper {
+	float: right;
+	
+	margin: 0px 12px 20px 0px;
+	
 	width: 300px;
-	height: 60px;
-	
-	padding: 10px 10px 20px 10px;
-}
-
-#searchBox {
-	
+	height: 70px;
 }
 
 .searchBox {
-	width: calc(100% - 88px);
-	height: 26px;
+	float: right;
 	
-	padding-left: 8px;
+	width: calc(100% - 84px);
+	height: 28px;
+	
+	padding: 0px 5px 0px 5px;
 	
 	background-color: #222222; 
-    border: 1px solid #888888;
+    border: 1px solid #666666;
     box-shadow: 0 0 0px #ffffff inset; 
     color: #EEEEEE;
 }
@@ -109,12 +125,51 @@ body {
 }
 
 .inputButton {
-	position: relative;
-	
-	left: -5px;
+	float:right;
 	
 	width: 70px;
 	height: 30px;
+	
+	border: 1px solid #666666;
+	
+	color: #CCCCCC;
+	
+	background-color: #333333;
+}
+
+#category {
+	float: right;
+	
+	margin-top: 16px;
+}
+
+#dropDownSelect {
+	width: 298px;
+	height: 30px;
+	
+	padding: 0px 5px 0px 5px;
+	
+	background-color: #222222; 
+    border: 1px solid #666666;
+    box-shadow: 0 0 0px #ffffff inset; 
+    color: #AAAAAA;
+}
+#dropDownSelect:hover {
+	color: #EEEEEE;
+	
+	box-shadow: 0 0 5px #4568e2 inset;
+}
+#dropDownSelect:active {
+	color: #EEEEEE;
+	
+	box-shadow: 0 0 5px #4568e2 inset;
+}
+
+#dropDownOption {	
+	background-color: #222222; 
+    border: 1px solid #666666;
+    box-shadow: 0 0 0px #ffffff inset; 
+    color: #AAAAAA;
 }
 
 #listWrapper {
@@ -122,6 +177,8 @@ body {
     
 	width: 310px;
 	height: calc(100% - 200px);
+	
+	overflow-y: auto;
 }
 
 .listButton {
@@ -270,7 +327,7 @@ body {
     background-color: #4568e2;
 }
 
-.menuButtonRefresh {
+#menuButtonRefresh {
 	position: relative;
 	top: -10px;
 	right: -57px;
@@ -278,38 +335,35 @@ body {
 	float: right;
 	
     width: 68px;
-    height: 52px;    
+    height: 54px;    
     
-    padding-top: 8px;
-    
-    color: #EEEEEE;
-    text-align: center;
-    font-size: 30px;
+    padding-top: 7px;
     
     background-color: #222222;
     
     cursor: pointer;
 }
-.menuButtonRefresh:hover {
-    color: #EEEEEE;
+#menuButtonRefresh:hover {
     background-color: #444444;
 }
-.menuButtonRefresh:active {
-    color: #ffffff;
+#menuButtonRefresh:active {
     background-color: #4568e2;
 }
 
-#refreshBttn {
-	width: 34px;
-	
-	color: #DDDDDD;
+#placeholder {
+	height: 2px;
+	width: 68px;
 }
 
-#hDivLineTop {	
+#refreshBttn {	
+	width: 46px;
+}
+
+#hDivLine {	
 	margin-left: auto;
     margin-right: auto;
 	
-	width: 80%;
+	width: 86%;
 	
 	height: 1px;
 	
@@ -327,10 +381,7 @@ body {
 }
 
 #nodeName {
-	position: relative;
-	right: -34px;
-	
-    width: 70%;
+	width: 70%;
     
     margin-left: auto;
     margin-right: auto;
@@ -340,23 +391,11 @@ body {
     font-size: 36px;
 }
 
-#hDivLineBottom {
-    margin-left: auto;
-    margin-right: auto;
-    
-    width: 80%;   
-    height: 1px;
-    
-    margin-bottom: 4px;
-    
-    background-color: #444444;
-}
-
 #nodeIDWrapper {
     margin-left: auto;
     margin-right: auto;
     
-    width: 78%;   
+    width: 84%;   
     height: 25px;
 }
 
@@ -365,7 +404,7 @@ body {
     
     height: 24px;
     
-    padding: 4px 8px 4px 8px;
+    padding: 8px 8px 4px 8px;
     margin-right: 25px;
     
     font-size: 14px;
