@@ -23,16 +23,9 @@
 		
 		
 		<!-- Javascript -->
+		<script src="js/global.js"></script>
 		<script type="text/javascript">
-			function pageLoaded() {
-				var newH = Math.floor((window.innerHeight - 360)/60) * 60;
-				document.getElementById("listWrapper").style.height = newH + "px";
-			}
 			
-			window.addEventListener('resize', function(event){
-				var newH = Math.floor((window.innerHeight - 360)/60) * 60;
-				document.getElementById("listWrapper").style.height = newH + "px";
-			});
 		</script>
 
 		<!-- icons -->
@@ -66,14 +59,14 @@
 				
 				<div id="searchWrapper">
 					
-					<div id="searchBox">
+					<div id="searchBox" class="noselect">
 
-						<button class="inputButton" type="button">Search</button>
+						<button class="inputButton noselect" type="button">Search</button>
 			      		<input type="text" class="searchBox" placeholder="Search nodes">
 
 					</div>
 					
-					<div id="category">
+					<div id="category" class="noselect">
 						
 						<select id="dropDownSelect">
 							<option class="dropDownOption" value="all">All</option>
@@ -85,243 +78,251 @@
 					
 				</div>
 				
-				<div id="listWrapper">
-					
-					<div class="listButton">
-						<div class="listButtonIcon">
-							
-						</div>
-						<div class="listButtonName">
-							Name
-						</div>
-						<div class="listButtonDetails">
-							Location
-						</div>
-						
-					</div>
-					
-					<div class="listButton">
-						<div class="listButtonIcon">
-							
-						</div>
-						<div class="listButtonName">
-							Name
-						</div>
-						<div class="listButtonDetails">
-							Location
-						</div>
-						
-					</div>
-					
-					<div class="listButton">
-						<div class="listButtonIcon">
-							
-						</div>
-						<div class="listButtonName">
-							Name
-						</div>
-						<div class="listButtonDetails">
-							Location
-						</div>
-						
-					</div>
-					
-					<div class="listButton">
-						<div class="listButtonIcon">
-							
-						</div>
-						<div class="listButtonName">
-							Name
-						</div>
-						<div class="listButtonDetails">
-							Location
-						</div>
-						
-					</div>
-					
-					<div class="listButton">
-						<div class="listButtonIcon">
-							
-						</div>
-						<div class="listButtonName">
-							Name
-						</div>
-						<div class="listButtonDetails">
-							Location
-						</div>
-						
-					</div>
-					
-					<div class="listButton">
-						<div class="listButtonIcon">
-							
-						</div>
-						<div class="listButtonName">
-							Name
-						</div>
-						<div class="listButtonDetails">
-							Location
-						</div>
-						
-					</div>
-					
-					<div class="listButton">
-						<div class="listButtonIcon">
-							
-						</div>
-						<div class="listButtonName">
-							Name
-						</div>
-						<div class="listButtonDetails">
-							Location
-						</div>
-						
-					</div>
-					
-					<div class="listButton">
-						<div class="listButtonIcon">
-							
-						</div>
-						<div class="listButtonName">
-							Name
-						</div>
-						<div class="listButtonDetails">
-							Location
-						</div>
-						
-					</div>
-					
-					<div class="listButton">
-						<div class="listButtonIcon">
-							
-						</div>
-						<div class="listButtonName">
-							Name
-						</div>
-						<div class="listButtonDetails">
-							Location
-						</div>
-						
-					</div>
-					
-					<div class="listButton">
-						<div class="listButtonIcon">
-							
-						</div>
-						<div class="listButtonName">
-							Name
-						</div>
-						<div class="listButtonDetails">
-							Location
-						</div>
-						
-					</div>
-					
-					<div class="listButton">
-						<div class="listButtonIcon">
-							
-						</div>
-						<div class="listButtonName">
-							Name
-						</div>
-						<div class="listButtonDetails">
-							Location
-						</div>
-						
-					</div>
-					
-					<div class="listButton">
-						<div class="listButtonIcon">
-							
-						</div>
-						<div class="listButtonName">
-							Name
-						</div>
-						<div class="listButtonDetails">
-							Location
-						</div>
-						
-					</div>
-					
-					<div class="listButton">
-						<div class="listButtonIcon">
-							
-						</div>
-						<div class="listButtonName">
-							Name
-						</div>
-						<div class="listButtonDetails">
-							Location
-						</div>
-						
-					</div>
-					
-					<div class="listButton">
-						<div class="listButtonIcon">
-							
-						</div>
-						<div class="listButtonName">
-							Name
-						</div>
-						<div class="listButtonDetails">
-							Location
-						</div>
-						
-					</div>
-					
-					<div class="listButton">
-						<div class="listButtonIcon">
-							
-						</div>
-						<div class="listButtonName">
-							Name
-						</div>
-						<div class="listButtonDetails">
-							Location
-						</div>
-						
-					</div>
-					
-					<div class="listButton">
-						<div class="listButtonIcon">
-							
-						</div>
-						<div class="listButtonName">
-							Name
-						</div>
-						<div class="listButtonDetails">
-							Location
-						</div>
-						
-					</div>
-					
-					<div class="listButton">
-						<div class="listButtonIcon">
-							
-						</div>
-						<div class="listButtonName">
-							Name
-						</div>
-						<div class="listButtonDetails">
-							Location
-						</div>
-						
-					</div>
-					
-					<div class="listButton">
-						<div class="listButtonIcon">
-							
-						</div>
-						<div class="listButtonName">
-							Name
-						</div>
-						<div class="listButtonDetails">
-							Location
-						</div>
-						
-					</div>
+				<svg version="1.1" class="arrow_symbol" id="arrowUp" onclick="scrollBttnUp();" onmouseover="mouseOverScrollBttn('arrowUp');" onmouseleave="mouseLeaveScrollBttn('arrowUp');" x="0px" y="0px" width="30px" height="30px" viewBox="0 0 30 30">
+					<polygon class="polygon" points="14,0 0,20 28,20" style="fill: #555555" />
+				</svg>
+				
+				<div id="listWrapper" class="noselect">
 										
+					<div class="listButton">
+						<div class="listButtonIcon">
+							
+						</div>
+						<div class="listButtonName">
+							Name
+						</div>
+						<div class="listButtonDetails">
+							Location
+						</div>
+						
+					</div>
+					
+					<div class="listButton">
+						<div class="listButtonIcon">
+							
+						</div>
+						<div class="listButtonName">
+							Name1
+						</div>
+						<div class="listButtonDetails">
+							Location
+						</div>
+						
+					</div>
+					
+					<div class="listButton">
+						<div class="listButtonIcon">
+							
+						</div>
+						<div class="listButtonName">
+							Name2
+						</div>
+						<div class="listButtonDetails">
+							Location
+						</div>
+						
+					</div>
+					
+					<div class="listButton">
+						<div class="listButtonIcon">
+							
+						</div>
+						<div class="listButtonName">
+							Name3
+						</div>
+						<div class="listButtonDetails">
+							Location
+						</div>
+						
+					</div>
+					
+					<div class="listButton">
+						<div class="listButtonIcon">
+							
+						</div>
+						<div class="listButtonName">
+							Name4
+						</div>
+						<div class="listButtonDetails">
+							Location
+						</div>
+						
+					</div>
+					
+					<div class="listButton">
+						<div class="listButtonIcon">
+							
+						</div>
+						<div class="listButtonName">
+							Name5
+						</div>
+						<div class="listButtonDetails">
+							Location
+						</div>
+						
+					</div>
+					
+					<div class="listButton">
+						<div class="listButtonIcon">
+							
+						</div>
+						<div class="listButtonName">
+							Name6
+						</div>
+						<div class="listButtonDetails">
+							Location
+						</div>
+						
+					</div>
+					
+					<div class="listButton">
+						<div class="listButtonIcon">
+							
+						</div>
+						<div class="listButtonName">
+							Name7
+						</div>
+						<div class="listButtonDetails">
+							Location
+						</div>
+						
+					</div>
+					
+					<div class="listButton">
+						<div class="listButtonIcon">
+							
+						</div>
+						<div class="listButtonName">
+							Name8
+						</div>
+						<div class="listButtonDetails">
+							Location
+						</div>
+						
+					</div>
+					
+					<div class="listButton">
+						<div class="listButtonIcon">
+							
+						</div>
+						<div class="listButtonName">
+							Name9
+						</div>
+						<div class="listButtonDetails">
+							Location
+						</div>
+						
+					</div>
+					
+					<div class="listButton">
+						<div class="listButtonIcon">
+							
+						</div>
+						<div class="listButtonName">
+							Name10
+						</div>
+						<div class="listButtonDetails">
+							Location
+						</div>
+						
+					</div>
+					
+					<div class="listButton">
+						<div class="listButtonIcon">
+							
+						</div>
+						<div class="listButtonName">
+							Name11
+						</div>
+						<div class="listButtonDetails">
+							Location
+						</div>
+						
+					</div>
+					
+					<div class="listButton">
+						<div class="listButtonIcon">
+							
+						</div>
+						<div class="listButtonName">
+							Name12
+						</div>
+						<div class="listButtonDetails">
+							Location
+						</div>
+						
+					</div>
+					
+					<div class="listButton">
+						<div class="listButtonIcon">
+							
+						</div>
+						<div class="listButtonName">
+							Name13
+						</div>
+						<div class="listButtonDetails">
+							Location
+						</div>
+						
+					</div>
+					
+					<div class="listButton">
+						<div class="listButtonIcon">
+							
+						</div>
+						<div class="listButtonName">
+							Name14
+						</div>
+						<div class="listButtonDetails">
+							Location
+						</div>
+						
+					</div>
+					
+					<div class="listButton">
+						<div class="listButtonIcon">
+							
+						</div>
+						<div class="listButtonName">
+							Name15
+						</div>
+						<div class="listButtonDetails">
+							Location
+						</div>
+						
+					</div>
+					
+					<div class="listButton">
+						<div class="listButtonIcon">
+							
+						</div>
+						<div class="listButtonName">
+							Name16
+						</div>
+						<div class="listButtonDetails">
+							Location
+						</div>
+						
+					</div>
+					
+					<div class="listButton">
+						<div class="listButtonIcon">
+							
+						</div>
+						<div class="listButtonName">
+							Name17
+						</div>
+						<div class="listButtonDetails">
+							Location
+						</div>
+						
+					</div>
+															
 				</div>
+				
+				<svg version="1.1" class="arrow_symbol" id="arrowDown" onclick="scrollBttnDown();" onmouseover="mouseOverScrollBttn('arrowDown');" onmouseleave="mouseLeaveScrollBttn('arrowDown');" x="0px" y="0px" width="30px" height="30px" viewBox="0 0 30 30">
+					<polygon class="polygon" points="14,20 0,0 28,0" style="fill: #555555" />
+				</svg>
 
 			</div>
 			

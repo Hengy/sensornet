@@ -27,6 +27,15 @@ body {
     display: none;
 }
 
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 #header {
 	width: 100%;
 	min-width: 600px;
@@ -75,6 +84,7 @@ body {
 #mainWrapper {
 	width: 100%;
 	min-width: 820px;
+	min-height: 600px;
 	overflow: hidden;
 	
 	padding: 0px 20px;
@@ -88,7 +98,7 @@ body {
 	width: 330px;
 	height: 100%;
 	
-	margin-top: 44px;
+	margin-top: 40px;
 }
 
 #searchWrapper {
@@ -180,6 +190,43 @@ body {
 	height: calc(100% - 200px);
 	
 	overflow-y: auto;
+}
+
+.arrow_symbol {
+	float:right;
+	
+	width: 310px;
+	height: 25px;
+	
+	padding-top: 5px;
+	
+	background-color: none;
+}
+.arrow_symbol:hover {
+	width: 310px;
+	height: 25px;
+	
+	border: none;
+	
+	background-color: #444444;
+}
+.arrow_symbol#arrowUp:hover {
+	height: 24px;
+	
+	border-bottom: 1px solid #777777;
+}
+.arrow_symbol#arrowDown:hover {
+	height: 24px;
+	
+	border-top: 1px solid #777777;
+}
+.arrow_symbol:active {
+	width: 310px;
+	height: 25px;
+	
+	border: none;
+	
+	background-color: #4568e2;
 }
 
 .listButton {
