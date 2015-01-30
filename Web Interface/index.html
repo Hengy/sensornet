@@ -24,12 +24,21 @@
 		
 		<!-- Javascript -->
 		<script type="text/javascript">
+			function pageLoaded() {
+				var newH = Math.floor((window.innerHeight - 360)/60) * 60;
+				document.getElementById("listWrapper").style.height = newH + "px";
+			}
+			
+			window.addEventListener('resize', function(event){
+				var newH = Math.floor((window.innerHeight - 360)/60) * 60;
+				document.getElementById("listWrapper").style.height = newH + "px";
+			});
 		</script>
 
 		<!-- icons -->
 	</head>
 
-	<body>
+	<body onload="pageLoaded();">
 		
 		<div id="header">
 			

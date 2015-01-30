@@ -16,19 +16,15 @@ body {
 }
 
 #listWrapper::-webkit-scrollbar-track {
-	background-color: #222222;
+	display: none;
 }
 
 #listWrapper::-webkit-scrollbar {
-	width: 14px;
-	background-color: #222222;
+	display: none;
 }
 
 #listWrapper::-webkit-scrollbar-thumb {
-	background-color: #292929;
-}
-#listWrapper::-webkit-scrollbar-thumb:hover {
-	background-color: #37435e;
+    display: none;
 }
 
 #header {
@@ -92,13 +88,13 @@ body {
 	width: 330px;
 	height: 100%;
 	
-	margin-top: 40px;
+	margin-top: 44px;
 }
 
 #searchWrapper {
 	float: right;
 	
-	margin: 0px 12px 20px 0px;
+	margin: 0px 12px 40px 0px;
 	
 	width: 300px;
 	height: 70px;
@@ -113,15 +109,16 @@ body {
 	padding: 0px 5px 0px 5px;
 	
 	background-color: #222222; 
-    border: 1px solid #666666;
-    box-shadow: 0 0 0px #ffffff inset; 
-    color: #EEEEEE;
+    border: 1px solid #444444;
+    color: #CCCCCC;
 }
 .searchBox:hover {
-	box-shadow: 0 0 5px #4568e2 inset; 
+    border: 1px solid #888888;
+    color: #EEEEEE; 
 }
 .searchBox:active {
-	box-shadow: 0 0 5px #4568e2 inset; 
+	border: 1px solid #888888;
+    color: #EEEEEE; 
 }
 
 .inputButton {
@@ -130,11 +127,19 @@ body {
 	width: 70px;
 	height: 30px;
 	
-	border: 1px solid #666666;
-	
+	border: 1px solid #444444;
 	color: #CCCCCC;
-	
-	background-color: #333333;
+	background-color: #292929;
+}
+.inputButton:hover {
+    border: 1px solid #888888;
+    color: #EEEEEE; 
+    background-color: #292929;
+}
+.inputButton:active {
+    border: 1px solid #888888;
+    color: #FFFFFF; 
+    background-color: #4568e2;
 }
 
 #category {
@@ -149,20 +154,16 @@ body {
 	
 	padding: 0px 5px 0px 5px;
 	
-	background-color: #222222; 
-    border: 1px solid #666666;
-    box-shadow: 0 0 0px #ffffff inset; 
-    color: #AAAAAA;
+	line-height: 1;
+	
+	background-color: #292929; 
+    border: 1px solid #444444;
+    color: #CCCCCC;
 }
 #dropDownSelect:hover {
 	color: #EEEEEE;
-	
-	box-shadow: 0 0 5px #4568e2 inset;
-}
-#dropDownSelect:active {
-	color: #EEEEEE;
-	
-	box-shadow: 0 0 5px #4568e2 inset;
+	border: 1px solid #888888;
+	background-color: #292929;
 }
 
 #dropDownOption {	
