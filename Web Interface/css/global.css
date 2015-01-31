@@ -398,11 +398,6 @@ body {
     background-color: #4568e2;
 }
 
-#placeholder {
-	height: 2px;
-	width: 68px;
-}
-
 #refreshBttn {	
 	width: 46px;
 }
@@ -437,6 +432,18 @@ body {
     text-align: center;
     
     font-size: 36px;
+}
+
+#nodeModule {
+    margin-left: auto;
+    margin-right: auto;
+    
+    margin-top: 20px;
+    
+    width: 80%;
+    height: calc(98% - 60px);
+    
+    background-color: #551111;
 }
 
 #nodeIDWrapper {
