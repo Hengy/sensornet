@@ -1,9 +1,20 @@
+function loadDone() {
+	var loadIntvl;
+	document.getElementById("listWrapper").style.visibility = "visible";
+	document.getElementById("nodeModule").style.visibility = "visible";
+	document.getElementById("nodeIDWrapper").style.visibility = "visible";
+	document.getElementById("overlay").style.visibility = "hidden";
+	clearInterval(loadIntvl);
+}
+
 function pageLoaded() {
 	var newH = Math.floor((window.innerHeight - 360)/60) * 60;
 	if (newH < 60) {
 		newH = 60;
 	}
 	document.getElementById("listWrapper").style.height = newH + "px";
+	
+	loadIntvl = setInterval(function(){ loadDone(); }, 1500);
 }
 
 window.addEventListener('resize', function(event){
@@ -13,6 +24,8 @@ window.addEventListener('resize', function(event){
 	}
 	document.getElementById("listWrapper").style.height = newH + "px";
 });
+
+
 
 var intvl, newPos, dir;
 
@@ -31,9 +44,7 @@ function scrollBttnUp() {
 	
 	if ((scrollPos - 60) < 0) {
 		document.getElementById("listWrapper").scrollTop = 0;
-		console.log("top");
 	} else {
-		console.log("going up");
 		newPos = (Math.floor(scrollPos / 60) * 60) - 60;
 		dir = -1;
 		intvl = setInterval(function(){ scrollUp() }, 10);
@@ -58,9 +69,7 @@ function scrollBttnDown() {
 	
 	if ((scrollPos + 60) > scrollMax) {
 		document.getElementById("listWrapper").scrollTop = scrollMax;
-		console.log("bottom");
 	} else {
-		console.log("going down");
 		newPos = (Math.floor(scrollPos / 60) * 60) + 60;
 		dir = 1;
 		intvl = setInterval(function(){ scrollDown() }, 10);

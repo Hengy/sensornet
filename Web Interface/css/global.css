@@ -15,6 +15,39 @@ body {
 	background-color: #222222;
 }
 
+#overlay {
+	position: absolute;
+	
+	width: 100%;
+	height: 100%;
+	
+	background-color: rgba(34,34,34,0.8);
+}
+
+#pageLoading {
+	position: absolute;
+	
+	left: 0px;
+	right: 0px;
+	top: 0px;
+	bottom: 0px;
+	
+	margin: auto;
+	
+	width: 800px;
+	height: 600px;
+	
+	border: 1px solid #4568e2;
+	
+	background-color: #222222;
+}
+
+#loadingText {
+	padding-top: 270px;
+	
+	text-align:center;
+}
+
 #listWrapper::-webkit-scrollbar-track {
 	display: none;
 }
@@ -190,6 +223,8 @@ body {
 	height: calc(100% - 200px);
 	
 	overflow-y: auto;
+	
+	visibility: hidden;
 }
 
 .arrow_symbol {
@@ -201,6 +236,8 @@ body {
 	padding-top: 5px;
 	
 	background-color: none;
+	
+	cursor: pointer;
 }
 .arrow_symbol:hover {
 	width: 310px;
@@ -373,28 +410,6 @@ body {
     background-color: #4568e2;
 }
 
-#menuButtonRefresh {
-	position: relative;
-	top:-1px;
-	
-	float: right;
-	
-    width: 68px;
-    height: 54px;    
-    
-    padding-top: 7px;
-    
-    background-color: #222222;
-    
-    cursor: pointer;
-}
-#menuButtonRefresh:hover {
-    background-color: #444444;
-}
-#menuButtonRefresh:active {
-    background-color: #4568e2;
-}
-
 #refreshBttn {	
 	width: 46px;
 }
@@ -406,6 +421,8 @@ body {
 	height: 60px;
 	
 	background-color: #222222;
+	
+	cursor: pointer;
 }
 .refresh_symbol:hover {
 	background-color: #444444;
@@ -414,6 +431,22 @@ body {
 	background-color: #4568e2;
 }
 
+.home_symbol {
+	float:left;
+		
+	width: 80px;
+	height: 60px;
+	
+	background-color: #222222;
+	
+	cursor: pointer;
+}
+.home_symbol:hover {
+	background-color: #444444;
+}
+.home_symbol:active {
+	background-color: #4568e2;
+}
 
 #hDivLine {	
 	margin-left: auto;
@@ -457,6 +490,8 @@ body {
     height: calc(98% - 60px);
     
     background-color: #551111;
+    
+    visibility:hidden;
 }
 
 #nodeIDWrapper {
@@ -465,6 +500,8 @@ body {
     
     width: 84%;   
     height: 25px;
+    
+    visibility:hidden;
 }
 
 .nodeID {
