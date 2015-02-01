@@ -375,8 +375,7 @@ body {
 
 #menuButtonRefresh {
 	position: relative;
-	top: -10px;
-	right: -57px;
+	top:-1px;
 	
 	float: right;
 	
@@ -401,8 +400,24 @@ body {
 }
 
 .refresh_symbol {	
-	width: 46px;
+	width: 60px;
+	height: 70px;
+	
+	background-color: #222222;
 }
+.refresh_symbol:hover {	
+	width: 60px;
+	height: 70px;
+	
+	background-color: #444444;
+}
+.refresh_symbol:active {	
+	width: 60px;
+	height: 70px;
+	
+	background-color: #4568e2;
+}
+
 
 #hDivLine {	
 	margin-left: auto;
