@@ -319,16 +319,16 @@ body {
 }
 
 #nodeMenu {
-    width: 100%;
+	width: 100%;
 }
 
-#nodeMenuWrapper {
+#nodeMenuWrapper {	
     margin-left: auto;
     margin-right: auto;
     
     margin-top: 25px;
     
-    width: 450px;
+    width: 670px;
     height: 60px;
 }
 
@@ -399,22 +399,18 @@ body {
 	width: 46px;
 }
 
-.refresh_symbol {	
-	width: 60px;
-	height: 70px;
+.refresh_symbol {
+	float:left;
+		
+	width: 80px;
+	height: 60px;
 	
 	background-color: #222222;
 }
-.refresh_symbol:hover {	
-	width: 60px;
-	height: 70px;
-	
+.refresh_symbol:hover {
 	background-color: #444444;
 }
-.refresh_symbol:active {	
-	width: 60px;
-	height: 70px;
-	
+.refresh_symbol:active {
 	background-color: #4568e2;
 }
 
