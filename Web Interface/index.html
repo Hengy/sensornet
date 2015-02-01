@@ -78,11 +78,11 @@
 					
 				</div>
 				
-				<svg version="1.1" class="arrow_symbol" id="arrowUp" onclick="scrollBttnUp();" onmouseover="mouseOverScrollBttn('arrowUp');" onmouseleave="mouseLeaveScrollBttn('arrowUp');" x="0px" y="0px" width="30px" height="30px" viewBox="0 0 30 30">
+				<svg version="1.1" class="arrow_symbol" id="arrowUp" onmousedown="scrollBttnMouseDown('arrowUp');" onclick="scrollBttnUp();" onmouseover="mouseOverScrollBttn('arrowUp');" onmouseleave="mouseLeaveScrollBttn('arrowUp');" x="0px" y="0px" width="30px" height="30px" viewBox="0 0 30 30">
 					<polygon class="polygon" points="14,0 0,20 28,20" style="fill: #555555" />
 				</svg>
 				
-				<div id="listWrapper" class="noselect">
+				<div id="listWrapper" class="noselect" >
 										
 					<div class="listButton">
 						<div class="listButtonIcon">
@@ -320,7 +320,7 @@
 															
 				</div>
 				
-				<svg version="1.1" class="arrow_symbol" id="arrowDown" onclick="scrollBttnDown();" onmouseover="mouseOverScrollBttn('arrowDown');" onmouseleave="mouseLeaveScrollBttn('arrowDown');" x="0px" y="0px" width="30px" height="30px" viewBox="0 0 30 30">
+				<svg version="1.1" class="arrow_symbol" id="arrowDown" onmousedown="scrollBttnMouseDown('arrowDown');" onclick="scrollBttnDown();" onmouseover="mouseOverScrollBttn('arrowDown');" onmouseleave="mouseLeaveScrollBttn('arrowDown');" x="0px" y="0px" width="30px" height="30px" viewBox="0 0 30 30">
 					<polygon class="polygon" points="14,20 0,0 28,0" style="fill: #555555" />
 				</svg>
 
@@ -336,6 +336,17 @@
 				<div id="nodeMenu" class="noselect">
 				
 					<div id="nodeMenuWrapper">
+						
+						<div id="menuButtonRefresh">
+							<svg version="1.1" class="refresh_symbol" id="refresh" onclick="refreshBttn();" onmouseover="mouseOverRefreshBttn();" onmouseleave="mouseLeaveRefreshBttn();" x="0px" y="0px" width="46px" height="46px" viewBox="0 0 46 46">
+								<g class="symbol">
+									<path class="arrow1" fill="#CCCCCC" d="M519.77,556.81c-32.91,24.86-73.88,39.61-118.3,39.61c-108.48,0-196.43-87.95-196.43-196.43h60.71
+										L146.71,233.33L27.67,400h60.12c0,172.59,139.91,312.5,312.5,312.5c69.54,0,133.77-22.73,185.69-61.14L519.77,556.81z"/>
+									<path class="arrow2" fill="#CCCCCC" d="M712.79,400c0-172.59-139.91-312.5-312.5-312.5c-72.25,0-138.76,24.53-191.69,65.7l67.15,95.89
+										c34.07-28.42,77.9-45.52,125.73-45.52c108.48,0,196.43,87.94,196.43,196.43h-66.67l119.05,166.67L769.33,400H712.79z"/>
+								</g>
+							</svg>
+						</div>
 						
 						<div class="menuButton">
 							Current
@@ -359,9 +370,6 @@
 						
 						This is a very long name
 						
-						<!--<div id="menuButtonRefresh">
-							<img id="refreshBttn" class="imgBttn" src="images/refresh_button_off.svg">
-						</div>-->
 						
 					</div>
 					

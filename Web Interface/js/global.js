@@ -38,6 +38,8 @@ function scrollBttnUp() {
 		dir = -1;
 		intvl = setInterval(function(){ scrollUp() }, 10);
 	}
+	
+	document.getElementById("arrowUp").querySelector(".polygon").style.fill="#CCCCCC";
 }
 
 function scrollDown(scrollInterval) {
@@ -48,7 +50,7 @@ function scrollDown(scrollInterval) {
 	}
 }
 
-function scrollBttnDown() {
+function scrollBttnDown() {	
 	var scrollPos = document.getElementById("listWrapper").scrollTop;
 	var scrollMax = document.getElementById("listWrapper").style.height;
 	
@@ -63,6 +65,8 @@ function scrollBttnDown() {
 		dir = 1;
 		intvl = setInterval(function(){ scrollDown() }, 10);
 	}
+	
+	document.getElementById("arrowDown").querySelector(".polygon").style.fill="#CCCCCC";
 }
 
 function mouseOverScrollBttn(id) {
@@ -71,4 +75,8 @@ function mouseOverScrollBttn(id) {
 
 function mouseLeaveScrollBttn(id) {
 	document.getElementById(id).querySelector(".polygon").style.fill="#555555";
+}
+
+function scrollBttnMouseDown(id) {
+	document.getElementById(id).querySelector(".polygon").style.fill="#4568e2";
 }
