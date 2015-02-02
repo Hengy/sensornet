@@ -6,7 +6,8 @@ body {
 	left: -8px;
 	top: -8px;
 	
-	overflow: hidden;
+	overflow-x: hidden;
+	overflow-y: hidden;
 	
 	font-variant: small-caps;
 	color: #EEEEEE;
@@ -21,13 +22,15 @@ body {
 	width: 100%;
 	height: 100%;
 	
+	z-index: 150;
+	
 	background-color: rgba(34,34,34,0.7);
 }
 
 #pageLoading {
 	position: absolute;
 	
-	left: 0px;
+	left: -20px;
 	right: 0px;
 	top: 0px;
 	bottom: 0px;
@@ -37,15 +40,32 @@ body {
 	width: 800px;
 	height: 600px;
 	
-	border: 1px solid #4568e2;
+	z-index: 200;
+	
+	box-shadow: 0px 0px 100px 70px rgba(34,34,34,1);
 	
 	background-color: #222222;
 }
 
+.loadIcon {
+	position: relative;
+	
+	left: -1px;
+	
+	margin-left: auto;
+	margin-right: auto;
+	
+	width: 40px;
+	
+	padding-top: 230px;
+}
+
 #loadingText {
-	padding-top: 270px;
+	padding-top: 20px;
 	
 	text-align:center;
+	
+	cursor: default;
 }
 
 #listWrapper::-webkit-scrollbar-track {
@@ -73,7 +93,7 @@ body {
 	width: 100%;
 	min-width: 600px;
 	
-	height: 60px;
+	height: 50px;
 	
 	padding: 10px 30px;
 }
@@ -82,7 +102,7 @@ body {
 	float:left;
 	
 	width: 200px;
-	height: 60px;
+	height: 50px;
 }
 
 #gOptions {
@@ -116,13 +136,13 @@ body {
 
 #mainWrapper {
 	width: 100%;
-	min-width: 820px;
-	min-height: 600px;
+	min-width: 1050px;
+	min-height: 550px;
 	overflow: hidden;
 	
 	padding: 0px 20px;
 	
-	height: calc(96vh - 90px);
+	height: calc(96vh - 75px);
 }
 
 #nodeList {
@@ -131,7 +151,7 @@ body {
 	width: 330px;
 	height: 100%;
 	
-	margin-top: 40px;
+	margin-top: 20px;
 }
 
 #searchWrapper {
@@ -220,7 +240,7 @@ body {
     float: right;
     
 	width: 310px;
-	height: calc(100% - 200px);
+	height: calc(100% - 130px);
 	
 	overflow-y: auto;
 	
@@ -260,8 +280,6 @@ body {
 .arrow_symbol:active {
 	width: 310px;
 	height: 25px;
-	
-	border: none;
 }
 
 .listButton {
@@ -271,6 +289,8 @@ body {
     color: #CCCCCC;
     
     background-color: #222222;
+    
+    z-index: 10;
     
     cursor: pointer;
 }
@@ -336,14 +356,14 @@ body {
 	
 	width: 1px;
 	
-	height: 90%;
+	height: 96%;
 	
 	background-color: #444444;
 }
 
 #vLineSpacer {
 	width: 1px;
-	height: 40px;
+	height: 20px;
 }
 
 #nodeInfoWrapper {
@@ -363,7 +383,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     
-    margin-top: 25px;
+    margin-top: 10px;
     
     width: 670px;
     height: 60px;
@@ -466,9 +486,9 @@ body {
     margin-right: auto;
     
     width: calc(96% - 320px)%;
-	height: calc(92% - 120px);
+	height: calc(96% - 120px);
 	
-	padding: 10px 20px 20px 20px;
+	padding: 10px 20px 5px 20px;
 }
 
 #nodeName {
@@ -482,7 +502,29 @@ body {
     font-size: 36px;
 }
 
+#loadNodeModule {
+	position: relative;
+	top:0px;
+	left:0px;
+	
+    margin-left: auto;
+    margin-right: auto;
+    
+    margin-top: 15px;
+    
+    width: 80%;
+    height: calc(98% - 60px);
+    
+    background-color: #222222;
+    
+    z-index: 100;
+    visibility:hidden;
+}
+
 #nodeModule {
+	position:relative;
+	top: -92%;
+	
     margin-left: auto;
     margin-right: auto;
     
@@ -501,7 +543,9 @@ body {
     margin-right: auto;
     
     width: 84%;   
-    height: 25px;
+    height: 50px;
+    
+    margin-top: 4px;
     
     visibility:hidden;
 }
@@ -511,7 +555,7 @@ body {
     
     height: 24px;
     
-    padding: 8px 8px 4px 8px;
+    padding: 2px 6px 0px 6px;
     margin-right: 25px;
     
     font-size: 14px;
