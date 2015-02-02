@@ -158,7 +158,7 @@
 						
 					</div>
 					
-					<div class="listButton">
+					<div class="listButton" id="gadtfragbert" onclick="loadNodeInfo(this);">
 						<div class="listButtonIcon">
 							
 						</div>
@@ -346,18 +346,18 @@
 				
 					<div id="nodeMenuWrapper">
 						
-						<svg version="1.1" style="margin-right:50px;" class="home_symbol" id="home" x="0px" y="0px" width="50px" height="50px" viewBox="0 0 50 50">
+						<svg version="1.1" style="margin-right:50px;" onclick="goHome();" class="home_symbol" id="home" x="0px" y="0px" width="50px" height="50px" viewBox="0 0 50 50">
 							<path class="house" style="fill: #CCCCCC;" d="M32.7,18.6l-6.1-5.8l0,0l-9.2-8.6l-9.2,8.6l0,0l-6.1,5.8l0,0l0,0h0L4,20.5l2-1.9h0v13.9h22.7V18.6h0l2,1.9
 								L32.7,18.6L32.7,18.6L32.7,18.6L32.7,18.6z M27.3,31.2h-2.1v-7.6h-6.4v7.6H7.5V17l9.9-9.1l9.9,9.1V31.2z"/>
 						</svg>
 						
-						<div class="menuButton">
+						<div class="menuButton" id="currentBttn" onclick="changeScreen(this.id);">
 							Current
 						</div>
-						<div class="menuButton">
+						<div class="menuButton" id="historyBttn" onclick="changeScreen(this.id);">
 							History
 						</div>
-						<div class="menuButton">
+						<div class="menuButton" id="configBttn" onclick="changeScreen(this.id);">
 							Config
 						</div>
 						
@@ -383,17 +383,34 @@
 						
 					</div>
 					
-					<div id="loadNodeModule">
+					<div id="nodeModuleLoader">
 						<center>
 							<img class="loadIcon" src="images/load_icon.gif" />
 						</center>
 						<div id="loadingText">LOADING</div>
 					</div>
 					
+					<div id="homeScreen">
+						
+						Home
+						
+					</div>
+					
 					<div id="nodeModule">
 						
-						main 
-						<a href="http://clips.animatron.com/8fbb4557b5ede72e2555e6c9735b10e6">Loading...</a>
+						Main
+						
+					</div>
+					
+					<div id="nodeModuleHistory">
+						
+						History
+						
+					</div>
+					
+					<div id="nodeModuleConfig">
+						
+						Config
 						
 					</div>
 					

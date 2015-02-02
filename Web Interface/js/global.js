@@ -1,30 +1,107 @@
 /*---------------------------------------------------
+ * Global variables
+ ---------------------------------------------------*/
+var nodeScreen = 0;	// (0) Home (1) Current (2) History (3) Config
+
+/*---------------------------------------------------
  * set loading divs hidden, dynamic content divs visible
  * when all dynamic content is done loading
  ---------------------------------------------------*/
 function loadDone(loadIntvl) {
 	clearInterval(loadIntvl);		// destroy interval so it only happens once
 	document.getElementById("listWrapper").style.visibility = "visible";	// set node list visible
-	document.getElementById("nodeModule").style.visibility = "visible";		// set node module visible
-	document.getElementById("nodeIDWrapper").style.visibility = "visible";	// set node variables visible
+	document.getElementById("homeScreen").style.visibility = "visible";		// set node module visible
 	document.getElementById("overlay").style.visibility = "hidden";			// hide loading overlay and box
+	document.getElementById("nodeName").style.visibility = "hidden";		// hide node name for home screen
+	document.getElementById("nodeMenuWrapper").style.visibility = "hidden"; // hide menu for home screen
 }
 
-function loadNodeDone(loadNodeIntvl) {
-	clearInterval(loadNodeIntvl);		// destroy interval so it only happens once
+/*---------------------------------------------------
+ * show elements
+ ---------------------------------------------------*/
+
+function showHome() {
+	document.getElementById("homeScreen").style.visibility = "visible";
+}
+
+function showNodeModule() {
 	document.getElementById("nodeModule").style.visibility = "visible";
-	document.getElementById("nodeIDWrapper").style.visibility = "visible";
-	document.getElementById("nodeName").style.visibility = "visible";
-	document.getElementById("loadNodeModule").style.visibility = "hidden";
 }
 
-function loadNodeStart() {
+function showNodeModuleHistory() {
+	document.getElementById("nodeModuleHistory").style.visibility = "visible";
+}
+
+function showNodeModuleConfig() {
+	document.getElementById("nodeModuleConfig").style.visibility = "visible";
+}
+
+function showNodeName() {
+	document.getElementById("nodeName").style.visibility = "visible";
+}
+
+function showNodeID() {
+	document.getElementById("nodeIDWrapper").style.visibility = "visible";
+}
+
+function showNodeModuleLoader() {
+	document.getElementById("nodeModuleLoader").style.visibility = "visible";
+}
+
+function showNodeList() {
+	document.getElementById("listWrapper").style.visibility = "visible";
+}
+
+function showPageLoader() {
+	document.getElementById("overlay").style.visibility = "visible";
+}
+
+function showNodeMenu() {
+	document.getElementById("nodeMenuWrapper").style.visibility = "visible";
+}
+
+/*---------------------------------------------------
+ * hide elements
+ ---------------------------------------------------*/
+
+function hideHome() {
+	document.getElementById("homeScreen").style.visibility = "hidden";
+}
+
+function hideNodeModule() {
 	document.getElementById("nodeModule").style.visibility = "hidden";
-	document.getElementById("nodeIDWrapper").style.visibility = "hidden";
+}
+
+function hideNodeModuleHistory() {
+	document.getElementById("nodeModuleHistory").style.visibility = "hidden";
+}
+
+function hideNodeModuleConfig() {
+	document.getElementById("nodeModuleConfig").style.visibility = "hidden";
+}
+
+function hideNodeName() {
 	document.getElementById("nodeName").style.visibility = "hidden";
-	document.getElementById("loadNodeModule").style.visibility = "visible";
-    var loadNodeIntvl;
-	loadNodeIntvl = setInterval(function(){ loadNodeDone(loadNodeIntvl); }, 1500);
+}
+
+function hideNodeID() {
+	document.getElementById("nodeIDWrapper").style.visibility = "hidden";
+}
+
+function hideNodeModuleLoader() {
+	document.getElementById("nodeModuleLoader").style.visibility = "hidden";
+}
+
+function hideNodeList() {
+	document.getElementById("listWrapper").style.visibility = "hidden";
+}
+
+function hidePageLoader() {
+	document.getElementById("overlay").style.visibility = "hidden";
+}
+
+function hideNodeMenu() {
+	document.getElementById("nodeMenuWrapper").style.visibility = "hidden";
 }
 
 /*---------------------------------------------------
@@ -40,6 +117,70 @@ function nodeListSize() {
 }
 
 /*---------------------------------------------------
+ * set bg color of selected button
+ ---------------------------------------------------*/
+function colorSelection(bttnGroup,id) {
+	if (bttnGroup == "menu") {
+		var menuBttns = document.getElementsByClassName("menuButton");
+		for (var i=0; i<menuBttns.length;i++) {
+			menuBttns[i].style.backgroundColor = "#222222";
+		}
+		if (id != "home") {
+			document.getElementById(id).style.backgroundColor = "#4568e2";
+		}
+	} else {
+		
+	}
+}
+
+/*---------------------------------------------------
+ * change node screen: Current, History or Config
+ ---------------------------------------------------*/
+function changeScreen(id) {
+	//showNodeModuleLoader();
+	if (id == "currentBttn") {
+		nodeScreen = 1;
+		showNodeModule();
+		hideNodeModuleHistory();
+		hideNodeModuleConfig();
+		// load content
+		//hideNodeModuleLoader();
+	} else if (id == "historyBttn") {
+		nodeScreen = 2;
+		hideNodeModule();
+		showNodeModuleHistory();
+		hideNodeModuleConfig();
+		// load content
+		//hideNodeModuleLoader();
+	} else {
+		nodeScreen = 3;
+		hideNodeModule();
+		hideNodeModuleHistory();
+		showNodeModuleConfig();
+		// load content
+		//hideNodeModuleLoader();
+	}
+	hideHome();
+	showNodeName();
+	colorSelection("menu",id);
+}
+
+/*---------------------------------------------------
+ * go to home screen
+ ---------------------------------------------------*/
+function goHome() {
+	nodeScreen = 0;
+	hideNodeModule();
+	hideNodeModuleHistory();
+	hideNodeModuleConfig();
+	hideNodeID();
+	hideNodeName();
+	hideNodeMenu();
+	showHome();	
+	colorSelection("menu","home");
+}
+
+/*---------------------------------------------------
  * execute when page is done loading
  ---------------------------------------------------*/
 function pageLoaded() {
@@ -52,7 +193,17 @@ function pageLoaded() {
 	// add listener to node list buttons
 	var listBttns = document.getElementsByClassName("listButton");
 	for (var i=0; i<listBttns.length;i++) {
-		listBttns[i].addEventListener("click", function(){ loadNodeStart(); });
+		listBttns[i].addEventListener("click", function(){
+			nodeScreen = 1;
+			hideHome();
+			hideNodeModuleHistory();
+			hideNodeModuleConfig();
+			showNodeMenu();
+			showNodeModule();
+			showNodeID();
+			showNodeName();
+			colorSelection("menu","currentBttn");
+		});
 	}
 }
 
@@ -69,7 +220,7 @@ window.addEventListener('resize', function(event){
 		document.getElementsByTagName("body")[0].style.overflowX = "hidden";
 	}
 	// if window height is too small, scroll page
-	if (window.innerHeight <= 652) {
+	if (window.innerHeight <= 650) {
 		document.getElementsByTagName("body")[0].style.overflowY = "scroll";
 	} else { // else hide overflow
 		document.getElementsByTagName("body")[0].style.overflowY = "hidden";
