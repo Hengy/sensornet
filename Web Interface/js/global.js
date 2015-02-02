@@ -129,7 +129,11 @@ function colorSelection(bttnGroup,id) {
 			document.getElementById(id).style.backgroundColor = "#4568e2";
 		}
 	} else {
-		
+		var listBttns = document.getElementsByClassName("listButton");
+		for (var i=0; i<listBttns.length;i++) {
+			listBttns[i].style.backgroundColor = "#222222";
+		}
+		document.getElementById(id).style.backgroundColor = "#4568e2";
 	}
 }
 
@@ -181,6 +185,22 @@ function goHome() {
 }
 
 /*---------------------------------------------------
+ * load node
+ ---------------------------------------------------*/
+function loadNode(id) {
+	nodeScreen = 1;
+	hideHome();
+	hideNodeModuleHistory();
+	hideNodeModuleConfig();
+	showNodeMenu();
+	showNodeModule();
+	showNodeID();
+	showNodeName();
+	colorSelection("menu","currentBttn");
+	colorSelection("list",id);
+}
+
+/*---------------------------------------------------
  * execute when page is done loading
  ---------------------------------------------------*/
 function pageLoaded() {
@@ -189,22 +209,6 @@ function pageLoaded() {
 	// execute after delay
 	var loadIntvl;
 	loadIntvl = setInterval(function(){ loadDone(loadIntvl); }, 1500);
-	
-	// add listener to node list buttons
-	var listBttns = document.getElementsByClassName("listButton");
-	for (var i=0; i<listBttns.length;i++) {
-		listBttns[i].addEventListener("click", function(){
-			nodeScreen = 1;
-			hideHome();
-			hideNodeModuleHistory();
-			hideNodeModuleConfig();
-			showNodeMenu();
-			showNodeModule();
-			showNodeID();
-			showNodeName();
-			colorSelection("menu","currentBttn");
-		});
-	}
 }
 
 /*---------------------------------------------------
