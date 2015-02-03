@@ -24,7 +24,7 @@ body {
 	
 	z-index: 150;
 	
-	background-color: rgba(34,34,34,0.7);
+	background-color: rgba(34,34,34,0.75);
 }
 
 #pageLoading {
@@ -40,10 +40,8 @@ body {
 	width: 800px;
 	height: 600px;
 	
-	z-index: 200;
-	
-	box-shadow: 0px 0px 100px 70px rgba(34,34,34,1);
-	
+	border: 1px solid #333333;
+		
 	background-color: #222222;
 }
 
@@ -294,25 +292,15 @@ body {
     
     cursor: pointer;
 }
-.listButtonSel {
-    width: 100%;
-    height: 60px;
-    
-    color: #FFFFFF;
-    
-    background-color: #4568e2;
-    
-    cursor: pointer;
-}
 .listButton:hover {
     color: #EEEEEE;
     
-    background-color: #444444;
+    background-color: #444444 !important;
 }
 .listButton:active {
     color: #FFFFFF;
     
-    background-color: #4568e2;
+    background-color: #4568e2 !important;
 }
 
 .listButtonIcon {
@@ -387,6 +375,8 @@ body {
     
     width: 670px;
     height: 60px;
+    
+    visibility: hidden;
 }
 
 .menuButton {
@@ -405,29 +395,13 @@ body {
     
     cursor: pointer;
 }
-.menuButtonSel {
-    float:left;
-    
-    width: 100px;
-    height: 45px;    
-    
-    padding: 15px 25px 0px 25px;
-    
-    color: #FFFFFF;
-    text-align: center;
-    font-size: 25px;
-    
-    background-color: #4568e2;
-    
-    cursor: pointer;
-}
 .menuButton:hover {
     color: #EEEEEE;
-    background-color: #444444;
+    background-color: #444444 !important;
 }
 .menuButton:active {
     color: #ffffff;
-    background-color: #4568e2;
+    background-color: #4568e2 !important;
 }
 
 .refresh_symbol {
@@ -506,6 +480,8 @@ body {
     text-align: center;
     
     font-size: 36px;
+    
+    visibility: hidden;
 }
 
 #nodeModuleLoader {
