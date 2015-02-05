@@ -16,15 +16,6 @@ body {
 	background-color: #222222;
 }
 
-body {
-	-webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
 #overlay {
 	position: absolute;
 	
@@ -85,6 +76,15 @@ body {
 
 #listWrapper::-webkit-scrollbar-thumb {
     display: none;
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 #header {

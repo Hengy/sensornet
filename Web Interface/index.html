@@ -33,7 +33,7 @@
 
 	<body onload="pageLoaded();">
 		
-		<div id="overlay">
+		<div id="overlay" class="noselect">
 			<div id="pageLoading">
 				<center>
 					<img class="loadIcon" src="images/load_icon.gif" />
@@ -48,7 +48,7 @@
 				Logo
 			</div>
 			
-			<div id="gOptions">
+			<div id="gOptions" class="noselect">
 				
 				<div class="gOptionsButton" style="float:left;">
 					Sign In
@@ -68,14 +68,14 @@
 				
 				<div id="searchWrapper">
 					
-					<div id="searchBox">
+					<div id="searchBox" class="noselect">
 
 						<button class="inputButton noselect" type="button">Search</button>
 			      		<input type="text" class="searchBox" placeholder="Search nodes">
 
 					</div>
 					
-					<div id="category">
+					<div id="category" class="noselect">
 						
 						<select id="dropDownSelect">
 							<option class="dropDownOption" value="all">All</option>
@@ -91,7 +91,7 @@
 					<polygon class="polygon" points="14,0 0,20 28,20" style="fill: #555555" />
 				</svg>
 				
-				<div id="listWrapper" >
+				<div id="listWrapper" class="noselect" >
 										
 					<div class="listButton" id="b0" onclick="loadNode(this.id);">
 						<div class="listButtonIcon">
@@ -342,7 +342,7 @@
 			
 			<div id="nodeInfoWrapper">
 				
-				<div id="nodeMenu">
+				<div id="nodeMenu" class="noselect">
 				
 					<div id="nodeMenuWrapper">
 						
@@ -418,7 +418,7 @@
 				
 				<div id="hDivLine"></div>
 				
-				<div id="nodeIDWrapper">
+				<div id="nodeIDWrapper" class="noselect">
 					
 					<div class="nodeID">
 						Node ID: E788A39B
