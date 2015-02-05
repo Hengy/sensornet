@@ -14,6 +14,13 @@ body {
 	font-family: 'Ubuntu', sans-serif;
 	
 	background-color: #222222;
+	
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 #overlay {
@@ -76,15 +83,6 @@ body {
 
 #listWrapper::-webkit-scrollbar-thumb {
     display: none;
-}
-
-.noselect {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
 }
 
 #header {
