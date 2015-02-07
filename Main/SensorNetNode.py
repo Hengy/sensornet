@@ -19,7 +19,7 @@ class SensorNetNode:
     
     location = "None";            # no default location
     
-    modules = []
+    modules = []                  # list of modules in node
     
     def __init__(self, ID, location):
         self.ID = ID
