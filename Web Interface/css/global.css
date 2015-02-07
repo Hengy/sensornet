@@ -511,8 +511,6 @@ body {
     width: 80%;
     height: calc(98% - 60px);
     
-    background-color: #551111;
-    
     visibility:hidden;
 }
 
@@ -526,8 +524,6 @@ body {
     width: 80%;
     height: calc(98% - 60px);
     
-    background-color: #115511;
-    
     visibility:hidden;
 }
 
@@ -540,8 +536,6 @@ body {
     
     width: 80%;
     height: calc(98% - 60px);
-    
-    background-color: #111155;
     
     visibility:hidden;
 }

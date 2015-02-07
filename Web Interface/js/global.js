@@ -11,7 +11,8 @@ function loadDone(loadIntvl) {
 	clearInterval(loadIntvl);		// destroy interval so it only happens once
 	document.getElementById("listWrapper").style.visibility = "visible";	// set node list visible
 	document.getElementById("homeScreen").style.visibility = "visible";		// set node module visible
-	document.getElementById("overlay").style.visibility = "hidden";			// hide loading overlay and box
+	document.getElementById("overlay").style.visibility = "hidden";			// hide grey overlay
+	document.getElementById("pageLoading").style.visibility = "hidden";			// hide loading box
 	document.getElementById("nodeName").style.visibility = "hidden";		// hide node name for home screen
 	document.getElementById("nodeMenuWrapper").style.visibility = "hidden"; // hide menu for home screen
 }
@@ -198,6 +199,12 @@ function loadNode(id) {
 	showNodeName();
 	colorSelection("menu","currentBttn");
 	colorSelection("list",id);
+	
+	
+	// test loading of module
+	document.getElementById("nodeModule").innerHTML='<object type="text/html" data="modules/temperature/current.html" />';
+	document.getElementById("nodeModuleHistory").innerHTML='<object type="text/html" data="modules/temperature/history.html" />';
+	document.getElementById("nodeModuleConfig").innerHTML='<object type="text/html" data="modules/temperature/config.html" />';
 }
 
 /*---------------------------------------------------
