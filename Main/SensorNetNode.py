@@ -22,5 +22,9 @@ class SensorNetNode:
     modules = []                  # list of modules in node
     
     def __init__(self, ID, location):
-        self.ID = ID
-        self.location = location
+        pass
+    
+    def printNode(self):
+        print "Node ID: " + str(ID)
+        print "Node status: " + str(status)
+        print "Node location: " + location

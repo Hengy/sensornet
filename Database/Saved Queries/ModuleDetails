@@ -1,0 +1,4 @@
+SELECT Node.ID, Node.Command, Node.ModuleID, ModuleDetails.Name, ModuleDetails.Description, ModuleDetails.Type, ModuleDetails.Icon,  ModuleDetails.Sensors,  ModuleDetails.Controls
+FROM Node
+INNER JOIN ModuleDetails
+ON Node.ModuleID=ModuleDetails.ModuleID;

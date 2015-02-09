@@ -11,6 +11,7 @@
 #                identified (uniquely from other modules) using a combination of their
 #                nodes address and the first command byte.
 #--------------------------------------------------------------------------------------
+from msilib.schema import Icon
 
 class SesnorNetModule:
     
@@ -26,14 +27,21 @@ class SesnorNetModule:
     
     icon = "default.png"                # default icon for a module
     
+    sensorNum = 0                         # number of sensors in module
+    
+    controlNum = 0                        # number of controls in module
+    
     sensors = []                        # list of sensors in module
     
-    def __init__(self, address, name, description, type, icon, sensor):
-        self.name = name
-        self.description = description
-        self.type = type
-        self.icon = icon
-        self.moduleID = address*0xFF
-        
-        moduleID += sensor.command          # construct ModuleID using first sensor
-        self.sensors.append(sensor)         # append first sensor to list
+    def __init__(self):
+        pass
+    
+    def printModule(self):
+        print "Module ID: " + str(moduleID)
+        print "Fav module? " + str(fav)
+        print "Module name: " + name
+        print "Module description: " + description
+        print "Module type: " + str(type)
+        print "Module icon file: " + icon
+        print "Module sensors: " + str(sensorNum)
+        print "Module controls: " + str(controlNum)

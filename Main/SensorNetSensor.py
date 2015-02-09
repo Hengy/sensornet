@@ -19,13 +19,21 @@ class SensorNetSensor:
     
     value = None                        # no default value
     
+    type = 0                            # default type of sensor
+    
     warning = [None,None]               # no default warning values
     
     critical = [None,None]              # no default critical values
     
-    def __init__(self, command, dataLen, updateInterval, warning, critical):
-        self.command = command
-        self.dataLen = dataLen
-        self.updateInterval = updateInterval
-        self.warning = warning
-        self.critical = critical
+    def __init__(self):
+        pass
+    
+    def printSensor(self):
+        print "Sensor command: " + str(command)
+        print "Sensor data length: " + str(dataLen)
+        print "Sensor update interval: " + str(updateInterval)
+        print "Sensor timestamp: " + str(timestamp)
+        print "Sensor value: " + str(value)
+        print "Sensor type: " + str(type)
+        print "Sensor warning bounds: [" + warning[0] + "," + warning[1] + "]"
+        print "Sensor critical bounds: [" + critical[0] + "," + critical[1] + "]"
