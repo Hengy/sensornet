@@ -48,34 +48,34 @@ void nRFSNClass::init(uint8_t SPIDiv, uint8_t CEpin, uint8_t CSNpin, uint8_t IRQ
 		// If no EEPROM stored addresses, set deafults
 		for (int i=0;i<4;i++)
 		{
-			RX_ADDRESS[i] = 0xE7;
+			RX_ADDRESS[i] = 0xC7;
 			TX_ADDRESS[i] = 0xE7;
 		}
 	}
 
 	// nRF24L01+ setup
 	// Write to CONFIG register
-	setReg('w',CONFIG,CONFIG_CURR);
+	setReg(CONFIG,CONFIG_CURR);
 	// Write to EN_RXADDR register  
-	setReg('w',EN_RXADDR,EN_RXADDR_CURR);
+	setReg(EN_RXADDR,EN_RXADDR_CURR);
 	// Write to EN_AA register
-	setReg('w',EN_AA,EN_AA_CURR);
+	setReg(EN_AA,EN_AA_CURR);
 	// Write to SETUP_AW register
-	setReg('w',SETUP_AW,SETUP_AW_CURR);
+	setReg(SETUP_AW,SETUP_AW_CURR);
 	// Write to SETUP_RETR register
-	setReg('w',SETUP_RETR,SETUP_RETR_CURR);
+	setReg(SETUP_RETR,SETUP_RETR_CURR);
 	// Write to RF channel register
-	setReg('w',RF_CH,RF_CH_CURR);
+	setReg(RF_CH,RF_CH_CURR);
 	// Write to RF setup register  
-	setReg('w',RF_SETUP,RF_SETUP_CURR);
+	setReg(RF_SETUP,RF_SETUP_CURR);
 	// set TX address
 	setTXAddr(TX_ADDRESS,4);
 	// set RX address
 	setRXAddr(RX_ADDR_P0,RX_ADDRESS,4);
 	// Set dynamic payload for pipe 0
-	setReg('w',DYNPD,DYNPD_CURR);
+	setReg(DYNPD,DYNPD_CURR);
 	// Write to FEATURE register
-	setReg('w',FEATURE,FEATURE_CURR);
+	setReg(FEATURE,FEATURE_CURR);
 	// Flush RX FIFO
 	transfer('n',FLUSH_RX,0);
 	// Flush TX FIFO
@@ -144,7 +144,7 @@ void nRFSNClass::initSPI(uint8_t SPIDiv)
 void nRFSNClass::setTXMode(void)
 {
 	CONFIG_CURR = B01001010;
-	setReg('w',CONFIG,CONFIG_CURR);
+	setReg(CONFIG,CONFIG_CURR);
 	currMode = 0;
 }
 
@@ -154,8 +154,11 @@ void nRFSNClass::setTXMode(void)
 ------------------------------------------------*/
 void nRFSNClass::setRXMode(void)
 {
+	Serial.println("RX mode");
+	delay(200);
+
 	CONFIG_CURR = B00101011;
-	setReg('w',CONFIG,CONFIG_CURR);
+	setReg(CONFIG,CONFIG_CURR);
 	digitalWrite(nRFSN_CE, HIGH);
 	currMode = 1;
 }
@@ -176,7 +179,7 @@ uint8_t nRFSNClass::getMode(void)
 void nRFSNClass::setPower(uint8_t pwrLvl)
 {
 	RF_SETUP_CURR = pwrLvl << 1;			// shift 1 bit left
-	setReg('w',RF_SETUP,RF_SETUP_CURR);
+	setReg(RF_SETUP,RF_SETUP_CURR);
 }
 
 
@@ -195,7 +198,7 @@ uint8_t nRFSNClass::getPower(void)
 void nRFSNClass::setChannel(uint8_t ch)
 {
 	RF_CH_CURR = ch;
-	setReg('w',RF_CH,RF_CH_CURR);
+	setReg(RF_CH,RF_CH_CURR);
 }
 
 
@@ -217,7 +220,7 @@ void nRFSNClass::setMaxRT(uint8_t numRT)
 	// mask out current Auto Retransmit Delay, and OR it with numRT with upper 4 bits (numbers > 16) masked out
 	// result is current ARD and new ARC values
 	SETUP_RETR_CURR = (SETUP_RETR_CURR & B11110000) | (numRT & B00001111);
-	setReg('w',SETUP_RETR,SETUP_RETR_CURR);
+	setReg(SETUP_RETR,SETUP_RETR_CURR);
 }
 
 
@@ -235,7 +238,7 @@ uint8_t nRFSNClass::getMaxRT(void)
  * uint8_t addr[]: new address
  * uint8_t len: length of address (nRFSN uses 4)
 ------------------------------------------------*/
-void nRFSNClass::setTXAddr(int addr[], uint8_t len)
+void nRFSNClass::setTXAddr(uint8_t addr[], uint8_t len)
 {
 	digitalWrite(nRFSN_CSN, LOW);	// select nRF
 
@@ -258,7 +261,7 @@ void nRFSNClass::setTXAddr(int addr[], uint8_t len)
  * uint8_t addr[]: new address
  * uint8_t len: length of address (nRFSN uses 4)
 ------------------------------------------------*/
-void nRFSNClass::setRXAddr(uint8_t pipe, int addr[], uint8_t len)
+void nRFSNClass::setRXAddr(uint8_t pipe, uint8_t addr[], uint8_t len)
 {
 	digitalWrite(nRFSN_CSN, LOW);	// select nRF
 
@@ -328,7 +331,7 @@ void nRFSNClass::nRF_ISR(void)
 ------------------------------------------------*/
 void nRFSNClass::clearInt(uint8_t interrupt)
 {
-	setReg('w',STATUS,(interrupt << 4));
+	setReg(STATUS,(interrupt << 4));
 }
 
 
@@ -379,7 +382,7 @@ uint8_t nRFSNClass::sync(void)
 		if (RXInt)									// has a packet been received?
 		{
 			uint8_t size = getPayloadSize();				// If so, get the size
-			getPayload(size,0);								// then get the packet data and put in buffer
+			getPayload(size);								// then get the packet data and put in buffer
 
 			if ((BufIn[0] == 0x03) && (size == 9))	// check for sync command and packet size of 9
 			{
@@ -469,7 +472,7 @@ uint8_t nRFSNClass::getReg(uint8_t reg)
 	digitalWrite(nRFSN_CSN, LOW);	// select nRF
 	
 	SPI.transfer(R_REGISTER|reg);   // Send command
-	data = SPI.transfer(NRF_NOP);
+	uint8_t data = SPI.transfer(NRF_NOP);
 
 	digitalWrite(nRFSN_CSN, HIGH);	// deselect nRF
 
@@ -590,7 +593,7 @@ void nRFSNClass::getPayload(uint8_t payloadSize)
 
 
 /*------------------------------------------------
- * Gets buffer (out) contents
+ * Puts buffer (out) contents
 ------------------------------------------------*/
 void nRFSNClass::putBufOut(uint8_t data[], uint8_t len)
 {

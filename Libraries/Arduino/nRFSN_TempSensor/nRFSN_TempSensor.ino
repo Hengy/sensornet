@@ -12,7 +12,7 @@
 // Global variables
 //-----------------------------------
 byte SENV_0_DATA1 = 0;  // byte 1 of sensor 1 value; used to respond to SENV_0 command
-byte SENV_0_DATA2 = 0;  // byte 2 of sensor 1 value; used to respond to SENV_0 command
+byte SENV_1_DATA1 = 0;  // byte 2 of sensor 1 value; used to respond to SENV_0 command
 
 
 void setup() {
@@ -33,7 +33,7 @@ void loop() {
   byte temp_h = (int)(temp/100);
   byte temp_l = (int)(temp-(temp_h*100));
   SENV_0_DATA1 = temp_h;
-  SENV_0_DATA2 = temp_l;
+  SENV_1_DATA1 = temp_l;
   Serial.print("Temp: ");
   Serial.print(temp/100);
   Serial.write(183);
@@ -74,7 +74,7 @@ void nRFSN_setup() {
 //-----------------------------------
 
 //-----------------------------------
-// This mode MUST stay for system to work!
+// This code MUST stay for system to work!
 //-----------------------------------
 void nRFSN_loop() {
   
@@ -89,7 +89,7 @@ void nRFSN_loop() {
       case SENV_0:  // Request sensor value 0 command
       {
         // Put data to be sent in BufIn here
-        //nRFSN.respond([SENV_0_DATA1,SENV_0_DATA2],2);  // Specify length of data (in bytes) here. Max 28 bytes
+        //nRFSN.respond([SENV_0_DATA1,SENV_1_DATA1],2);  // Specify length of data (in bytes) here. Max 28 bytes
         Serial.println("Responding.");
         delay(500);
         break;
@@ -134,4 +134,4 @@ void nRFSN_loop() {
 void nRFSN_ISR() {
   nRFSN.nRF_ISR();
 }
-//-------------------------------------------------------------------------------------------------
+

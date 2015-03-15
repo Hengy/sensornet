@@ -40,3 +40,6 @@
 // System commands
 #define BATT_LVL	0x30	// Request VCC voltage level
 #define	CURR_LVL	0x31	// Request current consumption
+
+// Acknowledgement commands
+#define REQ_ERR		0xAA	// Request error - unimplemented Sensor / Automation command

@@ -239,19 +239,6 @@ void nRFSN::putBuffer(char* bufData, char len) {
 
 
 /*------------------------------------------------
- * Put command and data of size len into SPI I/O buffer
-------------------------------------------------*/
-void nRFSN::putBuffer(char* bufData, char command, char len) {
-	Buf[1] = command;
-	if (len != 0) {
-		for (int i = 0; i < len; i++) {
-			Buf[i+2] = bufData[i];
-		}
-	}
-}
-
-
-/*------------------------------------------------
  * Get data of size len into SPI I/O buffer
 ------------------------------------------------*/
 void nRFSN::getBuffer(char* bufData, char len) {
