@@ -31,6 +31,7 @@ void init(uint8_t SPIDiv, uint8_t CEpin, uint8_t CSNpin, uint8_t IRQpin) {
 	
 	printf("Begin.\n");
 	bcm2835_spi_begin();
+	
 	printf("Bit order.\n");
 	bcm2835_spi_setBitOrder(BCM2835_SPI_BIT_ORDER_MSBFIRST);
 	printf("Mode0.\n");
