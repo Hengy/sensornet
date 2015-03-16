@@ -77,9 +77,9 @@ void nRFSNClass::init(uint8_t SPIDiv, uint8_t CEpin, uint8_t CSNpin, uint8_t IRQ
 	// Write to FEATURE register
 	setReg(FEATURE,FEATURE_CURR);
 	// Flush RX FIFO
-	transfer('n',FLUSH_RX,0);
+	SPI.transfer(FLUSH_RX);
 	// Flush TX FIFO
-	transfer('n',FLUSH_TX,0);
+	SPI.transfer(FLUSH_TX);
 	
 	// current mode is RX
 	currMode = 1;	// 1 = RX, 0 = TX
@@ -424,6 +424,9 @@ uint8_t nRFSNClass::sync(void)
 }
 
 
+
+/*------------------------------------------------
+ * DEPRECIATED
 /*------------------------------------------------
  * nRF configure register.
  * char wrn: write('w')/read('r')
@@ -480,6 +483,9 @@ uint8_t nRFSNClass::getReg(uint8_t reg)
 }
 
 
+
+/*------------------------------------------------
+ * DEPRECIATED
 /*------------------------------------------------
  * nRF transfer data. DO NOT USE TO TRANSMIT!
  * char wrn: write('w')/read('r')/none('n')
@@ -488,28 +494,28 @@ uint8_t nRFSNClass::getReg(uint8_t reg)
  * uint8_t len: length of data in bytes
 				- data to be sent must be in output buffer
 ------------------------------------------------*/
-void nRFSNClass::transfer(char wrn, uint8_t command, uint8_t len)
-{
-	digitalWrite(nRFSN_CSN, LOW);	// select nRF
+// void nRFSNClass::transfer(char wrn, uint8_t command, uint8_t len)
+// {
+	// digitalWrite(nRFSN_CSN, LOW);	// select nRF
 
-	// construct command byte
-	if (wrn == 'w') {                           // Write
-        SPI.transfer(W_REGISTER|command);       // Send command
-    } else if (wrn == 'r') {                    // Read
-        SPI.transfer(R_REGISTER|command);       // Send command
-    } else if(wrn == 'n') {
-        SPI.transfer(command);                  // Send command
-    }
+	// // construct command byte
+	// if (wrn == 'w') {                           // Write
+        // SPI.transfer(W_REGISTER|command);       // Send command
+    // } else if (wrn == 'r') {                    // Read
+        // SPI.transfer(R_REGISTER|command);       // Send command
+    // } else if(wrn == 'n') {
+        // SPI.transfer(command);                  // Send command
+    // }
 
-	// if there is data, do it byte at a time
-    if (len != 0) {
-		for (int i=1;i<=len;i++) {
-            BufIn[i-1] = SPI.transfer(BufOut[i-1]);
-        }
-    }
+	// // if there is data, do it byte at a time
+    // if (len != 0) {
+		// for (int i=1;i<=len;i++) {
+            // BufIn[i-1] = SPI.transfer(BufOut[i-1]);
+        // }
+    // }
 
-	digitalWrite(nRFSN_CSN, HIGH);	// deselect nRF
-}
+	// digitalWrite(nRFSN_CSN, HIGH);	// deselect nRF
+// }
 
 
 /*------------------------------------------------
@@ -586,7 +592,13 @@ void nRFSNClass::getPayload(uint8_t payloadSize)
 {
 	digitalWrite(nRFSN_CE, LOW);
 
-	transfer('r',R_RX_PAYLOAD,payloadSize);
+	SPI.transfer(R_RX_PAYLOAD);
+	
+	if (payloadSize != 0) {
+		for (int i=1; i<=payloadSize; i++) {
+			BufIn[i-1] = SPI.transfer(NRF_NOP);
+		}
+	}
 
 	digitalWrite(nRFSN_CE, HIGH);
 }
