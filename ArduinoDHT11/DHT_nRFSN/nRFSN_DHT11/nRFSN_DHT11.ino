@@ -45,8 +45,6 @@ byte errorCount = 0;    // count the number of DHT read errors
 byte data[1];
 
 byte stat;
-
-byte statprev;
 //-----------------------------------
 
 
@@ -88,11 +86,8 @@ void(* resetFunc) (void) = 0;   //declare reset function @ address 0
 void loop() {
   
   stat = nRFSN.updateStatus();
-  if ((stat != 0) && (stat != statprev)) {
-    Serial.print("Status: ");
-    Serial.println();
-  }
-  statprev = stat;
+  Serial.print("Status: ");
+  Serial.println(stat);
   
   timeCount = millis();
 
@@ -144,6 +139,7 @@ void loop() {
   
   nRFSN_loop();    // If NOT called within 2 seconds of an nRF24L01+ event, RPi will timeout!
   
+  delay(250);
 }
 //-----------------------------------
 
