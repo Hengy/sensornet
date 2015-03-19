@@ -20,7 +20,7 @@ void nRFSNClass::init(uint8_t SPIDiv, uint8_t CEpin, uint8_t CSNpin, uint8_t IRQ
 	nRFSN_IRQ = IRQpin;
 
 	pinMode(nRFSN_CE, OUTPUT);
-	pinMode(nRFSN_CE, OUTPUT);
+	pinMode(nRFSN_CSN, OUTPUT);
 	pinMode(nRFSN_IRQ, INPUT);
 	digitalWrite(nRFSN_CE, HIGH);
 	digitalWrite(nRFSN_CSN, HIGH);
