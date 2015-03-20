@@ -7,7 +7,7 @@
 //-----------------------------------
 #include <SPI.h>        // SPI library
 #include <EEPROM.h>     // EEPROM library
-#include "DHT.h"        // DHT11 Humidity and Temp sensor library
+//#include "DHT.h"        // DHT11 Humidity and Temp sensor library
 //-----------------------------------
 
 //-----------------------------------
@@ -22,9 +22,9 @@
 #define test 9
 
 //-----------------------------------
-#define DHTPIN   4     // DHT11 data pin; 10k pullup
-
-#define DHTTYPE DHT11  // DHT 11
+//#define DHTPIN   4     // DHT11 data pin; 10k pullup
+//
+//#define DHTTYPE DHT11  // DHT 11
 
 //  Pin connection for DHT11
 //  Connect pin 1 (on the left) of the sensor to +5V
@@ -39,10 +39,10 @@
 byte SENV_0_DATA1 = 0;  // sensor 1 value; used to respond to SENV_0 command
 byte SENV_1_DATA1 = 0;  // sensor 2 value; used to respond to SENV_1 command
 //
-unsigned long timeCount = 0;
-unsigned long timeCount_prev = millis();
-
-byte errorCount = 0;    // count the number of DHT read errors
+//unsigned long timeCount = 0;
+//unsigned long timeCount_prev = millis();
+//
+//byte errorCount = 0;    // count the number of DHT read errors
 
 byte data[1];
 
@@ -53,7 +53,7 @@ byte stat, num;
 //-----------------------------------
 // Initialize DHT sensor
 //-----------------------------------
-DHT dht(DHTPIN, DHT11);
+//DHT dht(DHTPIN, DHT11);
 //-----------------------------------
 
 
@@ -68,10 +68,10 @@ void setup() {
   SENV_1_DATA1 = byte(182);
   SENV_0_DATA1 = byte(71);
   
-  dht.begin();
+//  dht.begin();
 
   Serial.println("Starting Node");
-  Serial.print("Status(1): 0x");
+  Serial.print("Status(1): ");
   Serial.println(nRFSN.updateStatus(), BIN);
   
   pinMode(test, OUTPUT);
@@ -91,67 +91,67 @@ void setup() {
 //-----------------------------------
 void loop() {
   
-  delay(400);
+  delay(100);
   
-//  digitalWrite(test, HIGH);
-//  
-//  if (num == 2) {
-//    Serial.print("Status: 0x");
-//    Serial.println(nRFSN.updateStatus(),BIN);
-//    num = 0;
-//  }
+  digitalWrite(test, HIGH);
   
-//  num++;
-      
-  timeCount = millis();
-
-  if (timeCount - timeCount_prev >= 2000) {
-    
-    // Sensor readings may also be up to 2 seconds old
-    float h = dht.readHumidity();
-    SENV_1_DATA1 = byte(h)*10;
-    
-    // Read temperature as Celsius
-    float t = dht.readTemperature();
-    SENV_0_DATA1 = byte(t)*10;
-    
-    // Check if any reads failed and exit early (to try again).
-    if (isnan(h) || isnan(t)) {
-      Serial.println("Failed to read from DHT sensor!");
-      errorCount++;
-      if (errorCount > 5) {
-        Serial.print("RESETTING!");
-        delay(1000);
-//        resetFunc();
-      }
-    }
-  
-    // Compute heat index
-    // Must send in temp in Fahrenheit!
-    float hi = dht.computeHeatIndex(t, h);
-  
-    Serial.print("\nHumidity: "); 
-    Serial.print(h);
-    Serial.print("%\n");
-    Serial.print("Temperature: "); 
-    Serial.print(t);
-    Serial.write(183);
-    Serial.print("C\n");
-    if ((t > 27.0) && (h > 40.0)) {
-      Serial.print("Heat index: ");
-      Serial.print(hi);
-      Serial.write(183);
-      Serial.println("C");
-    } else {
-      Serial.println("Heat index invalid in these conditions");
-    }
-    
-    timeCount_prev = timeCount;
-  } else if (timeCount_prev >= timeCount) {
-    timeCount_prev = 0;
+  if (num == 8) {
+    Serial.print("Status: ");
+    Serial.println(nRFSN.updateStatus(),BIN);
+    num = 0;
   }
   
-//  nRFSN_loop();    // If NOT called within 2 seconds of an nRF24L01+ event, RPi will timeout!
+  num++;
+      
+//  timeCount = millis();
+//
+//  if (timeCount - timeCount_prev >= 2000) {
+//    
+//    // Sensor readings may also be up to 2 seconds old
+//    float h = dht.readHumidity();
+//    SENV_1_DATA1 = byte(h)*10;
+//    
+//    // Read temperature as Celsius
+//    float t = dht.readTemperature();
+//    SENV_0_DATA1 = byte(t)*10;
+//    
+//    // Check if any reads failed and exit early (to try again).
+//    if (isnan(h) || isnan(t)) {
+//      Serial.println("Failed to read from DHT sensor!");
+//      errorCount++;
+//      if (errorCount > 5) {
+//        Serial.print("RESETTING!");
+//        delay(1000);
+////        resetFunc();
+//      }
+//    }
+//  
+//    // Compute heat index
+//    // Must send in temp in Fahrenheit!
+//    float hi = dht.computeHeatIndex(t, h);
+//  
+//    Serial.print("\nHumidity: "); 
+//    Serial.print(h);
+//    Serial.print("%\n");
+//    Serial.print("Temperature: "); 
+//    Serial.print(t);
+//    Serial.write(183);
+//    Serial.print("C\n");
+//    if ((t > 27.0) && (h > 40.0)) {
+//      Serial.print("Heat index: ");
+//      Serial.print(hi);
+//      Serial.write(183);
+//      Serial.println("C");
+//    } else {
+//      Serial.println("Heat index invalid in these conditions");
+//    }
+//    
+//    timeCount_prev = timeCount;
+//  } else if (timeCount_prev >= timeCount) {
+//    timeCount_prev = 0;
+//  }
+  
+  nRFSN_loop();    // If NOT called within 2 seconds of an nRF24L01+ event, RPi will timeout!
 }
 //-----------------------------------
 
@@ -184,8 +184,14 @@ void nRFSN_loop() {
   
   // If data has been received
   if (nRFSN.RXInt) {
+    digitalWrite(test, LOW);
     
+    char psize = nRFSN.getPayloadSize();
+    nRFSN.getPayload(psize);
+    
+    Serial.print("Buf: ");
     Serial.println(nRFSN.getBufIn(1)[1]);
+        
     switch (int(nRFSN.getBufIn(1)))
     {
       
