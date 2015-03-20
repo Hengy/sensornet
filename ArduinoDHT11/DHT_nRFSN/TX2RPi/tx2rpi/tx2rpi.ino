@@ -7,7 +7,6 @@
 //-----------------------------------
 #include <SPI.h>        // SPI library
 #include <EEPROM.h>     // EEPROM library
-#include "DHT.h"        // DHT11 Humidity and Temp sensor library
 //-----------------------------------
 
 //-----------------------------------
@@ -19,39 +18,17 @@
 
 #define nRF_IRQ  3    // irq
 
-//-----------------------------------
-#define DHTPIN   4     // DHT11 data pin; 10k pullup
-
-#define DHTTYPE DHT11  // DHT 11
-
-//  Pin connection for DHT11
-//  Connect pin 1 (on the left) of the sensor to +5V
-//  Connect pin 2 of the sensor to whatever your DHTPIN is
-//  Connect pin 4 (on the right) of the sensor to GROUND
-//  Connect a 10K resistor from pin 2 (data) to pin 1 (power) of the sensor
-//-----------------------------------
+#define test 9
 
 //-----------------------------------
 // Global variables
 //-----------------------------------
 byte SENV_0_DATA1 = 0;  // sensor 1 value; used to respond to SENV_0 command
 byte SENV_1_DATA1 = 0;  // sensor 2 value; used to respond to SENV_1 command
-//
-unsigned long timeCount = 0;
-unsigned long timeCount_prev = millis();
-
-byte errorCount = 0;    // count the number of DHT read errors
 
 byte data[1];
 
 byte stat, num;
-//-----------------------------------
-
-
-//-----------------------------------
-// Initialize DHT sensor
-//-----------------------------------
-DHT dht(DHTPIN, DHT11);
 //-----------------------------------
 
 
@@ -63,22 +40,23 @@ void setup() {
   
   nRFSN_setup();
   
-//  dht.begin();
+  SENV_1_DATA1 = 0xA4;  // 164
+  SENV_0_DATA1 = 0x49;  // 73
 
   Serial.println("Starting Node");
   Serial.print("Status(1): ");
   Serial.println(nRFSN.updateStatus(), BIN);
   
+  pinMode(test, OUTPUT);
+  
   nRFSN.transfer('n',FLUSH_RX,0);
   nRFSN.transfer('n',FLUSH_TX,0);
   nRFSN.clearInt(0x70);
+  
+  nRFSN.setTXMode();
+  
+  delay(2000);
 }
-
-
-//-----------------------------------
-// Arduino reset function
-//-----------------------------------
-//void(* resetFunc) (void) = 0;   //declare reset function @ address 0
 
 
 //-----------------------------------
@@ -87,66 +65,20 @@ void setup() {
 void loop() {
   
   delay(100);
-
-  num++;
-      
-  timeCount = millis();
-
-  if (timeCount - timeCount_prev >= 2000) {
-    
-    // Sensor readings may also be up to 2 seconds old
-    float h = dht.readHumidity();
-    SENV_1_DATA1 = nRFSN.toChar(h);
-    
-    // Read temperature as Celsius
-    float t = dht.readTemperature();
-    SENV_0_DATA1 = (byte)t*10;
-    
-    // Check if any reads failed and exit early (to try again).
-    if (isnan(h) || isnan(t)) {
-      Serial.println("Failed to read from DHT sensor!");
-      errorCount++;
-      if (errorCount > 5) {
-        Serial.print("RESETTING!");
-        delay(1000);
-//        resetFunc();
-      }
-    }
   
-    // Compute heat index
-    // Must send in temp in Fahrenheit!
-    float hi = dht.computeHeatIndex(t, h);
+  digitalWrite(test, HIGH);
   
-//    Serial.print("\nHumidity: "); 
-//    Serial.print(h);
-//    Serial.print("%\n");
-//    Serial.print("Temperature: "); 
-//    Serial.print(t);
-//    Serial.write(183);
-//    Serial.print("C\n");
-//    if ((t > 27.0) && (h > 40.0)) {
-//      Serial.print("Heat index: ");
-//      Serial.print(hi);
-//      Serial.write(183);
-//      Serial.println("C");
-//    } else {
-//      Serial.println("Heat index invalid in these conditions");
-//    }
-    
-    timeCount_prev = timeCount;
-  } else if (timeCount_prev >= timeCount) {
-    timeCount_prev = 0;
+  if (num == 8) {
+    Serial.print("Status: ");
+    Serial.println(nRFSN.updateStatus(),BIN);
+    num = 0;
   }
+  
+  num++;
   
   nRFSN_loop();    // If NOT called within 2 seconds of an nRF24L01+ event, RPi will timeout!
 }
 //-----------------------------------
-
-
-
-
-//-------------------------------------------------------------------------------------------------
-// nRFSN required code. See documentation for how to modify this for your project.
 
 
 //-----------------------------------
@@ -175,8 +107,9 @@ void nRFSN_loop() {
     
     uint8_t *buf = nRFSN.getBufIn(1);
     
-    delay(600);
-    
+    delay(2000);
+    Serial.println("GO");
+        
     switch (buf[0])
     {
       
@@ -198,6 +131,8 @@ void nRFSN_loop() {
         data[0] = SENV_1_DATA1;
         nRFSN.putBufOut(data,1);
         nRFSN.respond(1);                                // Specify length of data (in bytes) here. Max 28 bytes
+        Serial.print("Status: ");
+        Serial.println(nRFSN.updateStatus(),BIN);;
         break;
       }
       
@@ -205,6 +140,8 @@ void nRFSN_loop() {
         data[0] = 0xAA;
         nRFSN.putBufOut(data,1);
         nRFSN.respond(1);  // send error
+        Serial.println("Err");
+        delay(20);
         break;
     }
     
@@ -225,3 +162,14 @@ void nRFSN_loop() {
   }
     
 }
+//
+////-----------------------------------
+//// DO NOT DELETE OR CHANGE!
+////-----------------------------------
+//void nRFSN_ISR() {
+//  
+//  digitalWrite(8, HIGH);
+//  
+//  nRFSN.nRF_ISR();
+//}
+//-------------------------------------------------------------------------------------------------

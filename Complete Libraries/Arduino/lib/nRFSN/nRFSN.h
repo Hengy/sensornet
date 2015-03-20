@@ -21,10 +21,12 @@ public:
 	uint8_t getChannel(void);
 	void setMaxRT(uint8_t numRT);
 	uint8_t getMaxRT(void);
+	void setMaxRTdelay(uint8_t numRT);
+	uint8_t getMaxRTdelay(void);
 	void setTXAddr(uint8_t addr[], uint8_t len);
 	void setRXAddr(uint8_t pipe, uint8_t addr[], uint8_t len);
 	uint8_t *getTXAddr(void);
-	uint8_t *getRXAddr(void);
+	uint8_t *getRXAddr(uint8_t pipe);
 	
 	void nRF_ISR(void);
 	void clearInt(uint8_t interrupt);
@@ -42,12 +44,17 @@ public:
 
 	void putBufOut(uint8_t data[], uint8_t len);
 	uint8_t *getBufIn(uint8_t len);
+	
+	unsigned char toChar(float);
 
 	volatile uint8_t Busy;			// nRF busy flag; set when transmitting
 
 	volatile uint8_t RXInt;			// nRF received packet flag set by ISR
 	volatile uint8_t TXInt;			// nRF packet sent flag set by ISR
 	volatile uint8_t MAXInt;		// nRF max retransmit flag set by ISR
+	
+	uint8_t BufIn[32];				// 32 uint8_t buffer for all incoming SPI data
+	uint8_t BufOut[32];				// 32 uint8_t buffer for all outgoing SPI data
 
 protected:
 	uint8_t checkAddrs(void);
@@ -62,9 +69,6 @@ protected:
 	uint8_t currMode;				// 1 = RX, 0 = TX
 	
 	uint8_t Status;					// nRF24L01+ STATUS register
-	
-	uint8_t BufIn[32];				// 32 uint8_t buffer for all incoming SPI data
-	uint8_t BufOut[32];				// 32 uint8_t buffer for all outgoing SPI data
 	
 	/*------------------------------------------------
 	 * nRF24L01+ config variables

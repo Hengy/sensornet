@@ -1,0 +1,2 @@
+int greet(int n);
+
