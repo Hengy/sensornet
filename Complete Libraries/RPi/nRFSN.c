@@ -26,7 +26,6 @@ void init(uint8_t SPIDiv, uint8_t CEpin, uint8_t CSNpin, uint8_t IRQpin) {
 	nRFSN_IRQ = IRQpin;
 	
 	printf("bcm2835 Init().\n");
-	printf("Init.\n");
 	bcm2835_init();
 	
 	printf("Begin.\n");
@@ -480,7 +479,7 @@ int main(void) {
 	bcm2835_init();
 	
 	printf("Initializing.\n");
-	init(64, RPI_V2_GPIO_P1_22, RPI_V2_GPIO_P1_24, RPI_V2_GPIO_P1_07);
+	init(64, RPI_GPIO_P1_22, RPI_V2_GPIO_P1_07);
 	
 	printf("Setting TX mode.\n");
 	setTXMode();
