@@ -63,10 +63,10 @@ void setup() {
   
   nRFSN_setup();
   
-//  dht.begin();
+  dht.begin();
 
   Serial.println("Starting Node");
-  Serial.print("Status(1): ");
+  Serial.print("Status: ");
   Serial.println(nRFSN.updateStatus(), BIN);
   
   nRFSN.transfer('n',FLUSH_RX,0);
@@ -117,13 +117,13 @@ void loop() {
     // Must send in temp in Fahrenheit!
     float hi = dht.computeHeatIndex(t, h);
   
-//    Serial.print("\nHumidity: "); 
-//    Serial.print(h);
-//    Serial.print("%\n");
-//    Serial.print("Temperature: "); 
-//    Serial.print(t);
-//    Serial.write(183);
-//    Serial.print("C\n");
+    Serial.print("\nHumidity: "); 
+    Serial.print(h);
+    Serial.print("%\n");
+    Serial.print("Temperature: "); 
+    Serial.print(t);
+    Serial.write(183);
+    Serial.print("C\n");
 //    if ((t > 27.0) && (h > 40.0)) {
 //      Serial.print("Heat index: ");
 //      Serial.print(hi);
@@ -175,7 +175,10 @@ void nRFSN_loop() {
     
     uint8_t *buf = nRFSN.getBufIn(1);
     
-    delay(600);
+    Serial.print("Status: ");
+    Serial.println(nRFSN.updateStatus(), BIN);
+    
+    delay(5000); // for pure C root, 600
     
     switch (buf[0])
     {
@@ -186,6 +189,7 @@ void nRFSN_loop() {
       case SENV_0:  // Request sensor value 0 command
       {
         // Put data to be sent in BufIn here
+        Serial.println("Responding to SENV_0");
         data[0] = SENV_0_DATA1;
         nRFSN.putBufOut(data,1);
         nRFSN.respond(1);                                // Specify length of data (in bytes) here. Max 28 bytes
@@ -195,6 +199,7 @@ void nRFSN_loop() {
       case SENV_1:  // Request sensor value 0 command
       {
         // Put data to be sent in BufIn here
+        Serial.println("Responding to SENV_1");
         data[0] = SENV_1_DATA1;
         nRFSN.putBufOut(data,1);
         nRFSN.respond(1);                                // Specify length of data (in bytes) here. Max 28 bytes
@@ -202,11 +207,17 @@ void nRFSN_loop() {
       }
       
       default:
+        Serial.println("Responding with err");
         data[0] = 0xAA;
         nRFSN.putBufOut(data,1);
         nRFSN.respond(1);  // send error
         break;
     }
+    
+    delay(100);
+    
+    Serial.print("Status: ");
+    Serial.println(nRFSN.updateStatus(), BIN);
     
     nRFSN.clearInt(RX_DR);  // Clear data received interrupt
     nRFSN.RXInt = 0;
