@@ -178,7 +178,7 @@ void nRFSN_loop() {
     Serial.print("Status: ");
     Serial.println(nRFSN.updateStatus(), BIN);
     
-    delay(600); // for pure C root, 600
+    delay(500); // for pure C root, 400
     
     switch (buf[0])
     {
@@ -189,7 +189,7 @@ void nRFSN_loop() {
       case SENV_0:  // Request sensor value 0 command
       {
         // Put data to be sent in BufIn here
-        Serial.println("Responding to SENV_0");
+        Serial.println("SENV_0");
         Serial.print("Sending: ");
         Serial.println(SENV_0_DATA1);
         data[0] = SENV_0_DATA1;
@@ -201,7 +201,7 @@ void nRFSN_loop() {
       case SENV_1:  // Request sensor value 0 command
       {
         // Put data to be sent in BufIn here
-        Serial.println("Responding to SENV_1");
+        Serial.println("SENV_1");
         Serial.print("Sending: ");
         Serial.println(SENV_1_DATA1);
         data[0] = SENV_1_DATA1;
@@ -216,12 +216,9 @@ void nRFSN_loop() {
         nRFSN.putBufOut(data,1);
         nRFSN.respond(1);  // send error
         break;
-    }
-    
-    delay(100);
-    
-    Serial.print("Status: ");
-    Serial.println(nRFSN.updateStatus(), BIN);
+    }    
+//    Serial.print("Status: ");
+//    Serial.println(nRFSN.updateStatus(), BIN);
     
     nRFSN.clearInt(RX_DR);  // Clear data received interrupt
     nRFSN.RXInt = 0;
