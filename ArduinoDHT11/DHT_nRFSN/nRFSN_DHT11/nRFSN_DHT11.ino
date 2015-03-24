@@ -100,7 +100,7 @@ void loop() {
     
     // Read temperature as Celsius
     float t = dht.readTemperature();
-    SENV_0_DATA1 = (byte)t*10;
+    SENV_0_DATA1 = nRFSN.toChar(t);
     
     // Check if any reads failed and exit early (to try again).
     if (isnan(h) || isnan(t)) {
@@ -178,7 +178,7 @@ void nRFSN_loop() {
     Serial.print("Status: ");
     Serial.println(nRFSN.updateStatus(), BIN);
     
-    delay(5000); // for pure C root, 600
+    delay(600); // for pure C root, 600
     
     switch (buf[0])
     {
@@ -190,6 +190,8 @@ void nRFSN_loop() {
       {
         // Put data to be sent in BufIn here
         Serial.println("Responding to SENV_0");
+        Serial.print("Sending: ");
+        Serial.println(SENV_0_DATA1);
         data[0] = SENV_0_DATA1;
         nRFSN.putBufOut(data,1);
         nRFSN.respond(1);                                // Specify length of data (in bytes) here. Max 28 bytes
@@ -200,6 +202,8 @@ void nRFSN_loop() {
       {
         // Put data to be sent in BufIn here
         Serial.println("Responding to SENV_1");
+        Serial.print("Sending: ");
+        Serial.println(SENV_1_DATA1);
         data[0] = SENV_1_DATA1;
         nRFSN.putBufOut(data,1);
         nRFSN.respond(1);                                // Specify length of data (in bytes) here. Max 28 bytes
