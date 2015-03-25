@@ -40,11 +40,9 @@ byte SENV_1_DATA1 = 0;  // sensor 2 value; used to respond to SENV_1 command
 unsigned long timeCount = 0;
 unsigned long timeCount_prev = millis();
 
-byte errorCount = 0;    // count the number of DHT read errors
+//byte errorCount = 0;    // count the number of DHT read errors
 
 byte data[1];
-
-byte stat, num;
 //-----------------------------------
 
 
@@ -59,15 +57,15 @@ DHT dht(DHTPIN, DHT11);
 // Arduino setup loop
 //-----------------------------------
 void setup() {
-  Serial.begin(115600);
+//  Serial.begin(115600);
   
   nRFSN_setup();
   
   dht.begin();
 
-  Serial.println("Starting Node");
-  Serial.print("Status: ");
-  Serial.println(nRFSN.updateStatus(), BIN);
+//  Serial.println("Starting Node");
+//  Serial.print("Status: 0b");
+//  Serial.println(nRFSN.updateStatus(), BIN);
   
   nRFSN.transfer('n',FLUSH_RX,0);
   nRFSN.transfer('n',FLUSH_TX,0);
@@ -86,9 +84,7 @@ void setup() {
 //-----------------------------------
 void loop() {
   
-  delay(100);
-
-  num++;
+//  delay(100);
       
   timeCount = millis();
 
@@ -103,27 +99,27 @@ void loop() {
     SENV_0_DATA1 = nRFSN.toChar(t);
     
     // Check if any reads failed and exit early (to try again).
-    if (isnan(h) || isnan(t)) {
-      Serial.println("Failed to read from DHT sensor!");
-      errorCount++;
-      if (errorCount > 5) {
-        Serial.print("RESETTING!");
-        delay(1000);
-//        resetFunc();
-      }
-    }
+//    if (isnan(h) || isnan(t)) {
+//      Serial.println("Failed to read from DHT sensor!");
+//      errorCount++;
+//      if (errorCount > 5) {
+//        Serial.print("RESETTING!");
+//        delay(1000);
+////        resetFunc();
+//      }
+//    }
   
     // Compute heat index
     // Must send in temp in Fahrenheit!
-    float hi = dht.computeHeatIndex(t, h);
-  
-    Serial.print("\nHumidity: "); 
-    Serial.print(h);
-    Serial.print("%\n");
-    Serial.print("Temperature: "); 
-    Serial.print(t);
-    Serial.write(183);
-    Serial.print("C\n");
+//    float hi = dht.computeHeatIndex(t, h);
+//  
+//    Serial.print("\nHumidity: "); 
+//    Serial.print(h);
+//    Serial.print("%\n");
+//    Serial.print("Temperature: "); 
+//    Serial.print(t);
+//    Serial.write(183);
+//    Serial.print("C\n");
 //    if ((t > 27.0) && (h > 40.0)) {
 //      Serial.print("Heat index: ");
 //      Serial.print(hi);
@@ -173,10 +169,11 @@ void nRFSN_loop() {
     char psize = nRFSN.getPayloadSize();
     nRFSN.getPayload(psize);
     
-    uint8_t *buf = nRFSN.getBufIn(1);
+    uint8_t *buf = (uint8_t*)calloc(1, sizeof(uint8_t));
+    buf = nRFSN.getBufIn(1);
     
-    Serial.print("Status: ");
-    Serial.println(nRFSN.updateStatus(), BIN);
+//    Serial.print("Status: ");
+//    Serial.println(nRFSN.updateStatus(), BIN);
     
     delay(500); // for pure C root, 400
     
@@ -189,9 +186,9 @@ void nRFSN_loop() {
       case SENV_0:  // Request sensor value 0 command
       {
         // Put data to be sent in BufIn here
-        Serial.println("SENV_0");
-        Serial.print("Sending: ");
-        Serial.println(SENV_0_DATA1);
+//        Serial.println("SENV_0");
+//        Serial.print("Sending: ");
+//        Serial.println(SENV_0_DATA1);
         data[0] = SENV_0_DATA1;
         nRFSN.putBufOut(data,1);
         nRFSN.respond(1);                                // Specify length of data (in bytes) here. Max 28 bytes
@@ -201,9 +198,9 @@ void nRFSN_loop() {
       case SENV_1:  // Request sensor value 0 command
       {
         // Put data to be sent in BufIn here
-        Serial.println("SENV_1");
-        Serial.print("Sending: ");
-        Serial.println(SENV_1_DATA1);
+//        Serial.println("SENV_1");
+//        Serial.print("Sending: ");
+//        Serial.println(SENV_1_DATA1);
         data[0] = SENV_1_DATA1;
         nRFSN.putBufOut(data,1);
         nRFSN.respond(1);                                // Specify length of data (in bytes) here. Max 28 bytes
@@ -211,7 +208,7 @@ void nRFSN_loop() {
       }
       
       default:
-        Serial.println("Responding with err");
+//        Serial.println("Responding with err");
         data[0] = 0xAA;
         nRFSN.putBufOut(data,1);
         nRFSN.respond(1);  // send error
@@ -220,6 +217,8 @@ void nRFSN_loop() {
 //    Serial.print("Status: ");
 //    Serial.println(nRFSN.updateStatus(), BIN);
     
+    nRFSN.transfer('n',FLUSH_RX,0);
+    nRFSN.transfer('n',FLUSH_TX,0);
     nRFSN.clearInt(RX_DR);  // Clear data received interrupt
     nRFSN.RXInt = 0;
   }
