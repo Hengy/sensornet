@@ -12,9 +12,9 @@
 //-----------------------------------
 // Definitions
 //-----------------------------------
-#define nRF_CE   3    // chip enable
-#define nRF_CSN  8    // chip select
-#define nRF_IRQ  7    // irq
+#define nRF_CE   18    // chip enable
+#define nRF_CSN  19    // chip select
+#define nRF_IRQ  20    // irq
 
 #define Rpin  9
 #define Gpin  6
