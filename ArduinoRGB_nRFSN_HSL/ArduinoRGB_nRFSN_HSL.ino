@@ -25,9 +25,12 @@
 //-----------------------------------
 // Global variables
 //-----------------------------------
-int r,g,b, h;
+int r,g,b;
+float h;
 
 int max_rgb_val= 255;
+
+int timeCount = 0;
 //-----------------------------------
 
 //-----------------------------------
@@ -44,7 +47,7 @@ void setup() {
   pinMode(Gpin, OUTPUT);
   pinMode(Bpin, OUTPUT);
   
-  displayHSL(173);
+  displayHSL(0.55);
   
   nRFSN.transfer('n',FLUSH_RX,0);
   nRFSN.transfer('n',FLUSH_TX,0);
@@ -84,7 +87,7 @@ void nRFSN_setup() {
 //-----------------------------------
 
 void displayHSL(int hue) {
-    if (hue > 360) hue = 360;
+    if (hue > 1.0) hue = 1.0;
 
     // convert saturation and brightness value to decimals and init r, g, b variables
     float sat_f = 1.0;
@@ -95,9 +98,9 @@ void displayHSL(int hue) {
 			float hue_secondary = float(hue) / 120.0;
 			float sat_primary = 1.0 - hue_primary;
 			float sat_secondary = 1.0 - hue_secondary;
-                        b = bright_f * max_rgb_val;
-			r = b * (hue_primary + sat_primary);
-			g = b * (hue_secondary + sat_secondary);
+                        b = 0;
+			r = (bright_f * max_rgb_val) * (hue_primary + sat_primary);
+			g = (bright_f * max_rgb_val) * (hue_secondary + sat_secondary);
 			  
     }
 
@@ -106,9 +109,9 @@ void displayHSL(int hue) {
 			float hue_secondary = (float(hue)-120.0) / 120.0;
 			float sat_primary = 1.0 - hue_primary;
 			float sat_secondary = 1.0 - hue_secondary;
-			r = bright_f * max_rgb_val;  
-			g = r * (hue_primary + sat_primary);
-			b = r * (hue_secondary + sat_secondary);
+			r = 0;
+			g = (bright_f * max_rgb_val) * (hue_primary + sat_primary);
+			b = (bright_f * max_rgb_val) * (hue_secondary + sat_secondary);
     }
 
     else if (hue >= 240 && hue <= 360) {
@@ -116,9 +119,9 @@ void displayHSL(int hue) {
 			float hue_secondary = (float(hue)-240.0) / 120.0;
 			float sat_primary = 1.0 - hue_primary;
 			float sat_secondary = 1.0 - hue_secondary;
-                        g = bright_f * max_rgb_val;
-			r = g * (hue_secondary + sat_secondary);  
-			b = g * (hue_primary + sat_primary);
+                        g = 0;
+			r = (bright_f * max_rgb_val) * (hue_secondary + sat_secondary);  
+			b = (bright_f * max_rgb_val) * (hue_primary + sat_primary);
     }
     
     analogWrite(Rpin, r);
@@ -139,11 +142,18 @@ void loop() {
     
     if (buf[0] == SENV_0) {
       h = buf[1] + buf[2];
-      displayHSL(h);
+      displayHSL(h/360);
     }
     
     nRFSN.transfer('n',FLUSH_RX,0);
     nRFSN.clearInt(0x70);
+  } else {
+    if (timeCount == 10) {
+      h += 0.01;
+      displayHSL(h);
+      timeCount = 0;
+    }
   }
+  timeCount += 1;
     
 }
