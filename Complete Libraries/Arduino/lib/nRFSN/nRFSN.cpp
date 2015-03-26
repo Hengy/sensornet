@@ -39,7 +39,7 @@ void nRFSNClass::init(uint8_t SPIDiv, uint8_t CEpin, uint8_t CSNpin, uint8_t IRQ
 	SETUP_RETR_CURR       = B00110000;   // 1000us retransmit delay; 10 retransmits
 	RF_CH_CURR            = B01101001;   // Channel 105 (2.400GHz + 0.105GHz = 2.505GHz)
 	RF_SETUP_CURR         = B00000110;   // RF data rate to 1Mbps; 0dBm output power (highest)
-	//RX_PW_P0_CURR         = B00000011;   // 1 payload
+	RX_PW_P0_CURR         = B00000100;   // 1 payload
 	DYNPD_CURR            = B00000011;   // Set dynamic payload for pipe 0
 	FEATURE_CURR          = B00000100;   // Enable dynamic payload
 
@@ -269,14 +269,16 @@ uint8_t nRFSNClass::getMaxRTdelay(void)
 ------------------------------------------------*/
 void nRFSNClass::setTXAddr(uint8_t addr[], uint8_t len)
 {
+	memcpy(TX_ADDRESS,addr,4);
+
 	digitalWrite(nRFSN_CSN, LOW);	// select nRF
 
 	SPI.transfer(W_REGISTER|TX_ADDR);
 
 	if (len != 0) {
         // Send address bytes
-        for (int i=1;i<=len;i++) {
-            SPI.transfer(addr[i-1]);
+        for (int i=0;i<len;i++) {
+            SPI.transfer(addr[i]);
         }
     }
 
@@ -292,14 +294,16 @@ void nRFSNClass::setTXAddr(uint8_t addr[], uint8_t len)
 ------------------------------------------------*/
 void nRFSNClass::setRXAddr(uint8_t pipe, uint8_t addr[], uint8_t len)
 {
+	memcpy(RX_ADDRESS,addr,4);
+
 	digitalWrite(nRFSN_CSN, LOW);	// select nRF
 
 	SPI.transfer(W_REGISTER|pipe);
 
 	if (len != 0) {
         // Send address bytes
-        for (int i=1;i<=len;i++) {
-            SPI.transfer(addr[i-1]);
+        for (int i=0;i<len;i++) {
+            SPI.transfer(addr[i]);
         }
     }
 
@@ -319,7 +323,7 @@ uint8_t *nRFSNClass::getTXAddr(void)
 	SPI.transfer(R_REGISTER|TX_ADDR);
 
 	// Send address bytes
-	for (int i=1;i<=4;i++) {
+	for (int i=0;i<4;i++) {
 		addr[i] = SPI.transfer(NRF_NOP);
 	}
 
@@ -341,7 +345,7 @@ uint8_t *nRFSNClass::getRXAddr(uint8_t pipe)
 	SPI.transfer(R_REGISTER|pipe);
 
 	// Send address bytes
-	for (int i=1;i<=4;i++) {
+	for (int i=0;i<4;i++) {
 		addr[i] = SPI.transfer(NRF_NOP);
 	}
 
