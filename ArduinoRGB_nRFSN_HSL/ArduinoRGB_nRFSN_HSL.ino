@@ -25,7 +25,7 @@
 //-----------------------------------
 // Global variables
 //-----------------------------------
-int r,g,b;
+int r,g,b, h;
 
 int max_rgb_val= 255;
 //-----------------------------------
@@ -44,9 +44,7 @@ void setup() {
   pinMode(Gpin, OUTPUT);
   pinMode(Bpin, OUTPUT);
   
-  analogWrite(Rpin, 10);
-  analogWrite(Gpin, 10);
-  analogWrite(Bpin, 10);
+  displayHSL(173);
   
   nRFSN.transfer('n',FLUSH_RX,0);
   nRFSN.transfer('n',FLUSH_TX,0);
@@ -134,15 +132,14 @@ void displayHSL(int hue) {
 void loop() {
   if ( nRFSN.updateStatus() & 0b01000000 ) {
     
-    nRFSN.getPayload(4);
+    nRFSN.getPayload(3);
     
     uint8_t *buf = (uint8_t*)calloc(1, sizeof(uint8_t));
-    buf = nRFSN.getBufIn(4);
+    buf = nRFSN.getBufIn(3);
     
     if (buf[0] == SENV_0) {
-      analogWrite(Rpin, buf[1]);
-      analogWrite(Gpin, buf[2]);
-      analogWrite(Bpin, buf[3]);
+      h = buf[1] + buf[2];
+      displayHSL(h);
     }
     
     nRFSN.transfer('n',FLUSH_RX,0);
