@@ -28,6 +28,9 @@
 int r,g,b;
 
 int max_rgb_val= 255;
+
+uint8_t nodeAddr[4] = {0xCA,0xCA,0xCA,0xCA};
+uint8_t *RXA = (uint8_t*)calloc(4, sizeof(uint8_t));
 //-----------------------------------
 
 //-----------------------------------
@@ -52,9 +55,7 @@ void setup() {
   nRFSN.transfer('n',FLUSH_TX,0);
   nRFSN.clearInt(0x70);
   
-  uint8_t nodeAddr[4] = {0xCA,0xCA,0xCA,0xCA};
   nRFSN.setRXAddr(RX_ADDR_P0, nodeAddr, 4);
-  uint8_t *RXA = (uint8_t*)calloc(4, sizeof(uint8_t));
   RXA = nRFSN.getRXAddr(RX_ADDR_P0);
 }
 
