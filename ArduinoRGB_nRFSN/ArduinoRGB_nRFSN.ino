@@ -30,7 +30,7 @@ int r,g,b;
 int max_rgb_val= 255;
 
 uint8_t nodeAddr[4] = {0xCA,0xCA,0xCA,0xCA};
-uint8_t *RXA = (uint8_t*)calloc(4, sizeof(uint8_t));
+uint8_t *buf = (uint8_t*)calloc(4, sizeof(uint8_t));
 //-----------------------------------
 
 //-----------------------------------
@@ -56,7 +56,6 @@ void setup() {
   nRFSN.clearInt(0x70);
   
   nRFSN.setRXAddr(RX_ADDR_P0, nodeAddr, 4);
-  RXA = nRFSN.getRXAddr(RX_ADDR_P0);
 }
 
 
@@ -86,48 +85,6 @@ void nRFSN_setup() {
 }
 //-----------------------------------
 
-void displayHSL(int hue) {
-    if (hue > 360) hue = 360;
-
-    // convert saturation and brightness value to decimals and init r, g, b variables
-    float sat_f = 1.0;
-    float bright_f = 1.0;
-        
-    if (hue >= 0 && hue < 120) {
-			float hue_primary = 1.0 - (float(hue) / 120.0);
-			float hue_secondary = float(hue) / 120.0;
-			float sat_primary = 1.0 - hue_primary;
-			float sat_secondary = 1.0 - hue_secondary;
-                        b = bright_f * max_rgb_val;
-			r = b * (hue_primary + sat_primary);
-			g = b * (hue_secondary + sat_secondary);
-			  
-    }
-
-    else if (hue >= 120 && hue < 240) {
-			float hue_primary = 1.0 - ((float(hue)-120.0) / 120.0);
-			float hue_secondary = (float(hue)-120.0) / 120.0;
-			float sat_primary = 1.0 - hue_primary;
-			float sat_secondary = 1.0 - hue_secondary;
-			r = bright_f * max_rgb_val;  
-			g = r * (hue_primary + sat_primary);
-			b = r * (hue_secondary + sat_secondary);
-    }
-
-    else if (hue >= 240 && hue <= 360) {
-			float hue_primary = 1.0 - ((float(hue)-240.0) / 120.0);
-			float hue_secondary = (float(hue)-240.0) / 120.0;
-			float sat_primary = 1.0 - hue_primary;
-			float sat_secondary = 1.0 - hue_secondary;
-                        g = bright_f * max_rgb_val;
-			r = g * (hue_secondary + sat_secondary);  
-			b = g * (hue_primary + sat_primary);
-    }
-    
-    analogWrite(Rpin, r);
-    analogWrite(Gpin, g);
-    analogWrite(Bpin, b);
-}
 
 //-----------------------------------
 // This code MUST stay for system to work!
@@ -137,7 +94,6 @@ void loop() {
     
     nRFSN.getPayload(4);
     
-    uint8_t *buf = (uint8_t*)calloc(1, sizeof(uint8_t));
     buf = nRFSN.getBufIn(4);
     
     if (buf[0] == SENV_0) {
