@@ -1,0 +1,39 @@
+<div id="current_module_wrapper">
+	
+	<script type="text/javascript">
+		loadTimer = setTimeout(function() {
+			module_onLoad();
+			clearTimeout(loadTimer);
+		}, 500);
+	</script>
+	
+	<div id="current_module_stats"></div>
+
+	<div id="colorpicker">
+		<div class="color_col" style="background-color:rgb(255,0,0)" onclick="changeHue([255,0,0]);"></div>
+		<div class="color_col" style="background-color:rgb(255,85,0)" onclick="changeHue([255,85,0]);"></div>
+		<div class="color_col" style="background-color:rgb(255,170,0)" onclick="changeHue([255,170,0]);"></div>
+		<div class="color_col" style="background-color:rgb(255,255,0)" onclick="changeHue([255,255,0]);"></div>
+		<div class="color_col" style="background-color:rgb(170,255,0)" onclick="changeHue([170,255,0]);"></div>
+		<div class="color_col" style="background-color:rgb(85,255,0)" onclick="changeHue([85,255,0]);"></div>
+		<div class="color_col" style="background-color:rgb(0,255,0)" onclick="changeHue([0,255,0]);"></div>
+		<div class="color_col" style="background-color:rgb(0,255,85)" onclick="changeHue([0,255,85]);"></div>
+		<div class="color_col" style="background-color:rgb(0,255,170)" onclick="changeHue([0,255,170]);"></div>
+		<div class="color_col" style="background-color:rgb(0,255,255)" onclick="changeHue([0,255,255]);"></div>
+		<div class="color_col" style="background-color:rgb(0,170,255)" onclick="changeHue([0,170,255]);"></div>
+		<div class="color_col" style="background-color:rgb(0,85,255)" onclick="changeHue([0,85,255]);"></div>
+		<div class="color_col" style="background-color:rgb(0,0,255)" onclick="changeHue([0,0,255]);"></div>
+		<div class="color_col" style="background-color:rgb(85,0,255)" onclick="changeHue([85,0,255]);"></div>
+		<div class="color_col" style="background-color:rgb(170,0,255)" onclick="changeHue([170,0,255]);"></div>
+		<div class="color_col" style="background-color:rgb(255,0,255)" onclick="changeHue([255,0,255]);"></div>
+		<div class="color_col" style="background-color:rgb(255,0,170)" onclick="changeHue([255,0,170]);"></div>
+		<div class="color_col" style="background-color:rgb(255,0,85)" onclick="changeHue([255,0,85]);"></div>
+		
+	</div>
+	
+	<div id="current_module_description">
+		<div id="current_module_description_title">Description: </div>
+		<div id="current_module_description_text"></div>
+	</div>
+	
+</div>

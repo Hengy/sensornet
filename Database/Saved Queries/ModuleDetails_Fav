@@ -1,6 +1,0 @@
-SELECT Node.ID, Node.ModuleID, ModuleDetails.Name, ModuleDetails.Description, ModuleDetails.Type, ModuleDetails.Icon, Fav.Fav
-FROM Node
-INNER JOIN ModuleDetails
-ON Node.ModuleID=ModuleDetails.ModuleID
-INNER JOIN Fav
-ON Node.Command=Fav.Command AND Node.ID=Fav.ID;

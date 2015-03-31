@@ -1,0 +1,28 @@
+<div id="current_module_wrapper">
+	<script type="text/javascript">
+		loadTimer = setTimeout(function() {
+			module_onLoad();
+			clearTimeout(loadTimer);
+		}, 500);
+	</script>
+	
+	<div id="current_module_stats"></div>
+	
+	<div id="current_module_vals">
+		<div class="current_module_vals_wrapper">
+			<div class="current_module_value_title">Temperature</div>
+			<div class="current_module_value" id="current_module_temp"></div>
+		</div>
+		
+		<div class="current_module_vals_wrapper">
+			<div class="current_module_value_title">Humidity</div>
+			<div class="current_module_value" id="current_module_humidity"></div>
+		</div>
+	</div>
+	
+	<div id="current_module_description">
+		<div id="current_module_description_title">Description: </div>
+		<div id="current_module_description_text"></div>
+	</div>
+	
+</div>

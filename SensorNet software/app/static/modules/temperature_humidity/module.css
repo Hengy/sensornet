@@ -1,0 +1,124 @@
+/*-----------------------------------------------------------------------
+ * Current
+ -----------------------------------------------------------------------*/
+#current_module_wrapper {
+    position: relative;
+    
+    width: 100%;
+    height: 100%;
+    
+    padding: 2px 25px 0px 25px;
+}
+
+.current_module_stat {
+    float: left;
+    
+    padding-right: 28px;
+    
+    font-size: 16px;
+    color: #888888;
+    
+    cursor: default;
+}
+.current_module_stat:hover {
+    color: #EEEEEE;
+}
+
+#current_module_vals {
+    float: left;
+    
+    width: calc(100% - 50px);
+    height: calc(100% - 112px);
+}
+
+#current_module_description {
+    position: absolute;
+    bottom: -4px;
+    
+    width: calc(100% - 126px);
+    height: 56px;
+    
+    padding: 10px 14px 4px 14px;
+    
+    border: 1px solid #444444;
+    
+    background-color: #202020;
+}
+
+#current_module_description_title {
+    float: left;
+    
+    width: 106px;
+    height: 50px;
+    
+    padding: 0px 0px 16px 0px;
+    
+    color: #999999;
+    font-size: 20px;
+}
+
+#current_module_description_text {
+    padding-top: 3px;
+    
+    width: calc(100% - 108px)
+    
+    color: #999999;    
+    font-size: 17px;
+}
+#current_module_description_text:hover {
+    color: #DDDDDD; 
+}
+
+.current_module_vals_wrapper {
+    position: relative;
+    
+    float: left;
+    
+    width: calc(50% - 60px);
+    height: 50%;
+    
+    margin: 8% 10px 10px 10px;
+    padding: 20px;
+}
+
+.current_module_value_title {
+    margin-left: 40px;
+    
+    width: 100%;
+    
+    color: #999999;
+    font-size: 32px;
+}
+
+.current_module_value {
+    float: left
+    
+    width: 100%;
+    height: calc(100% - 60px);
+    
+    color: #CCCCCC;
+    text-align: center;
+    font-size: 10vw;
+}
+
+.current_module_unit {
+    position: relative;
+    
+    top: 12%;
+    right: 7%;
+    
+    float: right;
+    
+    color: #777777;
+    font-size: 3vw;
+}
+
+/*-----------------------------------------------------------------------
+ * History
+ -----------------------------------------------------------------------*/
+
+
+
+/*-----------------------------------------------------------------------
+ * Config
+ -----------------------------------------------------------------------*/

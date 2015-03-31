@@ -1,0 +1,118 @@
+/*-----------------------------------------------------------------------
+ * Current
+ -----------------------------------------------------------------------*/
+#current_module_wrapper {
+    position: relative;
+    
+    width: 100%;
+    height: 100%;
+    
+    padding: 2px 25px 0px 25px;
+}
+
+.current_module_stat {
+    float: left;
+    
+    padding-right: 28px;
+    
+    font-size: 16px;
+    color: #888888;
+    
+    cursor: default;
+}
+.current_module_stat:hover {
+    color: #EEEEEE;
+}
+
+#current_module_description {
+    position: absolute;
+    bottom: -4px;
+    
+    width: calc(100% - 126px);
+    height: 56px;
+    
+    padding: 10px 14px 4px 14px;
+    
+    border: 1px solid #444444;
+    
+    background-color: #202020;
+}
+
+#current_module_description_title {
+    float: left;
+    
+    width: 106px;
+    height: 50px;
+    
+    padding: 0px 0px 16px 0px;
+    
+    color: #999999;
+    font-size: 20px;
+}
+
+#current_module_description_text {
+    padding-top: 3px;
+    
+    width: calc(100% - 108px)
+    
+    color: #999999;    
+    font-size: 17px;
+}
+#current_module_description_text:hover {
+    color: #DDDDDD; 
+}
+
+#current_module_button {
+    margin-left: calc(50% - 300px);
+    margin-right: calc(50% - 300px);
+    margin-top: 15%;
+    
+    font-size: 40px;
+    text-align: center;
+    
+    cursor: pointer;
+}
+
+#current_module_ON {
+    float: left;
+    
+    width: 300px;
+    height: 80px;
+    
+    padding-top: 30px;
+    
+    color: #FFFFFF;
+    
+    background-color: #006600;
+}
+#current_module_ON:hover {
+    color: #000000;
+    background-color: #FFFFFF;
+}
+
+#current_module_OFF {
+    float: left;
+    
+    width: 300px;
+    height: 80px;
+    
+    padding-top: 30px;
+    
+    color: #FFFFFF;
+    
+    background-color: #660000;
+}
+#current_module_OFF:hover {
+    color: #000000;
+    background-color: #FFFFFF;
+}
+
+/*-----------------------------------------------------------------------
+ * History
+ -----------------------------------------------------------------------*/
+
+
+
+/*-----------------------------------------------------------------------
+ * Config
+ -----------------------------------------------------------------------*/

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+		<title>SensorNet</title>
+		<meta name="description" content="Control website for home or business automation and sensor network.">
+		<meta name="author" content="Matt Hengeveld">
+
+		<meta name="viewport" content="width=device-width; initial-scale=1.0">
+				
+		<!-- CSS -->
+		<link rel="stylesheet" type="text/css" href="../static/css/global.css">
+		
+		<!-- Javascript -->
+		<script type="text/javascript" src="../static/js/jquery-2.1.3.js"></script>
+		<script type="text/javascript" src="../static/js/main.js"></script>
+		<script type="text/javascript" src="../static/js/style.js"></script>
+		<script type="text/javascript" src="../static/js/dynLoader.js"></script>
+		<script type="text/javascript" src="../static/js/ajax.js"></script>
+		<script type="text/javascript">
+			// get time of page load
+			var d = new Date();
+			window.startLoadTime = d.getTime();
+		</script>
+
+		<!-- icons -->
+	</head>
+	
+	<body id="body" onload="pageLoaded();">
+		
+		<!-- Loading -->
+		<div id="overlayLoading">
+			<div id="pageLoading">
+				<div id="gifLoading">
+					<img id="gif" src="../static/images/loader.gif" alt="Scanning...">
+				</div>
+				<div id="textLoading">Scanning...</div>
+			</div>
+		</div>
+		
+		<!-- Header -->
+		<div id="header"></div>
+		
+		<!-- Side Menu -->
+		<div id="menuSide">
+			
+			<div id="menuTitle">
+				Menu
+			</div>
+			
+			<!-- Menu button -->
+			<div id="menuButton" onmouseover="menuButtonOver();" onmousedown="menuButtonClick();" onmouseleave="menuButtonOut();">
+				
+				<svg version="1.1" id="menuButtonSymbol" x="0px" y="0px" width="50px" height="50px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;">
+					<path class="menuButtonBG" stroke-width="2" d="M50,44c0,3.3-2.7,6-6,6H6c-3.3,0-6-2.7-6-6V6c0-3.3,2.7-6,6-6h38c3.3,0,6,2.7,6,6V44z"/>
+					<path class="menuButtonHz" stroke-width="0" d="M43,13c0,1.6-1.3,3-3,3H10c-1.6,0-3-1.4-3-3l0,0c0-1.6,1.4-3,3-3h30C41.7,10,43,11.4,43,13L43,13z"/>
+					<path class="menuButtonHz" stroke-width="0" d="M43,25c0,1.6-1.3,3-3,3H10c-1.6,0-3-1.4-3-3l0,0c0-1.6,1.4-3,3-3h30C41.7,22,43,23.4,43,25L43,25z"/>
+					<path class="menuButtonHz" stroke-width="0" d="M43,37c0,1.7-1.3,3-3,3H10c-1.6,0-3-1.3-3-3l0,0c0-1.7,1.4-3,3-3h30C41.7,34,43,35.3,43,37L43,37z"/>
+				</svg>
+				
+			</div>
+			
+			<div id="menuSideTitle">
+				Menu
+			</div>
+			
+			<!-- Search tools -->
+			<div id="search">
+				<div id="searchBox">
+
+					<button class="searchInputButton" type="button">Search</button>
+		      		<input type="text" class="searchBox" placeholder="Search nodes">
+
+				</div>
+				
+				<div id="searchCategory">
+					
+					<select class="searchDropDown">
+						<option class="searchDropDownOption" value="all">All</option>
+						<option class="searchDropDownOption" value="temperature">Temperature</option>
+						<option class="searchDropDownOption" value="kitchen">Kitchen</option>
+					</select>
+					
+					<div id="searchCategoryLabel">Filter:</div>
+					
+				</div>
+			</div>
+			
+			<div id="moduleListUp" onmouseup="moduleListUpUp();" onmousedown="moduleListUpDown();" onmouseup="moduleListUpOver();" onmouseover="moduleListUpOver();" onmouseleave="moduleListUpOut();">
+				<svg version="1.1" id="moduleListUpSymbol" x="0px" y="0px" width="30px" height="30px" viewBox="0 0 30 30">
+					<polygon id="moduleListUpArrow" points="14,0 0,20 28,20" style="fill: #555555" stroke-width="2" />
+				</svg>
+			</div>
+			
+			<div id="moduleList">
+				<!-- AJAX-populated list of modules-->
+			</div>
+			
+			<div id="moduleListDown" onmouseup="moduleListDownUp();" onmousedown="moduleListDownDown();" onmouseup="moduleListDownOver();" onmouseover="moduleListDownOver();" onmouseleave="moduleListDownOut();">
+				<svg version="1.1" id="moduleListDownSymbol" x="0px" y="0px" width="30px" height="30px" viewBox="0 0 30 30">
+					<polygon id="moduleListDownArrow" points="14,20 0,0 28,0" style="fill: #555555" stroke-width="2" />
+				</svg>
+			</div>
+			
+		</div>
+		
+		<!-- Main -->
+		<div id="main">
+			
+			<div id="mainBox">
+				
+				<div id="mainModuleInfo">
+					
+					<div id="mainInfo">
+						
+						<div id="mainTitle">
+							Home
+						</div>
+						
+						<div id="mainRefreshButton" onmouseover="mainRefreshButtonOver();" onmouseleave="mainRefreshButtonOut();" onmousedown="mainRefreshButtonDown(REFRESH);" onmouseup="mainRefreshButtonUp();">
+							<svg version="1.1" id="mainRefreshButtonSymbol" x="0px" y="0px" width="36px" height="36px" viewBox="0 0 36 36">
+								<path class="arrow" style="fill: #999999;" d="M22.9,24.5c-1.4,1.1-3.3,1.8-5.3,1.8c-4.9,0-8.8-4-8.8-8.8h2.7L6.3,10l-5.3,7.5h2.7c0,7.7,6.2,13.9,13.9,13.9
+									c3.1,0,5.9-1,8.3-2.7L22.9,24.5z"/>
+								<path class="arrow" style="fill: #999999;" d="M31.5,17.5c0-7.7-6.2-13.9-13.9-13.9c-3.2,0-6.2,1.1-8.5,2.9l3,4.3c1.5-1.3,3.5-2.1,5.6-2.1
+									c4.9,0,8.8,3.9,8.8,8.8h-3l5.3,7.5l5.3-7.5L31.5,17.5L31.5,17.5z"/>
+							</svg>
+							<div id="mainRefreshButtonText">
+								Refresh
+							</div>
+						</div>
+						
+						<!-- Main content - separate box for Home, Current, History, Config, System; hide with Display: None -->
+						<div class="mainContent" id="contentHome">
+							
+							<div id="homeContentWrapper">
+								
+								<div id="homeContentStats"></div>
+								<div id="homeContentWarnings"></div>
+								
+								<div id="homeCardBox"></div>
+								
+							</div>
+							
+						</div>
+						
+						<div class="mainContent" id="contentCurrent">
+							Current
+						</div>
+						
+						<div class="mainContent" id="contentHistory">
+							History
+						</div>
+						
+						<div class="mainContent" id="contentConfig">
+							Config
+						</div>
+						
+						<div class="mainContent" id="contentSystem">
+							System
+						</div>
+						
+					</div>
+					
+				</div>
+				
+			</div>
+			
+			<div id="mainHome" class="mainModuleButton active topRightBorder" onmouseover="mainModuleButtonOver(this.id);" onmouseleave="mainModuleButtonOut(this.id);" onmousedown="mainModuleButtonDown(this.id);" onmouseup="mainModuleButtonUp(this.id, HOME);">
+				Home
+			</div>
+			
+			<div id="mainCurrent" class="mainModuleButton rightBorder" onmouseover="mainModuleButtonOver(this.id);" onmouseleave="mainModuleButtonOut(this.id);" onmousedown="mainModuleButtonDown(this.id);" onmouseup="mainModuleButtonUp(this.id, CURRENT);">
+				Current
+			</div>
+			
+			<div id="mainHistory" class="mainModuleButton rightBorder" onmouseover="mainModuleButtonOver(this.id);" onmouseleave="mainModuleButtonOut(this.id);" onmousedown="mainModuleButtonDown(this.id);" onmouseup="mainModuleButtonUp(this.id, HISTORY);">
+				History
+			</div>
+			
+			<div id="mainConfig" class="mainModuleButton bottomRightBorder" onmouseover="mainModuleButtonOver(this.id);" onmouseleave="mainModuleButtonOut(this.id);" onmousedown="mainModuleButtonDown(this.id);" onmouseup="mainModuleButtonUp(this.id, CONFIG);">
+				Config
+			</div>
+			
+			<div id="mainModuleButtonSeparator">
+				
+			</div>
+			
+			<div id="mainSystem" class="mainModuleButton threeBorders" onmouseover="mainModuleButtonOver(this.id);" onmouseleave="mainModuleButtonOut(this.id);" onmousedown="mainModuleButtonDown(this.id);" onmouseup="mainModuleButtonUp(this.id, SYSTEM);">
+				System
+			</div>
+			
+		</div>
+		
+		<!-- Footer and Copyright -->
+		<div id="footer">
+			<div id="copyright">&copy; Matthew Hengeveld 2015</div>
+		</div>
+		
+	</body>
+	
+</html>

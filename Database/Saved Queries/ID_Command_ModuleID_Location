@@ -1,5 +1,0 @@
-SELECT Node.ID, NodeDetails.Location
-FROM Node
-INNER JOIN NodeDetails
-ON Node.ID=NodeDetails.ID
-GROUP BY Node.ID;
