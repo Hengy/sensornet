@@ -8,3 +8,7 @@ The data requirements of the typical sensor is from 1 bit (open/closed) to 24 bi
 Sensornet provides a common API for multiple microcontroller architectures, allowing simple transfer and management of sensor and automation control data, as well as a web-based interface centred around the inexpensive, but powerful Raspberry Pi platform.
 
 Using the SensorNet libraries and templates, rapid development of SensorNet compatible sensors and automation controls is possible in as little as a few hours, while access to advanced features allow for complex, smart devices with advanced functionality.
+
+
+iPhone App
+Two good friends of mine developed an iPhone App for SensorNet. It can be found here: https://github.com/Qblack/SensorNet
